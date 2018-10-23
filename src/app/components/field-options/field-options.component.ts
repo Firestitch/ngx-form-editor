@@ -7,6 +7,7 @@ import { FormEditorConfig } from 'src/app/interfaces';
   styleUrls: [ 'field-options.component.scss' ],
 })
 export class FieldOptionsComponent {
+  public newOption = '';
 
   @Input() config: FormEditorConfig;
   @Input() field;
