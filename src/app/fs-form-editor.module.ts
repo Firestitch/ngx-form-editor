@@ -50,7 +50,6 @@ import { FlexLayoutModule, FlexModule } from '@angular/flex-layout';
     MatRadioModule,
     MatCardModule,
     FlexLayoutModule,
-    FlexModule,
     FormsModule,
     DragulaModule.forRoot()
   ],
