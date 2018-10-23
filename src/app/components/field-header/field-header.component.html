@@ -1,0 +1,22 @@
+<div class="field-drag">
+    <button button mat-icon-button><mat-icon class="field-drag-icon">drag_handle</mat-icon></button>
+</div>
+
+<div fxFlexLayout="row" fxLayoutAlign="start center">
+  <div fxFlex>
+    <mat-form-field floatLabel="never" class="label">
+      <input matInput placeholder="Label" [(ngModel)]="field.label" name="label">
+    </mat-form-field>
+  </div>
+
+  <button button mat-icon-button><mat-icon>filter_none</mat-icon></button>
+  <button button mat-icon-button><mat-icon>delete</mat-icon></button>
+  <mat-menu #headerMenu="matMenu">
+    <button mat-menu-item (click)="toggleDescription()">Description</button>
+  </mat-menu>
+  <button button mat-icon-button [matMenuTriggerFor]="headerMenu"><mat-icon>more_vert</mat-icon></button>
+</div>
+
+<mat-form-field floatLabel="never" *ngIf="field.hasDescription" class="description">
+  <input matInput placeholder="Description"  [(ngModel)]="field.description" name="description">
+</mat-form-field>

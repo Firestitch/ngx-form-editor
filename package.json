@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Firestitch/fs-package"
+    "url": "https://github.com/Firestitch/fs-form-editor"
   },
   "author": {
     "name": "Firestitch",
@@ -15,13 +15,13 @@
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Firestitch/fs-package/issues"
+    "url": "https://github.com/Firestitch/fs-form-editor/issues"
   },
   "main": "package/index.js",
   "typings": "package/index.d.ts",
   "scripts": {
-    "package": "ng build fs-package",
-    "package:test": "ng test fs-package",
+    "package": "ng build fs-form-editor",
+    "package:test": "ng test fs-form-editor",
     "package:publish": "cd package && npm publish --access=public",
     "demo:build": "ng build --aot --prod",
     "serve": "ng serve"
@@ -77,12 +77,14 @@
     "tslint": "~5.7.0",
     "typescript": "^2.9.2",
     "webpack": "^4.20.2",
-    "zone.js": "^0.8.26"
+    "zone.js": "^0.8.26",
+    "ng2-dragula": "^2.1.0"
   },
   "engines": {
     "node": ">=6.0.0"
   },
-  "peerDependencies": {},
+  "peerDependencies": {
+  },
   "dependencies": {
     "rxjs-compat": "^6.3.3",
     "tslib": "^1.9.3"

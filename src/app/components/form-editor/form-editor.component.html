@@ -1,0 +1,13 @@
+<div fxFlexLayout="row" fxLayoutAlign="start center">
+  <div [dragulaModel]="form.fields" dragula="groupFields" fxFlex>
+    <div *ngFor="let field of form.fields">
+      <fs-form-field-text *ngIf="field.type=='shorttext' || field.type=='longtext' || field.type=='phone' || field.type=='email' || field.type=='date' || field.type=='time'" [field]="field" [config]="config"></fs-form-field-text>
+      <fs-form-field-options *ngIf="field.type=='choice' || field.type=='checkbox'" [field]="field" [config]="config"></fs-form-field-options>
+    </div>
+  </div>
+  <div class="toolbar">
+      <mat-card>
+        <mat-card-content>Toolbar</mat-card-content>
+      </mat-card>
+  </div>
+</div>

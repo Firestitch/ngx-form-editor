@@ -18,8 +18,9 @@
       "dom"
     ],
     "paths": {
-      "fs-package": [
-        "src/index.ts"
+      "dragula": ["./node_modules/dragula/dist/dragula.min.js"],
+      "fs-form-editor": [
+        "src/index.ts",
       ]
     }
   }
