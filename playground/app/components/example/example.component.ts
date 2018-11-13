@@ -14,118 +14,118 @@ export class ExampleComponent {
     this.form = {
       fields: [
         {
-          id: '1',
+          guid: '1',
           type: 'dropdown',
           label: 'Dropdown Question',
           state: 'active',
           other: true,
           options: [
             {
-              id: '11',
+              guid: '11',
               label: 'Option A'
             },
             {
-              id: '22',
+              guid: '22',
               label: 'Option B'
             }
           ]
         },
         {
-          id: '2',
+          guid: '2',
           type: 'shorttext',
           label: 'Short Text Question',
           state: 'active',
           description: 'Description Description Description'
         },
         {
-          id: '3',
+          guid: '3',
           type: 'longtext',
           label: 'Long Text Question',
           state: 'active'
         },
         {
-          id: '4',
+          guid: '4',
           type: 'name',
           label: 'Name Question',
           state: 'active',
           other: true,
           options: [
             {
-              id: '33',
+              guid: '33',
               label: 'First Name'
             },
             {
-              id: '44',
+              guid: '44',
               label: 'Middle Name'
             },
             {
-              id: '55',
+              guid: '55',
               label: 'Last Name'
             }
           ]
         },
         {
-          id: '5',
+          guid: '5',
           type: 'choice',
           label: 'Choice Question',
           state: 'active',
           other: true,
           options: [
             {
-              id: '66',
+              guid: '66',
               label: 'Option A'
             },
             {
-              id: '77',
+              guid: '77',
               label: 'Option B'
             },
             {
-              id: '88',
+              guid: '88',
               label: 'Option C'
             }
           ]
         },
         {
-          id: '6',
+          guid: '6',
           type: 'phone',
           label: 'Phone Question',
           state: 'active'
         },
         {
-          id: '7',
+          guid: '7',
           type: 'email',
           label: 'Email Question',
           state: 'active'
         },
         {
-          id: '8',
+          guid: '8',
           type: 'time',
           label: 'Time Question',
           state: 'active'
         },
         {
-          id: '9',
+          guid: '9',
           type: 'date',
           label: 'Date Question',
           state: 'active'
         },
         {
-          id: '10',
+          guid: '10',
           type: 'checkbox',
           label: 'Checkboxes Question',
           state: 'active',
           other: true,
           options: [
             {
-              id: '99',
+              guid: '99',
               label: 'Option A'
             },
             {
-              id: '111',
+              guid: '111',
               label: 'Option B'
             },
             {
-              id: '222',
+              guid: '222',
               label: 'Option C'
             }
           ]

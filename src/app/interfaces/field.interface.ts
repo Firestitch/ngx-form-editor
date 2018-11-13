@@ -7,7 +7,7 @@ export enum FieldType {
   PHONE = 'phone',
   EMAIL = 'email',
   TIME = 'time',
-  CHECKBOXES = 'checkboxes',
+  CHECKBOXES = 'checkbox',
 }
 
 export enum FieldState {
@@ -16,17 +16,17 @@ export enum FieldState {
 }
 
 export interface Field {
-  id?: number,
+  guid?: string,
   type: FieldType,
   label: string,
   description: string,
   hasDescription: boolean,
   state: FieldState,
   other?: boolean,
-  options?: Array<FieldOption>
+  options?: FieldOption[]
 }
 
 export interface FieldOption {
-  id?: number,
+  guid?: string,
   label: string
 }

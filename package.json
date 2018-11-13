@@ -30,7 +30,7 @@
     "@angular-devkit/build-angular": "^0.8.5",
     "@angular-devkit/build-ng-packagr": "~0.8.0",
     "@angular/animations": "^6.1.9",
-    "@angular/cdk": "^6.4.7",
+    "@angular/cdk": "^7.0.3",
     "@angular/cli": "~6.2.4",
     "@angular/common": "^6.1.9",
     "@angular/compiler": "^6.1.9",
@@ -46,6 +46,8 @@
     "@angular/router": "^6.1.9",
     "@compodoc/compodoc": "^1.0.5",
     "@firestitch/example": "^0.2.20",
+    "@firestitch/prompt": "^0.1.2",
+    "@firestitch/common": "^0.3.1",
     "@types/googlemaps": "^3.30.2",
     "@types/jasmine": "~2.8.8",
     "@types/jasminewd2": "~2.0.3",
@@ -84,6 +86,8 @@
     "node": ">=6.0.0"
   },
   "peerDependencies": {
+    "@firestitch/prompt": "^0.1.2",
+    "@firestitch/common": "^0.3.1"
   },
   "dependencies": {
     "rxjs-compat": "^6.3.3",

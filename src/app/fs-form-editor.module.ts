@@ -2,17 +2,16 @@ import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
-import {  FormEditorComponent,
-        FieldTextComponent,
-        FieldHeaderComponent,
-        FieldOptionsComponent} from './components';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
-
+import { FsCommonModule } from '@firestitch/common';
+import { FsPromptModule } from '@firestitch/prompt';
 
 import {
   MatAutocompleteModule,
   MatButtonModule,
   MatButtonToggleModule,
+  MatTooltipModule,
   MatCardModule,
   MatCheckboxModule,
   MatChipsModule,
@@ -33,9 +32,13 @@ import {
   MatSelectModule
 } from '@angular/material';
 
-import { DragulaModule } from 'ng2-dragula';
-
 import { FlexLayoutModule, FlexModule } from '@angular/flex-layout';
+
+import {  FormEditorComponent,
+  FieldTextComponent,
+  FieldHeaderComponent,
+  FormToolbarComponent,
+  FieldOptionsComponent} from './components';
 
 
 @NgModule({
@@ -50,8 +53,11 @@ import { FlexLayoutModule, FlexModule } from '@angular/flex-layout';
     MatRadioModule,
     MatCardModule,
     FlexLayoutModule,
+    MatTooltipModule,
     FormsModule,
-    DragulaModule.forRoot()
+    DragDropModule,
+    FsCommonModule,
+    FsPromptModule.forRoot(),
   ],
   exports: [
     FormEditorComponent
@@ -61,6 +67,7 @@ import { FlexLayoutModule, FlexModule } from '@angular/flex-layout';
   declarations: [
     FormEditorComponent,
     FieldOptionsComponent,
+    FormToolbarComponent,
     FieldHeaderComponent,
     FieldTextComponent
   ],

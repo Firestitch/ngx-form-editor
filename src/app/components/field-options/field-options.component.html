@@ -1,39 +1,60 @@
-<fs-field-header [field]="field"></fs-field-header>
+<fs-field-header [field]="field" [form]="form"></fs-field-header>
 
-<div *ngFor="let option of field.options">
+<div cdkDropList class="options" (cdkDropListDropped)="drop($event)">
+  <div *ngFor="let option of field.options; index as idx" cdkDrag cdkDragLockAxis="y">
 
-  <div fxFlexLayout="row" fxLayoutAlign="start center">
-    <button button mat-icon-button><mat-icon>drag_handle</mat-icon></button>
-
-    <mat-checkbox *ngIf="field.type==='checkbox'; else typeChoice" disabled="true"></mat-checkbox>
-
-    <ng-template #typeChoice>
-      <mat-radio-button disabled="true"></mat-radio-button>
-    </ng-template>
-
-    <mat-form-field floatLabel="never" class="label" fxFlex>
-      <input matInput placeholder="Label" [(ngModel)]="option.label" name="label">
-    </mat-form-field>
-
-    <button button mat-icon-button><mat-icon>delete</mat-icon></button>
+    <div fxFlexLayout="row" fxLayoutAlign="start center">
+  
+      <div class="option-drag" cdkDragHandle>
+        <button button mat-icon-button><mat-icon class="option-drag-icon">drag_handle</mat-icon></button>
+      </div>
+  
+      <mat-checkbox *ngIf="field.type==='checkbox'; else typeChoice" disabled="true"></mat-checkbox>
+  
+      <ng-template #typeChoice>
+        <mat-radio-button disabled="true"></mat-radio-button>
+      </ng-template>
+  
+      <mat-form-field floatLabel="never" class="label" fxFlex>
+        <input matInput placeholder="Label" [(ngModel)]="option.label" name="label">
+      </mat-form-field>
+  
+      <button button mat-icon-button (click)="removeOption(idx)"><mat-icon>delete</mat-icon></button>
+    </div>
   </div>
+</div>
+
+<div *ngIf="field.other === true" fxFlexLayout="row" fxLayoutAlign="start center">
+  <button button mat-icon-button [ngStyle]="{'visibility': 'hidden'}"><mat-icon>drag_handle</mat-icon></button>
+
+  <mat-checkbox *ngIf="field.type==='checkbox'; else typeChoice" disabled="true"></mat-checkbox>
+
+  <ng-template #typeChoice>
+    <mat-radio-button disabled="true"></mat-radio-button>
+  </ng-template>
+
+  <mat-form-field floatLabel="never" class="label" fxFlex>
+    <input matInput placeholder="Label" disabled name="label" value="Other">
+  </mat-form-field>
+
+  <button button mat-icon-button (click)="field.other = false"><mat-icon>delete</mat-icon></button>
 </div>
 
 <div>
 
-    <div fxFlexLayout="row" fxLayoutAlign="start center">
+  <div fxFlexLayout="row" fxLayoutAlign="start center">
 
-      <button button mat-icon-button><mat-icon></mat-icon></button>
+    <button button mat-icon-button><mat-icon></mat-icon></button>
 
-      <mat-checkbox disabled="true" style="visibility: hidden"></mat-checkbox>
+    <mat-checkbox disabled="true" style="visibility: hidden"></mat-checkbox>
 
-      <mat-form-field floatLabel="never" class="new-option" fxFlex>
-        <input matInput placeholder="Add New Option" [(ngModel)]="newOption" name="newOption">
-      </mat-form-field>
+    <mat-form-field floatLabel="never" class="new-option" fxFlex>
+      <input matInput placeholder="Add New Option" [(ngModel)]="newOption" name="newOption" (keydown.tab)="addOption($event)" (keyup.enter)="addOption($event)">
+    </mat-form-field>
 
-      <span class="or">OR</span> <button mat-button color="primary">Add "Other" Option</button>
+    <span class="or">OR</span> <button mat-button color="primary" (click)="field.other = !field.other">{{ field.other ? 'Remove' : 'Add' }} "Other" Option</button>
 
-      <button button mat-icon-button style="visibility: hidden"><mat-icon>delete</mat-icon></button>
+    <button button mat-icon-button style="visibility: hidden"><mat-icon>delete</mat-icon></button>
 
-    </div>
   </div>
+</div>

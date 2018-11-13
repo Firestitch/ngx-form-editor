@@ -1,7 +1,8 @@
 import { Component, Input } from '@angular/core';
+
+import {CdkDragDrop, moveItemInArray, copyArrayItem} from '@angular/cdk/drag-drop';
+
 import { FormEditorConfig } from 'src/app/interfaces';
-import { DragulaService } from 'ng2-dragula';
-import { DragulaOptions } from 'dragula';
 
 @Component({
   selector: 'fs-form-editor',
@@ -12,14 +13,13 @@ export class FormEditorComponent {
 
   @Input() config: FormEditorConfig;
   @Input() form;
-  constructor(private dragulaService: DragulaService) {
-    const dragOptions: DragulaOptions = {
-      moves: (el, container, handle) => {
-        return handle.className.indexOf('field-drag-icon')>=0;
-      },
-      direction: 'vertical'
-    };
-    dragulaService.createGroup('groupFields',dragOptions);
-  }
+  constructor() {}
 
+  drop(event: CdkDragDrop<string[]>) {
+    if (event.container === event.previousContainer) {
+      moveItemInArray(this.form.fields, event.previousIndex, event.currentIndex);
+    } else {
+      this.form.fields.splice(event.currentIndex, 0, event.item.data);
+    }
+  }
 }

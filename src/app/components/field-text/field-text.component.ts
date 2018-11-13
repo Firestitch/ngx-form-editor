@@ -10,6 +10,7 @@ export class FieldTextComponent {
 
   @Input() config: FormEditorConfig;
   @Input() field;
+  @Input() form;
   constructor() {
   }
 

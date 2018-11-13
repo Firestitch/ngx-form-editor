@@ -1,0 +1,14 @@
+:host {
+    margin-left: 20px;
+    border: 1px solid #ccc;
+    align-self: flex-start;
+    border-top: 40px solid #2196f3;
+
+    mat-card {
+      padding-top: 10px;
+    }
+
+    .item-preview {
+      margin-bottom: 10px;
+    }
+} 

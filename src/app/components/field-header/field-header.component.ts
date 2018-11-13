@@ -1,17 +1,23 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormEditorConfig } from 'src/app/interfaces';
+
+import { index } from '@firestitch/common';
+import { FsPrompt } from '@firestitch/prompt';
+
+import { FormEditorConfig, Field } from 'src/app/interfaces';
+
 
 @Component({
   selector: 'fs-field-header',
   templateUrl: 'field-header.component.html',
   styleUrls: [ 'field-header.component.scss' ],
 })
-export class FieldHeaderComponent implements OnInit{
+export class FieldHeaderComponent implements OnInit {
 
   @Input() config: FormEditorConfig;
   @Input() configField;
   @Input() field;
-  constructor() {
+  @Input() form;
+  constructor(private fsPrompt: FsPrompt) {
   }
 
   ngOnInit() {
@@ -20,6 +26,19 @@ export class FieldHeaderComponent implements OnInit{
 
   toggleDescription() {
     this.field.hasDescription = !this.field.hasDescription;
+  }
+
+  copy() {
+    this.form.fields.splice(this.form.fields.indexOf(this.field), 0, this.field);
+  }
+
+  delete() {
+    this.fsPrompt.confirm({
+      title: 'Confirm',
+      template: 'Are you sure you would like to remove this option?',
+    }).subscribe((value) => {
+        this.form.fields.splice(this.form.fields.indexOf(this.field), 1);
+    });
   }
 
 }
