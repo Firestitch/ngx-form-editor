@@ -8,6 +8,8 @@ export enum FieldType {
   EMAIL = 'email',
   TIME = 'time',
   CHECKBOXES = 'checkbox',
+  DATE = 'date',
+  FILE = 'file'
 }
 
 export enum FieldState {
@@ -16,6 +18,7 @@ export enum FieldState {
 }
 
 export interface Field {
+  id?: number,
   guid?: string,
   type: FieldType,
   label: string,

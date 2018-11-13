@@ -16,19 +16,20 @@ export class FormToolbarComponent {
 
   public field: Field = null;
 
-  public items: { icon: string, label: string, type: FieldType}[] = [
+  public items: { icon: string, label: string, type: FieldType, divide?: boolean}[] = [
     { icon: 'short_text', label: 'Short Text', type: FieldType.SHORT_TEXT },
-    { icon: 'subject', label: 'Long Text', type: FieldType.LONG_TEXT },
+    { icon: 'subject', label: 'Long Text', type: FieldType.LONG_TEXT, divide: true },
     { icon: 'arrow_drop_down_circle', label: 'Dropdown', type: FieldType.DROPDOWN },
     { icon: 'radio_button_checked', label: 'Choice', type: FieldType.CHOICE },
     { icon: 'subject', label: 'Long Text', type: FieldType.LONG_TEXT },
     { icon: 'radio_button_checked', label: 'Choice', type: FieldType.CHOICE },
     { icon: 'check_box', label: 'Checkboxes', type: FieldType.CHECKBOXES },
     // { icon: 'date_range', label: 'Date', type: FieldType.DATE },
-    { icon: 'access_time', label: 'Time', type: FieldType.TIME },
+    { icon: 'access_time', label: 'Time', type: FieldType.TIME, divide: true },
     { icon: 'person', label: 'Name', type: FieldType.NAME },
     { icon: 'phone', label: 'Phone', type: FieldType.PHONE },
-    { icon: 'email', label: 'Email', type: FieldType.EMAIL },
+    { icon: 'email', label: 'Email', type: FieldType.EMAIL, divide: true },
+    { icon: 'publish', label: 'File', type: FieldType.FILE },
   ];
 
   constructor() {}

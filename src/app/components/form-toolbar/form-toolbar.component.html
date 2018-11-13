@@ -7,6 +7,9 @@
             <div fxFlexLayout="row" class="item-preview" fxLayoutAlign="start center" fxLayoutGap="10px">
               <mat-icon>{{ item.icon }}</mat-icon><span>{{ item.label }}</span>
             </div>
+            <ng-container *ngIf="item.divide">
+              <mat-divider></mat-divider>
+            </ng-container>
           </div>
         </div>
       </div>

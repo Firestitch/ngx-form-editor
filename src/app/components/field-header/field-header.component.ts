@@ -4,6 +4,7 @@ import { index } from '@firestitch/common';
 import { FsPrompt } from '@firestitch/prompt';
 
 import { FormEditorConfig, Field } from 'src/app/interfaces';
+import { guid } from '@firestitch/common/util';
 
 
 @Component({
@@ -29,7 +30,9 @@ export class FieldHeaderComponent implements OnInit {
   }
 
   copy() {
-    this.form.fields.splice(this.form.fields.indexOf(this.field), 0, this.field);
+    const copiedField = Object.assign({}, this.field);
+    copiedField.guid = guid();
+    this.form.fields.splice(this.form.fields.indexOf(this.field) + 1, 0, copiedField);
   }
 
   delete() {

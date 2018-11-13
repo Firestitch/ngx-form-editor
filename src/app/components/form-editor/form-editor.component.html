@@ -5,7 +5,7 @@
         <button button mat-icon-button><mat-icon>drag_handle</mat-icon></button>
       </div>
 
-      <fs-form-field-text *ngIf="field.type=='shorttext' || field.type=='longtext' || field.type=='phone' || field.type=='email' || field.type=='date' || field.type=='time'" [field]="field" [form]="form" [config]="config"></fs-form-field-text>
+      <fs-form-field-text *ngIf="field.type=='shorttext' || field.type=='longtext' || field.type=='phone' || field.type=='email' || field.type=='date' || field.type=='time' || field.type==='file'" [field]="field" [form]="form" [config]="config"></fs-form-field-text>
       <fs-form-field-options *ngIf="field.type=='choice' || field.type=='checkbox'" [field]="field" [form]="form" [config]="config"></fs-form-field-options>
     </div>
   </div>
