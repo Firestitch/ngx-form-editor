@@ -1,6 +1,6 @@
 {
-  "name": "@firestitch/package",
-  "description": "@firestitch/package",
+  "name": "@firestitch/form-editor",
+  "description": "@firestitch/form-editor",
   "version": "0.1.0",
   "repository": {
     "type": "git",
@@ -20,11 +20,10 @@
   "main": "package/index.js",
   "typings": "package/index.d.ts",
   "scripts": {
-    "package": "ng build fs-form-editor",
-    "package:test": "ng test fs-form-editor",
-    "package:publish": "cd package && npm publish --access=public",
-    "demo:build": "ng build --aot --prod",
-    "serve": "ng serve"
+    "package": "cd tools && npm run package",
+    "package:publish": "cd tools && npm run package:publish",
+    "demo:build": "cd tools && npm run demo:build",
+    "serve": "cd tools && npm run serve"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^0.8.5",
@@ -86,8 +85,9 @@
     "node": ">=6.0.0"
   },
   "peerDependencies": {
-    "@firestitch/prompt": "^0.1.2",
-    "@firestitch/common": "^0.3.1"
+    "@angular/cdk": ">=7.0.3",
+    "@firestitch/prompt": ">=0.1.2",
+    "@firestitch/common": ">=0.3.1"
   },
   "dependencies": {
     "rxjs-compat": "^6.3.3",
