@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 
 import {CdkDragDrop, moveItemInArray, copyArrayItem} from '@angular/cdk/drag-drop';
 
-import { FormEditorConfig } from 'src/app/interfaces';
+import { FormEditorConfig } from '../../interfaces';
 
 @Component({
   selector: 'fs-form-editor',

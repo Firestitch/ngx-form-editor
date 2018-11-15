@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { FormEditorConfig } from 'src/app/interfaces';
+import { FormEditorConfig } from '../../interfaces';
 
 @Component({
   selector: 'fs-form-field-text',

@@ -1,9 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 
-import { index } from '@firestitch/common';
 import { FsPrompt } from '@firestitch/prompt';
 
-import { FormEditorConfig, Field } from 'src/app/interfaces';
+import { FormEditorConfig } from '../../interfaces';
 import { guid } from '@firestitch/common/util';
 
 

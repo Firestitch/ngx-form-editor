@@ -1,3 +1,5 @@
+import { FieldOption } from './field-option.interface';
+
 export enum FieldType {
   DROPDOWN = 'dropdown',
   SHORT_TEXT = 'shorttext',
@@ -27,9 +29,4 @@ export interface Field {
   state: FieldState,
   other?: boolean,
   options?: FieldOption[]
-}
-
-export interface FieldOption {
-  guid?: string,
-  label: string
 }

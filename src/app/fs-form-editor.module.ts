@@ -35,12 +35,11 @@ import {
 
 import { FlexLayoutModule, FlexModule } from '@angular/flex-layout';
 
-import {  FormEditorComponent,
-  FieldTextComponent,
-  FieldHeaderComponent,
-  FormToolbarComponent,
-  FieldOptionsComponent} from './components';
-
+import { FormEditorComponent } from './components/form-editor/form-editor.component';
+import { FieldTextComponent } from './components/field-text/field-text.component';
+import { FieldHeaderComponent } from './components/field-header/field-header.component';
+import { FormToolbarComponent } from './components/form-toolbar/form-toolbar.component';
+import { FieldOptionsComponent } from './components/field-options/field-options.component';
 
 @NgModule({
   imports: [

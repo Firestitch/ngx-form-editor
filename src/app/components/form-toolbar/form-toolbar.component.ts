@@ -1,10 +1,8 @@
 import { Component } from '@angular/core';
 
-import {CdkDragExit} from '@angular/cdk/drag-drop';
-
 import { guid } from '@firestitch/common/util';
 
-import { Field, FieldType, FieldState } from 'src/app/interfaces';
+import { Field, FieldType, FieldState } from '../../interfaces';
 
 
 @Component({
