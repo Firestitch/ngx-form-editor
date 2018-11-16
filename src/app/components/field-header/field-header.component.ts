@@ -26,6 +26,7 @@ export class FieldHeaderComponent implements OnInit {
 
   toggleDescription() {
     this.field.hasDescription = !this.field.hasDescription;
+    this.field.description = '';
   }
 
   copy() {

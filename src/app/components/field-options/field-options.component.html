@@ -24,7 +24,7 @@
   </div>
 </div>
 
-<div *ngIf="field.other === true" fxFlexLayout="row" fxLayoutAlign="start center">
+<div *ngIf="field.other" fxFlexLayout="row" fxLayoutAlign="start center">
   <button button mat-icon-button [ngStyle]="{'visibility': 'hidden'}"><mat-icon>drag_handle</mat-icon></button>
 
   <mat-checkbox *ngIf="field.type==='checkbox'; else typeChoice" disabled="true"></mat-checkbox>
@@ -34,7 +34,7 @@
   </ng-template>
 
   <mat-form-field floatLabel="never" class="label" fxFlex>
-    <input matInput placeholder="Label" disabled name="label" value="Other">
+    <input matInput placeholder="Label" disabled="true" name="label" value="Other">
   </mat-form-field>
 
   <button button mat-icon-button (click)="field.other = false"><mat-icon>delete</mat-icon></button>
