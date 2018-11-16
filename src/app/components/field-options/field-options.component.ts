@@ -28,11 +28,11 @@ export class FieldOptionsComponent {
 
     if (this.newOption.length) {
 
-      if (!this.field.options) {
-        this.field.options = [];
+      if (!this.field.field_options) {
+        this.field.field_options = [];
       }
 
-      this.field.options.push({
+      this.field.field_options.push({
         guid: guid(),
         label: this.newOption,
       });
@@ -46,11 +46,11 @@ export class FieldOptionsComponent {
       title: 'Confirm',
       template: 'Are you sure you would like to remove this option?',
     }).subscribe((value) => {
-        this.field.options.splice(index, 1);
+        this.field.field_options.splice(index, 1);
     });
   }
 
   drop(event: CdkDragDrop<string[]>) {
-    moveItemInArray(this.field.options, event.previousIndex, event.currentIndex);
+    moveItemInArray(this.field.field_options, event.previousIndex, event.currentIndex);
   }
 }

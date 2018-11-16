@@ -19,7 +19,7 @@ export class ExampleComponent {
           label: 'Dropdown Question',
           state: 'active',
           other: true,
-          options: [
+          field_options: [
             {
               guid: '11',
               label: 'Option A'
@@ -49,7 +49,7 @@ export class ExampleComponent {
           label: 'Name Question',
           state: 'active',
           other: true,
-          options: [
+          field_options: [
             {
               guid: '33',
               label: 'First Name'
@@ -70,7 +70,7 @@ export class ExampleComponent {
           label: 'Choice Question',
           state: 'active',
           other: true,
-          options: [
+          field_options: [
             {
               guid: '66',
               label: 'Option A'
@@ -115,7 +115,7 @@ export class ExampleComponent {
           label: 'Checkboxes Question',
           state: 'active',
           other: true,
-          options: [
+          field_options: [
             {
               guid: '99',
               label: 'Option A'

@@ -28,5 +28,5 @@ export interface Field {
   hasDescription: boolean,
   state: FieldState,
   other?: boolean,
-  options?: FieldOption[]
+  field_options?: FieldOption[]
 }
