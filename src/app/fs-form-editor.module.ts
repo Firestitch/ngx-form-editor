@@ -40,6 +40,7 @@ import { FieldTextComponent } from './components/field-text/field-text.component
 import { FieldHeaderComponent } from './components/field-header/field-header.component';
 import { FormToolbarComponent } from './components/form-toolbar/form-toolbar.component';
 import { FieldOptionsComponent } from './components/field-options/field-options.component';
+import { FieldNameComponent } from './components/field-name/field-name.component';
 
 @NgModule({
   imports: [
@@ -70,7 +71,8 @@ import { FieldOptionsComponent } from './components/field-options/field-options.
     FieldOptionsComponent,
     FormToolbarComponent,
     FieldHeaderComponent,
-    FieldTextComponent
+    FieldTextComponent,
+    FieldNameComponent
   ],
   providers: [
     // FsComponentService,

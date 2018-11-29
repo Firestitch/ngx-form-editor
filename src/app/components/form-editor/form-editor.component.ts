@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 
-import {CdkDragDrop, moveItemInArray, copyArrayItem} from '@angular/cdk/drag-drop';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
 import { FormEditorConfig } from '../../interfaces';
 

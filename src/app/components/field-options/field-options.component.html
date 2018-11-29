@@ -9,11 +9,10 @@
         <button button mat-icon-button><mat-icon class="option-drag-icon">drag_handle</mat-icon></button>
       </div>
   
-      <mat-checkbox *ngIf="field.type==='checkbox'; else typeChoice" disabled="true"></mat-checkbox>
-  
-      <ng-template #typeChoice>
-        <mat-radio-button disabled="true"></mat-radio-button>
-      </ng-template>
+      <ng-container [ngSwitch]="field.type">
+        <mat-checkbox *ngSwitchCase="'checkbox'" disabled="true"></mat-checkbox>
+        <mat-radio-button *ngSwitchCase="'choice'" disabled="true"></mat-radio-button>
+      </ng-container>
   
       <mat-form-field floatLabel="never" class="label" fxFlex>
         <input matInput placeholder="Label" [(ngModel)]="option.label" name="label">
@@ -27,11 +26,10 @@
 <div *ngIf="field.other" fxFlexLayout="row" fxLayoutAlign="start center">
   <button button mat-icon-button [ngStyle]="{'visibility': 'hidden'}"><mat-icon>drag_handle</mat-icon></button>
 
-  <mat-checkbox *ngIf="field.type==='checkbox'; else typeChoice" disabled="true"></mat-checkbox>
-
-  <ng-template #typeChoice>
-    <mat-radio-button disabled="true"></mat-radio-button>
-  </ng-template>
+  <ng-container [ngSwitch]="field.type">
+    <mat-checkbox *ngSwitchCase="'checkbox'" disabled="true"></mat-checkbox>
+    <mat-radio-button *ngSwitchCase="'choice'" disabled="true"></mat-radio-button>
+  </ng-container>
 
   <mat-form-field floatLabel="never" class="label" fxFlex>
     <input matInput placeholder="Label" disabled="true" name="label" value="Other">
@@ -51,8 +49,9 @@
     <mat-form-field floatLabel="never" class="new-option" fxFlex>
       <input matInput placeholder="Add New Option" [(ngModel)]="newOption" name="newOption" (keydown.tab)="addOption()" (keyup.enter)="addOption()">
     </mat-form-field>
-
-    <span class="or">OR</span> <button mat-button color="primary" (click)="field.other = !field.other">{{ field.other ? 'Remove' : 'Add' }} "Other" Option</button>
+    <ng-container *ngIf="field.type === 'checkbox' || field.type === 'choice'">
+      <span class="or">OR</span> <button mat-button color="primary" (click)="field.other = !field.other">{{ field.other ? 'Remove' : 'Add' }} "Other" Option</button>
+    </ng-container>
 
     <button button mat-icon-button style="visibility: hidden"><mat-icon>delete</mat-icon></button>
 

@@ -1,12 +1,13 @@
 <div fxFlexLayout="row" fxLayoutAlign="start center">
   <div class="fields" fxFlex cdkDropList (cdkDropListDropped)="drop($event)" id="fieldList" #fieldsList="cdkDropList">
     <div *ngFor="let field of form.fields; index as idx" cdkDrag cdkDragLockAxis="y">
-      <div class="field-drag" cdkDragHandle *ngIf="field.type=='shorttext' || field.type=='longtext' || field.type=='phone' || field.type=='email' || field.type=='date' || field.type=='time' || field.type=='choice' || field.type=='checkbox'">
+      <div class="field-drag" cdkDragHandle>
         <button button mat-icon-button><mat-icon>drag_handle</mat-icon></button>
       </div>
 
       <fs-form-field-text *ngIf="field.type=='shorttext' || field.type=='longtext' || field.type=='phone' || field.type=='email' || field.type=='date' || field.type=='time' || field.type==='file'" [field]="field" [form]="form" [config]="config"></fs-form-field-text>
-      <fs-form-field-options *ngIf="field.type=='choice' || field.type=='checkbox'" [field]="field" [form]="form" [config]="config"></fs-form-field-options>
+      <fs-form-field-options *ngIf="field.type=='choice' || field.type=='checkbox' || field.type=='dropdown'" [field]="field" [form]="form" [config]="config"></fs-form-field-options>
+      <fs-form-field-name *ngIf="field.type=='name'" [field]="field" [form]="form" [config]="config"></fs-form-field-name>
     </div>
   </div>
   <fs-form-toolbar></fs-form-toolbar>

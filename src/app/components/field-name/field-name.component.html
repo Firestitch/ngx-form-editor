@@ -1,0 +1,42 @@
+<fs-field-header [field]="field" [form]="form"></fs-field-header>
+
+<div class="options">
+  <div fxFlexLayout="row" fxLayoutAlign="start center">
+    <mat-checkbox color="primary" [(ngModel)]="field.configs.first_name.display"></mat-checkbox>
+
+    <mat-form-field floatLabel="never" class="label" fxFlex>
+      <input 
+        matInput 
+        placeholder="Label" 
+        [(ngModel)]="field.configs.first_name.label" 
+        [disabled]="!field.configs.first_name.display"
+        name="first_name">
+    </mat-form-field>
+  </div>
+
+  <div fxFlexLayout="row" fxLayoutAlign="start center">
+    <mat-checkbox color="primary" [(ngModel)]="field.configs.middle_name.display"></mat-checkbox>
+
+    <mat-form-field floatLabel="never" class="label" fxFlex>
+      <input 
+        matInput 
+        placeholder="Label" 
+        [(ngModel)]="field.configs.middle_name.label"
+        [disabled]="!field.configs.middle_name.display"
+        name="middle_name">
+    </mat-form-field>
+  </div>
+
+  <div fxFlexLayout="row" fxLayoutAlign="start center">
+    <mat-checkbox color="primary" [(ngModel)]="field.configs.last_name.display"></mat-checkbox>
+
+    <mat-form-field floatLabel="never" class="label" fxFlex>
+      <input 
+        matInput 
+        placeholder="Label" 
+        [(ngModel)]="field.configs.last_name.label"
+        [disabled]="!field.configs.last_name.display"
+        name="last_name">
+    </mat-form-field>
+  </div>
+</div>
