@@ -16,7 +16,8 @@ export class FormToolbarComponent {
 
   public items: { icon: string, label: string, type: FieldType, divide?: boolean}[] = [
     { icon: 'short_text', label: 'Short Text', type: FieldType.SHORT_TEXT },
-    { icon: 'subject', label: 'Long Text', type: FieldType.LONG_TEXT, divide: true },
+    { icon: 'subject', label: 'Long Text', type: FieldType.LONG_TEXT },
+    { icon: 'text_format', label: 'Rich Text', type: FieldType.RICH_TEXT, divide: true },
     { icon: 'arrow_drop_down_circle', label: 'Dropdown', type: FieldType.DROPDOWN },
     { icon: 'radio_button_checked', label: 'Choice', type: FieldType.CHOICE },
     { icon: 'check_box', label: 'Checkboxes', type: FieldType.CHECKBOXES },
@@ -25,7 +26,7 @@ export class FormToolbarComponent {
     { icon: 'person', label: 'Name', type: FieldType.NAME },
     { icon: 'phone', label: 'Phone', type: FieldType.PHONE },
     { icon: 'email', label: 'Email', type: FieldType.EMAIL, divide: true },
-    { icon: 'publish', label: 'File', type: FieldType.FILE },
+    { icon: 'publish', label: 'File', type: FieldType.FILE }
   ];
 
   constructor() {}

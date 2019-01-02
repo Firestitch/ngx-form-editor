@@ -1,5 +1,5 @@
-<fs-form-editor *ngIf="form" [form]="form"></fs-form-editor>
+<fs-form-editor *ngIf="fields" [fields]="fields"></fs-form-editor>
 
-<pre *ngIf="form">
-  {{form|json}}
+<pre *ngIf="fields">
+  {{fields|json}}
 </pre>

@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 
-import { FormEditorConfig } from '../../interfaces';
+import { Field } from '../../interfaces';
 
 
 @Component({
@@ -10,9 +10,8 @@ import { FormEditorConfig } from '../../interfaces';
 })
 export class FieldNameComponent implements OnInit {
 
-  @Input() config: FormEditorConfig;
-  @Input() field;
-  @Input() form;
+  @Input() field: Field;
+  @Input() fields: Field[];
 
   constructor() {
   }

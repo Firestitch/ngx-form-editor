@@ -11,7 +11,8 @@ export enum FieldType {
   TIME = 'time',
   CHECKBOXES = 'checkbox',
   DATE = 'date',
-  FILE = 'file'
+  FILE = 'file',
+  RICH_TEXT = 'richtext'
 }
 
 export enum FieldState {
@@ -28,5 +29,6 @@ export interface Field {
   hasDescription: boolean,
   state: FieldState,
   other?: boolean,
-  field_options?: FieldOption[]
+  field_options?: FieldOption[],
+  configs?: any
 }

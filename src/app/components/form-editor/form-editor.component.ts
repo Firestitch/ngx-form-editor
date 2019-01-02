@@ -1,8 +1,7 @@
 import { Component, Input } from '@angular/core';
 
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
-
-import { FormEditorConfig } from '../../interfaces';
+import { Field } from '../../interfaces';
 
 @Component({
   selector: 'fs-form-editor',
@@ -11,15 +10,14 @@ import { FormEditorConfig } from '../../interfaces';
 })
 export class FormEditorComponent {
 
-  @Input() config: FormEditorConfig;
-  @Input() form;
+  @Input() fields: Field[];
   constructor() {}
 
   drop(event: CdkDragDrop<string[]>) {
     if (event.container === event.previousContainer) {
-      moveItemInArray(this.form.fields, event.previousIndex, event.currentIndex);
+      moveItemInArray(this.fields, event.previousIndex, event.currentIndex);
     } else {
-      this.form.fields.splice(event.currentIndex, 0, event.item.data);
+      this.fields.splice(event.currentIndex, 0, event.item.data);
     }
   }
 }

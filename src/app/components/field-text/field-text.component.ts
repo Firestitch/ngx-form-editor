@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { FormEditorConfig } from '../../interfaces';
+import { Field } from '../../interfaces';
 
 @Component({
   selector: 'fs-form-field-text',
@@ -8,9 +8,8 @@ import { FormEditorConfig } from '../../interfaces';
 })
 export class FieldTextComponent {
 
-  @Input() config: FormEditorConfig;
-  @Input() field;
-  @Input() form;
+  @Input() field: Field;
+  @Input() fields: Field[];
   constructor() {
   }
 

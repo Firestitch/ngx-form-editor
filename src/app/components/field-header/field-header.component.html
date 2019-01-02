@@ -14,5 +14,5 @@
 </div>
 
 <mat-form-field floatLabel="never" *ngIf="field.hasDescription" class="description">
-  <input matInput placeholder="Description"  [(ngModel)]="field.description" name="description">
+  <textarea matInput placeholder="Description" [matTextareaAutosize]="true" [(ngModel)]="field.description" name="description"></textarea>
 </mat-form-field>

@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 
 import { FsPrompt } from '@firestitch/prompt';
 
-import { FormEditorConfig } from '../../interfaces';
+import { Field } from '../../interfaces';
 import { guid } from '@firestitch/common/util';
 
 
@@ -13,10 +13,8 @@ import { guid } from '@firestitch/common/util';
 })
 export class FieldHeaderComponent implements OnInit {
 
-  @Input() config: FormEditorConfig;
-  @Input() configField;
-  @Input() field;
-  @Input() form;
+  @Input() field: Field;
+  @Input() fields: Field[];
   constructor(private fsPrompt: FsPrompt) {
   }
 
@@ -32,7 +30,7 @@ export class FieldHeaderComponent implements OnInit {
   copy() {
     const copiedField = Object.assign({}, this.field);
     copiedField.guid = guid();
-    this.form.fields.splice(this.form.fields.indexOf(this.field) + 1, 0, copiedField);
+    this.fields.splice(this.fields.indexOf(this.field) + 1, 0, copiedField);
   }
 
   delete() {
@@ -40,7 +38,7 @@ export class FieldHeaderComponent implements OnInit {
       title: 'Confirm',
       template: 'Are you sure you would like to remove this option?',
     }).subscribe((value) => {
-        this.form.fields.splice(this.form.fields.indexOf(this.field), 1);
+        this.fields.splice(this.fields.indexOf(this.field), 1);
     });
   }
 

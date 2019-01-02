@@ -1,4 +1,4 @@
-<fs-field-header [field]="field" [form]="form"></fs-field-header>
+<fs-field-header [field]="field" [fields]="fields"></fs-field-header>
 
 <div cdkDropList class="options" (cdkDropListDropped)="drop($event)">
   <div *ngFor="let option of field.field_options; index as idx" cdkDrag cdkDragLockAxis="y">
