@@ -1,4 +1,4 @@
-<div *ngIf="selected; else selectedElse">
+<div *ngIf="fieldEditor.selectedField===field; else selectedElse">
   <div fxFlexLayout="row" fxLayoutAlign="start center">
     <div fxFlex>
       <mat-form-field floatLabel="never" class="label">
