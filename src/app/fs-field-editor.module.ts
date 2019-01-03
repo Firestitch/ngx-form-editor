@@ -48,8 +48,7 @@ import { StickyModule } from 'ng2-sticky-kit';
     FormsModule,
     DragDropModule,
     FsCommonModule,
-    FsPromptModule.forRoot(),
-    StickyModule
+    FsPromptModule.forRoot()
   ],
   exports: [
     FieldEditorComponent
