@@ -5,6 +5,10 @@ fs-field-editor {
     .toolbar-field {
       padding: 10px 27px;
       background: #F7F7F7;
+
+      .label {
+        display: block;
+      }
     }
   }
 
@@ -12,12 +16,25 @@ fs-field-editor {
     margin-left: 20px;
     border: 1px solid #ccc;
     align-self: flex-start;
-    border-top: 35px solid #2196f3;
     border-radius: 3px;
     position: relative;
 
-    .toolbar-field {
-      padding: 8px 10px;
+    .bar {
+      height: 40px;
+      background: #2196f3;
+
+      mat-icon {
+        color: #fff;
+      }
+    }
+
+    .toolbar-field .label {
+      padding-right: 10px;
+      display: none;
+    }
+
+    &.expanded .toolbar-field .label {
+      display: block;
     }
   }
 }

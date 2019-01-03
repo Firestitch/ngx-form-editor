@@ -1,5 +1,5 @@
 
-<div *ngIf="selected; else selectedElse">
+<div *ngIf="fieldEditor.selectedField===field; else selectedElse">
 
   <div class="options">
     <div fxFlexLayout="row" fxLayoutAlign="start center">

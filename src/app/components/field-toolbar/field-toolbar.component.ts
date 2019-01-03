@@ -15,6 +15,7 @@ export class FieldToolbarComponent {
 
   @Input() fieldEditor: FieldEditorComponent;
   public field: Field = null;
+  public expand = false;
 
   public items: { icon: string, label: string, type: FieldType, divide?: boolean}[] = [
     { icon: 'short_text', label: 'Short Text', type: FieldType.ShortText },

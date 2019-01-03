@@ -2,9 +2,8 @@ import { Component, Input, OnInit } from '@angular/core';
 
 import { FsPrompt } from '@firestitch/prompt';
 
-import { Field } from '../../interfaces';
 import { guid } from '@firestitch/common/util';
-import { FieldEditorComponent } from '../field-editor';
+import { FieldComponent } from '../field/field.component';
 
 
 @Component({
@@ -12,13 +11,11 @@ import { FieldEditorComponent } from '../field-editor';
   templateUrl: 'field-header.component.html',
   styleUrls: [ 'field-header.component.scss' ],
 })
-export class FieldHeaderComponent implements OnInit {
+export class FieldHeaderComponent extends FieldComponent implements OnInit {
 
-  @Input() field: Field;
-  @Input() selected = false;
-  @Input() fieldEditor: FieldEditorComponent;
-
-  constructor(private fsPrompt: FsPrompt) {}
+  constructor(private fsPrompt: FsPrompt) {
+    super();
+  }
 
   ngOnInit() {
     this.field.hasDescription = !!this.field.description;

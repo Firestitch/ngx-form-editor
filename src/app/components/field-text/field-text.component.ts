@@ -1,19 +1,13 @@
 import { Component, Input } from '@angular/core';
-import { Field } from '../../interfaces';
-import { FieldEditorComponent } from '../field-editor';
+import { FieldComponent } from '../field/field.component';
 
 @Component({
   selector: 'fs-field-field-text',
   templateUrl: 'field-text.component.html',
   styleUrls: [ 'field-text.component.scss' ],
 })
-export class FieldTextComponent {
+export class FieldTextComponent extends FieldComponent {
 
-  @Input() field: Field;
-  @Input() fieldEditor: FieldEditorComponent;
-  @Input() selected = false;
 
-  constructor() {
-  }
 
 }

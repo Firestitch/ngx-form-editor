@@ -1,5 +1,10 @@
 <div fxFlexLayout="row" fxLayoutAlign="start start">
-  <div class="fields" fxFlex cdkDropList (cdkDropListDropped)="drop($event)" id="fs-field-fields" #fieldsList="cdkDropList">
+  <div  class="fields"
+        fxFlex
+        cdkDropList
+        (cdkDropListDropped)="drop($event)"
+        id="fs-field-fields">
+
     <div  *ngFor="let field of fields; index as idx"
           class="fs-field-field field"
           cdkDrag
@@ -14,21 +19,18 @@
         </div>
 
         <fs-field-header
-            [selected]="selectedField===field"
             [field]="field"
             [fieldEditor]="fieldEditor">
         </fs-field-header>
 
         <fs-field-field-text
             *ngIf="field.type==fieldType.ShortText || field.type==fieldType.LongText || field.type==fieldType.Phone || field.type==fieldType.Email || field.type==fieldType.Date || field.type==fieldType.Time || field.type===fieldType.File || field.type===fieldType.RichText"
-            [selected]="selectedField===field"
             [field]="field"
             [fieldEditor]="fieldEditor">
         </fs-field-field-text>
 
         <fs-field-field-options
             *ngIf="field.type==fieldType.Choice || field.type==fieldType.Checkbox || field.type==fieldType.Dropdown"
-            [selected]="selectedField===field"
             [field]="field"
             [fieldEditor]="fieldEditor">
         </fs-field-field-options>
@@ -36,13 +38,16 @@
         <fs-field-field-name
             *ngIf="field.type=='name'"
             [field]="field"
-            [selected]="selectedField===field"
             [fieldEditor]="fieldEditor">
         </fs-field-field-name>
       </div>
     </div>
   </div>
-  <fs-field-toolbar
-    [fieldEditor]="fieldEditor">
-  </fs-field-toolbar>
+  <div
+    sticky
+    sticky-parent="true">
+      <fs-field-toolbar
+        [fieldEditor]="fieldEditor">
+      </fs-field-toolbar>
+    </div>
 </div>

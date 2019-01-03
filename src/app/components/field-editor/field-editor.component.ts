@@ -1,4 +1,4 @@
-import { Component, Input, HostListener } from '@angular/core';
+import { Component, Input, HostListener, EventEmitter } from '@angular/core';
 
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Field, FieldType } from '../../interfaces';
@@ -11,6 +11,7 @@ import { Field, FieldType } from '../../interfaces';
 export class FieldEditorComponent {
 
   public selectedField = null;
+  public $fieldSelected = new EventEmitter();
   public fieldType = FieldType;
   public fieldEditor: FieldEditorComponent = this;
 
@@ -36,6 +37,7 @@ export class FieldEditorComponent {
 
   selectField(field: Field) {
     this.selectedField = field;
+    this.$fieldSelected.emit(field);
   }
 
   drop(event: CdkDragDrop<string[]>) {

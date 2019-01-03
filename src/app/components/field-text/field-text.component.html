@@ -1,4 +1,4 @@
-<div *ngIf="selected; else selectedElse"></div>
+<div *ngIf="fieldEditor.selectedField===field; else selectedElse"></div>
 
 <ng-template #selectedElse>
   <mat-form-field floatLabel="never">

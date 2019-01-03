@@ -1,12 +1,13 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ViewChild, ElementRef, OnInit, EventEmitter, OnDestroy } from '@angular/core';
 
 import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
-
+import { takeUntil } from 'rxjs/operators';
 import { FsPrompt } from '@firestitch/prompt';
 import { guid } from '@firestitch/common/util';
 
 import { Field, FieldType } from '../../interfaces';
 import { FieldEditorComponent } from '../field-editor';
+import { FieldComponent } from '../field/field.component';
 
 
 @Component({
@@ -14,13 +15,17 @@ import { FieldEditorComponent } from '../field-editor';
   templateUrl: 'field-options.component.html',
   styleUrls: [ 'field-options.component.scss' ],
 })
-export class FieldOptionsComponent {
+export class FieldOptionsComponent extends FieldComponent {
+
   public newOption = '';
-  public _field: Field;
   public fieldType = FieldType;
 
-  @Input() set field(field: Field) {
-    this._field = field;
+  @ViewChild('addOptionInput')
+  private _addOptionInput: ElementRef;
+
+  @Input('field') set setField(field: Field) {
+
+    this.field = field;
 
     if(!field.field_options) {
       field.field_options = [];
@@ -28,14 +33,23 @@ export class FieldOptionsComponent {
   }
 
   @Input() fieldEditor: FieldEditorComponent;
-  @Input() selected;
 
   constructor(
     private fsPrompt: FsPrompt,
-  ) {}
+  ) {
+    super();
+  }
 
-  get field() {
-    return this._field;
+  ngOnInit() {
+    this.fieldEditor.$fieldSelected
+      .pipe(takeUntil(this.$destory))
+      .subscribe(field => {
+        if (this.field===field) {
+          setTimeout(() => {
+            this._addOptionInput.nativeElement.focus();
+          });
+        }
+      });
   }
 
   addOption() {
@@ -53,6 +67,8 @@ export class FieldOptionsComponent {
 
       this.newOption = '';
     }
+
+    this._addOptionInput.nativeElement.focus();
   }
 
   removeOption(index: number) {

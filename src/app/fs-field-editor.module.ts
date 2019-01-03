@@ -28,6 +28,8 @@ import { FieldHeaderComponent } from './components/field-header/field-header.com
 import { FieldToolbarComponent } from './components/field-toolbar/field-toolbar.component';
 import { FieldOptionsComponent } from './components/field-options/field-options.component';
 import { FieldNameComponent } from './components/field-name/field-name.component';
+import { FieldComponent } from './components/field/field.component';
+import { StickyModule } from 'ng2-sticky-kit';
 
 @NgModule({
   imports: [
@@ -47,6 +49,7 @@ import { FieldNameComponent } from './components/field-name/field-name.component
     DragDropModule,
     FsCommonModule,
     FsPromptModule.forRoot(),
+    StickyModule
   ],
   exports: [
     FieldEditorComponent
@@ -59,7 +62,8 @@ import { FieldNameComponent } from './components/field-name/field-name.component
     FieldToolbarComponent,
     FieldHeaderComponent,
     FieldTextComponent,
-    FieldNameComponent
+    FieldNameComponent,
+    FieldComponent
   ]
 })
 export class FsFieldEditorModule {

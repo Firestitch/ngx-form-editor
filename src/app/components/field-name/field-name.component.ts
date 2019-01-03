@@ -1,7 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 
-import { Field } from '../../interfaces';
-import { FieldEditorComponent } from '../field-editor';
+import { FieldComponent } from '../field/field.component';
 
 
 @Component({
@@ -9,14 +8,7 @@ import { FieldEditorComponent } from '../field-editor';
   templateUrl: 'field-name.component.html',
   styleUrls: [ 'field-name.component.scss' ],
 })
-export class FieldNameComponent implements OnInit {
-
-  @Input() field: Field;
-  @Input() fieldEditor: FieldEditorComponent;
-  @Input() selected = false;
-
-  constructor() {
-  }
+export class FieldNameComponent extends FieldComponent implements OnInit {
 
   ngOnInit(): void {
     if (!this.field.configs || Array.isArray(this.field.configs)) {
