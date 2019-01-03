@@ -1,7 +1,7 @@
 import { Component, Input, HostListener } from '@angular/core';
 
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
-import { Field } from '../../interfaces';
+import { Field, FieldType } from '../../interfaces';
 
 @Component({
   selector: 'fs-field-editor',
@@ -11,10 +11,11 @@ import { Field } from '../../interfaces';
 export class FieldEditorComponent {
 
   public selectedField = null;
+  public fieldType = FieldType;
   public fieldEditor: FieldEditorComponent = this;
 
   @HostListener('document:keydown.escape', ['$event']) onKeydownHandler(event: KeyboardEvent) {
-    this.clearSelectedField();
+    this.unselectField();
   }
 
   @Input() fields: Field[];
@@ -26,10 +27,10 @@ export class FieldEditorComponent {
   }
 
   fieldDragStart() {
-    this.clearSelectedField();
+    this.unselectField();
   }
 
-  clearSelectedField() {
+  unselectField() {
     this.selectedField = null;
   }
 

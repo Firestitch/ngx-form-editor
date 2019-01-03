@@ -5,7 +5,7 @@ import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 import { FsPrompt } from '@firestitch/prompt';
 import { guid } from '@firestitch/common/util';
 
-import { Field } from '../../interfaces';
+import { Field, FieldType } from '../../interfaces';
 import { FieldEditorComponent } from '../field-editor';
 
 
@@ -17,6 +17,7 @@ import { FieldEditorComponent } from '../field-editor';
 export class FieldOptionsComponent {
   public newOption = '';
   public _field: Field;
+  public fieldType = FieldType;
 
   @Input() set field(field: Field) {
     this._field = field;

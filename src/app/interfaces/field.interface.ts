@@ -1,23 +1,23 @@
 import { FieldOption } from './field-option.interface';
 
 export enum FieldType {
-  DROPDOWN = 'dropdown',
-  SHORT_TEXT = 'shorttext',
-  LONG_TEXT = 'longtext',
-  NAME = 'name',
-  CHOICE = 'choice',
-  PHONE = 'phone',
-  EMAIL = 'email',
-  TIME = 'time',
-  CHECKBOXES = 'checkbox',
-  DATE = 'date',
-  FILE = 'file',
-  RICH_TEXT = 'richtext'
+  Dropdown = 'dropdown',
+  ShortText = 'shorttext',
+  LongText = 'longtext',
+  Name = 'name',
+  Choice = 'choice',
+  Phone = 'phone',
+  Email = 'email',
+  Time = 'time',
+  Checkbox = 'checkbox',
+  Date = 'date',
+  File = 'file',
+  RichText = 'richtext'
 }
 
 export enum FieldState {
-  ACTIVE = 'active',
-  DELETED = 'delete'
+  Active = 'active',
+  Deleted = 'delete'
 }
 
 export interface Field {

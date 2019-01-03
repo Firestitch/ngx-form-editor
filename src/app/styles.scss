@@ -1,6 +1,11 @@
 fs-field-editor {
   .fields {
     min-height: 400px;
+
+    .toolbar-field {
+      padding: 10px 27px;
+      background: #F7F7F7;
+    }
   }
 
   .toolbar {

@@ -20,14 +20,14 @@
         </fs-field-header>
 
         <fs-field-field-text
-            *ngIf="field.type=='shorttext' || field.type=='longtext' || field.type=='phone' || field.type=='email' || field.type=='date' || field.type=='time' || field.type==='file' || field.type==='richtext'"
+            *ngIf="field.type==fieldType.ShortText || field.type==fieldType.LongText || field.type==fieldType.Phone || field.type==fieldType.Email || field.type==fieldType.Date || field.type==fieldType.Time || field.type===fieldType.File || field.type===fieldType.RichText"
             [selected]="selectedField===field"
             [field]="field"
             [fieldEditor]="fieldEditor">
         </fs-field-field-text>
 
         <fs-field-field-options
-            *ngIf="field.type=='choice' || field.type=='checkbox' || field.type=='dropdown'"
+            *ngIf="field.type==fieldType.Choice || field.type==fieldType.Checkbox || field.type==fieldType.Dropdown"
             [selected]="selectedField===field"
             [field]="field"
             [fieldEditor]="fieldEditor">
@@ -42,5 +42,7 @@
       </div>
     </div>
   </div>
-  <fs-field-toolbar></fs-field-toolbar>
+  <fs-field-toolbar
+    [fieldEditor]="fieldEditor">
+  </fs-field-toolbar>
 </div>

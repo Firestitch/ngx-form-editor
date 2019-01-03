@@ -1,7 +1,7 @@
 <div class="toolbar">
   <div *ngFor="let item of items">
   <div cdkDropList cdkDropListConnectedTo="fs-field-fields">
-    <div cdkDrag [cdkDragData]="field" (cdkDragStarted)="createField(item)">
+    <div cdkDrag [cdkDragData]="field" (cdkDragStarted)="dragStarted(item)">
       <div fxFlexLayout="row" class="toolbar-field" fxLayoutAlign="start center" fxLayoutGap="10px">
         <mat-icon>{{ item.icon }}</mat-icon><span>{{ item.label }}</span>
       </div>
