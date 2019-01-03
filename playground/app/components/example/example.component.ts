@@ -17,7 +17,6 @@ export class ExampleComponent {
         type: 'dropdown',
         label: 'Dropdown Question',
         state: 'active',
-        other: true,
         field_options: [
           {
             guid: '11',

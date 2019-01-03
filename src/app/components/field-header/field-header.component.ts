@@ -4,6 +4,7 @@ import { FsPrompt } from '@firestitch/prompt';
 
 import { Field } from '../../interfaces';
 import { guid } from '@firestitch/common/util';
+import { FieldEditorComponent } from '../field-editor';
 
 
 @Component({
@@ -14,9 +15,10 @@ import { guid } from '@firestitch/common/util';
 export class FieldHeaderComponent implements OnInit {
 
   @Input() field: Field;
-  @Input() fields: Field[];
-  constructor(private fsPrompt: FsPrompt) {
-  }
+  @Input() selected = false;
+  @Input() fieldEditor: FieldEditorComponent;
+
+  constructor(private fsPrompt: FsPrompt) {}
 
   ngOnInit() {
     this.field.hasDescription = !!this.field.description;
@@ -30,15 +32,17 @@ export class FieldHeaderComponent implements OnInit {
   copy() {
     const copiedField = Object.assign({}, this.field);
     copiedField.guid = guid();
-    this.fields.splice(this.fields.indexOf(this.field) + 1, 0, copiedField);
+    const idx = this.fieldEditor.fields.indexOf(this.field) + 1;
+    this.fieldEditor.fields.splice(idx, 0, copiedField);
+    this.fieldEditor.selectField(copiedField);
   }
 
   delete() {
     this.fsPrompt.confirm({
       title: 'Confirm',
-      template: 'Are you sure you would like to remove this option?',
+      template: 'Are you sure you would like to remove this field?',
     }).subscribe((value) => {
-        this.fields.splice(this.fields.indexOf(this.field), 1);
+        this.fieldEditor.fields.splice(this.fieldEditor.fields.indexOf(this.field), 1);
     });
   }
 

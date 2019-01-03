@@ -19,7 +19,7 @@
     ],
     "paths": {
       "dragula": ["./node_modules/dragula/dist/dragula.min.js"],
-      "fs-form-editor": [
+      "fs-package": [
         "src/public_api.ts",
       ]
     }

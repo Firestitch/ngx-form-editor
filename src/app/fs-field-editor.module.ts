@@ -8,37 +8,24 @@ import { FsCommonModule } from '@firestitch/common';
 import { FsPromptModule } from '@firestitch/prompt';
 
 import {
-  MatAutocompleteModule,
   MatButtonModule,
-  MatButtonToggleModule,
   MatTooltipModule,
   MatCardModule,
   MatCheckboxModule,
-  MatChipsModule,
-  MatDatepickerModule,
-  MatDialogModule,
   MatDividerModule,
-  MatExpansionModule,
-  MatGridListModule,
   MatIconModule,
   MatInputModule,
-  MatListModule,
   MatMenuModule,
-  MatNativeDateModule,
-  MatPaginatorModule,
-  MatProgressBarModule,
-  MatProgressSpinnerModule,
   MatRadioModule,
-  MatRippleModule,
   MatSelectModule
 } from '@angular/material';
 
-import { FlexLayoutModule, FlexModule } from '@angular/flex-layout';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
-import { FormEditorComponent } from './components/form-editor/form-editor.component';
+import { FieldEditorComponent } from './components/field-editor/field-editor.component';
 import { FieldTextComponent } from './components/field-text/field-text.component';
 import { FieldHeaderComponent } from './components/field-header/field-header.component';
-import { FormToolbarComponent } from './components/form-toolbar/form-toolbar.component';
+import { FieldToolbarComponent } from './components/field-toolbar/field-toolbar.component';
 import { FieldOptionsComponent } from './components/field-options/field-options.component';
 import { FieldNameComponent } from './components/field-name/field-name.component';
 
@@ -62,27 +49,23 @@ import { FieldNameComponent } from './components/field-name/field-name.component
     FsPromptModule.forRoot(),
   ],
   exports: [
-    FormEditorComponent
+    FieldEditorComponent
   ],
   entryComponents: [
   ],
   declarations: [
-    FormEditorComponent,
+    FieldEditorComponent,
     FieldOptionsComponent,
-    FormToolbarComponent,
+    FieldToolbarComponent,
     FieldHeaderComponent,
     FieldTextComponent,
     FieldNameComponent
-  ],
-  providers: [
-    // FsComponentService,
-  ],
+  ]
 })
-export class FsFormEditorModule {
+export class FsFieldEditorModule {
   static forRoot(): ModuleWithProviders {
     return {
-      ngModule: FsFormEditorModule,
-      // providers: [FsComponentService]
+      ngModule: FsFieldEditorModule
     };
   }
 }

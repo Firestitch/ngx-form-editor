@@ -6,11 +6,11 @@ import { Field, FieldType, FieldState } from '../../interfaces';
 
 
 @Component({
-  selector: 'fs-form-toolbar',
-  templateUrl: 'form-toolbar.component.html',
-  styleUrls: [ 'form-toolbar.component.scss' ],
+  selector: 'fs-field-toolbar',
+  templateUrl: 'field-toolbar.component.html',
+  styleUrls: [ 'field-toolbar.component.scss' ],
 })
-export class FormToolbarComponent {
+export class FieldToolbarComponent {
 
   public field: Field = null;
 
@@ -31,7 +31,7 @@ export class FormToolbarComponent {
 
   constructor() {}
 
-  createElement(item: { icon: string, label: string, type: FieldType}) {
+  createField(item: { icon: string, label: string, type: FieldType}) {
     this.field = {
       guid: guid(),
       type: item.type,

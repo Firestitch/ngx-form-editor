@@ -1,10 +1,10 @@
 {
-  "name": "@firestitch/formeditor",
-  "description": "@firestitch/form-editor",
-  "version": "0.2.0",
+  "name": "@firestitch/field-editor",
+  "description": "@firestitch/field-editor",
+  "version": "0.0.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Firestitch/fs-form-editor"
+    "url": "https://github.com/Firestitch/ngx-field-editor"
   },
   "author": {
     "name": "Firestitch",
@@ -15,13 +15,13 @@
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Firestitch/fs-form-editor/issues"
+    "url": "https://github.com/Firestitch/ngx-field-editor/issues"
   },
   "main": "package/index.js",
   "typings": "package/index.d.ts",
   "scripts": {
-    "package": "ng build fs-form-editor",
-    "package:test": "ng test fs-form-editor",
+    "package": "cd tools && npm run cli:package",
+    "package:test": "ng test fs-package",
     "package:publish": "cd package && npm publish --access=public",
     "demo:build": "ng build --aot --prod",
     "serve": "ng serve"

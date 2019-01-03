@@ -1,1 +1,7 @@
-<fs-field-header [field]="field" [fields]="fields"></fs-field-header>
+<div *ngIf="selected; else selectedElse"></div>
+
+<ng-template #selectedElse>
+  <mat-form-field floatLabel="never">
+    <input matInput [placeholder]="field.label">
+  </mat-form-field>
+</ng-template>

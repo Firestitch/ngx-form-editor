@@ -1,17 +1,19 @@
 import { Component, Input, OnInit } from '@angular/core';
 
 import { Field } from '../../interfaces';
+import { FieldEditorComponent } from '../field-editor';
 
 
 @Component({
-  selector: 'fs-form-field-name',
+  selector: 'fs-field-field-name',
   templateUrl: 'field-name.component.html',
   styleUrls: [ 'field-name.component.scss' ],
 })
 export class FieldNameComponent implements OnInit {
 
   @Input() field: Field;
-  @Input() fields: Field[];
+  @Input() fieldEditor: FieldEditorComponent;
+  @Input() selected = false;
 
   constructor() {
   }
