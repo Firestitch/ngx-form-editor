@@ -2,6 +2,7 @@
   <div  class="fields"
         fxFlex
         cdkDropList
+        (click)="clickedInside()"
         (cdkDropListDropped)="drop($event)"
         id="fs-field-fields">
 
@@ -24,7 +25,7 @@
         </fs-field-header>
 
         <fs-field-field-text
-            *ngIf="field.type==fieldType.ShortText || field.type==fieldType.LongText || field.type==fieldType.Phone || field.type==fieldType.Email || field.type==fieldType.Date || field.type==fieldType.Time || field.type===fieldType.File || field.type===fieldType.RichText"
+            *ngIf="field.type==fieldType.ShortText || field.type==fieldType.LongText || field.type==fieldType.Phone || field.type==fieldType.Email || field.type==fieldType.Date || field.type==fieldType.Time || field.type===fieldType.RichText"
             [field]="field"
             [fieldEditor]="fieldEditor">
         </fs-field-field-text>
@@ -36,10 +37,16 @@
         </fs-field-field-options>
 
         <fs-field-field-name
-            *ngIf="field.type=='name'"
+            *ngIf="field.type===fieldType.Name"
             [field]="field"
             [fieldEditor]="fieldEditor">
         </fs-field-field-name>
+
+        <fs-field-field-file
+            *ngIf="field.type===fieldType.File"
+            [field]="field"
+            [fieldEditor]="fieldEditor">
+        </fs-field-field-file>
       </div>
     </div>
   </div>

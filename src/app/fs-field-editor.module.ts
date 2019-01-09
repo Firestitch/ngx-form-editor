@@ -28,6 +28,7 @@ import { FieldHeaderComponent } from './components/field-header/field-header.com
 import { FieldToolbarComponent } from './components/field-toolbar/field-toolbar.component';
 import { FieldOptionsComponent } from './components/field-options/field-options.component';
 import { FieldNameComponent } from './components/field-name/field-name.component';
+import { FieldFileComponent } from './components/field-file/field-file.component';
 import { FieldComponent } from './components/field/field.component';
 import { StickyModule } from 'ng2-sticky-kit';
 
@@ -62,6 +63,7 @@ import { StickyModule } from 'ng2-sticky-kit';
     FieldHeaderComponent,
     FieldTextComponent,
     FieldNameComponent,
+    FieldFileComponent,
     FieldComponent
   ]
 })

@@ -1,7 +1,8 @@
-import { Component, Input, HostListener, EventEmitter } from '@angular/core';
+import { Component, Input, HostListener, EventEmitter, ElementRef, ViewChild } from '@angular/core';
 
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Field, FieldType } from '../../interfaces';
+
 
 @Component({
   selector: 'fs-field-editor',
@@ -15,16 +16,41 @@ export class FieldEditorComponent {
   public fieldType = FieldType;
   public fieldEditor: FieldEditorComponent = this;
 
+  @ViewChild('fieldsRef') fieldsRef: ElementRef;
+
   @HostListener('document:keydown.escape', ['$event']) onKeydownHandler(event: KeyboardEvent) {
     this.unselectField();
   }
 
+  // HACK: to support closing of opened field panel when user clicks outside of elements
+  private _innerClick = true;
+
+  @HostListener('document:click', ['$event'])
+  onClick($event: MouseEvent): void {
+
+    (<any>$event).path.forEach(element => {
+      this._innerClick = this._innerClick || element.className === 'cdk-overlay-container';
+    });
+      if (this._innerClick) {
+        this._innerClick = false;
+      } else {
+        this.unselectField();
+      }
+  }
+
+  clickedInside() {
+    this._innerClick = true;
+  }
+  // EOF HACK
+
   @Input() fields: Field[];
 
-  constructor() {}
+  constructor(private elRef: ElementRef) {}
 
   fieldClick(field) {
-    this.selectField(field);
+    if (this.selectedField !== field) {
+      this.selectField(field);
+    }
   }
 
   fieldDragStart() {

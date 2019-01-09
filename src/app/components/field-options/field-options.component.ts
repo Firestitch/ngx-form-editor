@@ -15,7 +15,7 @@ import { FieldComponent } from '../field/field.component';
   templateUrl: 'field-options.component.html',
   styleUrls: [ 'field-options.component.scss' ],
 })
-export class FieldOptionsComponent extends FieldComponent {
+export class FieldOptionsComponent extends FieldComponent implements OnInit {
 
   public newOption = '';
   public fieldType = FieldType;
@@ -27,7 +27,7 @@ export class FieldOptionsComponent extends FieldComponent {
 
     this.field = field;
 
-    if(!field.field_options) {
+    if (!field.field_options) {
       field.field_options = [];
     }
   }
@@ -44,7 +44,7 @@ export class FieldOptionsComponent extends FieldComponent {
     this.fieldEditor.$fieldSelected
       .pipe(takeUntil(this.$destory))
       .subscribe(field => {
-        if (this.field===field) {
+        if (this.field === field && !this.field.hasDescription) {
           setTimeout(() => {
             this._addOptionInput.nativeElement.focus();
           });

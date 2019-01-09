@@ -1,7 +1,7 @@
 {
   "name": "@firestitch/field-editor",
   "description": "@firestitch/field-editor",
-  "version": "0.0.0",
+  "version": "0.1.2",
   "repository": {
     "type": "git",
     "url": "https://github.com/Firestitch/ngx-field-editor"
@@ -91,7 +91,5 @@
     "@firestitch/prompt": ">=0.1.2",
     "@firestitch/common": ">=0.3.1"
   },
-  "dependencies": {
-
-  }
+  "dependencies": {}
 }

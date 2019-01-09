@@ -1,5 +1,5 @@
 
-<div *ngIf="fieldEditor.selectedField===field; else selectedElse">
+<div *ngIf="fieldEditor.selectedField === field; else selectedElse">
 
   <div cdkDropList class="options" (cdkDropListDropped)="drop($event)">
     <div *ngFor="let option of field.field_options; index as idx" cdkDrag cdkDragLockAxis="y" class="fs-field-option">
@@ -49,7 +49,7 @@
       <mat-form-field floatLabel="never" class="new-option" fxFlex>
         <input matInput #addOptionInput placeholder="Add New Option" [(ngModel)]="newOption" name="newOption" (keydown.tab)="addOption()" (keyup.enter)="addOption()">
       </mat-form-field>
-      <ng-container *ngIf="(field.type===fieldType.Checkbox || field.type===fieldType.Choice) && field.field_options.length">
+      <ng-container *ngIf="(field.type === fieldType.Checkbox || field.type === fieldType.Choice) && field.field_options.length">
         <span class="or">OR</span> <button mat-button color="primary" (click)="field.other = !field.other">{{ field.other ? 'Remove' : 'Add' }} "Other" Option</button>
       </ng-container>
 
