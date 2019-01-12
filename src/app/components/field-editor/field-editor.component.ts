@@ -47,7 +47,7 @@ export class FieldEditorComponent {
 
   constructor(private elRef: ElementRef) {}
 
-  fieldClick(field) {
+  fieldClick(field: Field) {
     if (this.selectedField !== field) {
       this.selectField(field);
     }

@@ -7,7 +7,7 @@
           <input
             matInput
             placeholder="Max Width"
-            [(ngModel)]="field.configs.max_width"
+            [(ngModel)]="field.config.settings.max_width"
             name="max_width">
         </mat-form-field>
 
@@ -15,7 +15,7 @@
           <input
             matInput
             placeholder="Max Height"
-            [(ngModel)]="field.configs.max_height"
+            [(ngModel)]="field.config.settings.max_height"
             name="max_width">
         </mat-form-field>
 
@@ -23,23 +23,35 @@
           <input
             matInput
             placeholder="Image Quality"
-            [(ngModel)]="field.configs.image_quality"
+            [(ngModel)]="field.config.settings.image_quality"
             name="max_width">
         </mat-form-field>
       </div>
       
-      <mat-checkbox color="primary" [(ngModel)]="field.configs.allow_multiple">Allow Multiple</mat-checkbox>
+      <mat-checkbox color="primary" [(ngModel)]="field.config.settings.allow_multiple">Allow Multiple</mat-checkbox>
       
       <h3>Allowed File Types:</h3>
       <div fxFlexLayout="column" fxLayoutGap="20px">
-        <mat-checkbox color="primary" [(ngModel)]="field.configs.allowed_file_types.image">Image</mat-checkbox>
-        <mat-checkbox color="primary" [(ngModel)]="field.configs.allowed_file_types.video">Video</mat-checkbox>
-        <mat-checkbox color="primary" [(ngModel)]="field.configs.allowed_file_types.other">Other</mat-checkbox>
+        <mat-checkbox color="primary" [(ngModel)]="field.config.settings.allowed_file_types.image">Image</mat-checkbox>
+        <mat-checkbox color="primary" [(ngModel)]="field.config.settings.allowed_file_types.video">Video</mat-checkbox>
+        <mat-checkbox color="primary" [(ngModel)]="field.config.settings.allowed_file_types.other">Other</mat-checkbox>
       </div>
   </div>
 </div>
 <ng-template #selectedElse>
-  <div fxFlexLayout="row" fxLayoutGap="10px">
-    <button mat-raised-button color="primary">Select File(s)</button>
-  </div>
+
+    <fs-file
+      (select)="selectFile($event)"
+      [accept]="allowedTypes"
+      [multiple]="field.config.settings.allow_multiple">
+      <button mat-raised-button color="primary" (click)="getAllowedTypes()">Select File</button>
+    </fs-file>
+
+    <div>
+      <fs-file-previews [files]="selectedFiles">
+        <ng-template fs-file-preview-action placement="top-right" action="remove" tooltip="Remove">
+          <mat-icon>close</mat-icon>
+        </ng-template>
+      </fs-file-previews>
+    </div>
 </ng-template>

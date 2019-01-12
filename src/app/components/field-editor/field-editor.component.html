@@ -1,58 +1,37 @@
 <div fxFlexLayout="row" fxLayoutAlign="start start">
-  <div  class="fields"
-        fxFlex
-        cdkDropList
-        (click)="clickedInside()"
-        (cdkDropListDropped)="drop($event)"
-        id="fs-field-fields">
+  <div class="fields" fxFlex cdkDropList (click)="clickedInside()" (cdkDropListDropped)="drop($event)" id="fs-field-fields">
 
-    <div  *ngFor="let field of fields; index as idx"
-          class="fs-field-field field"
-          cdkDrag
-          cdkDragLockAxis="y"
-          (cdkDragStarted)="fieldDragStart()"
-          (click)="fieldClick(field)"
-          [ngClass]="{ selected: selectedField===field }">
+    <div *ngFor="let field of fields; index as idx" class="fs-field-field field" cdkDrag cdkDragLockAxis="y"
+      (cdkDragStarted)="fieldDragStart()" (click)="fieldClick(field)" [ngClass]="{ selected: selectedField===field }">
       <div class="field-container">
 
         <div class="field-drag" cdkDragHandle>
-          <button button mat-icon-button class="drag-button"><mat-icon>drag_indicator</mat-icon></button>
+          <button button mat-icon-button class="drag-button">
+            <mat-icon>drag_indicator</mat-icon>
+          </button>
         </div>
 
-        <fs-field-header
-            [field]="field"
-            [fieldEditor]="fieldEditor">
+        <fs-field-header [field]="field" [fieldEditor]="fieldEditor">
         </fs-field-header>
 
-        <fs-field-field-text
-            *ngIf="field.type==fieldType.ShortText || field.type==fieldType.LongText || field.type==fieldType.Phone || field.type==fieldType.Email || field.type==fieldType.Date || field.type==fieldType.Time || field.type===fieldType.RichText"
-            [field]="field"
-            [fieldEditor]="fieldEditor">
+        <fs-field-field-text *ngIf="field.config.type==fieldType.ShortText || field.config.type==fieldType.LongText || field.config.type==fieldType.Phone || field.config.type==fieldType.Email || field.config.type==fieldType.Date || field.config.type==fieldType.Time || field.config.type===fieldType.RichText"
+          [field]="field" [fieldEditor]="fieldEditor">
         </fs-field-field-text>
 
-        <fs-field-field-options
-            *ngIf="field.type==fieldType.Choice || field.type==fieldType.Checkbox || field.type==fieldType.Dropdown"
-            [field]="field"
-            [fieldEditor]="fieldEditor">
+        <fs-field-field-options *ngIf="field.config.type==fieldType.Choice || field.config.type==fieldType.Checkbox || field.config.type==fieldType.Dropdown"
+          [field]="field" [fieldEditor]="fieldEditor">
         </fs-field-field-options>
 
-        <fs-field-field-name
-            *ngIf="field.type===fieldType.Name"
-            [field]="field"
-            [fieldEditor]="fieldEditor">
+        <fs-field-field-name *ngIf="field.config.type===fieldType.Name" [field]="field" [fieldEditor]="fieldEditor">
         </fs-field-field-name>
 
-        <fs-field-field-file
-            *ngIf="field.type===fieldType.File"
-            [field]="field"
-            [fieldEditor]="fieldEditor">
+        <fs-field-field-file *ngIf="field.config.type===fieldType.File" [field]="field" [fieldEditor]="fieldEditor">
         </fs-field-field-file>
       </div>
     </div>
   </div>
   <div>
-      <fs-field-toolbar
-        [fieldEditor]="fieldEditor">
-      </fs-field-toolbar>
-    </div>
+    <fs-field-toolbar [fieldEditor]="fieldEditor">
+    </fs-field-toolbar>
+  </div>
 </div>

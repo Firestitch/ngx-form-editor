@@ -1,0 +1,25 @@
+<div fxLayout="column" fxLayoutAlign="start start">
+
+  <ng-container *ngFor="let field of fields; index as idx">
+    <div class="field-container">
+
+      <fs-field-header [field]="field" [fieldEditor]="fieldRenderer">
+      </fs-field-header>
+
+      <fs-field-field-text *ngIf="field.config.type==fieldType.ShortText || field.config.type==fieldType.LongText || field.config.type==fieldType.Phone || field.config.type==fieldType.Email || field.config.type==fieldType.Date || field.config.type==fieldType.Time || field.config.type===fieldType.RichText"
+        [field]="field" [fieldEditor]="fieldRenderer">
+      </fs-field-field-text>
+
+      <fs-field-field-options *ngIf="field.config.type==fieldType.Choice || field.config.type==fieldType.Checkbox || field.config.type==fieldType.Dropdown"
+        [field]="field" [fieldEditor]="fieldRenderer">
+      </fs-field-field-options>
+
+      <fs-field-field-name *ngIf="field.config.type===fieldType.Name" [field]="field" [fieldEditor]="fieldRenderer">
+      </fs-field-field-name>
+
+      <fs-field-field-file *ngIf="field.config.type===fieldType.File" [field]="field" [fieldEditor]="fieldRenderer">
+      </fs-field-field-file>
+
+    </div>
+  </ng-container>
+</div>

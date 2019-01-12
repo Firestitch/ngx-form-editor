@@ -6,6 +6,10 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 
 import { FsCommonModule } from '@firestitch/common';
 import { FsPromptModule } from '@firestitch/prompt';
+import { FsFormModule } from '@firestitch/form';
+import { FsDatePickerModule } from '@firestitch/datepicker';
+import { FsPhoneModule } from '@firestitch/phone';
+import { FsFileModule } from '@firestitch/file';
 
 import {
   MatButtonModule,
@@ -30,6 +34,7 @@ import { FieldOptionsComponent } from './components/field-options/field-options.
 import { FieldNameComponent } from './components/field-name/field-name.component';
 import { FieldFileComponent } from './components/field-file/field-file.component';
 import { FieldComponent } from './components/field/field.component';
+import { FieldRendererComponent } from './components/field-renderer/field-renderer.component';
 import { StickyModule } from 'ng2-sticky-kit';
 
 @NgModule({
@@ -49,15 +54,23 @@ import { StickyModule } from 'ng2-sticky-kit';
     FormsModule,
     DragDropModule,
     FsCommonModule,
-    FsPromptModule.forRoot()
+    FsPromptModule.forRoot(),
+    FsFormModule,
+    FsDatePickerModule,
+    FsPhoneModule,
+    FsFileModule.forRoot({
+      dragoverMessage: false
+    })
   ],
   exports: [
-    FieldEditorComponent
+    FieldEditorComponent,
+    FieldRendererComponent
   ],
   entryComponents: [
   ],
   declarations: [
     FieldEditorComponent,
+    FieldRendererComponent,
     FieldOptionsComponent,
     FieldToolbarComponent,
     FieldHeaderComponent,

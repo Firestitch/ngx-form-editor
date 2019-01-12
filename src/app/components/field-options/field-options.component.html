@@ -2,7 +2,7 @@
 <div *ngIf="fieldEditor.selectedField === field; else selectedElse">
 
   <div cdkDropList class="options" (cdkDropListDropped)="drop($event)">
-    <div *ngFor="let option of field.field_options; index as idx" cdkDrag cdkDragLockAxis="y" class="fs-field-option">
+    <div *ngFor="let option of field.config.options; index as idx" cdkDrag cdkDragLockAxis="y" class="fs-field-option">
 
       <div fxFlexLayout="row" fxLayoutAlign="start center" class="option-container">
 
@@ -10,7 +10,7 @@
           <button button mat-icon-button class="drag-button option-drag-button"><mat-icon>drag_indicator</mat-icon></button>
         </div>
 
-        <ng-container [ngSwitch]="field.type">
+        <ng-container [ngSwitch]="field.config.type">
           <mat-checkbox *ngSwitchCase="fieldType.Checkbox" disabled="true"></mat-checkbox>
           <mat-radio-button *ngSwitchCase="fieldType.Choice" disabled="true"></mat-radio-button>
         </ng-container>
@@ -24,10 +24,10 @@
     </div>
   </div>
 
-  <div *ngIf="field.other" fxFlexLayout="row" fxLayoutAlign="start center">
+  <div *ngIf="field.config.other" fxFlexLayout="row" fxLayoutAlign="start center">
     <button button mat-icon-button [ngStyle]="{'visibility': 'hidden'}"><mat-icon>drag_indicator</mat-icon></button>
 
-    <ng-container [ngSwitch]="field.type">
+    <ng-container [ngSwitch]="field.config.type">
       <mat-checkbox *ngSwitchCase="fieldType.Checkbox" disabled="true"></mat-checkbox>
       <mat-radio-button *ngSwitchCase="fieldType.Choice" disabled="true"></mat-radio-button>
     </ng-container>
@@ -36,21 +36,21 @@
       <input matInput placeholder="Label" disabled="true" name="label" value="Other">
     </mat-form-field>
 
-    <button button mat-icon-button (click)="field.other = false"><mat-icon>delete</mat-icon></button>
+    <button button mat-icon-button (click)="field.config.other = false"><mat-icon>delete</mat-icon></button>
   </div>
 
   <div>
 
     <div fxFlexLayout="row" fxLayoutAlign="start center">
 
-      <button button mat-icon-button *ngIf="field.field_options.length"><mat-icon></mat-icon></button>
-      <mat-checkbox disabled="true" style="visibility: hidden" *ngIf="(field.type===fieldType.Checkbox || field.type===fieldType.Choice) && field.field_options.length"></mat-checkbox>
+      <button button mat-icon-button *ngIf="field.config.options.length"><mat-icon></mat-icon></button>
+      <mat-checkbox disabled="true" style="visibility: hidden" *ngIf="(field.config.type===fieldType.Checkbox || field.config.type===fieldType.Choice) && field.config.options.length"></mat-checkbox>
 
       <mat-form-field floatLabel="never" class="new-option" fxFlex>
         <input matInput #addOptionInput placeholder="Add New Option" [(ngModel)]="newOption" name="newOption" (keydown.tab)="addOption()" (keyup.enter)="addOption()">
       </mat-form-field>
-      <ng-container *ngIf="(field.type === fieldType.Checkbox || field.type === fieldType.Choice) && field.field_options.length">
-        <span class="or">OR</span> <button mat-button color="primary" (click)="field.other = !field.other">{{ field.other ? 'Remove' : 'Add' }} "Other" Option</button>
+      <ng-container *ngIf="(field.config.type === fieldType.Checkbox || field.config.type === fieldType.Choice) && field.config.options.length">
+        <span class="or">OR</span> <button mat-button color="primary" (click)="field.config.other = !field.config.other">{{ field.config.other ? 'Remove' : 'Add' }} "Other" Option</button>
       </ng-container>
 
       <button button mat-icon-button style="visibility: hidden"><mat-icon>delete</mat-icon></button>
@@ -60,11 +60,11 @@
 </div>
 <ng-template #selectedElse>
   <div class="view-field">
-    <ng-container [ngSwitch]="field.type">
+    <ng-container [ngSwitch]="field.config.type">
       <div *ngSwitchCase="fieldType.Dropdown">
         <mat-form-field>
-          <mat-select [placeholder]="field.label" [(value)]="field.field_options[0]">
-            <mat-option *ngFor="let option of field.field_options" [value]="option">
+          <mat-select [placeholder]="field.config.label" [(value)]="field.data.value">
+            <mat-option *ngFor="let option of field.config.options" [value]="option.guid">
               {{option.label}}
             </mat-option>
           </mat-select>
@@ -72,21 +72,23 @@
       </div>
       <ng-container *ngSwitchCase="fieldType.Checkbox">
         <div fxFlexLayout="column">
-          <div *ngFor="let option of field.field_options; index as idx">
-            <mat-checkbox>{{option.label}}</mat-checkbox>
+          <div *ngFor="let option of field.config.options; index as idx">
+            <mat-checkbox (change)="handleCheckbox($event, option)" [checked]="field.data.value.indexOf(option.guid) !== -1">{{option.label}}</mat-checkbox>
           </div>
-          <mat-form-field floatLabel="never" *ngIf="field.other">
-            <input matInput placeholder="Other">
+          <mat-form-field floatLabel="never" *ngIf="field.config.other">
+            <input matInput placeholder="Other" [(ngModel)]="field.data.other">
           </mat-form-field>
         </div>
       </ng-container>
       <ng-container *ngSwitchCase="fieldType.Choice">
         <div fxFlexLayout="column">
-          <div *ngFor="let option of field.field_options; index as idx">
-            <mat-radio-button>{{option.label}}</mat-radio-button>
-          </div>
-          <mat-form-field floatLabel="never" *ngIf="field.other">
-            <input matInput placeholder="Other">
+          <mat-radio-group [(ngModel)]="field.data.value">
+            <div *ngFor="let option of field.config.options; index as idx">
+            <mat-radio-button [value]="option.guid">{{option.label}}</mat-radio-button>
+            </div>
+          </mat-radio-group>
+          <mat-form-field floatLabel="never" *ngIf="field.config.other">
+            <input matInput placeholder="Other" [(ngModel)]="field.data.other">
           </mat-form-field>
         </div>
       </ng-container>

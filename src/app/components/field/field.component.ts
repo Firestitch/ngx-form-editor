@@ -1,13 +1,13 @@
-import { Component, Input, ViewChild, ElementRef, OnInit, EventEmitter, OnDestroy } from '@angular/core';
+import { Component, Input, EventEmitter, OnDestroy } from '@angular/core';
 
-import { Field, FieldType } from '../../interfaces';
+import { Field } from '../../interfaces';
 import { FieldEditorComponent } from '../field-editor';
 
 
 @Component({
   template: ''
 })
-export class FieldComponent implements OnInit, OnDestroy {
+export class FieldComponent implements OnDestroy {
 
   public field: Field;
   protected $destory = new EventEmitter();
@@ -17,11 +17,6 @@ export class FieldComponent implements OnInit, OnDestroy {
   }
 
   @Input() fieldEditor: FieldEditorComponent;
-
-
-  ngOnInit() {
-
-  }
 
   ngOnDestroy() {
     this.$destory.complete();

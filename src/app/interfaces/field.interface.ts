@@ -21,6 +21,7 @@ export enum FieldState {
 }
 
 export interface Field {
+  config: {
   id?: number,
   guid?: string,
   type: FieldType,
@@ -29,6 +30,9 @@ export interface Field {
   hasDescription: boolean,
   state: FieldState,
   other?: boolean,
-  field_options?: FieldOption[],
-  configs?: any
+  options?: FieldOption[],
+  settings?: any
+  },
+  data?: any
+
 }

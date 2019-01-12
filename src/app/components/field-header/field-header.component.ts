@@ -18,12 +18,12 @@ export class FieldHeaderComponent extends FieldComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.field.hasDescription = !!this.field.description;
+    this.field.config.hasDescription = !!this.field.config.description;
   }
 
   toggleDescription() {
-    this.field.hasDescription = !this.field.hasDescription;
-    this.field.description = '';
+    this.field.config.hasDescription = !this.field.config.hasDescription;
+    this.field.config.description = '';
   }
 
   copy(event: Event) {
@@ -31,7 +31,7 @@ export class FieldHeaderComponent extends FieldComponent implements OnInit {
     event.stopPropagation();
 
     const copiedField = Object.assign({}, this.field);
-    copiedField.guid = guid();
+    copiedField.config.guid = guid();
     const idx = this.fieldEditor.fields.indexOf(this.field) + 1;
     this.fieldEditor.fields.splice(idx, 0, copiedField);
     this.fieldEditor.selectField(copiedField);

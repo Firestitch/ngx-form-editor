@@ -2,7 +2,7 @@
   <div fxFlexLayout="row" fxLayoutAlign="start center">
     <div fxFlex>
       <mat-form-field floatLabel="never" class="label">
-        <input matInput placeholder="Label" [(ngModel)]="field.label" name="label">
+        <input matInput placeholder="Label" [(ngModel)]="field.config.label" name="label">
       </mat-form-field>
     </div>
 
@@ -14,13 +14,13 @@
     <button button mat-icon-button [matMenuTriggerFor]="headerMenu"><mat-icon>more_vert</mat-icon></button>
   </div>
 
-  <mat-form-field floatLabel="never" *ngIf="field.hasDescription" class="description">
-    <textarea matInput placeholder="Description" [matTextareaAutosize]="true" [(ngModel)]="field.description" name="description"></textarea>
+  <mat-form-field floatLabel="never" *ngIf="field.config.hasDescription" class="description">
+    <textarea matInput placeholder="Description" [matTextareaAutosize]="true" [(ngModel)]="field.config.description" name="description"></textarea>
   </mat-form-field>
 </div>
 <ng-template #selectedElse>
   <div class="view">
-    <div class="label">{{field.label}}</div>
-    <div class="description">{{field.description}}</div>
+    <div class="label">{{field.config.label}}</div>
+    <div class="description">{{field.config.description}}</div>
   </div>
 </ng-template>

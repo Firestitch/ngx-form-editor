@@ -27,8 +27,17 @@ export class FieldOptionsComponent extends FieldComponent implements OnInit {
 
     this.field = field;
 
-    if (!field.field_options) {
-      field.field_options = [];
+    if (!field.config.options) {
+      field.config.options = [];
+    }
+
+    if (!field.data || !field.data.guid) {
+      field.data = {
+        field_id: this.field.config.id || null,
+        value: [],
+        guid: guid(),
+        other: '',
+      };
     }
   }
 
@@ -40,27 +49,39 @@ export class FieldOptionsComponent extends FieldComponent implements OnInit {
     super();
   }
 
+  handleCheckbox($event, option) {
+
+    if ($event.checked === true) {
+      this.field.data.value.push(option.guid);
+    } else {
+      this.field.data.value.splice(this.field.data.value.indexOf(option.guid), 1);
+    }
+  }
+
   ngOnInit() {
-    this.fieldEditor.$fieldSelected
+
+    if (this.fieldEditor.$fieldSelected) {
+      this.fieldEditor.$fieldSelected
       .pipe(takeUntil(this.$destory))
       .subscribe(field => {
-        if (this.field === field && !this.field.hasDescription) {
+        if (this.field === field) {
           setTimeout(() => {
             this._addOptionInput.nativeElement.focus();
           });
         }
       });
+    }
   }
 
   addOption() {
 
     if (this.newOption.length) {
 
-      if (!this.field.field_options) {
-        this.field.field_options = [];
+      if (!this.field.config.options) {
+        this.field.config.options = [];
       }
 
-      this.field.field_options.push({
+      this.field.config.options.push({
         guid: guid(),
         label: this.newOption,
       });
@@ -76,11 +97,11 @@ export class FieldOptionsComponent extends FieldComponent implements OnInit {
       title: 'Confirm',
       template: 'Are you sure you would like to remove this option?',
     }).subscribe((value) => {
-        this.field.field_options.splice(index, 1);
+        this.field.config.options.splice(index, 1);
     });
   }
 
   drop(event: CdkDragDrop<string[]>) {
-    moveItemInArray(this.field.field_options, event.previousIndex, event.currentIndex);
+    moveItemInArray(this.field.config.options, event.previousIndex, event.currentIndex);
   }
 }

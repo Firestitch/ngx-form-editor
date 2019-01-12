@@ -1,7 +1,33 @@
 <div *ngIf="fieldEditor.selectedField===field; else selectedElse"></div>
 
 <ng-template #selectedElse>
-  <mat-form-field floatLabel="never">
-    <input matInput [placeholder]="field.label">
+  <mat-form-field floatLabel="never" *ngIf="field.config.type===fieldEditor.fieldType.ShortText">
+    <input matInput [placeholder]="field.config.label" [(ngModel)]="field.data.value">
+  </mat-form-field>
+
+  <mat-form-field floatLabel="never" *ngIf="field.config.type===fieldEditor.fieldType.LongText">
+    <textarea matInput matTextareaAutosize matAutosizeMinRows="1" [(ngModel)]="field.data.value" [placeholder]="field.config.label">
+      </textarea>
+  </mat-form-field>
+
+  <mat-form-field floatLabel="never" *ngIf="field.config.type===fieldEditor.fieldType.RichText">
+    <textarea matInput matTextareaAutosize matAutosizeMinRows="1" [(ngModel)]="field.data.value" [placeholder]="field.config.label">
+      </textarea>
+  </mat-form-field>
+
+  <mat-form-field floatLabel="never" *ngIf="field.config.type===fieldEditor.fieldType.Date">
+    <input matInput [placeholder]="field.config.label" [(ngModel)]="field.data.value">
+  </mat-form-field>
+
+  <mat-form-field floatLabel="never" *ngIf="field.config.type===fieldEditor.fieldType.Time">
+    <input matInput view="time" [placeholder]="field.config.label" [(ngModel)]="field.data.value">
+  </mat-form-field>
+
+  <mat-form-field floatLabel="never" *ngIf="field.config.type===fieldEditor.fieldType.Phone">
+    <input matInput fsPhone [placeholder]="field.config.label" [(ngModel)]="field.data.value">
+  </mat-form-field>
+
+  <mat-form-field floatLabel="never" *ngIf="field.config.type===fieldEditor.fieldType.Email">
+    <input matInput fsFormEmail [placeholder]="field.config.label" [(ngModel)]="field.data.value">
   </mat-form-field>
 </ng-template>

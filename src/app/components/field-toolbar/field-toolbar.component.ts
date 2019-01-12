@@ -37,12 +37,14 @@ export class FieldToolbarComponent {
   dragStarted(item: { icon: string, label: string, type: FieldType }) {
     this.fieldEditor.unselectField();
     this.field = {
-      guid: guid(),
-      type: item.type,
-      state: FieldState.Active,
-      label: item.label,
-      description: '',
-      hasDescription: false,
+      config: {
+        guid: guid(),
+        type: item.type,
+        state: FieldState.Active,
+        label: item.label,
+        description: '',
+        hasDescription: false,
+      }
     };
   }
 }
