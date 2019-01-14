@@ -16,11 +16,11 @@
   </mat-form-field>
 
   <mat-form-field floatLabel="never" *ngIf="field.config.type===fieldEditor.fieldType.Date">
-    <input matInput [placeholder]="field.config.label" [(ngModel)]="field.data.value">
+    <input matInput fsDatePicker [placeholder]="field.config.label" [(ngModel)]="field.data.value">
   </mat-form-field>
 
   <mat-form-field floatLabel="never" *ngIf="field.config.type===fieldEditor.fieldType.Time">
-    <input matInput view="time" [placeholder]="field.config.label" [(ngModel)]="field.data.value">
+    <input matInput fsDatePicker view="time" [placeholder]="field.config.label" [(ngModel)]="field.data.value">
   </mat-form-field>
 
   <mat-form-field floatLabel="never" *ngIf="field.config.type===fieldEditor.fieldType.Phone">
