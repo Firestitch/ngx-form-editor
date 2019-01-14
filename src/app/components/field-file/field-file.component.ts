@@ -19,8 +19,6 @@ export class FieldFileComponent extends FieldComponent implements OnInit {
 
   @Input('field') set setField(field: Field) {
 
-    this.field = field;
-
     if (!field.data || !field.data.guid) {
       field.data = {
         field_id: this.field.config.id || null,
@@ -29,6 +27,12 @@ export class FieldFileComponent extends FieldComponent implements OnInit {
         other: '',
       };
     }
+
+    if (field.data.value && field.data.value.length) {
+      field.data.value.forEach(file => this.selectedFiles.push(new FsFile(file.url, file.name)));
+    }
+
+    this.field = field;
   }
 
   ngOnInit(): void {
@@ -84,5 +88,11 @@ export class FieldFileComponent extends FieldComponent implements OnInit {
     this.selectedFiles.forEach(file => {
       this.field.data.value.push(file.file);
     });
+  }
+
+  public remove(event) {
+
+    const idx = this.field.data.value.findIndex(item => item.url === event.file.url);
+    this.field.data.value.splice(idx, 1);
   }
 }
