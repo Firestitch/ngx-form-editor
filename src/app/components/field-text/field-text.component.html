@@ -15,7 +15,7 @@
   </ng-container>
 
   <mat-form-field floatLabel="never" *ngIf="field.config.type===fieldEditor.fieldType.Date">
-    <input matInput [placeholder]="field.config.label" [(ngModel)]="field.data.value">
+    <input matInput [placeholder]="field.config.label" fsDatePicker [(ngModel)]="field.data.value">
   </mat-form-field>
 
   <mat-form-field floatLabel="never" *ngIf="field.config.type===fieldEditor.fieldType.Time">

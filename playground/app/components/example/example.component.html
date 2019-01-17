@@ -1,10 +1,16 @@
-<fs-field-editor *ngIf="fields" [fields]="fields"></fs-field-editor>
-<button mat-raised-button (click)="save()">Save</button>
-
-<hr>
-<h3>Result</h3>
-<fs-field-renderer *ngIf="valueFields" [fields]="valueFields"></fs-field-renderer>
-
-<!-- <pre *ngIf="fields">
-  {{fields|json}}
-</pre> -->
+<mat-tab-group>
+  <mat-tab label="Fields Editor">
+    <fs-field-editor *ngIf="fields" [fields]="fields"></fs-field-editor>
+	<button mat-raised-button (click)="save()">Save</button>
+  </mat-tab>
+  <mat-tab label="Rendered Fields">
+    <p>
+      <fs-field-renderer *ngIf="fields" [fields]="fields"></fs-field-renderer>
+    </p>
+  </mat-tab>
+  <mat-tab label="Fields Data">
+    <pre *ngIf="fields">
+      {{fields|json}}
+    </pre>
+  </mat-tab>
+</mat-tab-group>
