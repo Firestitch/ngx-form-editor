@@ -1,8 +1,9 @@
 <fs-field-editor *ngIf="fields" [fields]="fields"></fs-field-editor>
+<button mat-raised-button (click)="save()">Save</button>
 
 <hr>
 <h3>Result</h3>
-<fs-field-renderer *ngIf="fields" [fields]="fields"></fs-field-renderer>
+<fs-field-renderer *ngIf="valueFields" [fields]="valueFields"></fs-field-renderer>
 
 <!-- <pre *ngIf="fields">
   {{fields|json}}

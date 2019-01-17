@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 
-import { FsFile } from '@firestitch/file';
+import { FsFile, FileProcessor } from '@firestitch/file';
 import { guid } from '@firestitch/common/util';
 
 import { FieldComponent } from '../field/field.component';
@@ -17,11 +17,13 @@ export class FieldFileComponent extends FieldComponent implements OnInit {
   public allowedTypes = '';
   public selectedFiles: FsFile[] = [];
 
+  private _fileProcessor = new FileProcessor();
+
   @Input('field') set setField(field: Field) {
 
     if (!field.data || !field.data.guid) {
       field.data = {
-        field_id: this.field.config.id || null,
+        field_id: field.config.id || null,
         value: [],
         guid: guid(),
         other: '',
@@ -81,6 +83,18 @@ export class FieldFileComponent extends FieldComponent implements OnInit {
       this.selectedFiles = [];
       this.field.data.value = null;
     }
+
+    files.forEach(file => {
+      if (file.typeImage === true) {
+        this._fileProcessor.process(file, {
+          quality: this.field.config.settings.image_quality,
+          width: this.field.config.settings.max_width,
+          height: this.field.config.settings.max_height
+        }).subscribe(resFile => {
+          file = resFile;
+        });
+      }
+    });
 
     this.selectedFiles = this.selectedFiles.concat(files);
 

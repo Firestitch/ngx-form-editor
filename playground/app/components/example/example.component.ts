@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 
+import { cloneDeep } from 'lodash';
+
 @Component({
   selector: 'example',
   templateUrl: 'example.component.html'
@@ -7,6 +9,7 @@ import { Component } from '@angular/core';
 export class ExampleComponent {
 
   public fields;
+  public valueFields = [];
   public config;
 
   constructor() {
@@ -168,5 +171,9 @@ export class ExampleComponent {
         },
       },
     ];
+  }
+
+  public save() {
+    this.valueFields = cloneDeep(this.fields);
   }
 }

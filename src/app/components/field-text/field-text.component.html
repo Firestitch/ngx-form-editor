@@ -10,17 +10,16 @@
       </textarea>
   </mat-form-field>
 
-  <mat-form-field floatLabel="never" *ngIf="field.config.type===fieldEditor.fieldType.RichText">
-    <textarea matInput matTextareaAutosize matAutosizeMinRows="1" [(ngModel)]="field.data.value" [placeholder]="field.config.label">
-      </textarea>
-  </mat-form-field>
+  <ng-container *ngIf="field.config.type===fieldEditor.fieldType.RichText">
+    <fs-editor-rich-text [(ngModel)]="field.data.value" [options]="options"></fs-editor-rich-text>
+  </ng-container>
 
   <mat-form-field floatLabel="never" *ngIf="field.config.type===fieldEditor.fieldType.Date">
-    <input matInput fsDatePicker [placeholder]="field.config.label" [(ngModel)]="field.data.value">
+    <input matInput [placeholder]="field.config.label" [(ngModel)]="field.data.value">
   </mat-form-field>
 
   <mat-form-field floatLabel="never" *ngIf="field.config.type===fieldEditor.fieldType.Time">
-    <input matInput fsDatePicker view="time" [placeholder]="field.config.label" [(ngModel)]="field.data.value">
+    <input matInput view="time" [placeholder]="field.config.label" [(ngModel)]="field.data.value">
   </mat-form-field>
 
   <mat-form-field floatLabel="never" *ngIf="field.config.type===fieldEditor.fieldType.Phone">

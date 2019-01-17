@@ -10,6 +10,7 @@ import { FsFormModule } from '@firestitch/form';
 import { FsDatePickerModule } from '@firestitch/datepicker';
 import { FsPhoneModule } from '@firestitch/phone';
 import { FsFileModule } from '@firestitch/file';
+import { FsEditorRichTextModule } from '@firestitch/editor';
 
 import {
   MatButtonModule,
@@ -58,6 +59,32 @@ import { StickyModule } from 'ng2-sticky-kit';
     FsFormModule,
     FsDatePickerModule,
     FsPhoneModule,
+    FsEditorRichTextModule.forRoot({
+      modules: {
+        toolbar: [
+          [{ header: [1, 2, 3, false] }],
+          [
+            'bold',
+            'italic',
+            'underline',
+            'strike',
+            'blockquote'
+          ],
+          [
+            { list: 'ordered' },
+            { list: 'bullet' },
+            { indent: '-1' },
+            { indent: '+1' },
+          ],
+          [
+            { align: [] }
+          ],
+          [
+            'link',
+          ]
+        ]
+      }
+    }),
     FsFileModule.forRoot({
       dragoverMessage: false
     })
