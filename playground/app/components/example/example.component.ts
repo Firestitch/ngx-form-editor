@@ -10,10 +10,8 @@ export class ExampleComponent {
 
   public fields;
   public valueFields = [];
-  public config;
 
   constructor() {
-    this.config = {};
     this.fields = [
       {
         data: {},
@@ -171,9 +169,13 @@ export class ExampleComponent {
         },
       },
     ];
+
+    this.valueFields = cloneDeep(this.fields);
   }
 
-  public save() {
-    this.valueFields = cloneDeep(this.fields);
+  public save(event) {
+    if (event.index === 1) {
+      this.valueFields = cloneDeep(this.fields);
+    }
   }
 }

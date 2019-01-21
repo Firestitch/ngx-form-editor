@@ -32,6 +32,8 @@ export class FieldFileComponent extends FieldComponent implements OnInit {
 
     if (field.data.value && field.data.value.length) {
       field.data.value.forEach(file => this.selectedFiles.push(new FsFile(file.url, file.name)));
+    } else {
+      field.data.value = [];
     }
 
     this.field = field;
@@ -81,7 +83,7 @@ export class FieldFileComponent extends FieldComponent implements OnInit {
 
     if (!this.field.config.settings.allow_multiple) {
       this.selectedFiles = [];
-      this.field.data.value = null;
+      this.field.data.value = [];
     }
 
     files.forEach(file => {
@@ -92,16 +94,14 @@ export class FieldFileComponent extends FieldComponent implements OnInit {
           height: this.field.config.settings.max_height
         }).subscribe(resFile => {
           file = resFile;
+          this.field.data.value.push(resFile.file);
         });
+      } else {
+        this.field.data.value.push(file.file);
       }
     });
 
     this.selectedFiles = this.selectedFiles.concat(files);
-
-    this.field.data.value = [];
-    this.selectedFiles.forEach(file => {
-      this.field.data.value.push(file.file);
-    });
   }
 
   public remove(event) {
