@@ -79,34 +79,46 @@ export class FieldFileComponent extends FieldComponent implements OnInit {
     this.allowedTypes = allowed.join(',');
   }
 
-  public selectFile(files: FsFile[]) {
+  public selectFile(files: any) {
 
     if (!this.field.config.settings.allow_multiple) {
       this.selectedFiles = [];
       this.field.data.value = [];
     }
 
+    // this needed because fsFilePicker returns array if it in multiple mode,
+    // while it returns single file in it in single file mode
+    if (files instanceof FsFile) {
+      files = [files];
+    }
+
     files.forEach(file => {
+
       if (file.typeImage === true) {
         this._fileProcessor.process(file, {
           quality: this.field.config.settings.image_quality,
           width: this.field.config.settings.max_width,
           height: this.field.config.settings.max_height
         }).subscribe(resFile => {
-          file = resFile;
+          this.selectedFiles.push(resFile);
           this.field.data.value.push(resFile.file);
         });
       } else {
+        this.selectedFiles.push(file);
         this.field.data.value.push(file.file);
       }
     });
-
-    this.selectedFiles = this.selectedFiles.concat(files);
   }
 
   public remove(event) {
 
-    const idx = this.field.data.value.findIndex(item => item.url === event.file.url);
+    let idx = null;
+    if (event.file.url) {
+      idx = this.field.data.value.findIndex(item => item.url === event.file.url);
+    } else {
+      idx = this.field.data.value.findIndex(item => item === event.file.file);
+    }
+
     this.field.data.value.splice(idx, 1);
   }
 }
