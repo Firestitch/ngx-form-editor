@@ -2,8 +2,8 @@
 <div *ngIf="fieldEditor.selectedField===field; else selectedElse">
 
   <div class="options">
-      <div fxFlexLayout="column" fxLayoutGap="20px">
-        <mat-form-field fxFlex>
+      <div fxLayout="row" fxLayoutGap="20px">
+        <mat-form-field>
           <input
             matInput
             placeholder="Max Width"
@@ -11,7 +11,7 @@
             name="max_width">
         </mat-form-field>
 
-        <mat-form-field fxFlex>
+        <mat-form-field>
           <input
             matInput
             placeholder="Max Height"
@@ -19,7 +19,7 @@
             name="max_width">
         </mat-form-field>
 
-        <mat-form-field fxFlex>
+        <mat-form-field>
           <input
             matInput
             placeholder="Image Quality"

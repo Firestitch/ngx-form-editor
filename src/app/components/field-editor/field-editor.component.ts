@@ -28,14 +28,23 @@ export class FieldEditorComponent {
   @HostListener('document:click', ['$event'])
   onClick($event: MouseEvent): void {
 
-    (<any>$event).path.forEach(element => {
-      this._innerClick = this._innerClick || element.className === 'cdk-overlay-container';
-    });
-      if (this._innerClick) {
-        this._innerClick = false;
-      } else {
-        this.unselectField();
-      }
+    if ((event.target as HTMLElement).className === 'cdk-overlay-backdrop') {
+      this._innerClick = true;
+    } else {
+      (<any>$event).path.forEach(element => {
+        if (element.className === 'mat-menu-content') {
+          this._innerClick = true;
+        } else if (element.className === 'cdk-global-overlay-wrapper') {
+          this._innerClick = this._innerClick || !(element as HTMLElement).contains(this.elRef.nativeElement);
+        }
+      });
+    }
+
+    if (this._innerClick) {
+      this._innerClick = false;
+    } else {
+      this.unselectField();
+    }
   }
 
   clickedInside() {

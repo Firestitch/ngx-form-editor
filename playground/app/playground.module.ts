@@ -11,7 +11,8 @@ import { FsFieldEditorModule } from 'fs-package';
 import { AppMaterialModule } from './material.module';
 import {
 ExampleComponent,
-ExamplesComponent } from './components';
+ExamplesComponent,
+DialogExampleComponent } from './components';
 import { AppComponent } from './app.component';
 
 
@@ -31,11 +32,13 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
   ],
   entryComponents: [
+    DialogExampleComponent
   ],
   declarations: [
     AppComponent,
     ExamplesComponent,
-    ExampleComponent
+    ExampleComponent,
+    DialogExampleComponent
   ],
   providers: [
   ],

@@ -1,5 +1,12 @@
 <div fxFlexLayout="row" fxLayoutAlign="start start">
-  <div class="fields" fxFlex cdkDropList (click)="clickedInside()" (cdkDropListDropped)="drop($event)" id="fs-field-fields">
+  <div 
+    class="fields" 
+    fxFlex 
+    cdkDropList 
+    (click)="clickedInside()" 
+    (cdkDropListDropped)="drop($event)" 
+    [style.min-height]="fields.length ? 'auto' : '400px' "
+    id="fs-field-fields">
 
     <div *ngFor="let field of fields; index as idx" class="fs-field-field field" cdkDrag cdkDragLockAxis="y"
       (cdkDragStarted)="fieldDragStart()" (click)="fieldClick(field)" [ngClass]="{ selected: selectedField===field }">

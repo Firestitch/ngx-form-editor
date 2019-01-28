@@ -2,6 +2,11 @@
   <mat-tab label="Fields Editor">
     <fs-field-editor *ngIf="fields" [fields]="fields"></fs-field-editor>
   </mat-tab>
+  <!-- <mat-tab label="Fields Editor(Dialog Mode)">
+    <div>
+      <button mat-raised-button color="primary" (click)="openDialog()">Open Dialog</button>
+    </div>
+  </mat-tab> -->
   <mat-tab label="Rendered Fields">
     <p>
       <fs-field-renderer *ngIf="valueFields" [fields]="valueFields"></fs-field-renderer>

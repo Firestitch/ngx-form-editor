@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 
 import { cloneDeep } from 'lodash';
+import { MatDialog } from '@angular/material';
+import { DialogExampleComponent } from '../dialog-example';
 
 @Component({
   selector: 'example',
@@ -8,11 +10,11 @@ import { cloneDeep } from 'lodash';
 })
 export class ExampleComponent {
 
-  public fields;
+  public fields = [];
   public valueFields = [];
 
-  constructor() {
-    this.fields = [
+  constructor(public dialog: MatDialog) {
+    const fields2 = [
       {
         data: {},
         config:
@@ -177,5 +179,14 @@ export class ExampleComponent {
     if (event.index === 1) {
       this.valueFields = cloneDeep(this.fields);
     }
+  }
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(DialogExampleComponent, {
+      width: '600px',
+      data: {fields: this.fields}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {});
   }
 }
