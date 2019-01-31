@@ -1,7 +1,7 @@
 import { Component, ContentChildren, QueryList, AfterViewInit } from '@angular/core';
 import { FieldCoreComponent } from '../field-core';
-import { FieldCustomRenderDirective } from 'src/app/directives/field-custom-render';
-import { FieldCustomEditDirective } from 'src/app/directives/field-custom-edit';
+import { FieldCustomRenderDirective } from 'src/app/directives/field-custom-render/field-custom-render.directive';
+import { FieldCustomEditDirective } from 'src/app/directives/field-custom-edit/field-custom-edit.directive';
 
 
 @Component({
