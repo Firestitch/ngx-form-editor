@@ -7,12 +7,12 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 })
 export class DialogExampleComponent {
 
-  public fields = null;
+  public config = null;
 
   constructor(
     public dialogRef: MatDialogRef<DialogExampleComponent>,
     @Inject(MAT_DIALOG_DATA) public data) {
-      this.fields = data.fields;
+      this.config = data.config;
     }
 
   onNoClick(): void {

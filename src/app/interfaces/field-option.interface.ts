@@ -1,4 +1,4 @@
 export interface FieldOption {
-  guid?: string,
-  label: string
+  value: string,
+  name: string
 }

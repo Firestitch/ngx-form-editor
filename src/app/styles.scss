@@ -38,7 +38,7 @@ fs-field-editor {
   }
 }
 
-.fs-field-field {
+.fs-field {
 
   .label.mat-form-field {
     display: block;
@@ -83,6 +83,7 @@ fs-field-editor {
 
   .field-container {
     padding: 0 30px 20px 30px;
+    box-sizing: border-box;
   }
 
   &:not(.selected) {
@@ -99,7 +100,28 @@ fs-field-editor {
   }
 }
 
-.fs-field-field,
+fs-field-editor,
+fs-field-renderer {
+
+  .field-container {
+    width: 100%;
+  }
+
+  .field-shorttext,
+  .field-longtext {
+    width: 100%;
+
+    .mat-form-field {
+      width: 100%;
+    }
+  }
+
+  fs-label-field {
+    width: 100%;
+  }
+}
+
+.fs-field,
 .fs-field-option {
 
   background:#fff;

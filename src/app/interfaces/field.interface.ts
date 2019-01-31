@@ -1,18 +1,10 @@
 import { FieldOption } from './field-option.interface';
+import { FieldType } from './field-type.interface';
 
-export enum FieldType {
-  Dropdown = 'dropdown',
-  ShortText = 'shorttext',
-  LongText = 'longtext',
-  Name = 'name',
-  Choice = 'choice',
-  Phone = 'phone',
-  Email = 'email',
-  Time = 'time',
-  Checkbox = 'checkbox',
-  Date = 'date',
-  File = 'file',
-  RichText = 'richtext'
+export enum FieldMode {
+  Edit = 'edit',
+  Render = 'render',
+  View = 'view'
 }
 
 export enum FieldState {
@@ -22,17 +14,32 @@ export enum FieldState {
 
 export interface Field {
   config: {
-  id?: number,
-  guid?: string,
-  type: FieldType,
-  label: string,
-  description: string,
-  hasDescription: boolean,
-  state: FieldState,
-  other?: boolean,
-  options?: FieldOption[],
-  settings?: any
+    guid?: string,
+    type: FieldType,
+    label: string,
+    description: string,
+    hasDescription: boolean,
+    state: FieldState,
+    other?: boolean,
+    options?: FieldOption[],
+    settings?: any
   },
   data?: any
+}
 
+export interface FieldEditorConfig {
+  fields?: Field[],
+  toolbar?: Toolbar,
+  fieldAddStart?: Function
+}
+
+export interface Toolbar {
+  items: ToolbarItem[];
+}
+
+export interface ToolbarItem {
+  icon: string;
+  label?: string
+  type: FieldType,
+  divide?: boolean
 }

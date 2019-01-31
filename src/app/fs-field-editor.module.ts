@@ -10,7 +10,11 @@ import { FsFormModule } from '@firestitch/form';
 import { FsDatePickerModule } from '@firestitch/datepicker';
 import { FsPhoneModule } from '@firestitch/phone';
 import { FsFileModule } from '@firestitch/file';
-import { FsEditorRichTextModule } from '@firestitch/editor';
+import { FsEditorRichTextModule, FsEditorRendererModule } from '@firestitch/editor';
+import { FsLabelModule } from '@firestitch/label';
+import { FsDateModule } from '@firestitch/date';
+
+import { FS_FIELD_EDITOR_CONFIG } from './fs-field-editor.providers';
 
 import {
   MatButtonModule,
@@ -36,7 +40,32 @@ import { FieldNameComponent } from './components/field-name/field-name.component
 import { FieldFileComponent } from './components/field-file/field-file.component';
 import { FieldComponent } from './components/field/field.component';
 import { FieldRendererComponent } from './components/field-renderer/field-renderer.component';
-import { StickyModule } from 'ng2-sticky-kit';
+import { FieldViewerComponent } from './components/field-viewer/field-viewer.component';
+import { FieldRichTextComponent } from './components/field-rich-text/field-rich-text.component';
+import { FieldCustomEditDirective } from './directives/field-custom-edit/field-custom-edit.directive';
+import { FieldCustomRenderDirective } from './directives/field-custom-render/field-custom-render.directive';
+import { FieldEditorConfig, FieldType } from './interfaces';
+import { FieldCoreComponent } from './components/field-core/field-core.component';
+
+const defaultConfig = { fields: [],
+  toolbar: {
+    items: [
+      { type: FieldType.ShortText },
+      { type: FieldType.LongText },
+      { type: FieldType.RichText, divide: true },
+      { type: FieldType.Dropdown },
+      { type: FieldType.Choice },
+      { type: FieldType.Checkbox },
+      { type: FieldType.Date },
+      { type: FieldType.Time, divide: true },
+      { type: FieldType.Name },
+      { type: FieldType.Phone },
+      { type: FieldType.Email, divide: true },
+      { type: FieldType.File }
+    ]
+  }
+};
+
 
 @NgModule({
   imports: [
@@ -59,6 +88,9 @@ import { StickyModule } from 'ng2-sticky-kit';
     FsFormModule,
     FsDatePickerModule,
     FsPhoneModule,
+    FsLabelModule,
+    FsDateModule,
+    FsEditorRendererModule.forRoot(),
     FsEditorRichTextModule.forRoot({
       modules: {
         toolbar: [
@@ -91,26 +123,40 @@ import { StickyModule } from 'ng2-sticky-kit';
   ],
   exports: [
     FieldEditorComponent,
-    FieldRendererComponent
-  ],
-  entryComponents: [
+    FieldRendererComponent,
+    FieldViewerComponent,
+    FieldCustomEditDirective,
+    FieldCustomRenderDirective
   ],
   declarations: [
     FieldEditorComponent,
     FieldRendererComponent,
+    FieldViewerComponent,
     FieldOptionsComponent,
     FieldToolbarComponent,
     FieldHeaderComponent,
     FieldTextComponent,
     FieldNameComponent,
     FieldFileComponent,
-    FieldComponent
+    FieldComponent,
+    FieldRichTextComponent,
+    FieldCustomEditDirective,
+    FieldCustomRenderDirective,
+    FieldCoreComponent
   ]
 })
+
 export class FsFieldEditorModule {
-  static forRoot(): ModuleWithProviders {
+  static forRoot(config: FieldEditorConfig = {}): ModuleWithProviders {
     return {
-      ngModule: FsFieldEditorModule
+      ngModule: FsFieldEditorModule,
+      providers: [
+        {
+          provide: FS_FIELD_EDITOR_CONFIG,
+          useValue: Object.assign(config, defaultConfig)
+        }
+      ]
     };
   }
 }
+

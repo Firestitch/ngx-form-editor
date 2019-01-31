@@ -1,24 +1,23 @@
-import { Component, Input, ViewChild, ElementRef, OnInit, EventEmitter, OnDestroy } from '@angular/core';
+import { Component, Input, ViewChild, ElementRef } from '@angular/core';
 
 import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 import { takeUntil } from 'rxjs/operators';
 import { FsPrompt } from '@firestitch/prompt';
 import { guid } from '@firestitch/common/util';
 
-import { Field, FieldType } from '../../interfaces';
+import { Field, FieldMode } from '../../interfaces';
 import { FieldEditorComponent } from '../field-editor';
 import { FieldComponent } from '../field/field.component';
 
 
 @Component({
-  selector: 'fs-field-field-options',
+  selector: 'fs-field-options',
   templateUrl: 'field-options.component.html',
   styleUrls: [ 'field-options.component.scss' ],
 })
-export class FieldOptionsComponent extends FieldComponent implements OnInit {
+export class FieldOptionsComponent extends FieldComponent {
 
   public newOption = '';
-  public fieldType = FieldType;
 
   @ViewChild('addOptionInput')
   private _addOptionInput: ElementRef;
@@ -29,15 +28,6 @@ export class FieldOptionsComponent extends FieldComponent implements OnInit {
 
     if (!field.config.options) {
       field.config.options = [];
-    }
-
-    if (!field.data || !field.data.guid) {
-      field.data = {
-        field_id: this.field.config.id || null,
-        value: [],
-        guid: guid(),
-        other: '',
-      };
     }
   }
 
@@ -50,26 +40,29 @@ export class FieldOptionsComponent extends FieldComponent implements OnInit {
   }
 
   handleCheckbox($event, option) {
+    if (!this.field.data.value) {
+      this.field.data.value = [];
+    }
 
     if ($event.checked === true) {
-      this.field.data.value.push(option.guid);
+      this.field.data.value.push(option.value);
     } else {
-      this.field.data.value.splice(this.field.data.value.indexOf(option.guid), 1);
+      this.field.data.value.splice(this.field.data.value.indexOf(option.value), 1);
     }
   }
 
   ngOnInit() {
-
-    if (this.fieldEditor.$fieldSelected) {
-      this.fieldEditor.$fieldSelected
-      .pipe(takeUntil(this.$destory))
-      .subscribe(field => {
-        if (this.field === field) {
-          setTimeout(() => {
-            this._addOptionInput.nativeElement.focus();
-          });
-        }
-      });
+    super.ngOnInit();
+    if (this.mode===FieldMode.Edit) {
+      // this.fieldEditor.$fieldSelected
+      // .pipe(takeUntil(this.$destory))
+      // .subscribe(field => {
+      //   if (this.field === field) {
+      //     setTimeout(() => {
+      //       this._addOptionInput.nativeElement.focus();
+      //     });
+      //   }
+      // });
     }
   }
 
@@ -82,8 +75,8 @@ export class FieldOptionsComponent extends FieldComponent implements OnInit {
       }
 
       this.field.config.options.push({
-        guid: guid(),
-        label: this.newOption,
+        value: guid(),
+        name: this.newOption,
       });
 
       this.newOption = '';

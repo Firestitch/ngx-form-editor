@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 import { FsFile, FileProcessor } from '@firestitch/file';
 import { guid } from '@firestitch/common/util';
@@ -8,11 +8,11 @@ import { Field } from '../../interfaces';
 
 
 @Component({
-  selector: 'fs-field-field-file',
+  selector: 'fs-field-file',
   templateUrl: 'field-file.component.html',
   styleUrls: [ 'field-file.component.scss' ],
 })
-export class FieldFileComponent extends FieldComponent implements OnInit {
+export class FieldFileComponent extends FieldComponent {
 
   public allowedTypes = '';
   public selectedFiles: FsFile[] = [];
@@ -21,14 +21,7 @@ export class FieldFileComponent extends FieldComponent implements OnInit {
 
   @Input('field') set setField(field: Field) {
 
-    if (!field.data || !field.data.guid) {
-      field.data = {
-        field_id: field.config.id || null,
-        value: [],
-        guid: guid(),
-        other: '',
-      };
-    }
+    field = this.initField(field);
 
     if (field.data.value && field.data.value.length) {
       field.data.value.forEach(file => this.selectedFiles.push(new FsFile(file.url, file.name)));
@@ -40,6 +33,7 @@ export class FieldFileComponent extends FieldComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    super.ngOnInit();
 
     if (!this.field.config.settings || Array.isArray(this.field.config.settings)) {
       this.field.config.settings = {

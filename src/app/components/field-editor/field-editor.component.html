@@ -1,16 +1,21 @@
 <div fxFlexLayout="row" fxLayoutAlign="start start">
-  <div 
-    class="fields" 
-    fxFlex 
-    cdkDropList 
-    (click)="clickedInside()" 
-    (cdkDropListDropped)="drop($event)" 
-    [style.min-height]="fields.length ? 'auto' : '400px' "
-    id="fs-field-fields">
+  <div  class="fields"
+        fxFlex
+        cdkDropList
+        (click)="clickedInside()"
+        (cdkDropListDropped)="drop($event)"
+		    [style.min-height]="config.fields.length ? 'auto' : '400px' "
+        id="fs-fields">
 
-    <div *ngFor="let field of fields; index as idx" class="fs-field-field field" cdkDrag cdkDragLockAxis="y"
-      (cdkDragStarted)="fieldDragStart()" (click)="fieldClick(field)" [ngClass]="{ selected: selectedField===field }">
-      <div class="field-container">
+    <div  *ngFor="let field of config.fields; index as idx"
+          class="fs-field field"
+          cdkDrag
+          cdkDragLockAxis="y"
+          (cdkDragStarted)="fieldDragStart()"
+          (click)="fieldClick(field)"
+          [ngClass]="{ selected: selectedField===field }">
+
+      <div class="field-container" [ngClass]="['field-' + field.config.type]">
 
         <div class="field-drag" cdkDragHandle>
           <button button mat-icon-button class="drag-button">
@@ -18,27 +23,80 @@
           </button>
         </div>
 
-        <fs-field-header [field]="field" [fieldEditor]="fieldEditor">
+        <fs-field-header  *ngIf="selectedField===field"
+                          [field]="field"
+                          [fieldEditor]="fieldEditor">
         </fs-field-header>
 
-        <fs-field-field-text *ngIf="field.config.type==fieldType.ShortText || field.config.type==fieldType.LongText || field.config.type==fieldType.Phone || field.config.type==fieldType.Email || field.config.type==fieldType.Date || field.config.type==fieldType.Time || field.config.type===fieldType.RichText"
-          [field]="field" [fieldEditor]="fieldEditor">
-        </fs-field-field-text>
+        <ng-container [ngSwitch]="field.config.type">
+          <ng-container *ngSwitchCase="fieldType.ShortText">
+            <ng-container *ngTemplateOutlet="fsFieldText"></ng-container>
+          </ng-container>
+          <ng-container *ngSwitchCase="fieldType.LongText">
+            <ng-container *ngTemplateOutlet="fsFieldText"></ng-container>
+          </ng-container>
+          <ng-container *ngSwitchCase="fieldType.Phone">
+            <ng-container *ngTemplateOutlet="fsFieldText"></ng-container>
+          </ng-container>
+          <ng-container *ngSwitchCase="fieldType.Email">
+            <ng-container *ngTemplateOutlet="fsFieldText"></ng-container>
+          </ng-container>
+          <ng-container *ngSwitchCase="fieldType.Date">
+            <ng-container *ngTemplateOutlet="fsFieldText"></ng-container>
+          </ng-container>
+          <ng-container *ngSwitchCase="fieldType.Time">
+            <ng-container *ngTemplateOutlet="fsFieldText"></ng-container>
+          </ng-container>
+          <ng-container *ngSwitchCase="fieldType.Choice">
+            <ng-container *ngTemplateOutlet="fsFieldOptions"></ng-container>
+          </ng-container>
+          <ng-container *ngSwitchCase="fieldType.Dropdown">
+            <ng-container *ngTemplateOutlet="fsFieldOptions"></ng-container>
+          </ng-container>
+          <ng-container *ngSwitchCase="fieldType.Checkbox">
+            <ng-container *ngTemplateOutlet="fsFieldOptions"></ng-container>
+          </ng-container>
+          <ng-container *ngSwitchCase="fieldType.Name">
+            <fs-field-name [field]="field" [mode]="selectedField===field ? fieldMode.Edit : fieldMode.Render"></fs-field-name>
+          </ng-container>
+          <ng-container *ngSwitchCase="fieldType.File">
+            <fs-field-file [field]="field" [mode]="selectedField===field ? fieldMode.Edit : fieldMode.Render"></fs-field-file>
+          </ng-container>
+          <ng-container *ngSwitchCase="fieldType.RichText">
+            <!-- TODO when editor bug is fixed make this pretty -->
+            <fs-label-field *ngIf="selectedField!==field">
+              <fs-label>{{field.config.label}}</fs-label>
+              <!-- <fs-field-rich-text *ngIf="field.config.type===fieldType.RichText"
+                      [field]="field"
+                      [mode]="selectedField===field ? fieldMode.Edit : fieldMode.Render"></fs-field-rich-text> -->
+            </fs-label-field>
+          </ng-container>
+          <ng-container *ngSwitchDefault>
+            <ng-container *ngIf="selectedField!==field">
+              <ng-template *ngTemplateOutlet="fieldCustomRenderTemplateRefs[field.config.type]; context: {field: field}"></ng-template>
+            </ng-container>
 
-        <fs-field-field-options *ngIf="field.config.type==fieldType.Choice || field.config.type==fieldType.Checkbox || field.config.type==fieldType.Dropdown"
-          [field]="field" [fieldEditor]="fieldEditor">
-        </fs-field-field-options>
+            <ng-container *ngIf="selectedField===field">
+                <ng-template *ngTemplateOutlet="fieldCustomEditTemplateRefs[field.config.type]; context: {field: field}"></ng-template>
+              </ng-container>
+          </ng-container>
 
-        <fs-field-field-name *ngIf="field.config.type===fieldType.Name" [field]="field" [fieldEditor]="fieldEditor">
-        </fs-field-field-name>
+          <ng-template #fsFieldText>
+            <fs-field-text [field]="field" [mode]="selectedField===field ? fieldMode.Edit : fieldMode.Render"></fs-field-text>
+          </ng-template>
 
-        <fs-field-field-file *ngIf="field.config.type===fieldType.File" [field]="field" [fieldEditor]="fieldEditor">
-        </fs-field-field-file>
+          <ng-template #fsFieldOptions>
+            <fs-field-options [field]="field" [mode]="selectedField===field ? fieldMode.Edit : fieldMode.Render"></fs-field-options>
+          </ng-template>
+
+          <ng-template #fsFieldName>
+            <fs-field-options [field]="field" [mode]="selectedField===field ? fieldMode.Edit : fieldMode.Render"></fs-field-options>
+          </ng-template>
+        </ng-container>
       </div>
     </div>
   </div>
   <div>
-    <fs-field-toolbar [fieldEditor]="fieldEditor">
-    </fs-field-toolbar>
+    <fs-field-toolbar [fieldEditor]="fieldEditor"></fs-field-toolbar>
   </div>
 </div>

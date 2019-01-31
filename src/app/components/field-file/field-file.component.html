@@ -1,9 +1,9 @@
 
-<div *ngIf="fieldEditor.selectedField===field; else selectedElse">
-
-  <div class="options">
-      <div fxLayout="row" fxLayoutGap="20px">
-        <mat-form-field>
+<ng-container [ngSwitch]="mode">
+  <ng-container *ngSwitchCase="fieldMode.Edit">
+    <div class="options">
+      <div fxFlexLayout="column" fxLayoutGap="20px">
+        <mat-form-field fxFlex>
           <input
             matInput
             placeholder="Max Width"
@@ -11,7 +11,7 @@
             name="max_width">
         </mat-form-field>
 
-        <mat-form-field>
+        <mat-form-field fxFlex>
           <input
             matInput
             placeholder="Max Height"
@@ -19,7 +19,7 @@
             name="max_width">
         </mat-form-field>
 
-        <mat-form-field>
+        <mat-form-field fxFlex>
           <input
             matInput
             placeholder="Image Quality"
@@ -27,9 +27,9 @@
             name="max_width">
         </mat-form-field>
       </div>
-      
+
       <mat-checkbox color="primary" [(ngModel)]="field.config.settings.allow_multiple">Allow Multiple</mat-checkbox>
-      
+
       <h3>Allowed File Types:</h3>
       <div fxFlexLayout="column" fxLayoutGap="20px">
         <mat-checkbox color="primary" [(ngModel)]="field.config.settings.allowed_file_types.image">Image</mat-checkbox>
@@ -37,13 +37,11 @@
         <mat-checkbox color="primary" [(ngModel)]="field.config.settings.allowed_file_types.other">Other</mat-checkbox>
       </div>
   </div>
-</div>
-<ng-template #selectedElse>
-
-    <fs-file
-      (select)="selectFile($event)"
-      [accept]="allowedTypes"
-      [multiple]="field.config.settings.allow_multiple">
+  </ng-container>
+  <ng-container *ngSwitchCase="fieldMode.Render">
+    <fs-file  (select)="selectFile($event)"
+              [accept]="allowedTypes"
+              [multiple]="field.config.settings.allow_multiple">
       <button mat-raised-button color="primary" (click)="getAllowedTypes()">Select File</button>
     </fs-file>
 
@@ -54,4 +52,9 @@
         </ng-template>
       </fs-file-previews>
     </div>
-</ng-template>
+  </ng-container>
+
+  <ng-container *ngSwitchCase="fieldMode.View">
+      fieldMode.View
+  </ng-container>
+</ng-container>

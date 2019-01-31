@@ -1,190 +1,211 @@
-import { Component } from '@angular/core';
-
-import { cloneDeep } from 'lodash';
+import { Component, OnInit, Inject } from '@angular/core';
+import { FS_FIELD_EDITOR_CONFIG } from 'src/app/fs-field-editor.providers';
 import { MatDialog } from '@angular/material';
 import { DialogExampleComponent } from '../dialog-example';
 
+
 @Component({
   selector: 'example',
-  templateUrl: 'example.component.html'
+  templateUrl: 'example.component.html',
+  styleUrls: ['example.component.scss']
 })
-export class ExampleComponent {
+export class ExampleComponent implements OnInit {
 
-  public fields = [];
-  public valueFields = [];
+  public config: any;
 
-  constructor(public dialog: MatDialog) {
-    const fields2 = [
-      {
-        data: {},
-        config:
-        {
-          guid: '1',
-          type: 'dropdown',
-          label: 'Dropdown Question',
-          state: 'active',
-          options: [
-            {
-              guid: '11',
-              label: 'Option A'
-            },
-            {
-              guid: '22',
-              label: 'Option B'
-            }
-          ]
-        },
-      },
-      {
-        data: {},
-        config:
-        {
-          guid: '2',
-          type: 'shorttext',
-          label: 'Short Text Question',
-          state: 'active',
-          description: 'Description Description Description'
-        },
-      },
-      {
-        data: {},
-        config:
-        {
-          guid: '4',
-          type: 'name',
-          label: 'Name Question',
-          state: 'active',
-          other: true,
-          options: [
-            {
-              guid: '33',
-              label: 'First Name'
-            },
-            {
-              guid: '44',
-              label: 'Middle Name'
-            },
-            {
-              guid: '55',
-              label: 'Last Name'
-            }
-          ]
-        },
-      },
-      {
-        data: {},
-        config:
-        {
-          guid: '3',
-          type: 'longtext',
-          label: 'Long Text Question',
-          state: 'active'
-        },
-      },
-      {
-        data: {},
-        config:
-        {
-          guid: '6',
-          type: 'phone',
-          label: 'Phone Question',
-          state: 'active'
-        },
-      },
-      {
-        data: {},
-        config:
-        {
-          guid: '7',
-          type: 'email',
-          label: 'Email Question',
-          state: 'active'
-        },
-      },
-      {
-        data: {},
-        config:
-        {
-          guid: '5',
-          type: 'choice',
-          label: 'Choice Question',
-          state: 'active',
-          other: true,
-          options: [
-            {
-              guid: '66',
-              label: 'Option A'
-            },
-            {
-              guid: '77',
-              label: 'Option B'
-            },
-            {
-              guid: '88',
-              label: 'Option C'
-            }
-          ]
-        },
-      },
-      {
-        data: {},
-        config:
-       {
-          guid: '8',
-          type: 'time',
-          label: 'Time Question',
-          state: 'active'
-        },
-      },
-      {
-        data: {},
-        config: {
-          guid: '9',
-          type: 'date',
-          label: 'Date Question',
-          state: 'active'
-        },
-      },
-      {
-        data: {},
-        config:
-        {
-          guid: '10',
-          type: 'checkbox',
-          label: 'Checkboxes Question',
-          state: 'active',
-          other: true,
-          options: [
-            {
-              guid: '99',
-              label: 'Option A'
-            },
-            {
-              guid: '111',
-              label: 'Option B'
-            },
-            {
-              guid: '222',
-              label: 'Option C'
-            }
-          ]
-        },
-      },
-    ];
+  constructor(@Inject(FS_FIELD_EDITOR_CONFIG) private defaultConfig,
+              public dialog: MatDialog)  {}
 
-    this.valueFields = cloneDeep(this.fields);
-  }
+  ngOnInit() {
 
-  public save(event) {
-    if (event.index === 1) {
-      this.valueFields = cloneDeep(this.fields);
-    }
+    this.config = {
+      fieldAddStart: (field) => {
+
+        if (field.config.type==='share') {
+          field.config.facebook = true;
+          field.config.google = true;
+        }
+      },
+      toolbar: {
+        items: [{ icon: 'share', label: 'Share', type: 'share' }]
+                .concat(this.defaultConfig.toolbar.items)
+      },
+      fields: [
+        {
+          data: {},
+          config:
+          {
+            guid: '99',
+            type: 'share',
+            label: 'Share',
+            state: 'active',
+            facebook: true,
+            google: true
+          },
+        },
+        {
+          data: {},
+          config:
+          {
+            guid: '1',
+            type: 'dropdown',
+            label: 'Dropdown Question',
+            state: 'active',
+            options: [
+              {
+                value: '11',
+                name: 'Option A'
+              },
+              {
+                value: '22',
+                name: 'Option B'
+              }
+            ]
+          },
+        },
+        {
+          data: {},
+          config:
+          {
+            guid: '2',
+            type: 'shorttext',
+            label: 'Short Text Question',
+            state: 'active',
+            description: 'Description Description Description'
+          },
+        },
+        {
+          data: {},
+          config:
+          {
+            guid: '4',
+            type: 'name',
+            label: 'Name Question',
+            state: 'active',
+            other: true,
+            options: [
+              {
+                value: '33',
+                name: 'First Name'
+              },
+              {
+                value: '44',
+                name: 'Middle Name'
+              },
+              {
+                value: '55',
+                name: 'Last Name'
+              }
+            ]
+          },
+        },
+        {
+          data: {},
+          config:
+          {
+            guid: '3',
+            type: 'longtext',
+            label: 'Long Text Question',
+            state: 'active'
+          },
+        },
+        {
+          data: {},
+          config:
+          {
+            guid: '6',
+            type: 'phone',
+            label: 'Phone Question',
+            state: 'active'
+          },
+        },
+        {
+          data: {},
+          config:
+          {
+            guid: '7',
+            type: 'email',
+            label: 'Email Question',
+            state: 'active'
+          },
+        },
+        {
+          data: {},
+          config:
+          {
+            guid: '5',
+            type: 'choice',
+            label: 'Choice Question',
+            state: 'active',
+            other: true,
+            options: [
+              {
+                value: '66',
+                name: 'Option A'
+              },
+              {
+                value: '77',
+                name: 'Option B'
+              },
+              {
+                value: '88',
+                name: 'Option C'
+              }
+            ]
+          },
+        },
+        {
+          data: {},
+          config:
+        {
+            guid: '8',
+            type: 'time',
+            label: 'Time Question',
+            state: 'active'
+          },
+        },
+        {
+          data: {},
+          config: {
+            guid: '9',
+            type: 'date',
+            label: 'Date Question',
+            state: 'active'
+          },
+        },
+        {
+          data: {},
+          config:
+          {
+            guid: '10',
+            type: 'checkbox',
+            label: 'Checkboxes Question',
+            state: 'active',
+            other: true,
+            options: [
+              {
+                value: '99',
+                name: 'Option A'
+              },
+              {
+                value: '111',
+                name: 'Option B'
+              },
+              {
+                value: '222',
+                name: 'Option C'
+              }
+            ]
+          },
+        },
+      ]
+    };
   }
 
   openDialog(): void {
     const dialogRef = this.dialog.open(DialogExampleComponent, {
       width: '600px',
-      data: {fields: this.fields}
+      data: { config: this.config}
     });
 
     dialogRef.afterClosed().subscribe(result => {});

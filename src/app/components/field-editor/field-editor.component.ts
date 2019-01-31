@@ -1,7 +1,10 @@
-import { Component, Input, HostListener, EventEmitter, ElementRef, ViewChild } from '@angular/core';
+import { Component, HostListener, EventEmitter, ElementRef, QueryList, AfterViewInit, ContentChildren } from '@angular/core';
 
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
-import { Field, FieldType } from '../../interfaces';
+import { Field } from '../../interfaces';
+import { FieldCoreComponent } from '../field-core';
+import { FieldCustomEditDirective } from 'src/app/directives/field-custom-edit';
+import { FieldCustomRenderDirective } from 'src/app/directives/field-custom-render';
 
 
 @Component({
@@ -9,14 +12,16 @@ import { Field, FieldType } from '../../interfaces';
   templateUrl: 'field-editor.component.html',
   styleUrls: [ 'field-editor.component.scss' ],
 })
-export class FieldEditorComponent {
+export class FieldEditorComponent extends FieldCoreComponent implements AfterViewInit {
 
   public selectedField = null;
   public $fieldSelected = new EventEmitter();
-  public fieldType = FieldType;
   public fieldEditor: FieldEditorComponent = this;
+  public fieldCustomEditTemplateRefs = {};
+  public fieldCustomRenderTemplateRefs = {};
 
-  @ViewChild('fieldsRef') fieldsRef: ElementRef;
+  @ContentChildren(FieldCustomEditDirective) queryListFieldCustomEdit: QueryList<FieldCustomEditDirective>;
+  @ContentChildren(FieldCustomRenderDirective) queryListFieldCustomRender: QueryList<FieldCustomEditDirective>;
 
   @HostListener('document:keydown.escape', ['$event']) onKeydownHandler(event: KeyboardEvent) {
     this.unselectField();
@@ -47,14 +52,25 @@ export class FieldEditorComponent {
     }
   }
 
+  constructor(private elRef: ElementRef) {
+    super(null);
+  }
+
+  ngAfterViewInit() {
+    this.queryListFieldCustomEdit.forEach((directive: FieldCustomEditDirective) => {
+      this.fieldCustomEditTemplateRefs[directive.type] = directive.templateRef;
+    });
+
+    this.queryListFieldCustomRender.forEach((directive: FieldCustomRenderDirective) => {
+      this.fieldCustomRenderTemplateRefs[directive.type] = directive.templateRef;
+    });
+  }
+
   clickedInside() {
     this._innerClick = true;
   }
   // EOF HACK
 
-  @Input() fields: Field[];
-
-  constructor(private elRef: ElementRef) {}
 
   fieldClick(field: Field) {
     if (this.selectedField !== field) {
@@ -77,9 +93,14 @@ export class FieldEditorComponent {
 
   drop(event: CdkDragDrop<string[]>) {
     if (event.container === event.previousContainer) {
-      moveItemInArray(this.fields, event.previousIndex, event.currentIndex);
+      moveItemInArray(this.config.fields, event.previousIndex, event.currentIndex);
     } else {
-      this.fields.splice(event.currentIndex, 0, event.item.data);
+
+      if (this.config.fieldAddStart) {
+        this.config.fieldAddStart(event.item.data, event);
+      }
+
+      this.config.fields.splice(event.currentIndex, 0, event.item.data);
     }
   }
 }

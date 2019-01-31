@@ -1,17 +1,15 @@
-import { Component, Input, OnInit } from '@angular/core';
-
-import { guid } from '@firestitch/common/util';
+import { Component, Input } from '@angular/core';
 
 import { FieldComponent } from '../field/field.component';
 import { Field } from '../../interfaces';
 
 
 @Component({
-  selector: 'fs-field-field-name',
+  selector: 'fs-field-name',
   templateUrl: 'field-name.component.html',
   styleUrls: [ 'field-name.component.scss' ],
 })
-export class FieldNameComponent extends FieldComponent implements OnInit {
+export class FieldNameComponent extends FieldComponent {
 
   @Input('field') set setField(field: Field) {
 
@@ -19,19 +17,18 @@ export class FieldNameComponent extends FieldComponent implements OnInit {
 
     if (!field.data || !field.data.guid) {
       field.data = {
-        field_id: this.field.config.id || null,
         value: {
           first_name: null,
           middle_name: null,
           last_name: null
-        },
-        guid: guid(),
-        other: '',
+        }
       };
     }
   }
 
   ngOnInit(): void {
+    super.ngOnInit();
+
     if (!this.field.config.settings || Array.isArray(this.field.config.settings)) {
       this.field.config.settings = {
         first_name: {

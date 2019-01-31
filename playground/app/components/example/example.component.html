@@ -1,6 +1,19 @@
-<mat-tab-group (selectedTabChange)="save($event)">
+<mat-tab-group>
   <mat-tab label="Fields Editor">
-    <fs-field-editor *ngIf="fields" [fields]="fields"></fs-field-editor>
+    <fs-field-editor [config]="config">
+      <ng-template fsFieldCustomRender type="share" let-field="field">
+        <img src="/assets/google-logo.svg" height="50" *ngIf="field.config['google']">
+        <img src="/assets/facebook-logo.svg" height="50" *ngIf="field.config['facebook']">
+      </ng-template>
+
+      <ng-template fsFieldCustomEdit type="share" let-field="field">
+        <div fxLayout="column">
+          <mat-checkbox [(ngModel)]="field.config['facebook']" name="facebook">Enable Facebook</mat-checkbox>
+          <mat-checkbox [(ngModel)]="field.config['google']" name="google">Enable Google</mat-checkbox>
+        </div>
+      </ng-template>
+
+    </fs-field-editor>
   </mat-tab>
   <!-- <mat-tab label="Fields Editor(Dialog Mode)">
     <div>
@@ -8,13 +21,24 @@
     </div>
   </mat-tab> -->
   <mat-tab label="Rendered Fields">
-    <p>
-      <fs-field-renderer *ngIf="valueFields" [fields]="valueFields"></fs-field-renderer>
+    <p class="padding">
+      <fs-field-renderer [config]="config">
+        <ng-template fsFieldCustomRender type="share" let-field="field">
+          <img src="/assets/google-logo.svg" height="50" *ngIf="field.config['google']">
+          <img src="/assets/facebook-logo.svg" height="50" *ngIf="field.config['facebook']">
+        </ng-template>
+      </fs-field-renderer>
     </p>
   </mat-tab>
-  <mat-tab label="Fields Data">
-    <pre *ngIf="valueFields">
-      {{valueFields|json}}
+  <mat-tab label="View Fields">
+    <p class="padding">
+      <fs-field-viewer [config]="config">
+      </fs-field-viewer>
+    </p>
+    </mat-tab>
+  <mat-tab label="Config">
+    <pre *ngIf="config">
+      {{config|json}}
     </pre>
   </mat-tab>
 </mat-tab-group>

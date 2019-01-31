@@ -2,8 +2,8 @@
   <div class="bar">
     <button mat-icon-button (click)="expand = !expand"><mat-icon>{{ expand ? 'keyboard_arrow_up' : 'keyboard_arrow_down' }}</mat-icon></button>
   </div>
-  <div *ngFor="let item of items">
-  <div cdkDropList cdkDropListConnectedTo="fs-field-fields">
+  <div *ngFor="let item of fieldEditor.config.toolbar.items">
+  <div cdkDropList cdkDropListConnectedTo="fs-fields">
     <div cdkDrag [cdkDragData]="field" (cdkDragStarted)="dragStarted(item)">
       <div fxFlexLayout="row" class="toolbar-field" fxLayoutAlign="start center" fxLayoutGap="10px">
         <button mat-icon-button><mat-icon>{{ item.icon }}</mat-icon></button>

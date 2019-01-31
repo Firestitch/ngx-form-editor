@@ -1,8 +1,8 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 import { guid } from '@firestitch/common/util';
 
-import { Field, FieldType, FieldState } from '../../interfaces';
+import { Field, FieldType, FieldState, ToolbarItem } from '../../interfaces';
 import { FieldEditorComponent } from '../field-editor';
 
 
@@ -11,28 +11,43 @@ import { FieldEditorComponent } from '../field-editor';
   templateUrl: 'field-toolbar.component.html',
   styleUrls: [ 'field-toolbar.component.scss' ],
 })
-export class FieldToolbarComponent {
+export class FieldToolbarComponent implements OnInit {
 
   @Input() fieldEditor: FieldEditorComponent;
   public field: Field = null;
   public expand = false;
 
-  public items: { icon: string, label: string, type: FieldType, divide?: boolean}[] = [
-    { icon: 'short_text', label: 'Short Text', type: FieldType.ShortText },
-    { icon: 'subject', label: 'Long Text', type: FieldType.LongText },
-    { icon: 'text_format', label: 'Rich Text', type: FieldType.RichText, divide: true },
-    { icon: 'arrow_drop_down_circle', label: 'Dropdown', type: FieldType.Dropdown },
-    { icon: 'radio_button_checked', label: 'Choice', type: FieldType.Choice },
-    { icon: 'check_box', label: 'Checkboxes', type: FieldType.Checkbox },
-    { icon: 'date_range', label: 'Date', type: FieldType.Date },
-    { icon: 'access_time', label: 'Time', type: FieldType.Time, divide: true },
-    { icon: 'person', label: 'Name', type: FieldType.Name },
-    { icon: 'phone', label: 'Phone', type: FieldType.Phone },
-    { icon: 'email', label: 'Email', type: FieldType.Email, divide: true },
-    { icon: 'publish', label: 'File', type: FieldType.File }
-  ];
+  public items: ToolbarItem[] = [];
 
-  constructor() {}
+  ngOnInit() {
+
+    const defaults = {};
+    defaults[FieldType.ShortText] = { icon: 'short_text', label: 'Short Text'};
+    defaults[FieldType.LongText] = { icon: 'subject', label: 'Long Text' };
+    defaults[FieldType.RichText] = { icon: 'text_format', label: 'Rich Text'}
+    defaults[FieldType.Dropdown] = { icon: 'arrow_drop_down_circle', label: 'Dropdown' };
+    defaults[FieldType.Choice] = { icon: 'radio_button_checked', label: 'Choice' };
+    defaults[FieldType.Checkbox] = { icon: 'check_box', label: 'Checkboxes' };
+    defaults[FieldType.Date] = { icon: 'date_range', label: 'Date' };
+    defaults[FieldType.Time] = { icon: 'access_time', label: 'Time' };
+    defaults[FieldType.Name] = { icon: 'person', label: 'Name' };
+    defaults[FieldType.Phone] = { icon: 'phone', label: 'Phone' };
+    defaults[FieldType.Email] = { icon: 'email', label: 'Email' };
+    defaults[FieldType.File] =  { icon: 'publish', label: 'File' };
+
+    this.fieldEditor.config.toolbar.items.forEach(item => {
+
+      if (!item.icon || !item.label) {
+        const ditem = defaults[item.type];
+
+        if (ditem) {
+          item.icon = item.icon || ditem.icon;
+          item.label = item.label || ditem.label;
+        }
+      }
+    });
+
+  }
 
   dragStarted(item: { icon: string, label: string, type: FieldType }) {
     this.fieldEditor.unselectField();
@@ -44,6 +59,10 @@ export class FieldToolbarComponent {
         label: item.label,
         description: '',
         hasDescription: false,
+      },
+      data: {
+        value: null,
+        guid: guid()
       }
     };
   }

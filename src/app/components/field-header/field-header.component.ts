@@ -4,6 +4,7 @@ import { FsPrompt } from '@firestitch/prompt';
 
 import { guid } from '@firestitch/common/util';
 import { FieldComponent } from '../field/field.component';
+import { FieldEditorComponent } from '../field-editor';
 
 
 @Component({
@@ -12,6 +13,8 @@ import { FieldComponent } from '../field/field.component';
   styleUrls: [ 'field-header.component.scss' ],
 })
 export class FieldHeaderComponent extends FieldComponent implements OnInit {
+
+  @Input() fieldEditor: FieldEditorComponent;
 
   constructor(private fsPrompt: FsPrompt) {
     super();
@@ -32,8 +35,8 @@ export class FieldHeaderComponent extends FieldComponent implements OnInit {
 
     const copiedField = Object.assign({}, this.field);
     copiedField.config.guid = guid();
-    const idx = this.fieldEditor.fields.indexOf(this.field) + 1;
-    this.fieldEditor.fields.splice(idx, 0, copiedField);
+    const idx = this.fieldEditor.config.fields.indexOf(this.field) + 1;
+    this.fieldEditor.config.fields.splice(idx, 0, copiedField);
     this.fieldEditor.selectField(copiedField);
   }
 
@@ -45,7 +48,7 @@ export class FieldHeaderComponent extends FieldComponent implements OnInit {
       title: 'Confirm',
       template: 'Are you sure you would like to remove this field?',
     }).subscribe((value) => {
-        this.fieldEditor.fields.splice(this.fieldEditor.fields.indexOf(this.field), 1);
+        this.fieldEditor.config.fields.splice(this.fieldEditor.config.fields.indexOf(this.field), 1);
         this.fieldEditor.unselectField();
     });
   }

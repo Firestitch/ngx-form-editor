@@ -1,58 +1,65 @@
+<ng-container [ngSwitch]="mode">
+  <ng-container *ngSwitchCase="fieldMode.Edit">
+    <div class="options">
+      <div fxFlexLayout="row" fxLayoutAlign="start center">
+        <mat-checkbox color="primary" [(ngModel)]="field.config.settings.first_name.display"></mat-checkbox>
 
-<div *ngIf="fieldEditor.selectedField===field; else selectedElse">
+        <mat-form-field floatLabel="never" fxFlex>
+          <input
+            matInput
+            placeholder="Label"
+            [(ngModel)]="field.config.settings.first_name.label"
+            [disabled]="!field.config.settings.first_name.display"
+            name="first_name">
+        </mat-form-field>
+      </div>
 
-  <div class="options">
-    <div fxFlexLayout="row" fxLayoutAlign="start center">
-      <mat-checkbox color="primary" [(ngModel)]="field.config.settings.first_name.display"></mat-checkbox>
+      <div fxFlexLayout="row" fxLayoutAlign="start center">
+        <mat-checkbox color="primary" [(ngModel)]="field.config.settings.middle_name.display"></mat-checkbox>
 
-      <mat-form-field floatLabel="never" fxFlex>
-        <input
-          matInput
-          placeholder="Label"
-          [(ngModel)]="field.config.settings.first_name.label"
-          [disabled]="!field.config.settings.first_name.display"
-          name="first_name">
+        <mat-form-field floatLabel="never" fxFlex>
+          <input
+            matInput
+            placeholder="Label"
+            [(ngModel)]="field.config.settings.middle_name.label"
+            [disabled]="!field.config.settings.middle_name.display"
+            name="middle_name">
+        </mat-form-field>
+      </div>
+
+      <div fxFlexLayout="row" fxLayoutAlign="start center">
+        <mat-checkbox color="primary" [(ngModel)]="field.config.settings.last_name.display"></mat-checkbox>
+
+        <mat-form-field floatLabel="never" fxFlex>
+          <input
+            matInput
+            placeholder="Label"
+            [(ngModel)]="field.config.settings.last_name.label"
+            [disabled]="!field.config.settings.last_name.display"
+            name="last_name">
+        </mat-form-field>
+      </div>
+    </div>
+  </ng-container>
+  <ng-container *ngSwitchCase="fieldMode.Render">
+    <div fxFlexLayout="row" fxLayoutGap="10px">
+      <mat-form-field *ngIf="field.config.settings.first_name.display">
+        <input matInput [(ngModel)]="field.data.value.first_name" placeholder="First Name">
+      </mat-form-field>
+      <mat-form-field *ngIf="field.config.settings.middle_name.display">
+        <input matInput [(ngModel)]="field.data.value.middle_name" placeholder="Middle Name">
+      </mat-form-field>
+      <mat-form-field *ngIf="field.config.settings.last_name.display">
+        <input matInput [(ngModel)]="field.data.value.last_name" placeholder="Last Name">
       </mat-form-field>
     </div>
+  </ng-container>
 
-    <div fxFlexLayout="row" fxLayoutAlign="start center">
-      <mat-checkbox color="primary" [(ngModel)]="field.config.settings.middle_name.display"></mat-checkbox>
+  <ng-container *ngSwitchCase="fieldMode.View">
+      fieldMode.View
+  </ng-container>
+</ng-container>
 
-      <mat-form-field floatLabel="never" fxFlex>
-        <input
-          matInput
-          placeholder="Label"
-          [(ngModel)]="field.config.settings.middle_name.label"
-          [disabled]="!field.config.settings.middle_name.display"
-          name="middle_name">
-      </mat-form-field>
-    </div>
 
-    <div fxFlexLayout="row" fxLayoutAlign="start center">
-      <mat-checkbox color="primary" [(ngModel)]="field.config.settings.last_name.display"></mat-checkbox>
 
-      <mat-form-field floatLabel="never" fxFlex>
-        <input
-          matInput
-          placeholder="Label"
-          [(ngModel)]="field.config.settings.last_name.label"
-          [disabled]="!field.config.settings.last_name.display"
-          name="last_name">
-      </mat-form-field>
-    </div>
-  </div>
-</div>
-<ng-template #selectedElse>
 
-<div fxFlexLayout="row" fxLayoutGap="10px">
-  <mat-form-field floatLabel="never" *ngIf="field.config.settings.first_name.display">
-    <input matInput [(ngModel)]="field.data.value.first_name" placeholder="First Name">
-  </mat-form-field>
-  <mat-form-field floatLabel="never" *ngIf="field.config.settings.middle_name.display">
-    <input matInput [(ngModel)]="field.data.value.middle_name" placeholder="Middle Name">
-  </mat-form-field>
-  <mat-form-field floatLabel="never" *ngIf="field.config.settings.last_name.display">
-    <input matInput [(ngModel)]="field.data.value.last_name" placeholder="Last Name">
-  </mat-form-field>
-</div>
-</ng-template>

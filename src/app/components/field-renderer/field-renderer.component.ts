@@ -1,6 +1,7 @@
-import { Component, Input, HostListener, EventEmitter, ElementRef, ViewChild } from '@angular/core';
-
-import { Field, FieldType } from '../../interfaces';
+import { Component, ContentChildren, QueryList, AfterViewInit } from '@angular/core';
+import { FieldCoreComponent } from '../field-core';
+import { FieldCustomRenderDirective } from 'src/app/directives/field-custom-render';
+import { FieldCustomEditDirective } from 'src/app/directives/field-custom-edit';
 
 
 @Component({
@@ -8,14 +9,17 @@ import { Field, FieldType } from '../../interfaces';
   templateUrl: 'field-renderer.component.html',
   styleUrls: [ 'field-renderer.component.scss' ],
 })
-export class FieldRendererComponent {
+export class FieldRendererComponent extends FieldCoreComponent implements AfterViewInit{
 
-  public fieldType = FieldType;
   public fieldRenderer: FieldRendererComponent = this;
+  public fieldCustomRenderTemplateRefs = {};
 
-  @ViewChild('fieldsRef') fieldsRef: ElementRef;
+  @ContentChildren(FieldCustomRenderDirective) queryListFieldCustomRender: QueryList<FieldCustomEditDirective>;
 
-  @Input() fields: Field[];
+  ngAfterViewInit() {
 
-  constructor(private elRef: ElementRef) {}
+    this.queryListFieldCustomRender.forEach((directive: FieldCustomRenderDirective) => {
+      this.fieldCustomRenderTemplateRefs[directive.type] = directive.templateRef;
+    });
+  }
 }

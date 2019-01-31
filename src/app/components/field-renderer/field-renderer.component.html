@@ -1,25 +1,60 @@
 <div fxLayout="column" fxLayoutAlign="start start">
 
-  <ng-container *ngFor="let field of fields; index as idx">
-    <div class="field-container">
+  <ng-container *ngFor="let field of config.fields; index as idx">
+    <div class="field-container" [ngClass]="['field-' + field.config.type]">
+      <ng-container [ngSwitch]="field.config.type">
+        <ng-container *ngSwitchCase="fieldType.ShortText">
+          <ng-container *ngTemplateOutlet="fsFieldText"></ng-container>
+        </ng-container>
+        <ng-container *ngSwitchCase="fieldType.LongText">
+          <ng-container *ngTemplateOutlet="fsFieldText"></ng-container>
+        </ng-container>
+        <ng-container *ngSwitchCase="fieldType.Phone">
+          <ng-container *ngTemplateOutlet="fsFieldText"></ng-container>
+        </ng-container>
+        <ng-container *ngSwitchCase="fieldType.Email">
+          <ng-container *ngTemplateOutlet="fsFieldText"></ng-container>
+        </ng-container>
+        <ng-container *ngSwitchCase="fieldType.Date">
+          <ng-container *ngTemplateOutlet="fsFieldText"></ng-container>
+        </ng-container>
+        <ng-container *ngSwitchCase="fieldType.Time">
+          <ng-container *ngTemplateOutlet="fsFieldText"></ng-container>
+        </ng-container>
+        <ng-container *ngSwitchCase="fieldType.Choice">
+          <ng-container *ngTemplateOutlet="fsFieldOptions"></ng-container>
+        </ng-container>
+        <ng-container *ngSwitchCase="fieldType.Dropdown">
+          <ng-container *ngTemplateOutlet="fsFieldOptions"></ng-container>
+        </ng-container>
+        <ng-container *ngSwitchCase="fieldType.Checkbox">
+          <ng-container *ngTemplateOutlet="fsFieldOptions"></ng-container>
+        </ng-container>
+        <ng-container *ngSwitchCase="fieldType.Name">
+          <fs-field-name [field]="field" [mode]="fieldMode.Render"></fs-field-name>
+        </ng-container>
+        <ng-container *ngSwitchCase="fieldType.File">
+          <fs-field-file [field]="field" [mode]="fieldMode.Render"></fs-field-file>
+        </ng-container>
+        <ng-container *ngSwitchCase="fieldType.RichText">
+          <fs-field-rich-text *ngIf="field.config.type===fieldType.RichText" [field]="field" [mode]="fieldMode.Render"></fs-field-rich-text>
+        </ng-container>
+        <ng-container *ngSwitchDefault>
+         <ng-template *ngTemplateOutlet="fieldCustomRenderTemplateRefs[field.config.type]; context: {field: field}"></ng-template>
+        </ng-container>
 
-      <fs-field-header [field]="field" [fieldEditor]="fieldRenderer">
-      </fs-field-header>
+        <ng-template #fsFieldText>
+          <fs-field-text [field]="field" [mode]="fieldMode.Render"></fs-field-text>
+        </ng-template>
 
-      <fs-field-field-text *ngIf="field.config.type==fieldType.ShortText || field.config.type==fieldType.LongText || field.config.type==fieldType.Phone || field.config.type==fieldType.Email || field.config.type==fieldType.Date || field.config.type==fieldType.Time || field.config.type===fieldType.RichText"
-        [field]="field" [fieldEditor]="fieldRenderer">
-      </fs-field-field-text>
+        <ng-template #fsFieldOptions>
+          <fs-field-options [field]="field" [mode]="fieldMode.Render"></fs-field-options>
+        </ng-template>
 
-      <fs-field-field-options *ngIf="field.config.type==fieldType.Choice || field.config.type==fieldType.Checkbox || field.config.type==fieldType.Dropdown"
-        [field]="field" [fieldEditor]="fieldRenderer">
-      </fs-field-field-options>
-
-      <fs-field-field-name *ngIf="field.config.type===fieldType.Name" [field]="field" [fieldEditor]="fieldRenderer">
-      </fs-field-field-name>
-
-      <fs-field-field-file *ngIf="field.config.type===fieldType.File" [field]="field" [fieldEditor]="fieldRenderer">
-      </fs-field-field-file>
-
+        <ng-template #fsFieldName>
+          <fs-field-options [field]="field" [mode]="fieldMode.Render"></fs-field-options>
+        </ng-template>
+      </ng-container>
     </div>
   </ng-container>
 </div>
