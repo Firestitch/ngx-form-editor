@@ -15,6 +15,7 @@ import { FsLabelModule } from '@firestitch/label';
 import { FsDateModule } from '@firestitch/date';
 
 import { FS_FIELD_EDITOR_CONFIG } from './fs-field-editor.providers';
+import { FS_FIELD_EDITOR_ORIGINAL_CONFIG } from './fs-field-editor-original.providers';
 
 import {
   MatButtonModule,
@@ -47,25 +48,27 @@ import { FieldCustomRenderDirective } from './directives/field-custom-render/fie
 import { FieldEditorConfig, FieldType } from './interfaces';
 import { FieldCoreComponent } from './components/field-core/field-core.component';
 
-const defaultConfig = { fields: [],
-  toolbar: {
-    items: [
-      { type: FieldType.ShortText },
-      { type: FieldType.LongText },
-      { type: FieldType.RichText, divide: true },
-      { type: FieldType.Dropdown },
-      { type: FieldType.Choice },
-      { type: FieldType.Checkbox },
-      { type: FieldType.Date },
-      { type: FieldType.Time, divide: true },
-      { type: FieldType.Name },
-      { type: FieldType.Phone },
-      { type: FieldType.Email, divide: true },
-      { type: FieldType.File }
-    ]
-  }
-};
-
+export function defaultConfigFactory(config) {
+  return Object.assign(config,
+    { fields: [],
+      toolbar: {
+        items: [
+          { type: FieldType.ShortText },
+          { type: FieldType.LongText },
+          { type: FieldType.RichText, divide: true },
+          { type: FieldType.Dropdown },
+          { type: FieldType.Choice },
+          { type: FieldType.Checkbox },
+          { type: FieldType.Date },
+          { type: FieldType.Time, divide: true },
+          { type: FieldType.Name },
+          { type: FieldType.Phone },
+          { type: FieldType.Email, divide: true },
+          { type: FieldType.File }
+        ]
+      }
+  });
+}
 
 @NgModule({
   imports: [
@@ -151,9 +154,11 @@ export class FsFieldEditorModule {
     return {
       ngModule: FsFieldEditorModule,
       providers: [
+        { provide: FS_FIELD_EDITOR_ORIGINAL_CONFIG, useValue: config },
         {
           provide: FS_FIELD_EDITOR_CONFIG,
-          useValue: Object.assign(config, defaultConfig)
+          useFactory: defaultConfigFactory,
+          deps: [FS_FIELD_EDITOR_ORIGINAL_CONFIG]
         }
       ]
     };
