@@ -24,11 +24,7 @@ export class FieldOptionsComponent extends FieldComponent {
 
   @Input('field') set setField(field: Field) {
 
-    this.field = field;
-
-    if (!field.config.options) {
-      field.config.options = [];
-    }
+    this.field = this.initField(field);
   }
 
   @Input() fieldEditor: FieldEditorComponent;
@@ -70,10 +66,6 @@ export class FieldOptionsComponent extends FieldComponent {
 
     if (this.newOption.length) {
 
-      if (!this.field.config.options) {
-        this.field.config.options = [];
-      }
-
       this.field.config.options.push({
         value: guid(),
         name: this.newOption,
@@ -97,4 +89,9 @@ export class FieldOptionsComponent extends FieldComponent {
   drop(event: CdkDragDrop<string[]>) {
     moveItemInArray(this.field.config.options, event.previousIndex, event.currentIndex);
   }
+
+  otherSelected(field,value) {
+    field.data.other.selected = value;
+  }
+
 }

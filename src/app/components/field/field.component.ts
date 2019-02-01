@@ -34,8 +34,17 @@ export class FieldComponent implements OnDestroy, OnInit {
     }
 
     if (!field.data) {
-      field.data = {
-        value: ''
+      field.data = { value: '' };
+    }
+
+    if (field.config.type===FieldType.Checkbox || field.config.type===FieldType.Choice || field.config.type===FieldType.Dropdown) {
+
+      if (!field.config.options) {
+        field.config.options = [];
+      }
+
+      if (!field.data.other && (field.config.type===FieldType.Checkbox || field.config.type===FieldType.Choice)) {
+        field.data.other = { selected: false, value: '' };
       }
     }
 
