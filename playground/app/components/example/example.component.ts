@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { FS_FIELD_EDITOR_CONFIG } from 'src/app/fs-field-editor.providers';
+import { FS_FIELD_EDITOR_CONFIG } from 'fs-package';
 import { MatDialog } from '@angular/material';
 import { DialogExampleComponent } from '../dialog-example';
 
