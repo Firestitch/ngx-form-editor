@@ -3,8 +3,8 @@ import { Component, HostListener, EventEmitter, ElementRef, QueryList, AfterView
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Field } from '../../interfaces';
 import { FieldCoreComponent } from '../field-core/field-core.component';
-import { FieldCustomEditDirective } from 'src/app/directives/field-custom-edit/field-custom-edit.directive';
-import { FieldCustomRenderDirective } from 'src/app/directives/field-custom-render/field-custom-render.directive';
+import { FieldCustomEditDirective } from '../../directives/field-custom-edit/field-custom-edit.directive';
+import { FieldCustomRenderDirective } from '../../directives/field-custom-render/field-custom-render.directive';
 
 
 @Component({
