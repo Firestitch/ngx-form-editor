@@ -12,6 +12,8 @@ import { AppMaterialModule } from './material.module';
 import {
 ExampleComponent,
 ExamplesComponent,
+FieldRenderComponent,
+FieldViewComponent,
 DialogExampleComponent } from './components';
 import { AppComponent } from './app.component';
 
@@ -38,7 +40,9 @@ const routes: Routes = [
     AppComponent,
     ExamplesComponent,
     ExampleComponent,
-    DialogExampleComponent
+    DialogExampleComponent,
+    FieldRenderComponent,
+    FieldViewComponent
   ],
   providers: [
   ],

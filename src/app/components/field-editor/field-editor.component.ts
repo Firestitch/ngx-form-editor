@@ -1,4 +1,4 @@
-import { Component, HostListener, EventEmitter, ElementRef, QueryList, AfterViewInit, ContentChildren } from '@angular/core';
+import { Component, HostListener, EventEmitter, ElementRef, QueryList, AfterViewInit, ContentChildren, Input } from '@angular/core';
 
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Field } from '../../interfaces';
@@ -9,6 +9,7 @@ import { FieldCustomRenderDirective } from '../../directives/field-custom-render
 
 @Component({
   selector: 'fs-field-editor',
+  inputs: ['config'],
   templateUrl: 'field-editor.component.html',
   styleUrls: [ 'field-editor.component.scss' ],
 })
@@ -92,15 +93,17 @@ export class FieldEditorComponent extends FieldCoreComponent implements AfterVie
   }
 
   drop(event: CdkDragDrop<string[]>) {
+
     if (event.container === event.previousContainer) {
       moveItemInArray(this.config.fields, event.previousIndex, event.currentIndex);
     } else {
 
-      if (this.config.fieldAddStart) {
-        this.config.fieldAddStart(event.item.data, event);
+      if (this.config.fieldDrop) {
+        this.config.fieldDrop(event.item.data.field, event.item.data.item, event);
       }
 
-      this.config.fields.splice(event.currentIndex, 0, event.item.data);
+      this.config.fields.splice(event.currentIndex, 0, event.item.data.field);
     }
   }
 }
+

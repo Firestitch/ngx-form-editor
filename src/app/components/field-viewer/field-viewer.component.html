@@ -1,51 +1,5 @@
 <div fxLayout="column" fxLayoutAlign="start start">
-
   <ng-container *ngFor="let field of config.fields; index as idx">
-    <div class="field-container" [ngClass]="['field-' + field.config.type]">
-
-      <fs-label-field>
-        <fs-label>{{field.config.label}}</fs-label>
-        <div *ngIf="field.config.type==fieldType.ShortText || field.config.type==fieldType.LongText || field.config.type==fieldType.Email">
-          {{field.data.value}}
-        </div>
-
-        <div *ngIf="field.config.type==fieldType.Date">
-          {{field.data.value | fsDate}}
-        </div>
-
-        <div *ngIf="field.config.type==fieldType.Time">
-          {{field.data.value | fsDate: 'time'}}
-        </div>
-
-        <div *ngIf="field.config.type==fieldType.Phone">
-          {{field.data.value}}
-        </div>
-
-        <div *ngIf="field.config.type===fieldType.Name">
-          {{field.data.value.first_name}} {{field.data.value.middle_name}} {{field.data.value.last_name}}
-        </div>
-
-        <!-- <div *ngIf="field.config.type===fieldType.File"></div> -->
-
-        <div *ngIf="field.config.type==fieldType.RichText">
-            <div fsEditorRenderer [ngModel]="field.data.value" name="richtext"></div>
-          </div>
-
-
-        <div *ngIf="field.config.type===fieldType.Choice || field.config.type===fieldType.Dropdown">
-          <ng-container *ngFor="let option of field.config.options">
-            <span *ngIf="field.data.value===option.value">{{option.name}}</span>
-          </ng-container>
-          <span *ngIf="field.data.other?.selected">{{field.data.other.value}}</span>
-        </div>
-
-        <div *ngIf="field.config.type===fieldType.Checkbox">
-          <ng-container *ngFor="let option of field.config.options">
-            <span class="option" *ngIf="field.data.value && field.data.value.indexOf(option.value)>=0">{{option.name}}</span>
-          </ng-container>
-          <span class="option" *ngIf="field.data.other?.selected">{{field.data.other.value}}</span>
-        </div>
-      </fs-label-field>
-    </div>
+    <fs-field-view [field]="field"></fs-field-view>
   </ng-container>
 </div>

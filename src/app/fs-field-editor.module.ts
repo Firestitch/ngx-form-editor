@@ -47,6 +47,8 @@ import { FieldCustomEditDirective } from './directives/field-custom-edit/field-c
 import { FieldCustomRenderDirective } from './directives/field-custom-render/field-custom-render.directive';
 import { FieldEditorConfig, FieldType } from './interfaces';
 import { FieldCoreComponent } from './components/field-core/field-core.component';
+import { FieldRenderComponent } from './components/field-render/field-render.component';
+import { FieldViewComponent } from './components/field-view/field-view.component';
 
 export function defaultConfigFactory(config) {
   return Object.assign(config,
@@ -129,7 +131,9 @@ export function defaultConfigFactory(config) {
     FieldRendererComponent,
     FieldViewerComponent,
     FieldCustomEditDirective,
-    FieldCustomRenderDirective
+    FieldCustomRenderDirective,
+    FieldRenderComponent,
+    FieldViewComponent
   ],
   declarations: [
     FieldEditorComponent,
@@ -145,7 +149,9 @@ export function defaultConfigFactory(config) {
     FieldRichTextComponent,
     FieldCustomEditDirective,
     FieldCustomRenderDirective,
-    FieldCoreComponent
+    FieldCoreComponent,
+    FieldRenderComponent,
+    FieldViewComponent
   ]
 })
 

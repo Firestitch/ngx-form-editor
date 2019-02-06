@@ -19,15 +19,21 @@ export class ExampleComponent implements OnInit {
   ngOnInit() {
 
     this.config = {
-      fieldAddStart: (field) => {
+      fieldDrop: (field, toolbarItem) => {
 
         if (field.config.type==='share') {
           field.config.facebook = true;
           field.config.google = true;
+
+          field.config.id = toolbarItem.config.id;
         }
       },
       toolbar: {
-        items: [{ icon: 'share', label: 'Share', type: 'share' }]
+        items: [{ icon: 'share',
+                  label: 'Share',
+                  type: 'share',
+                  config: { id: 99 }
+                }]
                 .concat(this.defaultConfig.toolbar.items)
       },
       fields: [
@@ -200,6 +206,7 @@ export class ExampleComponent implements OnInit {
         },
       ]
     };
+
   }
 
   openDialog(): void {

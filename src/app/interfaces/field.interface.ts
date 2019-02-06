@@ -30,7 +30,7 @@ export interface Field {
 export interface FieldEditorConfig {
   fields?: Field[],
   toolbar?: Toolbar,
-  fieldAddStart?: Function
+  fieldDrop?: Function
 }
 
 export interface Toolbar {

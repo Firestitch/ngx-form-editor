@@ -81,11 +81,6 @@ fs-field-editor {
     margin: 0 0 -10px;
   }
 
-  .field-container {
-    padding: 0 30px 20px 30px;
-    box-sizing: border-box;
-  }
-
   &:not(.selected) {
     cursor: pointer;
   }
