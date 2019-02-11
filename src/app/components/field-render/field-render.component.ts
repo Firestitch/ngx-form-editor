@@ -1,7 +1,6 @@
 import { Component, Input, AfterViewInit, QueryList, ContentChildren } from '@angular/core';
 import { FieldCoreComponent } from '../field-core/field-core.component';
-import { FieldCustomRenderDirective } from '../../directives/field-custom-render';
-import { FieldCustomEditDirective } from '../../directives/field-custom-edit';
+import { FieldCustomRenderDirective } from '../../directives/field-custom-render/field-custom-render.directive';
 
 @Component({
   selector: 'fs-field-render',
@@ -16,7 +15,7 @@ export class FieldRenderComponent extends FieldCoreComponent implements AfterVie
       this.field = field;
     }
 
-    @ContentChildren(FieldCustomRenderDirective) queryListFieldCustomRender: QueryList<FieldCustomEditDirective>;
+    @ContentChildren(FieldCustomRenderDirective) queryListFieldCustomRender: QueryList<FieldCustomRenderDirective>;
 
     ngAfterViewInit() {
 

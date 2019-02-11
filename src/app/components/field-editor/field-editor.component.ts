@@ -22,7 +22,7 @@ export class FieldEditorComponent extends FieldCoreComponent implements AfterVie
   public fieldCustomRenderTemplateRefs = {};
 
   @ContentChildren(FieldCustomEditDirective) queryListFieldCustomEdit: QueryList<FieldCustomEditDirective>;
-  @ContentChildren(FieldCustomRenderDirective) queryListFieldCustomRender: QueryList<FieldCustomEditDirective>;
+  @ContentChildren(FieldCustomRenderDirective) queryListFieldCustomRender: QueryList<FieldCustomRenderDirective>;
 
   @HostListener('document:keydown.escape', ['$event']) onKeydownHandler(event: KeyboardEvent) {
     this.unselectField();
