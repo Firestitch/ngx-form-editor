@@ -15,7 +15,7 @@ export class FieldNameComponent extends FieldComponent {
 
     this.field = field;
 
-    if (!field.data || !field.data.guid) {
+    if (!field.data || !field.data.guid || !field.data.value) {
       field.data = {
         value: {
           first_name: null,
