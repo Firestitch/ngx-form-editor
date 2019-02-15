@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 
-import { guid } from '@firestitch/common/util';
+import { guid } from '@firestitch/common';
 
 import { Field, FieldType, FieldState, ToolbarItem } from '../../interfaces';
 import { FieldEditorComponent } from '../field-editor';
@@ -24,7 +24,7 @@ export class FieldToolbarComponent implements OnInit {
     const defaults = {};
     defaults[FieldType.ShortText] = { icon: 'short_text', label: 'Short Text'};
     defaults[FieldType.LongText] = { icon: 'subject', label: 'Long Text' };
-    defaults[FieldType.RichText] = { icon: 'text_format', label: 'Rich Text'}
+    defaults[FieldType.RichText] = { icon: 'text_format', label: 'Rich Text'};
     defaults[FieldType.Dropdown] = { icon: 'arrow_drop_down_circle', label: 'Dropdown' };
     defaults[FieldType.Choice] = { icon: 'radio_button_checked', label: 'Choice' };
     defaults[FieldType.Checkbox] = { icon: 'check_box', label: 'Checkboxes' };

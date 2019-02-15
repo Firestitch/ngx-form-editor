@@ -1,7 +1,6 @@
 import { Component, Input } from '@angular/core';
 
 import { FsFile, FileProcessor } from '@firestitch/file';
-import { guid } from '@firestitch/common/util';
 
 import { FieldComponent } from '../field/field.component';
 import { Field } from '../../interfaces';

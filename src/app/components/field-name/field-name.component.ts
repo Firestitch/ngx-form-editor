@@ -11,8 +11,8 @@ import { Field } from '../../interfaces';
 })
 export class FieldNameComponent extends FieldComponent {
 
-  @Input('field') set setField(field: Field) {
-
+  @Input('field')
+  set setField(field: Field) {
     this.field = field;
 
     if (!field.data || !field.data.guid || !field.data.value) {

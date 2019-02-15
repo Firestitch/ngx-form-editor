@@ -5,16 +5,21 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { FsExampleModule } from '@firestitch/example';
+import { FsMessageModule } from '@firestitch/message';
+import { FsFieldEditorModule } from '@firestitch/field-editor';
+import { FsPromptModule } from '@firestitch/prompt';
+import { FsPhoneModule } from '@firestitch/phone';
 
-import { FsFieldEditorModule } from 'fs-package';
+import { ToastrModule } from 'ngx-toastr';
 
 import { AppMaterialModule } from './material.module';
 import {
-ExampleComponent,
-ExamplesComponent,
-FieldRenderComponent,
-FieldViewComponent,
-DialogExampleComponent } from './components';
+  DialogExampleComponent,
+  ExampleComponent,
+  ExamplesComponent,
+  FieldRenderComponent,
+  FieldViewComponent
+} from './components';
 import { AppComponent } from './app.component';
 
 
@@ -23,15 +28,19 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  bootstrap: [ AppComponent ],
+  bootstrap: [AppComponent],
   imports: [
     BrowserModule,
     FsFieldEditorModule.forRoot(),
     BrowserAnimationsModule,
     AppMaterialModule,
     FormsModule,
-    FsExampleModule,
     RouterModule.forRoot(routes),
+    FsExampleModule.forRoot(),
+    FsPromptModule.forRoot(),
+    FsPhoneModule.forRoot(),
+    FsMessageModule.forRoot(),
+    ToastrModule.forRoot({ preventDuplicates: true }),
   ],
   entryComponents: [
     DialogExampleComponent
@@ -44,8 +53,7 @@ const routes: Routes = [
     FieldRenderComponent,
     FieldViewComponent
   ],
-  providers: [
-  ],
+  providers: [],
 })
 export class PlaygroundModule {
 }

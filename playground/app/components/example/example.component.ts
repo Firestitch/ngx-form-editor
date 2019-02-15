@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { FS_FIELD_EDITOR_CONFIG } from 'fs-package';
+import { FS_FIELD_EDITOR_CONFIG } from '@firestitch/field-editor';
 import { MatDialog } from '@angular/material';
 import { DialogExampleComponent } from '../dialog-example';
 
@@ -21,7 +21,7 @@ export class ExampleComponent implements OnInit {
     this.config = {
       fieldDrop: (field, toolbarItem) => {
 
-        if (field.config.type==='share') {
+        if (field.config.type === 'share') {
           field.config.facebook = true;
           field.config.google = true;
 

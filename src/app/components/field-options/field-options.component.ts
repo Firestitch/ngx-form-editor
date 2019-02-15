@@ -1,9 +1,8 @@
 import { Component, Input, ViewChild, ElementRef } from '@angular/core';
 
 import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
-import { takeUntil } from 'rxjs/operators';
 import { FsPrompt } from '@firestitch/prompt';
-import { guid } from '@firestitch/common/util';
+import { guid } from '@firestitch/common';
 
 import { Field, FieldMode } from '../../interfaces';
 import { FieldEditorComponent } from '../field-editor';
@@ -49,7 +48,7 @@ export class FieldOptionsComponent extends FieldComponent {
 
   ngOnInit() {
     super.ngOnInit();
-    if (this.mode===FieldMode.Edit) {
+    if (this.mode === FieldMode.Edit) {
       // this.fieldEditor.$fieldSelected
       // .pipe(takeUntil(this.$destory))
       // .subscribe(field => {

@@ -89,7 +89,7 @@ export function defaultConfigFactory(config) {
     FormsModule,
     DragDropModule,
     FsCommonModule,
-    FsPromptModule.forRoot(),
+    FsPromptModule,
     FsFormModule,
     FsDatePickerModule,
     FsPhoneModule,

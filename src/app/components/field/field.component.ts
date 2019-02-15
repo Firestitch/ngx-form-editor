@@ -1,6 +1,6 @@
 import { Component, Input, EventEmitter, OnDestroy, OnInit } from '@angular/core';
 
-import { guid } from '@firestitch/common/util';
+import { guid } from '@firestitch/common';
 import { Field, FieldMode, FieldType } from '../../interfaces';
 
 
