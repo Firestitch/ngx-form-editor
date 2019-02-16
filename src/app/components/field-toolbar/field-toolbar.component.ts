@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 
-import { guid } from '@firestitch/common';
+import { guid } from '@firestitch/common/util';
 
 import { Field, FieldType, FieldState, ToolbarItem } from '../../interfaces';
 import { FieldEditorComponent } from '../field-editor';
@@ -15,7 +15,7 @@ export class FieldToolbarComponent implements OnInit {
 
   @Input() fieldEditor: FieldEditorComponent;
   public field: Field = null;
-  public expand = false;
+  public expand = true;
 
   public items: ToolbarItem[] = [];
 
@@ -34,6 +34,8 @@ export class FieldToolbarComponent implements OnInit {
     defaults[FieldType.Phone] = { icon: 'phone', label: 'Phone' };
     defaults[FieldType.Email] = { icon: 'email', label: 'Email' };
     defaults[FieldType.File] =  { icon: 'publish', label: 'File' };
+    defaults[FieldType.Gender] =  { icon: 'wc', label: 'Gender' };
+    defaults[FieldType.Address] =  { icon: 'location_on', label: 'Address' };
 
     this.fieldEditor.config.toolbar.items.forEach(item => {
 

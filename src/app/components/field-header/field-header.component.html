@@ -2,7 +2,7 @@
   <div fxFlexLayout="row" fxLayoutAlign="start center">
     <div fxFlex>
       <mat-form-field floatLabel="never" class="label">
-        <input matInput placeholder="Label" [(ngModel)]="field.config.label" name="label">
+        <input matInput placeholder="Label" [(ngModel)]="field.config.label" name="label" [ngModelOptions]="{ updateOn: 'blur' }" (ngModelChange)="changed($event)">
       </mat-form-field>
     </div>
 
@@ -15,7 +15,7 @@
   </div>
 
   <mat-form-field floatLabel="never" *ngIf="field.config.hasDescription" class="description">
-    <textarea matInput placeholder="Description" [matTextareaAutosize]="true" [(ngModel)]="field.config.description" name="description"></textarea>
+    <textarea matInput placeholder="Description" [matTextareaAutosize]="true" [(ngModel)]="field.config.description" name="description" [ngModelOptions]="{ updateOn: 'blur' }" (ngModelChange)="changed($event)"></textarea>
   </mat-form-field>
 </div>
 <ng-template #selectedElse>

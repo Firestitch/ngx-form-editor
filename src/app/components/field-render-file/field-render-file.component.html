@@ -1,0 +1,17 @@
+
+<fs-label-field>
+  <fs-label>{{field.config.label}}</fs-label>
+  <fs-file  (select)="selectFile($event)"
+            [accept]="allowedTypes"
+            [multiple]="field.config.allow_multiple">
+    <button mat-raised-button color="primary">Select File</button>
+  </fs-file>
+
+  <div>
+    <fs-file-previews [files]="selectedFiles">
+      <ng-template fs-file-preview-action placement="top-right" action="remove" tooltip="Remove" (click)="remove($event)">
+        <mat-icon>close</mat-icon>
+      </ng-template>
+    </fs-file-previews>
+  </div>
+</fs-label-field>

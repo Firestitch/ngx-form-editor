@@ -1,0 +1,47 @@
+<div class="options">
+  <div fxFlexLayout="column" fxLayoutGap="20px">
+    <mat-form-field fxFlex>
+      <input
+        matInput
+        placeholder="Max Width"
+        [(ngModel)]="field.config.max_width"
+        name="max_width"
+        [ngModelOptions]="{ updateOn: 'blur' }"
+        (ngModelChange)="changed($event)">
+    </mat-form-field>
+
+    <mat-form-field fxFlex>
+      <input
+        matInput
+        placeholder="Max Height"
+        [(ngModel)]="field.config.max_height"
+        name="max_width"
+        [ngModelOptions]="{ updateOn: 'blur' }"
+        (ngModelChange)="changed($event)">
+    </mat-form-field>
+
+    <mat-form-field fxFlex>
+      <input
+        matInput
+        placeholder="Image Quality"
+        [(ngModel)]="field.config.image_quality"
+        name="max_width"
+        [ngModelOptions]="{ updateOn: 'blur' }"
+        (ngModelChange)="changed($event)">
+    </mat-form-field>
+  </div>
+
+  <fs-label-field>
+    <fs-label>Allow Multiple</fs-label>
+    <mat-checkbox color="primary" [(ngModel)]="field.config.allow_multiple" (click)="changed()"></mat-checkbox>
+  </fs-label-field>
+
+  <fs-label-field>
+    <fs-label>Allowed File Types</fs-label>
+    <div fxFlexLayout="column" fxLayoutGap="20px">
+      <mat-checkbox color="primary" [(ngModel)]="field.config.allowed_file_types.image" (click)="changed()">Image</mat-checkbox>
+      <mat-checkbox color="primary" [(ngModel)]="field.config.allowed_file_types.video" (click)="changed()">Video</mat-checkbox>
+      <mat-checkbox color="primary" [(ngModel)]="field.config.allowed_file_types.other" (click)="changed()">Other</mat-checkbox>
+    </div>
+  </fs-label-field>
+</div>

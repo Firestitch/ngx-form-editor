@@ -1,0 +1,29 @@
+<mat-form-field *ngIf="field.config.type===fieldType.ShortText">
+  <input matInput [placeholder]="field.config.label" [(ngModel)]="field.data.value">
+  <mat-hint>{{field.config.description}}</mat-hint>
+</mat-form-field>
+
+<mat-form-field *ngIf="field.config.type===fieldType.LongText">
+  <textarea matInput matTextareaAutosize matAutosizeMinRows="1" [(ngModel)]="field.data.value" [placeholder]="field.config.label"></textarea>
+  <mat-hint>{{field.config.description}}</mat-hint>
+</mat-form-field>
+
+<mat-form-field *ngIf="field.config.type===fieldType.Date">
+  <input matInput [placeholder]="field.config.label" fsDatePicker [(ngModel)]="field.data.value">
+  <mat-hint>{{field.config.description}}</mat-hint>
+</mat-form-field>
+
+<mat-form-field *ngIf="field.config.type===fieldType.Time">
+  <input matInput fsDatePicker view="time" [placeholder]="field.config.label" [(ngModel)]="field.data.value">
+  <mat-hint>{{field.config.description}}</mat-hint>
+</mat-form-field>
+
+<mat-form-field *ngIf="field.config.type===fieldType.Phone">
+  <input matInput fsPhone [placeholder]="field.config.label" [(ngModel)]="field.data.value">
+  <mat-hint>{{field.config.description}}</mat-hint>
+</mat-form-field>
+
+<mat-form-field *ngIf="field.config.type===fieldType.Email">
+  <input matInput fsFormEmail [placeholder]="field.config.label" [(ngModel)]="field.data.value">
+  <mat-hint>{{field.config.description}}</mat-hint>
+</mat-form-field>

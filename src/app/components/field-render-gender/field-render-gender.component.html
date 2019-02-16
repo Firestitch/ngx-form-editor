@@ -1,0 +1,10 @@
+
+
+<fs-label-field>
+  <fs-label>{{field.config.label}}</fs-label>
+
+  <mat-radio-group [(ngModel)]="field.data.value" fxLayout="column">
+    <mat-radio-button *ngFor="let gender of field.config.genders"
+                      [value]="gender.value">{{gender.name}}</mat-radio-button>
+  </mat-radio-group>
+</fs-label-field>

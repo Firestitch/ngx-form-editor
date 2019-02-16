@@ -1,0 +1,66 @@
+<div fxLayout="column">
+  <mat-form-field *ngIf="field.config.street.enabled">
+    <input
+      matInput
+      [placeholder]="field.config.street.label"
+      [(ngModel)]="field.data.street"
+      name="street">
+  </mat-form-field>
+  <mat-form-field *ngIf="field.config.address2.enabled">
+    <input
+      matInput
+      [placeholder]="field.config.address2.label"
+      [(ngModel)]="field.data.address2"
+      name="address2">
+  </mat-form-field>
+  <mat-form-field *ngIf="field.config.city.enabled">
+    <input
+      matInput
+      [placeholder]="field.config.city.label"
+      [(ngModel)]="field.data.city"
+      name="city">
+  </mat-form-field>
+
+  <mat-form-field *ngIf="field.config.region.enabled">
+    <mat-label>{{regionLabel}}</mat-label>
+    <mat-select
+      matInput
+      *ngIf="regions.length"
+      [(ngModel)]="field.data.region"
+      name="region"
+      (change)="changeRegion()">
+      <mat-option *ngFor="let region of regions" [value]="region.code">
+        <span>{{region.name}}</span>
+      </mat-option>
+    </mat-select>
+    <input
+      *ngIf="!regions.length"
+      matInput
+      [(ngModel)]="field.data.region"
+      name="region"
+      [placeholder]="regionLabel"
+      autocomplete="off">
+  </mat-form-field>
+
+  <mat-form-field *ngIf="field.config.zip.enabled">
+    <input
+      matInput
+      [placeholder]="zipLabel"
+      [(ngModel)]="field.data.zip"
+      name="zip">
+  </mat-form-field>
+
+  <mat-form-field *ngIf="field.config.country.enabled">
+    <mat-select
+      [(ngModel)]="field.data.country"
+      name="country"
+      [placeholder]="field.config.country.label"
+      (selectionChange)="changeCountry()"
+      autocomplete="country">
+      <mat-option *ngFor="let country of countries" [value]="country.code">
+        <span>{{country.name}}</span>
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+</div>

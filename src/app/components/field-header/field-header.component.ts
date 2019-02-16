@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 
 import { FsPrompt } from '@firestitch/prompt';
 
-import { guid } from '@firestitch/common';
+import { guid } from '@firestitch/common/util';
 import { FieldComponent } from '../field/field.component';
 import { FieldEditorComponent } from '../field-editor';
 
@@ -38,6 +38,7 @@ export class FieldHeaderComponent extends FieldComponent implements OnInit {
     const idx = this.fieldEditor.config.fields.indexOf(this.field) + 1;
     this.fieldEditor.config.fields.splice(idx, 0, copiedField);
     this.fieldEditor.selectField(copiedField);
+    this.changed();
   }
 
   delete(event: Event) {
@@ -50,6 +51,7 @@ export class FieldHeaderComponent extends FieldComponent implements OnInit {
     }).subscribe((value) => {
         this.fieldEditor.config.fields.splice(this.fieldEditor.config.fields.indexOf(this.field), 1);
         this.fieldEditor.unselectField();
+        this.changed();
     });
   }
 

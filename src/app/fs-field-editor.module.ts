@@ -33,22 +33,29 @@ import {
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { FieldEditorComponent } from './components/field-editor/field-editor.component';
-import { FieldTextComponent } from './components/field-text/field-text.component';
+import { FieldRenderTextComponent } from './components/field-render-text/field-render-text.component';
 import { FieldHeaderComponent } from './components/field-header/field-header.component';
 import { FieldToolbarComponent } from './components/field-toolbar/field-toolbar.component';
-import { FieldOptionsComponent } from './components/field-options/field-options.component';
-import { FieldNameComponent } from './components/field-name/field-name.component';
-import { FieldFileComponent } from './components/field-file/field-file.component';
+import { FieldRenderOptionsComponent } from './components/field-render-options/field-render-options.component';
+import { FieldRenderNameComponent } from './components/field-render-name/field-render-name.component';
+import { FieldRenderFileComponent } from './components/field-render-file/field-render-file.component';
+import { FieldRenderGenderComponent } from './components/field-render-gender/field-render-gender.component';
+import { FieldRenderAddressComponent } from './components/field-render-address/field-render-address.component';
 import { FieldComponent } from './components/field/field.component';
 import { FieldRendererComponent } from './components/field-renderer/field-renderer.component';
 import { FieldViewerComponent } from './components/field-viewer/field-viewer.component';
-import { FieldRichTextComponent } from './components/field-rich-text/field-rich-text.component';
-import { FieldCustomEditDirective } from './directives/field-custom-edit/field-custom-edit.directive';
-import { FieldCustomRenderDirective } from './directives/field-custom-render/field-custom-render.directive';
+import { FieldRenderRichTextComponent } from './components/field-render-rich-text/field-render-rich-text.component';
+import { FieldConfigDirective } from './directives/field-config/field-config.directive';
+import { FieldRenderDirective } from './directives/field-render/field-render.directive';
 import { FieldEditorConfig, FieldType } from './interfaces';
 import { FieldCoreComponent } from './components/field-core/field-core.component';
 import { FieldRenderComponent } from './components/field-render/field-render.component';
 import { FieldViewComponent } from './components/field-view/field-view.component';
+import { FieldConfigNameComponent } from './components/field-config-name/field-config-name.component';
+import { FieldConfigOptionsComponent } from './components/field-config-options/field-config-options.component';
+import { FieldConfigFileComponent } from './components/field-config-file/field-config-file.component';
+import { FieldConfigGenderComponent } from './components/field-config-gender/field-config-gender.component';
+import { FieldConfigAddressComponent } from './components/field-config-address/field-config-address.component';
 
 export function defaultConfigFactory(config) {
   return Object.assign(config,
@@ -57,15 +64,20 @@ export function defaultConfigFactory(config) {
         items: [
           { type: FieldType.ShortText },
           { type: FieldType.LongText },
-          { type: FieldType.RichText, divide: true },
+          { type: FieldType.RichText },
+          { type: FieldType.Divider },
           { type: FieldType.Dropdown },
           { type: FieldType.Choice },
           { type: FieldType.Checkbox },
           { type: FieldType.Date },
-          { type: FieldType.Time, divide: true },
+          { type: FieldType.Time },
+          { type: FieldType.Divider },
           { type: FieldType.Name },
           { type: FieldType.Phone },
-          { type: FieldType.Email, divide: true },
+          { type: FieldType.Email },
+          { type: FieldType.Address },
+          { type: FieldType.Gender },
+          { type: FieldType.Divider },
           { type: FieldType.File }
         ]
       }
@@ -89,10 +101,10 @@ export function defaultConfigFactory(config) {
     FormsModule,
     DragDropModule,
     FsCommonModule,
-    FsPromptModule,
+    FsPromptModule.forRoot(),
     FsFormModule,
     FsDatePickerModule,
-    FsPhoneModule,
+    FsPhoneModule.forRoot(),
     FsLabelModule,
     FsDateModule,
     FsEditorRendererModule.forRoot(),
@@ -130,8 +142,8 @@ export function defaultConfigFactory(config) {
     FieldEditorComponent,
     FieldRendererComponent,
     FieldViewerComponent,
-    FieldCustomEditDirective,
-    FieldCustomRenderDirective,
+    FieldConfigDirective,
+    FieldRenderDirective,
     FieldRenderComponent,
     FieldViewComponent
   ],
@@ -139,19 +151,26 @@ export function defaultConfigFactory(config) {
     FieldEditorComponent,
     FieldRendererComponent,
     FieldViewerComponent,
-    FieldOptionsComponent,
+    FieldRenderOptionsComponent,
     FieldToolbarComponent,
     FieldHeaderComponent,
-    FieldTextComponent,
-    FieldNameComponent,
-    FieldFileComponent,
+    FieldRenderTextComponent,
+    FieldRenderNameComponent,
+    FieldRenderFileComponent,
+    FieldRenderGenderComponent,
+    FieldRenderAddressComponent,
     FieldComponent,
-    FieldRichTextComponent,
-    FieldCustomEditDirective,
-    FieldCustomRenderDirective,
+    FieldRenderRichTextComponent,
+    FieldConfigDirective,
+    FieldRenderDirective,
     FieldCoreComponent,
     FieldRenderComponent,
-    FieldViewComponent
+    FieldViewComponent,
+    FieldConfigNameComponent,
+    FieldConfigOptionsComponent,
+    FieldConfigFileComponent,
+    FieldConfigGenderComponent,
+    FieldConfigAddressComponent
   ]
 })
 

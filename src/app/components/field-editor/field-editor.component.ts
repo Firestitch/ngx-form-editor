@@ -1,10 +1,17 @@
-import { Component, HostListener, EventEmitter, ElementRef, QueryList, AfterViewInit, ContentChildren, Input } from '@angular/core';
+import {  Component,
+          HostListener,
+          EventEmitter,
+          ElementRef,
+          QueryList,
+          AfterViewInit,
+          ContentChildren,
+          Output} from '@angular/core';
 
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Field } from '../../interfaces';
 import { FieldCoreComponent } from '../field-core/field-core.component';
-import { FieldCustomEditDirective } from '../../directives/field-custom-edit/field-custom-edit.directive';
-import { FieldCustomRenderDirective } from '../../directives/field-custom-render/field-custom-render.directive';
+import { FieldConfigDirective } from '../../directives/field-config/field-config.directive';
+import { FieldRenderDirective } from '../../directives/field-render/field-render.directive';
 
 
 @Component({
@@ -16,13 +23,16 @@ import { FieldCustomRenderDirective } from '../../directives/field-custom-render
 export class FieldEditorComponent extends FieldCoreComponent implements AfterViewInit {
 
   public selectedField = null;
-  public $fieldSelected = new EventEmitter();
+  @Output('fieldSelected') $fieldSelected = new EventEmitter();
+  @Output('fieldChanged')  $fieldChanged = new EventEmitter();
+  @Output('fieldAdded')  $fieldAdded = new EventEmitter();
+  @Output('fieldMoved')  $fieldMoved = new EventEmitter();
   public fieldEditor: FieldEditorComponent = this;
-  public fieldCustomEditTemplateRefs = {};
-  public fieldCustomRenderTemplateRefs = {};
+  public fieldConfigTemplateRefs = {};
+  public fieldRenderTemplateRefs = {};
 
-  @ContentChildren(FieldCustomEditDirective) queryListFieldCustomEdit: QueryList<FieldCustomEditDirective>;
-  @ContentChildren(FieldCustomRenderDirective) queryListFieldCustomRender: QueryList<FieldCustomRenderDirective>;
+  @ContentChildren(FieldConfigDirective) queryListFieldConfig: QueryList<FieldConfigDirective>;
+  @ContentChildren(FieldRenderDirective) queryListFieldRender: QueryList<FieldRenderDirective>;
 
   @HostListener('document:keydown.escape', ['$event']) onKeydownHandler(event: KeyboardEvent) {
     this.unselectField();
@@ -58,12 +68,12 @@ export class FieldEditorComponent extends FieldCoreComponent implements AfterVie
   }
 
   ngAfterViewInit() {
-    this.queryListFieldCustomEdit.forEach((directive: FieldCustomEditDirective) => {
-      this.fieldCustomEditTemplateRefs[directive.type] = directive.templateRef;
+    this.queryListFieldConfig.forEach((directive: FieldConfigDirective) => {
+      this.fieldConfigTemplateRefs[directive.type] = directive.templateRef;
     });
 
-    this.queryListFieldCustomRender.forEach((directive: FieldCustomRenderDirective) => {
-      this.fieldCustomRenderTemplateRefs[directive.type] = directive.templateRef;
+    this.queryListFieldRender.forEach((directive: FieldRenderDirective) => {
+      this.fieldRenderTemplateRefs[directive.type] = directive.templateRef;
     });
   }
 
@@ -74,6 +84,7 @@ export class FieldEditorComponent extends FieldCoreComponent implements AfterVie
 
 
   fieldClick(field: Field) {
+
     if (this.selectedField !== field) {
       this.selectField(field);
     }
@@ -95,8 +106,15 @@ export class FieldEditorComponent extends FieldCoreComponent implements AfterVie
   drop(event: CdkDragDrop<string[]>) {
 
     if (event.container === event.previousContainer) {
+
+      this.$fieldMoved.emit({ event: event });
+
       moveItemInArray(this.config.fields, event.previousIndex, event.currentIndex);
     } else {
+
+      this.$fieldAdded.emit({ field: event.item.data.field,
+                                toolbarField: event.item.data.item,
+                                event: event });
 
       if (this.config.fieldDrop) {
         this.config.fieldDrop(event.item.data.field, event.item.data.item, event);

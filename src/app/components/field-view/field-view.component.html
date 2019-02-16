@@ -25,9 +25,25 @@
     <!-- <div *ngIf="field.config.type===fieldType.File"></div> -->
 
     <div *ngIf="field.config.type==fieldType.RichText">
-        <div fsEditorRenderer [ngModel]="field.data.value" name="richtext"></div>
-      </div>
+      <div fsEditorRenderer [ngModel]="field.data.value" name="richtext"></div>
+    </div>
 
+    <div *ngIf="field.config.type==fieldType.Gender">
+      <ng-container *ngFor="let gender of field.config.genders">
+        <span *ngIf="field.data.value===gender.value">{{gender.name}}</span>
+      </ng-container>
+    </div>
+
+    <div *ngIf="field.config.type==fieldType.Address">
+      <div class="address">
+        <span *ngIf="field.data.street">{{field.data.street}}</span>
+        <span *ngIf="field.data.adddress2">{{field.data.address2}}</span>
+        <span *ngIf="field.data.city">{{field.data.city}}</span>
+        <span *ngIf="field.data.region">{{field.data.region}}</span>
+        <span *ngIf="field.data.zip">{{field.data.zip}}</span>
+        <span *ngIf="field.data.country">{{field.data.country}}</span>
+      </div>
+    </div>
 
     <div *ngIf="field.config.type===fieldType.Choice || field.config.type===fieldType.Dropdown">
       <ng-container *ngFor="let option of field.config.options">

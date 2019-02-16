@@ -139,6 +139,26 @@ export class ExampleComponent implements OnInit {
           data: {},
           config:
           {
+            guid: '333',
+            type: 'address',
+            label: 'Address',
+            state: 'active'
+          },
+        },
+        {
+          data: {},
+          config:
+          {
+            guid: '133',
+            type: 'gender',
+            label: 'Gender',
+            state: 'active'
+          },
+        },
+        {
+          data: {},
+          config:
+          {
             guid: '5',
             type: 'choice',
             label: 'Choice Question',
@@ -206,8 +226,20 @@ export class ExampleComponent implements OnInit {
         },
       ]
     };
-
   }
+
+  changed(e) {
+    console.log('Field Changed', e);
+  }
+
+  added(e) {
+    console.log('Field Added', e);
+  }
+
+  moved(e) {
+    console.log('Field Moved', e);
+  }
+
 
   openDialog(): void {
     const dialogRef = this.dialog.open(DialogExampleComponent, {

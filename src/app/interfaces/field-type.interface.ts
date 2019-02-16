@@ -11,5 +11,8 @@ export enum FieldType {
   Date = 'date',
   File = 'file',
   RichText = 'richtext',
-  Custom = 'custom'
+  Gender = 'gender',
+  Custom = 'custom',
+  Divider = 'divider',
+  Address = 'address'
 }

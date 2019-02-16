@@ -1,0 +1,6 @@
+.fs-field {
+  padding: 0 20px 10px 20px;
+  &.selected .field-container {
+    box-sizing: border-box;
+  }
+}

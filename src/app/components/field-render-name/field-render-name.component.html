@@ -1,0 +1,11 @@
+<div fxFlexLayout="row" fxLayoutGap="10px">
+  <mat-form-field *ngIf="field.config.first_name?.display">
+    <input matInput [(ngModel)]="field.data.value.first_name" [placeholder]="field.config.first_name.label">
+  </mat-form-field>
+  <!-- <mat-form-field *ngIf="field.config.middle_name?.display">
+    <input matInput [(ngModel)]="field.data.value.middle_name" placeholder="Middle Name">
+  </mat-form-field> -->
+  <mat-form-field *ngIf="field.config.last_name?.display">
+    <input matInput [(ngModel)]="field.data.value.last_name" [placeholder]="field.config.last_name.label">
+  </mat-form-field>
+</div>

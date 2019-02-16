@@ -13,29 +13,67 @@ fs-field-editor {
 
   .toolbar {
     margin-left: 20px;
-    border: 1px solid #ccc;
     align-self: flex-start;
     border-radius: 3px;
     position: relative;
 
+
     .bar {
       height: 40px;
       background: #2196f3;
+      border-top-left-radius: 3px;
+      border-top-right-radius: 3px;
 
       mat-icon {
         color: #fff;
       }
     }
 
-    .toolbar-field .label {
-      padding-right: 10px;
-      display: none;
+    .toolbar-field {
+      margin: 5px 5px;
+      cursor: pointer;
+
+      .label {
+        padding-right: 10px;
+        display: none;
+      }
     }
 
     &.expanded .toolbar-field .label {
       display: block;
     }
   }
+
+  .fs-field {
+    border-radius: 3px;
+    &:not(.selected):hover {
+      background: #f9f9f9;
+    }
+  }
+
+  .fs-field,
+  .fs-field-option {
+
+    background:#fff;
+
+    &.cdk-drag-preview {
+      opacity: .45;
+      box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+                  0 8px 10px 1px rgba(0, 0, 0, 0.14),
+                  0 3px 14px 2px rgba(0, 0, 0, 0.12);
+    }
+
+
+    &.cdk-drag-placeholder {
+      background: #F7F7F7;
+
+      .field-container,
+      .option-container {
+        visibility: hidden;
+      }
+    }
+  }
+
 }
 
 .fs-field {
@@ -83,6 +121,14 @@ fs-field-editor {
 
   &:not(.selected) {
     cursor: pointer;
+    * {
+      pointer-events: none;
+    }
+
+    .field-drag,
+    .field-drag *  {
+      pointer-events: all;
+    }
   }
 
   &.selected {
@@ -113,28 +159,5 @@ fs-field-renderer {
 
   fs-label-field {
     width: 100%;
-  }
-}
-
-.fs-field,
-.fs-field-option {
-
-  background:#fff;
-
-  &.cdk-drag-preview {
-    opacity: .45;
-    box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
-                0 8px 10px 1px rgba(0, 0, 0, 0.14),
-                0 3px 14px 2px rgba(0, 0, 0, 0.12);
-  }
-
-
-  &.cdk-drag-placeholder {
-    background: #F7F7F7;
-
-    .field-container,
-    .option-container {
-      visibility: hidden;
-    }
   }
 }

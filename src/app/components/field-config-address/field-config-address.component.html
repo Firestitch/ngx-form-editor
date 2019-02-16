@@ -1,0 +1,15 @@
+<div *ngFor="let item of fieldNames">
+  <div fxFlexLayout="row" fxLayoutAlign="start center">
+    <mat-checkbox color="primary" [(ngModel)]="field.config[item].enabled" (click)="changed()"></mat-checkbox>
+    <mat-form-field floatLabel="never" fxFlex>
+      <input
+        matInput
+        placeholder="Label"
+        [(ngModel)]="field.config[item].label"
+        [disabled]="!field.config[item].enabled"
+        [name]="field.config[item]"
+        [ngModelOptions]="{ updateOn: 'blur' }"
+        (ngModelChange)="changed($event)">
+    </mat-form-field>
+  </div>
+</div>

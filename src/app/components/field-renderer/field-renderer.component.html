@@ -1,7 +1,5 @@
 <div fxLayout="column" fxLayoutAlign="start start">
   <ng-container *ngFor="let field of config.fields; index as idx">
-    <div class="field-container" [ngClass]="['field-' + field.config.type]">
-      <fs-field-render [field]="field"></fs-field-render>
-    </div>
+    <fs-field-render [field]="field"></fs-field-render>
   </ng-container>
 </div>

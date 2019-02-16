@@ -1,34 +1,25 @@
 <mat-tab-group>
   <mat-tab label="Fields Editor">
-    <fs-field-editor [config]="config">
-      <ng-template fsFieldCustomRender type="share" let-field="field">
+    <fs-field-editor [config]="config" (fieldChanged)="changed($event)" (fieldAdded)="added($event)" (fieldMoved)="moved($event)">
+      <ng-template fsFieldRender type="share" let-field="field">
         <img src="/assets/google-logo.svg" height="50" *ngIf="field.config['google']">
         <img src="/assets/facebook-logo.svg" height="50" *ngIf="field.config['facebook']">
       </ng-template>
 
-      <ng-template fsFieldCustomEdit type="share" let-field="field">
+      <ng-template fsFieldConfig type="share" let-field="field">
         <div fxLayout="column">
-          <mat-checkbox [(ngModel)]="field.config['facebook']" name="facebook">Enable Facebook</mat-checkbox>
-          <mat-checkbox [(ngModel)]="field.config['google']" name="google">Enable Google</mat-checkbox>
+          <mat-checkbox [(ngModel)]="field.config['facebook']" name="facebook" (click)="changed({ field: field })">Enable Facebook</mat-checkbox>
+          <mat-checkbox [(ngModel)]="field.config['google']" name="google" (click)="changed({ field: field })">Enable Google</mat-checkbox>
         </div>
       </ng-template>
 
-
-      <!-- <ng-template fsFieldCustomRender type="custom-dropdown" let-field="field">
-        <fs-field-renderer [field]="field.config.field"></fs-field-renderer>
-      </ng-template> -->
-
     </fs-field-editor>
   </mat-tab>
-  <!-- <mat-tab label="Fields Editor(Dialog Mode)">
-    <div>
-      <button mat-raised-button color="primary" (click)="openDialog()">Open Dialog</button>
-    </div>
-  </mat-tab> -->
+
   <mat-tab label="Rendered Fields">
     <p class="padding">
       <fs-field-renderer [config]="config">
-        <ng-template fsFieldCustomRender type="share" let-field="field">
+        <ng-template fsFieldRender type="share" let-field="field">
           <img src="/assets/google-logo.svg" height="50" *ngIf="field.config['google']">
           <img src="/assets/facebook-logo.svg" height="50" *ngIf="field.config['facebook']">
         </ng-template>

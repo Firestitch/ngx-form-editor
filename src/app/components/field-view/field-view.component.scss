@@ -1,3 +1,4 @@
-.option:not(:first-child):before {
+.option:not(:first-child):before,
+.address span:not(:first-child):before {
   content: ", ";
 }

@@ -28,28 +28,30 @@
       <ng-container *ngTemplateOutlet="fsFieldOptions"></ng-container>
     </ng-container>
     <ng-container *ngSwitchCase="fieldType.Name">
-      <fs-field-name [field]="field" [mode]="fieldMode.Render"></fs-field-name>
+      <fs-field-render-name [field]="field"></fs-field-render-name>
     </ng-container>
     <ng-container *ngSwitchCase="fieldType.File">
-      <fs-field-file [field]="field" [mode]="fieldMode.Render"></fs-field-file>
+      <fs-field-render-file [field]="field"></fs-field-render-file>
     </ng-container>
     <ng-container *ngSwitchCase="fieldType.RichText">
-      <fs-field-rich-text *ngIf="field.config.type===fieldType.RichText" [field]="field" [mode]="fieldMode.Render"></fs-field-rich-text>
+      <fs-field-render-rich-text [field]="field"></fs-field-render-rich-text>
+    </ng-container>
+    <ng-container *ngSwitchCase="fieldType.Gender">
+      <fs-field-render-gender [field]="field"></fs-field-render-gender>
+    </ng-container>
+    <ng-container *ngSwitchCase="fieldType.Address">
+      <fs-field-render-address [field]="field"></fs-field-render-address>
     </ng-container>
     <ng-container *ngSwitchDefault>
-      <ng-template *ngTemplateOutlet="fieldCustomRenderTemplateRefs[field.config.type]; context: {field: field}"></ng-template>
+      <ng-template *ngTemplateOutlet="fieldRenderTemplateRefs[field.config.type]; context: {field: field}"></ng-template>
     </ng-container>
 
     <ng-template #fsFieldText>
-      <fs-field-text [field]="field" [mode]="fieldMode.Render"></fs-field-text>
+      <fs-field-render-text [field]="field"></fs-field-render-text>
     </ng-template>
 
     <ng-template #fsFieldOptions>
-      <fs-field-options [field]="field" [mode]="fieldMode.Render"></fs-field-options>
-    </ng-template>
-
-    <ng-template #fsFieldName>
-      <fs-field-options [field]="field" [mode]="fieldMode.Render"></fs-field-options>
+      <fs-field-render-options [field]="field"></fs-field-render-options>
     </ng-template>
   </ng-container>
 </div>

@@ -1,0 +1,61 @@
+import { Component, Input, ViewChild, ElementRef } from '@angular/core';
+
+import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
+import { FsPrompt } from '@firestitch/prompt';
+import { guid } from '@firestitch/common/util';
+
+import { FieldEditorComponent } from '../field-editor';
+import { FieldComponent } from '../field/field.component';
+
+
+@Component({
+  selector: 'fs-field-config-options',
+  templateUrl: 'field-config-options.component.html',
+  styleUrls: [ 'field-config-options.component.scss' ],
+})
+export class FieldConfigOptionsComponent extends FieldComponent {
+
+  public newOption = '';
+
+  @ViewChild('addOptionInput')
+  private _addOptionInput: ElementRef;
+
+  @Input() fieldEditor: FieldEditorComponent;
+
+  constructor(
+    private fsPrompt: FsPrompt,
+  ) {
+    super();
+  }
+
+  addOption() {
+
+    if (this.newOption.length) {
+
+      this.field.config.options.push({
+        value: guid(),
+        name: this.newOption,
+      });
+
+      this.newOption = '';
+    }
+
+    this._addOptionInput.nativeElement.focus();
+    this.changed();
+  }
+
+  removeOption(index: number) {
+    this.fsPrompt.confirm({
+      title: 'Confirm',
+      template: 'Are you sure you would like to remove this option?',
+    }).subscribe((value) => {
+        this.field.config.options.splice(index, 1);
+        this.changed();
+    });
+  }
+
+  drop(event: CdkDragDrop<string[]>) {
+    moveItemInArray(this.field.config.options, event.previousIndex, event.currentIndex);
+    this.changed();
+  }
+}
