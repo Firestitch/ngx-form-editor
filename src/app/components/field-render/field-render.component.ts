@@ -9,19 +9,19 @@ import { FieldRenderDirective } from '../../directives/field-render/field-render
 })
 export class FieldRenderComponent extends FieldCoreComponent implements AfterViewInit {
 
-    public fieldRenderTemplateRefs = {};
-    public field: any = { config: {} };
+  public fieldRenderTemplateRefs = {};
+  public field: any = { config: {} };
 
-    @Input('field') set setField(field) {
-      this.field = field;
-    }
-
-    @ContentChildren(FieldRenderDirective) queryListFieldRender: QueryList<FieldRenderDirective>;
-
-    ngAfterViewInit() {
-
-      this.queryListFieldRender.forEach((directive: FieldRenderDirective) => {
-        this.fieldRenderTemplateRefs[directive.type] = directive.templateRef;
-      });
-    }
+  @Input('field') set setField(field) {
+    this.field = field;
   }
+
+  @ContentChildren(FieldRenderDirective) queryListFieldRender: QueryList<FieldRenderDirective>;
+
+  ngAfterViewInit() {
+
+    this.queryListFieldRender.forEach((directive: FieldRenderDirective) => {
+      this.fieldRenderTemplateRefs[directive.type] = directive.templateRef;
+    });
+  }
+}

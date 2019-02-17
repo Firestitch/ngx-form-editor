@@ -1,5 +1,5 @@
 <div cdkDropList class="options" (cdkDropListDropped)="drop($event)">
-  <div *ngFor="let option of field.config.options; index as idx" cdkDrag cdkDragLockAxis="y" class="fs-field-option">
+  <div *ngFor="let option of field.config.configs.options; index as idx" cdkDrag cdkDragLockAxis="y" class="fs-field-option">
 
     <div fxFlexLayout="row" fxLayoutAlign="start center" class="option-container">
 
@@ -21,7 +21,7 @@
   </div>
 </div>
 
-<div *ngIf="field.config.other" fxFlexLayout="row" fxLayoutAlign="start center">
+<div *ngIf="field.config.configs.other" fxFlexLayout="row" fxLayoutAlign="start center">
   <button button mat-icon-button [ngStyle]="{'visibility': 'hidden'}"><mat-icon>drag_indicator</mat-icon></button>
 
   <ng-container [ngSwitch]="field.config.type">
@@ -38,19 +38,19 @@
       value="Other">
   </mat-form-field>
 
-  <button button mat-icon-button (click)="field.config.other = false"><mat-icon>delete</mat-icon></button>
+  <button button mat-icon-button (click)="field.config.configs.other = false"><mat-icon>delete</mat-icon></button>
 </div>
 
 <div>
   <div fxFlexLayout="row" fxLayoutAlign="start center">
-    <button button mat-icon-button *ngIf="field.config.options.length"><mat-icon></mat-icon></button>
-    <mat-checkbox disabled="true" style="visibility: hidden" *ngIf="(field.config.type===fieldType.Checkbox || field.config.type===fieldType.Choice) && field.config.options.length"></mat-checkbox>
+    <button button mat-icon-button *ngIf="field.config.configs.options.length"><mat-icon></mat-icon></button>
+    <mat-checkbox disabled="true" style="visibility: hidden" *ngIf="(field.config.type===fieldType.Checkbox || field.config.type===fieldType.Choice) && field.config.configs.options.length"></mat-checkbox>
 
     <mat-form-field floatLabel="never" class="new-option" fxFlex>
       <input matInput #addOptionInput placeholder="Add New Option" [(ngModel)]="newOption" name="newOption" (keydown.tab)="addOption()" (keyup.enter)="addOption()">
     </mat-form-field>
-    <ng-container *ngIf="(field.config.type === fieldType.Checkbox || field.config.type === fieldType.Choice) && field.config.options.length">
-      <span class="or">OR</span> <button mat-button color="primary" (click)="changed();field.config.other = !field.config.other">{{ field.config.other ? 'Remove' : 'Add' }} "Other" Option</button>
+    <ng-container *ngIf="(field.config.type === fieldType.Checkbox || field.config.type === fieldType.Choice) && field.config.configs.options.length">
+      <span class="or">OR</span> <button mat-button color="primary" (click)="changed();field.config.configs.other = !field.config.configs.other">{{ field.config.configs.other ? 'Remove' : 'Add' }} "Other" Option</button>
     </ng-container>
 
     <button button mat-icon-button style="visibility: hidden"><mat-icon>delete</mat-icon></button>

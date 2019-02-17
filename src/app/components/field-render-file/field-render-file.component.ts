@@ -33,7 +33,7 @@ export class FieldRenderFileComponent extends FieldComponent {
 
   public selectFile(files: any) {
 
-    if (!this.field.config.allow_multiple) {
+    if (!this.field.config.configs.allow_multiple) {
       this.selectedFiles = [];
       this.field.data.value = [];
     }
@@ -48,9 +48,9 @@ export class FieldRenderFileComponent extends FieldComponent {
 
       if (file.typeImage === true) {
         this._fileProcessor.process(file, {
-          quality: this.field.config.image_quality,
-          width: this.field.config.max_width,
-          height: this.field.config.max_height
+          quality: this.field.config.configs.image_quality,
+          width: this.field.config.configs.max_width,
+          height: this.field.config.configs.max_height
         }).subscribe(resFile => {
           this.selectedFiles.push(resFile);
           this.field.data.value.push(resFile.file);

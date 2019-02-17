@@ -3,7 +3,7 @@
   <fs-label>{{field.config.label}}</fs-label>
   <fs-file  (select)="selectFile($event)"
             [accept]="allowedTypes"
-            [multiple]="field.config.allow_multiple">
+            [multiple]="field.config.configs.allow_multiple">
     <button mat-raised-button color="primary">Select File</button>
   </fs-file>
 

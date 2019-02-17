@@ -38,7 +38,7 @@ export class FieldRenderAddressComponent extends FieldComponent {
   }
 
   private updateCountryRegionLabels(country) {
-    this.zipLabel = country && country.zipLabel ? country.zipLabel : this.field.config.zip.label;
-    this.regionLabel = country && country.regionLabel ? country.regionLabel : this.field.config.region.label;
+    this.zipLabel = country && country.zipLabel ? country.zipLabel : this.field.config.configs.zip.label;
+    this.regionLabel = country && country.regionLabel ? country.regionLabel : this.field.config.configs.region.label;
   }
 }

@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 
 import { guid } from '@firestitch/common/util';
 
-import { Field, FieldType, FieldState, ToolbarItem } from '../../interfaces';
+import { Field, FieldType, ToolbarItem } from '../../interfaces';
 import { FieldEditorComponent } from '../field-editor';
 
 
@@ -57,10 +57,9 @@ export class FieldToolbarComponent implements OnInit {
       config: {
         guid: guid(),
         type: item.type,
-        state: FieldState.Active,
         label: item.label,
         description: '',
-        hasDescription: false,
+        hasDescription: false
       },
       data: {
         value: null,

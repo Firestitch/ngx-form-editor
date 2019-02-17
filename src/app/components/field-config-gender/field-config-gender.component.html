@@ -1,5 +1,5 @@
 <div cdkDropList class="genders" (cdkDropListDropped)="drop($event)">
-  <div *ngFor="let gender of field.config.genders; index as idx" cdkDrag cdkDragLockAxis="y" class="gender">
+  <div *ngFor="let gender of field.config.configs.genders; index as idx" cdkDrag cdkDragLockAxis="y" class="gender">
 
     <div fxFlexLayout="row" fxLayoutAlign="start center" class="gender-container">
 
@@ -24,7 +24,7 @@
 
 <div>
   <div fxFlexLayout="row" fxLayoutAlign="start center">
-    <button button mat-icon-button *ngIf="field.config.genders.length"><mat-icon></mat-icon></button>
+    <button button mat-icon-button *ngIf="field.config.configs.genders.length"><mat-icon></mat-icon></button>
     <mat-checkbox disabled="true" style="visibility: hidden"></mat-checkbox>
 
     <mat-form-field floatLabel="never" class="new-option" fxFlex>

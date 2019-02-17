@@ -19,23 +19,7 @@ export interface Field {
     label: string,
     description: string,
     hasDescription: boolean,
-    state: FieldState,
-    other?: boolean,
-    options?: FieldOption[],
-    image_quality?: number,
-    max_width?: number,
-    max_height?: number,
-    allow_multiple?: boolean,
-    allowed_file_types?: any,
-    first_name?: any,
-    last_name?: any,
-    genders?: any[],
-    street?: any,
-    address2?: any,
-    city?: any,
-    region?: any,
-    zip?: any,
-    country?: any
+    configs?: any
   },
   data?: any
 }

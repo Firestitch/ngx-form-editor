@@ -32,7 +32,7 @@ export class FieldConfigOptionsComponent extends FieldComponent {
 
     if (this.newOption.length) {
 
-      this.field.config.options.push({
+      this.field.config.configs.options.push({
         value: guid(),
         name: this.newOption,
       });
@@ -49,13 +49,13 @@ export class FieldConfigOptionsComponent extends FieldComponent {
       title: 'Confirm',
       template: 'Are you sure you would like to remove this option?',
     }).subscribe((value) => {
-        this.field.config.options.splice(index, 1);
+        this.field.config.configs.options.splice(index, 1);
         this.changed();
     });
   }
 
   drop(event: CdkDragDrop<string[]>) {
-    moveItemInArray(this.field.config.options, event.previousIndex, event.currentIndex);
+    moveItemInArray(this.field.config.configs.options, event.previousIndex, event.currentIndex);
     this.changed();
   }
 }

@@ -74,7 +74,7 @@
             </ng-container>
 
             <ng-template #fileElse>
-                <fs-field-render-file [field]="field"></fs-field-render-file>
+              <fs-field-render-file [field]="field"></fs-field-render-file>
             </ng-template>
           </ng-container>
 
@@ -84,7 +84,7 @@
             </ng-container>
 
             <ng-template #genderElse>
-                <fs-field-render-gender [field]="field"></fs-field-render-gender>
+              <fs-field-render-gender [field]="field"></fs-field-render-gender>
             </ng-template>
           </ng-container>
 
@@ -114,12 +114,12 @@
             </ng-container>
 
             <ng-container *ngIf="selectedField===field">
-                <ng-template *ngTemplateOutlet="fieldConfigTemplateRefs[field.config.type]; context: {field: field, fieldEditor: fieldEditor}"></ng-template>
-              </ng-container>
+              <ng-template *ngTemplateOutlet="fieldConfigTemplateRefs[field.config.type]; context: {field: field, fieldEditor: fieldEditor}"></ng-template>
+            </ng-container>
           </ng-container>
 
           <ng-template #fsFieldText>
-            <fs-field-render-text [field]="field"></fs-field-render-text>
+            <fs-field-render-text [field]="field" *ngIf="selectedField!==field"></fs-field-render-text>
           </ng-template>
 
           <ng-template #fsFieldOptions>

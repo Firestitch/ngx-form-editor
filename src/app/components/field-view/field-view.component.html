@@ -29,7 +29,7 @@
     </div>
 
     <div *ngIf="field.config.type==fieldType.Gender">
-      <ng-container *ngFor="let gender of field.config.genders">
+      <ng-container *ngFor="let gender of field.config.configs.genders">
         <span *ngIf="field.data.value===gender.value">{{gender.name}}</span>
       </ng-container>
     </div>
@@ -45,15 +45,15 @@
       </div>
     </div>
 
-    <div *ngIf="field.config.type===fieldType.Choice || field.config.type===fieldType.Dropdown">
-      <ng-container *ngFor="let option of field.config.options">
+    <div *ngIf="(field.config.type===fieldType.Choice || field.config.type===fieldType.Dropdown) && field.config.configs">
+      <ng-container *ngFor="let option of field.config.configs.options">
         <span *ngIf="field.data.value===option.value">{{option.name}}</span>
       </ng-container>
       <span *ngIf="field.data.other?.selected">{{field.data.other.value}}</span>
     </div>
 
     <div *ngIf="field.config.type===fieldType.Checkbox">
-      <ng-container *ngFor="let option of field.config.options">
+      <ng-container *ngFor="let option of field.config.configs.options">
         <span class="option" *ngIf="field.data.value && field.data.value.indexOf(option.value)>=0">{{option.name}}</span>
       </ng-container>
       <span class="option" *ngIf="field.data.other?.selected">{{field.data.other.value}}</span>

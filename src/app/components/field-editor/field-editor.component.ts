@@ -12,6 +12,7 @@ import { Field } from '../../interfaces';
 import { FieldCoreComponent } from '../field-core/field-core.component';
 import { FieldConfigDirective } from '../../directives/field-config/field-config.directive';
 import { FieldRenderDirective } from '../../directives/field-render/field-render.directive';
+import { initField } from './../../helpers/init-field';
 
 
 @Component({
@@ -108,19 +109,21 @@ export class FieldEditorComponent extends FieldCoreComponent implements AfterVie
     if (event.container === event.previousContainer) {
 
       this.$fieldMoved.emit({ event: event });
-
       moveItemInArray(this.config.fields, event.previousIndex, event.currentIndex);
+
     } else {
 
-      this.$fieldAdded.emit({ field: event.item.data.field,
-                                toolbarField: event.item.data.item,
-                                event: event });
+      const field = initField(event.item.data.field);
+
+      this.$fieldAdded.emit({ field: field,
+                              toolbarField: event.item.data.item,
+                              event: event });
 
       if (this.config.fieldDrop) {
-        this.config.fieldDrop(event.item.data.field, event.item.data.item, event);
+        this.config.fieldDrop(field, event.item.data.item, event);
       }
 
-      this.config.fields.splice(event.currentIndex, 0, event.item.data.field);
+      this.config.fields.splice(event.currentIndex, 0, field);
     }
   }
 }

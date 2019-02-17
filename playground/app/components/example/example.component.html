@@ -2,14 +2,14 @@
   <mat-tab label="Fields Editor">
     <fs-field-editor [config]="config" (fieldChanged)="changed($event)" (fieldAdded)="added($event)" (fieldMoved)="moved($event)">
       <ng-template fsFieldRender type="share" let-field="field">
-        <img src="/assets/google-logo.svg" height="50" *ngIf="field.config['google']">
-        <img src="/assets/facebook-logo.svg" height="50" *ngIf="field.config['facebook']">
+        <img src="/assets/google-logo.svg" height="50" *ngIf="field.config.configs['google']">
+        <img src="/assets/facebook-logo.svg" height="50" *ngIf="field.config.configs['facebook']">
       </ng-template>
 
       <ng-template fsFieldConfig type="share" let-field="field">
         <div fxLayout="column">
-          <mat-checkbox [(ngModel)]="field.config['facebook']" name="facebook" (click)="changed({ field: field })">Enable Facebook</mat-checkbox>
-          <mat-checkbox [(ngModel)]="field.config['google']" name="google" (click)="changed({ field: field })">Enable Google</mat-checkbox>
+          <mat-checkbox [(ngModel)]="field.config.configs['facebook']" name="facebook" (click)="changed({ field: field })">Enable Facebook</mat-checkbox>
+          <mat-checkbox [(ngModel)]="field.config.configs['google']" name="google" (click)="changed({ field: field })">Enable Google</mat-checkbox>
         </div>
       </ng-template>
 

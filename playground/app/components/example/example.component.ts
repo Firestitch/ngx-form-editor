@@ -22,10 +22,10 @@ export class ExampleComponent implements OnInit {
       fieldDrop: (field, toolbarItem) => {
 
         if (field.config.type === 'share') {
-          field.config.facebook = true;
-          field.config.google = true;
+          field.config.configs.facebook = true;
+          field.config.configs.google = true;
 
-          field.config.id = toolbarItem.config.id;
+          field.config.configs.id = toolbarItem.config.id;
         }
       },
       toolbar: {
@@ -44,10 +44,11 @@ export class ExampleComponent implements OnInit {
             guid: '99',
             type: 'share',
             label: 'Share',
-            state: 'active',
-            facebook: true,
-            google: true
-          },
+            configs: {
+              facebook: true,
+              google: true
+            }
+          }
         },
         {
           data: {},
@@ -56,17 +57,18 @@ export class ExampleComponent implements OnInit {
             guid: '1',
             type: 'dropdown',
             label: 'Dropdown Question',
-            state: 'active',
-            options: [
-              {
-                value: '11',
-                name: 'Option A'
-              },
-              {
-                value: '22',
-                name: 'Option B'
-              }
-            ]
+            configs: {
+              options: [
+                {
+                  value: '11',
+                  name: 'Option A'
+                },
+                {
+                  value: '22',
+                  name: 'Option B'
+                }
+              ]
+            }
           },
         },
         {
@@ -87,23 +89,24 @@ export class ExampleComponent implements OnInit {
             guid: '4',
             type: 'name',
             label: 'Name Question',
-            state: 'active',
-            other: true,
-            options: [
-              {
-                value: '33',
-                name: 'First Name'
-              },
-              {
-                value: '44',
-                name: 'Middle Name'
-              },
-              {
-                value: '55',
-                name: 'Last Name'
-              }
-            ]
-          },
+            configs: {
+              other: true,
+              options: [
+                {
+                  value: '33',
+                  name: 'First Name'
+                },
+                {
+                  value: '44',
+                  name: 'Middle Name'
+                },
+                {
+                  value: '55',
+                  name: 'Last Name'
+                }
+              ]
+            }
+          }
         },
         {
           data: {},
@@ -162,23 +165,24 @@ export class ExampleComponent implements OnInit {
             guid: '5',
             type: 'choice',
             label: 'Choice Question',
-            state: 'active',
-            other: true,
-            options: [
-              {
-                value: '66',
-                name: 'Option A'
-              },
-              {
-                value: '77',
-                name: 'Option B'
-              },
-              {
-                value: '88',
-                name: 'Option C'
-              }
-            ]
-          },
+            configs: {
+              other: true,
+              options: [
+                {
+                  value: '66',
+                  name: 'Option A'
+                },
+                {
+                  value: '77',
+                  name: 'Option B'
+                },
+                {
+                  value: '88',
+                  name: 'Option C'
+                }
+              ]
+            }
+          }
         },
         {
           data: {},
@@ -206,22 +210,23 @@ export class ExampleComponent implements OnInit {
             guid: '10',
             type: 'checkbox',
             label: 'Checkboxes Question',
-            state: 'active',
-            other: true,
-            options: [
-              {
-                value: '99',
-                name: 'Option A'
-              },
-              {
-                value: '111',
-                name: 'Option B'
-              },
-              {
-                value: '222',
-                name: 'Option C'
-              }
-            ]
+            configs: {
+              other: true,
+              options: [
+                {
+                  value: '99',
+                  name: 'Option A'
+                },
+                {
+                  value: '111',
+                  name: 'Option B'
+                },
+                {
+                  value: '222',
+                  name: 'Option C'
+                }
+              ]
+            }
           },
         },
       ]

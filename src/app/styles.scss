@@ -50,30 +50,29 @@ fs-field-editor {
       background: #f9f9f9;
     }
   }
+}
 
-  .fs-field,
-  .fs-field-option {
+.fs-field,
+.fs-field-option {
 
-    background:#fff;
+  background:#fff;
 
-    &.cdk-drag-preview {
-      opacity: .45;
-      box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
-                  0 8px 10px 1px rgba(0, 0, 0, 0.14),
-                  0 3px 14px 2px rgba(0, 0, 0, 0.12);
-    }
-
-
-    &.cdk-drag-placeholder {
-      background: #F7F7F7;
-
-      .field-container,
-      .option-container {
-        visibility: hidden;
-      }
-    }
+  &.cdk-drag-preview {
+    opacity: .45;
+    box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+                0 8px 10px 1px rgba(0, 0, 0, 0.14),
+                0 3px 14px 2px rgba(0, 0, 0, 0.12);
   }
 
+
+  &.cdk-drag-placeholder {
+    background: #F7F7F7;
+
+    .field-container,
+    .option-container {
+      visibility: hidden;
+    }
+  }
 }
 
 .fs-field {

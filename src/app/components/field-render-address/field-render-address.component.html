@@ -1,27 +1,27 @@
 <div fxLayout="column">
-  <mat-form-field *ngIf="field.config.street.enabled">
+  <mat-form-field *ngIf="field.config.configs.street.enabled">
     <input
       matInput
-      [placeholder]="field.config.street.label"
+      [placeholder]="field.config.configs.street.label"
       [(ngModel)]="field.data.street"
       name="street">
   </mat-form-field>
-  <mat-form-field *ngIf="field.config.address2.enabled">
+  <mat-form-field *ngIf="field.config.configs.address2.enabled">
     <input
       matInput
-      [placeholder]="field.config.address2.label"
+      [placeholder]="field.config.configs.address2.label"
       [(ngModel)]="field.data.address2"
       name="address2">
   </mat-form-field>
-  <mat-form-field *ngIf="field.config.city.enabled">
+  <mat-form-field *ngIf="field.config.configs.city.enabled">
     <input
       matInput
-      [placeholder]="field.config.city.label"
+      [placeholder]="field.config.configs.city.label"
       [(ngModel)]="field.data.city"
       name="city">
   </mat-form-field>
 
-  <mat-form-field *ngIf="field.config.region.enabled">
+  <mat-form-field *ngIf="field.config.configs.region.enabled">
     <mat-label>{{regionLabel}}</mat-label>
     <mat-select
       matInput
@@ -42,7 +42,7 @@
       autocomplete="off">
   </mat-form-field>
 
-  <mat-form-field *ngIf="field.config.zip.enabled">
+  <mat-form-field *ngIf="field.config.configs.zip.enabled">
     <input
       matInput
       [placeholder]="zipLabel"
@@ -50,11 +50,11 @@
       name="zip">
   </mat-form-field>
 
-  <mat-form-field *ngIf="field.config.country.enabled">
+  <mat-form-field *ngIf="field.config.configs.country.enabled">
     <mat-select
       [(ngModel)]="field.data.country"
       name="country"
-      [placeholder]="field.config.country.label"
+      [placeholder]="field.config.configs.country.label"
       (selectionChange)="changeCountry()"
       autocomplete="country">
       <mat-option *ngFor="let country of countries" [value]="country.code">

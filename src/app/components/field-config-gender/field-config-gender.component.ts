@@ -26,7 +26,7 @@ export class FieldConfigGenderComponent extends FieldComponent {
 
   add() {
 
-    this.field.config.genders.push({
+    this.field.config.configs.genders.push({
       value: this.newOption,
       name: this.newOption,
     });
@@ -42,13 +42,13 @@ export class FieldConfigGenderComponent extends FieldComponent {
       title: 'Confirm',
       template: 'Are you sure you would like to remove this gender?',
     }).subscribe((value) => {
-        this.field.config.genders.splice(index, 1);
+        this.field.config.configs.genders.splice(index, 1);
         this.changed();
     });
   }
 
   drop(event: CdkDragDrop<string[]>) {
-    moveItemInArray(this.field.config.genders, event.previousIndex, event.currentIndex);
+    moveItemInArray(this.field.config.configs.genders, event.previousIndex, event.currentIndex);
     this.changed();
   }
 }
