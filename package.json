@@ -2,7 +2,7 @@
   "name": "@firestitch/field-editor",
   "title": "Form Editor",
   "description": "@firestitch/field-editor",
-  "version": "0.5.8",
+  "version": "0.6.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/Firestitch/ngx-field-editor"
@@ -46,10 +46,6 @@
     "@angular/platform-browser-dynamic": "^7.2.2",
     "@angular/router": "^7.2.4",
     "@compodoc/compodoc": "^1.1.7",
-    "@firestitch/common": "^0.4.0",
-    "@firestitch/example": "^0.6.0",
-    "@firestitch/iframe": "^0.2.0",
-    "@firestitch/message": "^0.2.0",
     "codelyzer": "^4.5.0",
     "cpx": "^1.5.0",
     "hammerjs": "^2.0.8",
@@ -65,7 +61,19 @@
     "typescript": "^3.1.6",
     "webpack": "^4.29.1",
     "webpack-dev-server": "^3.1.14",
-    "zone.js": "^0.8.29"
+    "zone.js": "^0.8.29",
+    "@firestitch/date": "^0.3.0",
+    "@firestitch/datepicker": "^0.5.1",
+    "@firestitch/editor": "^0.2.0",
+    "@firestitch/file": "^0.7.0",
+    "@firestitch/form": "^1.2.2",
+    "@firestitch/label": "^0.2.0",
+    "@firestitch/phone": "^0.2.0",
+    "@firestitch/prompt": "^0.2.0",
+    "@firestitch/common": "^0.5.1",
+    "@firestitch/example": "^0.6.0",
+    "@firestitch/iframe": "^0.2.0",
+    "@firestitch/message": "^0.2.0"
   },
   "engines": {
     "node": ">=6.0.0"
@@ -78,18 +86,7 @@
     "@firestitch/phone": ">=0.2.0",
     "@firestitch/editor": ">=0.1.4",
     "@firestitch/label": ">=0.1.4",
-    "@firestitch/date": ">=0.2.0",
-    "@firestitch/address": ">=0.2.3"
-  },
-  "dependencies": {
     "@firestitch/date": "^0.3.0",
-    "@firestitch/datepicker": "^0.5.0",
-    "@firestitch/editor": "^0.2.0",
-    "@firestitch/file": "^0.7.0",
-    "@firestitch/form": "^1.2.2",
-    "@firestitch/label": "^0.2.0",
-    "@firestitch/phone": "^0.2.0",
-    "@firestitch/prompt": "^0.2.0",
-    "@firestitch/address": "^0.2.3"
+    "@firestitch/common": ">=0.5.1"
   }
 }

@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 
-import { guid } from '@firestitch/common/util';
+import { guid } from '@firestitch/common';
 
 import { Field, FieldType, ToolbarItem } from '../../interfaces';
 import { FieldEditorComponent } from '../field-editor';

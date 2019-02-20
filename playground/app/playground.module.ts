@@ -37,7 +37,6 @@ const routes: Routes = [
     FormsModule,
     RouterModule.forRoot(routes),
     FsExampleModule.forRoot(),
-    FsPromptModule.forRoot(),
     FsPhoneModule.forRoot(),
     FsMessageModule.forRoot(),
     ToastrModule.forRoot({ preventDuplicates: true }),

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { guid } from '@firestitch/common/util';
+import { guid } from '@firestitch/common';
 import { FieldComponent } from '../field/field.component';
 
 

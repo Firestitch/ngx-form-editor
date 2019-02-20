@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 
 import { FsPrompt } from '@firestitch/prompt';
 
-import { guid } from '@firestitch/common/util';
+import { guid } from '@firestitch/common';
 import { FieldComponent } from '../field/field.component';
 import { FieldEditorComponent } from '../field-editor';
 

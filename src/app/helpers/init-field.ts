@@ -1,4 +1,4 @@
-import { guid } from '@firestitch/common/util';
+import { guid } from '@firestitch/common';
 import { FieldType } from '../interfaces';
 
 export function initField(field) {
