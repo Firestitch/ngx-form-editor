@@ -16,11 +16,11 @@
         <div fxLayout="column">
           <mat-checkbox *ngFor="let option of field.config.configs.options; index as idx"
                         (change)="handleCheckbox($event, option)"
-                        [checked]="field.data.value && field.data.value.indexOf(option.value) !== -1">{{option.name}}</mat-checkbox>
+                        [checked]="field.data.value.selected && field.data.value.selected.indexOf(option.value) !== -1">{{option.name}}</mat-checkbox>
           <div fxLayout="row" *ngIf="field.config.configs.other" class="other checkbox">
-            <mat-checkbox [(ngModel)]="field.data.other.selected"><div class="stub">Other</div></mat-checkbox>
+            <mat-checkbox [(ngModel)]="field.data.value.other.selected"><div class="stub">Other</div></mat-checkbox>
             <mat-form-field floatLabel="never">
-              <input matInput placeholder="Other" [(ngModel)]="field.data.other.value" (click)="otherSelected(field,true)">
+              <input matInput placeholder="Other" [(ngModel)]="field.data.value.other.value" (click)="otherSelected(field,true)">
             </mat-form-field>
           </div>
         </div>
@@ -29,14 +29,14 @@
     <ng-container *ngSwitchCase="fieldType.Choice">
       <fs-label-field>
           <fs-label>{{field.config.label}}</fs-label>
-          <mat-radio-group [(ngModel)]="field.data.value" fxLayout="column">
+          <mat-radio-group [(ngModel)]="field.data.value.selected" fxLayout="column">
             <mat-radio-button *ngFor="let option of field.config.configs.options; index as idx"
                               [value]="option.value"
                               (click)="otherSelected(field,false)">{{option.name}}</mat-radio-button>
             <div fxLayout="row" *ngIf="field.config.configs.other" class="other choice">
-              <mat-radio-button value="other" [checked]="field.data.other.selected"><div class="stub">Other</div></mat-radio-button>
+              <mat-radio-button [value]="true" [checked]="field.data.value.other.selected"><div class="stub">Other</div></mat-radio-button>
               <mat-form-field floatLabel="never">
-                <input matInput placeholder="Other" [(ngModel)]="field.data.other.value" (click)="otherSelected(field,true)">
+                <input matInput placeholder="Other" [(ngModel)]="field.data.value.other.value" (click)="otherSelected(field,true)">
               </mat-form-field>
             </div>
           </mat-radio-group>

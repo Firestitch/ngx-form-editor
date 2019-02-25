@@ -27,8 +27,18 @@ export function initField(field) {
         field.config.configs.options = [];
       }
 
-      if (!field.data.other && (field.config.type === FieldType.Checkbox || field.config.type === FieldType.Choice)) {
-        field.data.other = { selected: false, value: '' };
+      if (field.config.type === FieldType.Checkbox ||
+          field.config.type === FieldType.Choice) {
+
+        const selected = field.config.type === FieldType.Checkbox ? [] : null;
+
+        if (typeof field.data.value !== 'object') {
+          field.data.value = { selected: selected };
+        }
+
+        if (typeof field.data.value.other !== 'object') {
+          field.data.value.other = { selected: false, value: '' };
+        }
       }
     }
 
