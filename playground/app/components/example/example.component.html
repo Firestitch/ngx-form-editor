@@ -33,8 +33,10 @@
     </p>
     </mat-tab>
   <mat-tab label="Config">
-    <pre *ngIf="config">
-      {{config|json}}
-    </pre>
+    <ng-template matTabContent>
+      <pre *ngIf="config">
+        {{config|json}}
+      </pre>
+    </ng-template>
   </mat-tab>
 </mat-tab-group>

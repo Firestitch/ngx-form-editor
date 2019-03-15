@@ -1,5 +1,7 @@
 import { Component, Input } from '@angular/core';
 
+import { get } from 'lodash';
+
 import { FsFile, FileProcessor } from '@firestitch/file';
 
 import { FieldComponent } from '../field/field.component';
@@ -29,6 +31,29 @@ export class FieldRenderFileComponent extends FieldComponent {
     }
 
     this.field = field;
+  }
+
+  public getAllowedTypes(allowedTypes) {
+
+    const allowed = [];
+
+    if (allowedTypes.image) {
+      allowed.push('image/*');
+    }
+
+    if (allowedTypes.video) {
+      allowed.push('video/*');
+    }
+
+    if (allowedTypes.other) {
+      allowed.push('application/*');
+      allowed.push('audio/*');
+      allowed.push('text/*');
+      allowed.push('message/*');
+      allowed.push('model/*');
+    }
+
+    return allowed.join(',');
   }
 
   public selectFile(files: any) {
@@ -72,5 +97,18 @@ export class FieldRenderFileComponent extends FieldComponent {
     }
 
     this.field.data.value.splice(idx, 1);
+  }
+
+  public initField(field) {
+
+    const config = get(this.field, 'config.configs.allowed_file_types');
+
+    if (config) {
+      this.allowedTypes = this.getAllowedTypes(config);
+    } else {
+      this.allowedTypes = '*/*';
+    }
+
+    return super.initField(field);
   }
 }
