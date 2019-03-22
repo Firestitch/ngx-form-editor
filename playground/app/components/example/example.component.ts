@@ -37,19 +37,19 @@ export class ExampleComponent implements OnInit {
                 .concat(this.defaultConfig.toolbar.items)
       },
       fields: [
-        {
-          data: {},
-          config:
-          {
-            guid: '99',
-            type: 'share',
-            label: 'Share',
-            configs: {
-              facebook: true,
-              google: true
-            }
-          }
-        },
+        // {
+        //   data: {},
+        //   config:
+        //   {
+        //     guid: '99',
+        //     type: 'share',
+        //     label: 'Share',
+        //     configs: {
+        //       facebook: true,
+        //       google: true
+        //     }
+        //   }
+        // },
         {
           data: {},
           config:
@@ -58,6 +58,7 @@ export class ExampleComponent implements OnInit {
             type: 'dropdown',
             label: 'Dropdown Question',
             configs: {
+              required: true,
               options: [
                 {
                   value: '11',
@@ -245,6 +246,9 @@ export class ExampleComponent implements OnInit {
     console.log('Field Moved', e);
   }
 
+  save() {
+    console.log('Saved');
+  }
 
   openDialog(): void {
     const dialogRef = this.dialog.open(DialogExampleComponent, {

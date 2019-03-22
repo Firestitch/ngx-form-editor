@@ -1,12 +1,12 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 
 import { DragDropModule } from '@angular/cdk/drag-drop';
 
 import { FsCommonModule } from '@firestitch/common';
 import { FsPromptModule } from '@firestitch/prompt';
-import { FsFormModule } from '@firestitch/form';
+import { FsFormModule, FsForm, FsFormCommon } from '@firestitch/form';
 import { FsDatePickerModule } from '@firestitch/datepicker';
 import { FsPhoneModule } from '@firestitch/phone';
 import { FsFileModule } from '@firestitch/file';
@@ -27,7 +27,8 @@ import {
   MatInputModule,
   MatMenuModule,
   MatRadioModule,
-  MatSelectModule
+  MatSelectModule,
+  MatFormFieldModule
 } from '@angular/material';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -87,56 +88,34 @@ export function defaultConfigFactory(config) {
 @NgModule({
   imports: [
     CommonModule,
+    FormsModule,
+    MatFormFieldModule,
+    MatInputModule,
     MatButtonModule,
     MatDividerModule,
-    MatInputModule,
     MatIconModule,
     MatMenuModule,
     MatCheckboxModule,
+    MatTooltipModule,
     MatSelectModule,
     MatRadioModule,
     MatCardModule,
-    FlexLayoutModule,
     MatTooltipModule,
-    FormsModule,
+    FlexLayoutModule,
+
     DragDropModule,
-    FsCommonModule,
-    FsPromptModule.forRoot(),
+
     FsFormModule,
+    FsCommonModule,
+    FsPromptModule,
     FsDatePickerModule,
-    FsPhoneModule.forRoot(),
+    FsPhoneModule,
     FsLabelModule,
     FsDateModule,
-    FsEditorRendererModule.forRoot(),
-    FsEditorRichTextModule.forRoot({
-      modules: {
-        toolbar: [
-          [{ header: [1, 2, 3, false] }],
-          [
-            'bold',
-            'italic',
-            'underline',
-            'strike',
-            'blockquote'
-          ],
-          [
-            { list: 'ordered' },
-            { list: 'bullet' },
-            { indent: '-1' },
-            { indent: '+1' },
-          ],
-          [
-            { align: [] }
-          ],
-          [
-            'link',
-          ]
-        ]
-      }
-    }),
-    FsFileModule.forRoot({
-      dragoverMessage: false
-    })
+    FsEditorRendererModule,
+    FsEditorRichTextModule,
+    FsFileModule,
+    FsPromptModule.forRoot()
   ],
   exports: [
     FieldEditorComponent,
@@ -171,6 +150,9 @@ export function defaultConfigFactory(config) {
     FieldConfigFileComponent,
     FieldConfigGenderComponent,
     FieldConfigAddressComponent
+  ],
+  providers: [
+    NgForm
   ]
 })
 

@@ -4,12 +4,14 @@ import { FieldComponent } from '../field/field.component';
 import { COUNTRIES } from './../../constants/countries';
 import { filter } from 'lodash';
 import { Field } from '../../interfaces';
+import { NgForm, ControlContainer } from '@angular/forms';
 
 
 @Component({
   selector: 'fs-field-render-address',
   styleUrls: ['field-render-address.component.scss'],
-  templateUrl: 'field-render-address.component.html'
+  templateUrl: 'field-render-address.component.html',
+  viewProviders: [ { provide: ControlContainer, useExisting: NgForm } ]
 })
 export class FieldRenderAddressComponent extends FieldComponent {
   public countries = COUNTRIES;

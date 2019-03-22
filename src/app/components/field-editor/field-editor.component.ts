@@ -1,11 +1,12 @@
 import {  Component,
-          HostListener,
-          EventEmitter,
-          ElementRef,
-          QueryList,
-          AfterViewInit,
-          ContentChildren,
-          Output} from '@angular/core';
+  HostListener,
+  EventEmitter,
+  ElementRef,
+  QueryList,
+  ContentChildren,
+  Output,
+  AfterContentInit,
+  SkipSelf} from '@angular/core';
 
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Field } from '../../interfaces';
@@ -13,6 +14,7 @@ import { FieldCoreComponent } from '../field-core/field-core.component';
 import { FieldConfigDirective } from '../../directives/field-config/field-config.directive';
 import { FieldRenderDirective } from '../../directives/field-render/field-render.directive';
 import { initField } from './../../helpers/init-field';
+import { FormGroup, ControlContainer, NgForm } from '@angular/forms';
 
 
 @Component({
@@ -20,8 +22,13 @@ import { initField } from './../../helpers/init-field';
   inputs: ['config'],
   templateUrl: 'field-editor.component.html',
   styleUrls: [ 'field-editor.component.scss' ],
+  // viewProviders: [{
+  //   provide: ControlContainer,
+  //   useFactory: (container: ControlContainer) => container,
+  //   deps: [[new SkipSelf(), ControlContainer]],
+  // }]
 })
-export class FieldEditorComponent extends FieldCoreComponent implements AfterViewInit {
+export class FieldEditorComponent extends FieldCoreComponent implements AfterContentInit {
 
   public selectedField = null;
   @Output('fieldSelected') $fieldSelected = new EventEmitter();
@@ -31,6 +38,7 @@ export class FieldEditorComponent extends FieldCoreComponent implements AfterVie
   public fieldEditor: FieldEditorComponent = this;
   public fieldConfigTemplateRefs = {};
   public fieldRenderTemplateRefs = {};
+  private formGroup: FormGroup;
 
   @ContentChildren(FieldConfigDirective) queryListFieldConfig: QueryList<FieldConfigDirective>;
   @ContentChildren(FieldRenderDirective) queryListFieldRender: QueryList<FieldRenderDirective>;
@@ -68,12 +76,12 @@ export class FieldEditorComponent extends FieldCoreComponent implements AfterVie
     super(null);
   }
 
-  ngAfterViewInit() {
+  ngAfterContentInit() {
     this.queryListFieldConfig.forEach((directive: FieldConfigDirective) => {
       this.fieldConfigTemplateRefs[directive.type] = directive.templateRef;
-    });
+      });
 
-    this.queryListFieldRender.forEach((directive: FieldRenderDirective) => {
+      this.queryListFieldRender.forEach((directive: FieldRenderDirective) => {
       this.fieldRenderTemplateRefs[directive.type] = directive.templateRef;
     });
   }
@@ -97,6 +105,7 @@ export class FieldEditorComponent extends FieldCoreComponent implements AfterVie
 
   unselectField() {
     this.selectedField = null;
+    this.$fieldSelected.emit(null);
   }
 
   selectField(field: Field) {
@@ -116,8 +125,8 @@ export class FieldEditorComponent extends FieldCoreComponent implements AfterVie
       const field = initField(event.item.data.field);
 
       this.$fieldAdded.emit({ field: field,
-                              toolbarField: event.item.data.item,
-                              event: event });
+                            toolbarField: event.item.data.item,
+                            event: event });
 
       if (this.config.fieldDrop) {
         this.config.fieldDrop(field, event.item.data.item, event);

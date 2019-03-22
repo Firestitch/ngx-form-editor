@@ -3,6 +3,7 @@
     <input
       matInput
       [placeholder]="field.config.configs.street.label"
+      [required]="field.config.configs.street.required"
       [(ngModel)]="field.data.street"
       name="street">
   </mat-form-field>
@@ -10,6 +11,7 @@
     <input
       matInput
       [placeholder]="field.config.configs.address2.label"
+      [required]="field.config.configs.address2.required"
       [(ngModel)]="field.data.address2"
       name="address2">
   </mat-form-field>
@@ -17,6 +19,7 @@
     <input
       matInput
       [placeholder]="field.config.configs.city.label"
+      [required]="field.config.configs.city.required"
       [(ngModel)]="field.data.city"
       name="city">
   </mat-form-field>
@@ -27,6 +30,7 @@
       matInput
       *ngIf="regions.length"
       [(ngModel)]="field.data.region"
+      [required]="field.config.configs.region.required"
       name="region"
       (change)="changeRegion()">
       <mat-option *ngFor="let region of regions" [value]="region.code">
@@ -37,6 +41,7 @@
       *ngIf="!regions.length"
       matInput
       [(ngModel)]="field.data.region"
+      [required]="field.config.configs.region.required"
       name="region"
       [placeholder]="regionLabel"
       autocomplete="off">
@@ -46,6 +51,7 @@
     <input
       matInput
       [placeholder]="zipLabel"
+      [required]="field.config.configs.zip.required"
       [(ngModel)]="field.data.zip"
       name="zip">
   </mat-form-field>
@@ -53,6 +59,7 @@
   <mat-form-field *ngIf="field.config.configs.country.enabled">
     <mat-select
       [(ngModel)]="field.data.country"
+      [required]="field.config.configs.country.required"
       name="country"
       [placeholder]="field.config.configs.country.label"
       (selectionChange)="changeCountry()"

@@ -15,6 +15,7 @@ import { FieldEditorComponent } from '../field-editor';
 export class FieldHeaderComponent extends FieldComponent implements OnInit {
 
   @Input() fieldEditor: FieldEditorComponent;
+  @Input() showRequired = true;
 
   constructor(private fsPrompt: FsPrompt) {
     super();
@@ -22,6 +23,10 @@ export class FieldHeaderComponent extends FieldComponent implements OnInit {
 
   ngOnInit() {
     this.field.config.hasDescription = !!this.field.config.description;
+  }
+
+  toggleRequired() {
+    this.field.config.required = !this.field.config.required;
   }
 
   toggleDescription() {
@@ -39,6 +44,11 @@ export class FieldHeaderComponent extends FieldComponent implements OnInit {
     this.fieldEditor.config.fields.splice(idx, 0, copiedField);
     this.fieldEditor.selectField(copiedField);
     this.changed();
+  }
+
+  close(e) {
+    e.stopPropagation();
+    this.fieldEditor.unselectField();
   }
 
   delete(event: Event) {

@@ -12,6 +12,11 @@ mat-checkbox {
 :host ::ng-deep {
   .other {
 
+    mat-form-field {
+      width: 100%;
+      max-width: 400px;
+    }
+
     &.checkbox {
 
       mat-form-field {

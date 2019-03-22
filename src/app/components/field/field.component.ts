@@ -3,6 +3,7 @@ import { Component, Input, EventEmitter, OnDestroy, OnInit } from '@angular/core
 import { initField } from './../../helpers/init-field';
 import { Field, FieldMode, FieldType } from '../../interfaces';
 import { FieldEditorComponent } from '../field-editor';
+import { guid } from '@firestitch/common';
 
 
 @Component({
@@ -13,6 +14,7 @@ export class FieldComponent implements OnDestroy, OnInit {
   public fieldMode = FieldMode;
   public fieldType = FieldType;
   public field: Field;
+  public name = 'field_' + guid();
   protected $destory = new EventEmitter();
 
   public changed(event?) {

@@ -7,7 +7,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FsExampleModule } from '@firestitch/example';
 import { FsMessageModule } from '@firestitch/message';
 import { FsFieldEditorModule } from '@firestitch/field-editor';
-import { FsPromptModule } from '@firestitch/prompt';
 import { FsPhoneModule } from '@firestitch/phone';
 
 import { ToastrModule } from 'ngx-toastr';
@@ -21,6 +20,7 @@ import {
   FieldViewComponent
 } from './components';
 import { AppComponent } from './app.component';
+import { FsFormModule } from '@firestitch/form';
 
 
 const routes: Routes = [
@@ -35,6 +35,7 @@ const routes: Routes = [
     BrowserAnimationsModule,
     AppMaterialModule,
     FormsModule,
+    FsFormModule,
     RouterModule.forRoot(routes),
     FsExampleModule.forRoot(),
     FsPhoneModule.forRoot(),
@@ -51,8 +52,7 @@ const routes: Routes = [
     DialogExampleComponent,
     FieldRenderComponent,
     FieldViewComponent
-  ],
-  providers: [],
+  ]
 })
 export class PlaygroundModule {
 }

@@ -1,11 +1,13 @@
-import { Component, Input, AfterViewInit, QueryList, ContentChildren } from '@angular/core';
+import { Component, Input, AfterViewInit, QueryList, ContentChildren, SkipSelf } from '@angular/core';
 import { FieldCoreComponent } from '../field-core/field-core.component';
 import { FieldRenderDirective } from '../../directives/field-render/field-render.directive';
+import { ControlContainer, NgForm } from '@angular/forms';
 
 @Component({
   selector: 'fs-field-render',
   styleUrls: ['field-render.component.scss'],
-  templateUrl: 'field-render.component.html'
+  templateUrl: 'field-render.component.html',
+  viewProviders: [ { provide: ControlContainer, useExisting: NgForm} ]
 })
 export class FieldRenderComponent extends FieldCoreComponent implements AfterViewInit {
 

@@ -19,7 +19,8 @@ export interface Field {
     label: string,
     description: string,
     hasDescription: boolean,
-    configs?: any
+    configs?: any,
+    required?: boolean
   },
   data?: any
 }
