@@ -1,6 +1,6 @@
-import { Component, SkipSelf, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FieldCoreComponent } from '../field-core';
-import { ControlContainer } from '@angular/forms';
+import { ControlContainer, NgForm } from '@angular/forms';
 
 
 @Component({
@@ -8,13 +8,7 @@ import { ControlContainer } from '@angular/forms';
   inputs: ['config'],
   templateUrl: 'field-renderer.component.html',
   styleUrls: [ 'field-renderer.component.scss' ],
-  viewProviders: [
-    {
-      provide: ControlContainer,
-      useFactory: (container: ControlContainer) => container,
-      deps: [[new SkipSelf(), ControlContainer]],
-    }
-  ]
+  viewProviders: [ { provide: ControlContainer, useExisting: NgForm } ]
 })
 export class FieldRendererComponent extends FieldCoreComponent {
 }

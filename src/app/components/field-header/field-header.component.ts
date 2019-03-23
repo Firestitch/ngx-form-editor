@@ -26,7 +26,7 @@ export class FieldHeaderComponent extends FieldComponent implements OnInit {
   }
 
   toggleRequired() {
-    this.field.config.required = !this.field.config.required;
+    this.field.config.configs.required = !this.field.config.configs.required;
   }
 
   toggleDescription() {

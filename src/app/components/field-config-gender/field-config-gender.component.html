@@ -12,11 +12,6 @@
       <mat-form-field floatLabel="never" class="gender-name" fxFlex>
         <input matInput placeholder="Label" [(ngModel)]="gender.name" name="label" [ngModelOptions]="{ updateOn: 'blur' }" (ngModelChange)="changed($event)">
       </mat-form-field>
-
-      <mat-form-field floatLabel="never" class="gender-value" fxFlex>
-        <input matInput placeholder="Value" [(ngModel)]="gender.value" name="value" [ngModelOptions]="{ updateOn: 'blur' }" (ngModelChange)="changed($event)">
-      </mat-form-field>
-
       <button button mat-icon-button (click)="remove(idx)"><mat-icon>delete</mat-icon></button>
     </div>
   </div>

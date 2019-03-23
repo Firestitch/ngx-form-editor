@@ -5,7 +5,7 @@
       [placeholder]="field.config.label"
       [(ngModel)]="field.data.value"
       name="short_text"
-      [required]="field.config.required===true">
+      [required]="field.config.configs.required===true">
     <mat-hint>{{field.config.description}}</mat-hint>
   </mat-form-field>
 
@@ -17,7 +17,7 @@
       [(ngModel)]="field.data.value"
       [placeholder]="field.config.label"
       name="long_text"
-      [required]="field.config.required===true">
+      [required]="field.config.configs.required===true">
     </textarea>
     <mat-hint>{{field.config.description}}</mat-hint>
   </mat-form-field>
@@ -29,7 +29,7 @@
       fsDatePicker
       [(ngModel)]="field.data.value"
       [name]="name"
-      [required]="field.config.required===true">
+      [required]="field.config.configs.required===true">
     <mat-hint>{{field.config.description}}</mat-hint>
   </mat-form-field>
 
@@ -41,7 +41,7 @@
       [placeholder]="field.config.label"
       [(ngModel)]="field.data.value"
       [name]="name"
-      [required]="field.config.required===true">
+      [required]="field.config.configs.required===true">
     <mat-hint>{{field.config.description}}</mat-hint>
   </mat-form-field>
 
@@ -53,7 +53,7 @@
       [(ngModel)]="field.data.value"
       fsFormPhone
       [name]="name"
-      [required]="field.config.required===true">
+      [required]="field.config.configs.required===true">
     <mat-hint>{{field.config.description}}</mat-hint>
   </mat-form-field>
 
@@ -64,7 +64,7 @@
       [placeholder]="field.config.label"
       [(ngModel)]="field.data.value"
       [name]="name"
-      [required]="field.config.required===true">
+      [required]="field.config.configs.required===true">
     <mat-hint>{{field.config.description}}</mat-hint>
   </mat-form-field>
 

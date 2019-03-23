@@ -2,15 +2,27 @@ mat-checkbox {
   margin-right: 10px;
 }
 
+:host ::ng-deep {
 
-.view-field {
   .mat-radio-button {
     margin-bottom: 5px;
-  }
-}
 
-:host ::ng-deep {
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  fs-label-field {
+    position: relative;
+  }
+
+
+
   .other {
+
+    .mat-radio-container {
+      margin-bottom: 24px;
+    }
 
     mat-form-field {
       width: 100%;

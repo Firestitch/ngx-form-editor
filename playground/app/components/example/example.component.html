@@ -21,7 +21,7 @@
     <mat-tab label="Rendered Fields">
         <div class="padding">
 
-          <form (fsForm)="save()" #myForm="ngForm">
+          <form (fsForm)="save()">
            <fs-field-renderer [config]="config">
               <ng-template fsFieldRender type="share" let-field="field">
                 <img src="/assets/google-logo.svg" height="50" *ngIf="field.config['google']">

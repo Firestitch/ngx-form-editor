@@ -1,4 +1,19 @@
 
 .mat-radio-button {
   margin-bottom: 5px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+fs-label-field {
+  position: relative;
+}
+
+:host ::ng-deep {
+  .mat-form-field-subscript-wrapper {
+    top: initial;
+    bottom: -15px;
+  }
 }
