@@ -9,6 +9,13 @@ fs-field-editor {
         display: block;
       }
     }
+
+    &:not(.cdk-drop-list-dragging) {
+
+      .fs-field:not(.selected):hover {
+        background: #f9f9f9;
+      }
+    }
   }
 
   .toolbar {
@@ -46,9 +53,6 @@ fs-field-editor {
 
   .fs-field {
     border-radius: 3px;
-    &:not(.selected):hover {
-      background: #f9f9f9;
-    }
   }
 }
 

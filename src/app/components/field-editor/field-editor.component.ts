@@ -47,30 +47,6 @@ export class FieldEditorComponent extends FieldCoreComponent implements AfterCon
     this.unselectField();
   }
 
-  // HACK: to support closing of opened field panel when user clicks outside of elements
-  private _innerClick = true;
-
-  // @HostListener('document:click', ['$event'])
-  // onClick($event: MouseEvent): void {
-
-  //   if ((event.target as HTMLElement).className === 'cdk-overlay-backdrop') {
-  //     this._innerClick = true;
-  //   } else {
-  //     (<any>$event).path.forEach(element => {
-  //       if (element.className === 'mat-menu-content') {
-  //         this._innerClick = true;
-  //       } else if (element.className === 'cdk-global-overlay-wrapper') {
-  //         this._innerClick = this._innerClick || !(element as HTMLElement).contains(this.elRef.nativeElement);
-  //       }
-  //     });
-  //   }
-
-  //   if (this._innerClick) {
-  //     this._innerClick = false;
-  //   } else {
-  //     this.unselectField();
-  //   }
-  // }
 
   constructor(private elRef: ElementRef) {
     super(null);
@@ -85,13 +61,6 @@ export class FieldEditorComponent extends FieldCoreComponent implements AfterCon
       this.fieldRenderTemplateRefs[directive.type] = directive.templateRef;
     });
   }
-
-  clickedInside() {
-    this._innerClick = true;
-  }
-  // EOF HACK
-
-
   fieldClick(field: Field) {
 
     if (this.selectedField !== field) {

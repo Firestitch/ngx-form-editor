@@ -28,7 +28,13 @@ export class FieldConfigOptionsComponent extends FieldComponent {
     super();
   }
 
-  addOption() {
+  addOption(e) {
+console.log(e.code );
+    if (e.code !== 'Enter' && e.code !== 'Tab') {
+      return;
+    }
+
+    e.preventDefault();
 
     if (this.newOption.length) {
 

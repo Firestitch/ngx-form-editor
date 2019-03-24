@@ -1,5 +1,7 @@
 import { guid } from '@firestitch/common';
 import { FieldType } from '../interfaces';
+import { isObject } from 'lodash-es';
+
 
 export function initField(field) {
 
@@ -32,7 +34,7 @@ export function initField(field) {
 
         const selected = field.config.type === FieldType.Checkbox ? [] : null;
 
-        if (typeof field.data.value !== 'object') {
+        if (!isObject(field.data.value)) {
           field.data.value = { selected: selected };
         }
 

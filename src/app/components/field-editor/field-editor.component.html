@@ -3,7 +3,6 @@
     <div  class="fields"
           fxFlex
           cdkDropList
-          (click)="clickedInside()"
           (cdkDropListDropped)="drop($event)"
           [style.min-height]="config.fields.length ? 'auto' : '400px' "
           id="fs-fields">
