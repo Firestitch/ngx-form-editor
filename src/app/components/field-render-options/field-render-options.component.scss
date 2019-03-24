@@ -20,23 +20,24 @@ mat-checkbox {
 
   .other {
 
-    .mat-radio-container {
-      margin-bottom: 24px;
-    }
-
     mat-form-field {
       width: 100%;
       max-width: 400px;
+    }
+
+    .mat-form-field-infix {
+      border-top: 0;
+      width: 500px;
     }
 
     &.checkbox {
 
       mat-form-field {
         margin-top: -1px;
+      }
 
-        .mat-form-field-infix {
-          border-top: 0;
-        }
+      .mat-checkbox-inner-container {
+        margin-top: 6px;
       }
 
       mat-checkbox {
@@ -46,12 +47,12 @@ mat-checkbox {
 
     &.choice {
 
+      .mat-radio-container {
+        margin-bottom: 24px;
+      }
+
       mat-form-field {
         margin-top: -3px;
-
-        .mat-form-field-infix {
-          border-top: 0;
-        }
       }
     }
   }

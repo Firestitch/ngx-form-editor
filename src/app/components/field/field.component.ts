@@ -18,7 +18,7 @@ export class FieldComponent implements OnDestroy, OnInit {
   protected $destory = new EventEmitter();
 
   public changed(event?) {
-    this.fieldEditor.$fieldChanged.emit({ field: this.field, event: event });
+    this.fieldEditor.fieldChanged$.emit({ field: this.field, event: event });
   }
 
   @Input('field') set _field(field: Field) {

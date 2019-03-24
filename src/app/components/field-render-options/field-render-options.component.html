@@ -16,12 +16,15 @@
         <mat-checkbox *ngFor="let option of field.config.configs.options; index as idx"
                       (change)="handleCheckbox($event, option)"
                       [checked]="field.data.value.selected && field.data.value.selected.indexOf(option.value) !== -1">{{option.name}}</mat-checkbox>
-        <div fxLayout="row" *ngIf="field.config.configs.other" class="other checkbox">
-          <mat-checkbox [(ngModel)]="field.data.value.other.selected" name="checkbox_other"><div class="stub">Other</div></mat-checkbox>
+        <mat-checkbox
+          [(ngModel)]="field.data.value.other.selected"
+          name="checkbox_other"
+          *ngIf="field.config.configs.other"
+          class="other checkbox">
           <mat-form-field floatLabel="never">
             <input matInput placeholder="Other" [(ngModel)]="field.data.value.other.value" name="other" (click)="otherSelected(field,true)">
           </mat-form-field>
-        </div>
+        </mat-checkbox>
       </div>
     </fs-label-field>
   </ng-container>
@@ -44,8 +47,8 @@
               *ngIf="field.config.configs.other"
               class="other choice">
               <mat-form-field floatLabel="never">
-                  <input matInput placeholder="Other" [(ngModel)]="field.data.value.other.value" name="other" (click)="otherSelected(field,true)">
-                </mat-form-field>
+                <input matInput placeholder="Other" [(ngModel)]="field.data.value.other.value" name="other" (click)="otherSelected(field,true)">
+              </mat-form-field>
             </mat-radio-button>
 
         </mat-radio-group>

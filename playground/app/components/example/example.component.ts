@@ -246,6 +246,18 @@ export class ExampleComponent implements OnInit {
     console.log('Field Moved', e);
   }
 
+  add(e) {
+    console.log('Field Add', e);
+  }
+
+  selected(e) {
+    console.log('Field Selected', e);
+  }
+
+  unselected(e) {
+    console.log('Field Unselected', e);
+  }
+
   save() {
     console.log('Saved');
   }

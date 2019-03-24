@@ -2,7 +2,14 @@
 
   <mat-tab label="Fields Editor">
 
-        <fs-field-editor [config]="config" (fieldChanged)="changed($event)" (fieldAdded)="added($event)" (fieldMoved)="moved($event)">
+        <fs-field-editor
+          [config]="config"
+          (fieldChanged)="changed($event)"
+          (fieldAdd)="add($event)"
+          (fieldAdded)="added($event)"
+          (fieldMoved)="moved($event)"
+          (fieldSelected)="selected($event)"
+          (fieldUnselected)="unselected($event)">
           <ng-template fsFieldRender type="share" let-field="field">
             <img src="/assets/google-logo.svg" height="50" *ngIf="field.config.configs['google']">
             <img src="/assets/facebook-logo.svg" height="50" *ngIf="field.config.configs['facebook']">
