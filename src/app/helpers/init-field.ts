@@ -45,11 +45,11 @@ export function initField(field) {
     }
 
     if (field.config.type === FieldType.Name) {
-      if (!field.config.first_name) {
+      if (!field.config.configs.first_name) {
         field.config.configs.first_name = { display: true, label: 'First Name' };
       }
 
-      if (!field.config.last_name) {
+      if (!field.config.configs.last_name) {
         field.config.configs.last_name = { display: true, label: 'Last Name' };
       }
     }

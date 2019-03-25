@@ -1,6 +1,6 @@
 <div class="options">
   <div fxFlexLayout="row" fxLayoutAlign="start center">
-    <mat-checkbox color="primary" [(ngModel)]="field.config.configs.first_name.display" (click)="changed()"></mat-checkbox>
+    <mat-checkbox color="primary" [(ngModel)]="field.config.configs.first_name.display" (ngModelChange)="changed()"></mat-checkbox>
 
     <mat-form-field floatLabel="never" fxFlex>
       <input
@@ -13,22 +13,9 @@
         (ngModelChange)="changed($event)">
     </mat-form-field>
   </div>
-<!--
-  <div fxFlexLayout="row" fxLayoutAlign="start center">
-    <mat-checkbox color="primary" [(ngModel)]="field.config.configs.middle_name.display"></mat-checkbox>
-
-    <mat-form-field floatLabel="never" fxFlex>
-      <input
-        matInput
-        placeholder="Label"
-        [(ngModel)]="field.config.configs.middle_name.label"
-        [disabled]="!field.config.configs.middle_name.display"
-        name="middle_name">
-    </mat-form-field>
-  </div> -->
 
   <div fxFlexLayout="row" fxLayoutAlign="start center">
-    <mat-checkbox color="primary" [(ngModel)]="field.config.configs.last_name.display" (click)="changed()"></mat-checkbox>
+    <mat-checkbox color="primary" [(ngModel)]="field.config.configs.last_name.display" (ngModelChange)="changed()"></mat-checkbox>
 
     <mat-form-field floatLabel="never" fxFlex>
       <input

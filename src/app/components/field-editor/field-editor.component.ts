@@ -30,6 +30,7 @@ export class FieldEditorComponent extends FieldCoreComponent implements AfterCon
   @Output('fieldAdded')  fieldAdded$ = new EventEmitter();
   @Output('fieldAdd')  fieldAdd$ = new EventEmitter();
   @Output('fieldMoved')  fieldMoved$ = new EventEmitter();
+  @Output('fieldDuplicated')  fieldDuplicated$ = new EventEmitter();
   public fieldEditor: FieldEditorComponent = this;
   public fieldConfigTemplateRefs = {};
   public fieldRenderTemplateRefs = {};

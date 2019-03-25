@@ -27,11 +27,13 @@ export class FieldHeaderComponent extends FieldComponent implements OnInit {
 
   toggleRequired() {
     this.field.config.configs.required = !this.field.config.configs.required;
+    this.fieldEditor.fieldChanged$.emit(this.field);
   }
 
   toggleDescription() {
     this.field.config.hasDescription = !this.field.config.hasDescription;
     this.field.config.description = '';
+    this.fieldEditor.fieldChanged$.emit(this.field);
   }
 
   copy(event: Event) {
@@ -43,7 +45,7 @@ export class FieldHeaderComponent extends FieldComponent implements OnInit {
     const idx = this.fieldEditor.config.fields.indexOf(this.field) + 1;
     this.fieldEditor.config.fields.splice(idx, 0, copiedField);
     this.fieldEditor.selectField(copiedField);
-    this.changed();
+    this.fieldEditor.fieldDuplicated$.emit(this.field);
   }
 
   close(e) {

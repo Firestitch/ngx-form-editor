@@ -3,11 +3,13 @@
   <mat-tab label="Fields Editor">
 
         <fs-field-editor
+          #fieldEditor
           [config]="config"
           (fieldChanged)="changed($event)"
           (fieldAdd)="add($event)"
           (fieldAdded)="added($event)"
           (fieldMoved)="moved($event)"
+          (fieldDuplicated)="duplicated($event)"
           (fieldSelected)="selected($event)"
           (fieldUnselected)="unselected($event)">
           <ng-template fsFieldRender type="share" let-field="field">
@@ -17,8 +19,8 @@
 
           <ng-template fsFieldConfig type="share" let-field="field">
             <div fxLayout="column">
-              <mat-checkbox [(ngModel)]="field.config.configs['facebook']" name="facebook" (click)="changed({ field: field })">Enable Facebook</mat-checkbox>
-              <mat-checkbox [(ngModel)]="field.config.configs['google']" name="google" (click)="changed({ field: field })">Enable Google</mat-checkbox>
+              <mat-checkbox [(ngModel)]="field.config.configs['facebook']" name="facebook" (click)="shareChange({ field: field })">Enable Facebook</mat-checkbox>
+              <mat-checkbox [(ngModel)]="field.config.configs['google']" name="google" (click)="shareChange({ field: field })">Enable Google</mat-checkbox>
             </div>
           </ng-template>
 

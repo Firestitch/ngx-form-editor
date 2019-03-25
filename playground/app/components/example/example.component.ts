@@ -1,5 +1,5 @@
-import { Component, OnInit, Inject } from '@angular/core';
-import { FS_FIELD_EDITOR_CONFIG } from '@firestitch/field-editor';
+import { Component, OnInit, Inject, ViewChild } from '@angular/core';
+import { FS_FIELD_EDITOR_CONFIG, FieldEditorComponent } from '@firestitch/field-editor';
 import { MatDialog } from '@angular/material';
 import { DialogExampleComponent } from '../dialog-example';
 
@@ -11,6 +11,7 @@ import { DialogExampleComponent } from '../dialog-example';
 })
 export class ExampleComponent implements OnInit {
 
+  @ViewChild('fieldEditor') fieldEditor: FieldEditorComponent;
   public config: any;
 
   constructor(@Inject(FS_FIELD_EDITOR_CONFIG) private defaultConfig,
@@ -234,6 +235,10 @@ export class ExampleComponent implements OnInit {
     };
   }
 
+  shareChange() {
+    this.fieldEditor.fieldChanged$.emit();
+  }
+
   changed(e) {
     console.log('Field Changed', e);
   }
@@ -244,6 +249,10 @@ export class ExampleComponent implements OnInit {
 
   moved(e) {
     console.log('Field Moved', e);
+  }
+
+  duplicated(e) {
+    console.log('Field Duplicated', e);
   }
 
   add(e) {
