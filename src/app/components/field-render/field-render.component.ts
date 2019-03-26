@@ -2,6 +2,7 @@ import { Component, Input, AfterViewInit, QueryList, ContentChildren, SkipSelf }
 import { FieldCoreComponent } from '../field-core/field-core.component';
 import { FieldRenderDirective } from '../../directives/field-render/field-render.directive';
 import { ControlContainer, NgForm } from '@angular/forms';
+import { initField } from '../../helpers/init-field';
 
 @Component({
   selector: 'fs-field-render',
@@ -15,7 +16,7 @@ export class FieldRenderComponent extends FieldCoreComponent implements AfterVie
   public field: any = { config: {} };
 
   @Input('field') set setField(field) {
-    this.field = field;
+    this.field = initField(field);
   }
 
   @ContentChildren(FieldRenderDirective) queryListFieldRender: QueryList<FieldRenderDirective>;

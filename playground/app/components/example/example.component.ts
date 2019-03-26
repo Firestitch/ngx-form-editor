@@ -255,6 +255,10 @@ export class ExampleComponent implements OnInit {
     console.log('Field Duplicated', e);
   }
 
+  duplicate(e) {
+    console.log('Field Duplicate', e);
+  }
+
   add(e) {
     console.log('Field Add', e);
   }

@@ -5,6 +5,7 @@ import { FsPrompt } from '@firestitch/prompt';
 import { guid } from '@firestitch/common';
 import { FieldComponent } from '../field/field.component';
 import { FieldEditorComponent } from '../field-editor';
+import { cloneDeep } from 'lodash-es';
 
 
 @Component({
@@ -40,12 +41,16 @@ export class FieldHeaderComponent extends FieldComponent implements OnInit {
     event.preventDefault();
     event.stopPropagation();
 
-    const copiedField = Object.assign({}, this.field);
-    copiedField.config.guid = guid();
+    const copiedField = cloneDeep(this.field);
     const idx = this.fieldEditor.config.fields.indexOf(this.field) + 1;
+
+    copiedField.config.guid = guid();
+    copiedField.data = {};
+    this.fieldEditor.fieldDuplicate$.emit(copiedField);
+
     this.fieldEditor.config.fields.splice(idx, 0, copiedField);
     this.fieldEditor.selectField(copiedField);
-    this.fieldEditor.fieldDuplicated$.emit(this.field);
+    this.fieldEditor.fieldDuplicated$.emit(copiedField);
   }
 
   close(e) {
