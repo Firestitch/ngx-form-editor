@@ -49,6 +49,11 @@ export class FieldConfigOptionsComponent extends FieldComponent {
     this.changed();
   }
 
+  otherToggle() {
+    this.field.config.configs.other = !this.field.config.configs.other;
+    this.changed();
+  }
+
   removeOption(index: number) {
     this.fsPrompt.confirm({
       title: 'Confirm',

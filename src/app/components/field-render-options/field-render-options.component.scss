@@ -1,5 +1,6 @@
 mat-checkbox {
   margin-right: 10px;
+  width: 100%;
 }
 
 :host ::ng-deep {
@@ -10,13 +11,30 @@ mat-checkbox {
     &:last-child {
       margin-bottom: 0;
     }
+
+    .mat-radio-label {
+      width: 100%;
+
+      .mat-radio-label-content {
+        width: 100%;
+      }
+    }
+  }
+
+  .mat-checkbox {
+
+    .mat-checkbox-layout {
+      width: 100%;
+
+      .mat-checkbox-label {
+        width: 100%;
+      }
+    }
   }
 
   fs-label-field {
     position: relative;
   }
-
-
 
   .other {
 
@@ -27,7 +45,6 @@ mat-checkbox {
 
     .mat-form-field-infix {
       border-top: 0;
-      width: 500px;
     }
 
     &.checkbox {
