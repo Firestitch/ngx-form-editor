@@ -24,7 +24,7 @@
 
     <div *ngIf="field.config.type===fieldType.File">
       <div *ngIf="field.data?.value && field.data.value.length; else notUploaded">
-        <ul>
+        <ul class="file-list">
           <li *ngFor="let item of field.data.value">
             <a [href]="item.url">{{ item.name }}</a>
           </li>
