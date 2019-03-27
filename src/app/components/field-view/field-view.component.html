@@ -22,7 +22,18 @@
       {{field.data.value.first_name}} {{field.data.value.middle_name}} {{field.data.value.last_name}}
     </div>
 
-    <!-- <div *ngIf="field.config.type===fieldType.File"></div> -->
+    <div *ngIf="field.config.type===fieldType.File">
+      <div *ngIf="field.data?.value && field.data.value.length; else notUploaded">
+        <ul>
+          <li *ngFor="let item of field.data.value">
+            <a [href]="item.url">{{ item.name }}</a>
+          </li>
+        </ul>
+      </div>
+      <ng-template #notUploaded>
+        <span>Files are not uploaded yet.</span>
+      </ng-template>
+    </div>
 
     <div *ngIf="field.config.type==fieldType.RichText">
       <div fsEditorRenderer [ngModel]="field.data.value" name="richtext"></div>
