@@ -26,7 +26,7 @@
           <fs-field-header  *ngIf="selectedField===field"
                             [field]="field"
                             [fieldEditor]="fieldEditor"
-                            [showRequired]="field.config.type!==fieldType.Address">
+                            [showRequired]="field.config.configs.showRequired!==false && field.config.type!==fieldType.Address">
           </fs-field-header>
 
           <ng-container [ngSwitch]="field.config.type">
@@ -88,7 +88,6 @@
                 <fs-field-render-gender [field]="field"></fs-field-render-gender>
               </ng-template>
             </ng-container>
-
 
             <ng-container *ngSwitchCase="fieldType.Address">
               <ng-container *ngIf="selectedField===field; else addressElse">

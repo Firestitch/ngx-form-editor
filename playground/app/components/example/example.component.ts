@@ -27,6 +27,7 @@ export class ExampleComponent implements OnInit {
           field.config.configs.google = true;
 
           field.config.configs.id = toolbarItem.config.id;
+          field.config.configs.showRequired = false;
         }
       },
       toolbar: {

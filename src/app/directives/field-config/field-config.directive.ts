@@ -1,17 +1,13 @@
 
-import { OnInit, Directive, TemplateRef, Input } from '@angular/core';
+import { Directive, TemplateRef, Input } from '@angular/core';
 
 
 @Directive({
   selector: '[fsFieldConfig]'
 })
-export class FieldConfigDirective implements OnInit {
+export class FieldConfigDirective {
 
   @Input() type;
 
   constructor(public templateRef: TemplateRef<any>) {}
-
-  ngOnInit() {
-
-  }
 }
