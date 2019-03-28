@@ -2,3 +2,8 @@
 .address span:not(:first-child):before {
   content: ", ";
 }
+
+ul.file-list {
+  margin: 0;
+    padding-inline-start: 20px;
+}
