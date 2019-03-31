@@ -1,7 +1,7 @@
 <ng-container [ngSwitch]="field.config.type">
   <ng-container *ngSwitchCase="fieldType.Dropdown">
     <mat-form-field>
-      <mat-select [placeholder]="field.config.label" [(ngModel)]="field.data.value" [required]="true" name="{{name}}_dropdown">
+      <mat-select [placeholder]="field.config.label" [(ngModel)]="field.data.value" [fsFormRequired]="true" name="{{name}}_dropdown">
         <mat-option *ngFor="let option of field.config.configs.options" [value]="option.value">
           {{option.name}}
         </mat-option>

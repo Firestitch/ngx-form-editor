@@ -6,7 +6,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 
 import { FsCommonModule } from '@firestitch/common';
 import { FsPromptModule } from '@firestitch/prompt';
-import { FsFormModule, FsForm, FsFormCommon } from '@firestitch/form';
+import { FsFormModule, FsFormCommon } from '@firestitch/form';
 import { FsDatePickerModule } from '@firestitch/datepicker';
 import { FsPhoneModule } from '@firestitch/phone';
 import { FsFileModule } from '@firestitch/file';
@@ -152,7 +152,8 @@ export function defaultConfigFactory(config) {
     FieldConfigAddressComponent
   ],
   providers: [
-    NgForm
+    NgForm,
+    FsFormCommon
   ]
 })
 
