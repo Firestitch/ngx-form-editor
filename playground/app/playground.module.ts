@@ -21,6 +21,8 @@ import {
 } from './components';
 import { AppComponent } from './app.component';
 import { FsFormModule } from '@firestitch/form';
+import { FsApiModule } from '@firestitch/api';
+import { FsFileModule } from '@firestitch/file';
 
 
 const routes: Routes = [
@@ -40,6 +42,8 @@ const routes: Routes = [
     FsExampleModule.forRoot(),
     FsPhoneModule.forRoot(),
     FsMessageModule.forRoot(),
+    FsFileModule.forRoot(),
+    FsApiModule,
     ToastrModule.forRoot({ preventDuplicates: true }),
   ],
   entryComponents: [

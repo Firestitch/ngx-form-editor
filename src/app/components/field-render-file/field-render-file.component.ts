@@ -6,6 +6,7 @@ import { FsFile, FileProcessor } from '@firestitch/file';
 
 import { FieldComponent } from '../field/field.component';
 import { Field } from '../../interfaces';
+import { Observable, from, zip, of } from 'rxjs';
 
 
 @Component({
@@ -14,6 +15,8 @@ import { Field } from '../../interfaces';
   styleUrls: [ 'field-render-file.component.scss' ],
 })
 export class FieldRenderFileComponent extends FieldComponent {
+
+  @Input() fileSelected: Function;
 
   public allowedTypes = '';
   public selectedFiles: FsFile[] = [];
@@ -69,8 +72,23 @@ export class FieldRenderFileComponent extends FieldComponent {
       files = [files];
     }
 
-    files.forEach(file => {
+    files.forEach((file, index) => {
+      this.processFile(file)
+      .subscribe(() => {
+        if (this.fileSelected) {
 
+          if (this.field.config.configs.allow_multiple) {
+            this.fileSelected({ field: this.field, fsFile: file, index: index });
+          } else {
+            this.fileSelected({ field: this.field, fsFile: file, index: index });
+          }
+        }
+      });
+    });
+  }
+
+  private processFile(file) {
+    return Observable.create(observer => {
       if (file.typeImage === true) {
         this._fileProcessor.process(file, {
           quality: this.field.config.configs.image_quality,
@@ -79,10 +97,18 @@ export class FieldRenderFileComponent extends FieldComponent {
         }).subscribe(resFile => {
           this.selectedFiles.push(resFile);
           this.field.data.value.push(resFile.file);
+          observer.next();
+        }, () => {
+          observer.console.error();
+        }, () => {
+          observer.complete();
         });
+
       } else {
         this.selectedFiles.push(file);
         this.field.data.value.push(file.file);
+        observer.next();
+        observer.complete();
       }
     });
   }

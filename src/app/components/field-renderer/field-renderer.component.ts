@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { FieldCoreComponent } from '../field-core';
 import { ControlContainer, NgForm } from '@angular/forms';
 
@@ -10,5 +10,12 @@ import { ControlContainer, NgForm } from '@angular/forms';
   styleUrls: [ 'field-renderer.component.scss' ],
   viewProviders: [ { provide: ControlContainer, useExisting: NgForm } ]
 })
-export class FieldRendererComponent extends FieldCoreComponent {
+export class FieldRendererComponent extends FieldCoreComponent implements OnChanges {
+  @Input() fileSelected: Function;
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes.setConfig && this.config.fileSelected) {
+      this.fileSelected = this.config.fileSelected;
+    }
+  }
 }

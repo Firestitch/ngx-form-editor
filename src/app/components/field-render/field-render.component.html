@@ -41,11 +41,11 @@
       </ng-container>
 
       <ng-container *ngSwitchCase="fieldType.File">
-        <fs-field-render-file [field]="field"></fs-field-render-file>
+        <fs-field-render-file [field]="field" [fileSelected]="fileSelected"></fs-field-render-file>
       </ng-container>
 
       <ng-container *ngSwitchCase="fieldType.RichText">
-        <fs-field-render-rich-text [field]="field"></fs-field-render-rich-text>
+        <fs-field-render-rich-text [field]="field" [fileSelected]="fileSelected"></fs-field-render-rich-text>
       </ng-container>
 
       <ng-container *ngSwitchCase="fieldType.Gender">

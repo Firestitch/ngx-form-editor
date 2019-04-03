@@ -1,7 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 import { guid } from '@firestitch/common';
 import { FieldComponent } from '../field/field.component';
+import { FsEditorRichTextOptions } from '@firestitch/editor';
+import { of } from 'rxjs';
+import { FsFile } from '@firestitch/file';
 
 
 @Component({
@@ -10,13 +13,19 @@ import { FieldComponent } from '../field/field.component';
 })
 export class FieldRenderRichTextComponent extends FieldComponent {
 
-  public options: any = {};
-  public name = guid();
+  @Input() fileSelected: Function;
 
-  ngOnInit() {
-    super.ngOnInit();
-    this.options = {
-      placeholder: ''
-    }
-  }
+  public options: FsEditorRichTextOptions = {
+    image: {
+      upload: (file: Blob) => {
+        if (this.fileSelected) {
+          return this.fileSelected({ field: this.field, fsFile: new FsFile(file) });
+        }
+
+        return of(null);
+      }
+    },
+  };
+
+  public name = guid();
 }

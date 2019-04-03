@@ -1,7 +1,9 @@
 import { Component, OnInit, Inject, ViewChild } from '@angular/core';
-import { FS_FIELD_EDITOR_CONFIG, FieldEditorComponent } from '@firestitch/field-editor';
+import { FS_FIELD_EDITOR_CONFIG, FieldEditorComponent, FormEditorConfig } from '@firestitch/field-editor';
 import { MatDialog } from '@angular/material';
 import { DialogExampleComponent } from '../dialog-example';
+import { FsApi } from '@firestitch/api';
+import { map } from 'rxjs/operators';
 
 
 @Component({
@@ -12,10 +14,11 @@ import { DialogExampleComponent } from '../dialog-example';
 export class ExampleComponent implements OnInit {
 
   @ViewChild('fieldEditor') fieldEditor: FieldEditorComponent;
-  public config: any;
+  public config: FormEditorConfig;
 
   constructor(@Inject(FS_FIELD_EDITOR_CONFIG) private defaultConfig,
-              public dialog: MatDialog)  {}
+              public dialog: MatDialog,
+              public fsApi: FsApi)  {}
 
   ngOnInit() {
 
@@ -232,7 +235,18 @@ export class ExampleComponent implements OnInit {
             }
           },
         },
-      ]
+      ],
+      fileSelected: (e) => {
+
+        console.log('File Selected', e);
+
+        const data = {
+          file: e.fsFile.file
+        };
+
+        return this.fsApi.post('https://boilerplate.firestitch.com/api/dummy/upload', data)
+          .pipe(map((response) => response.data.url))
+      }
     };
   }
 

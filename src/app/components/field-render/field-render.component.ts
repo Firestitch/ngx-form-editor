@@ -1,4 +1,4 @@
-import { Component, Input, AfterViewInit, QueryList, ContentChildren, SkipSelf } from '@angular/core';
+import { Component, Input, AfterViewInit, QueryList, ContentChildren, EventEmitter, Output } from '@angular/core';
 import { FieldCoreComponent } from '../field-core/field-core.component';
 import { FieldRenderDirective } from '../../directives/field-render/field-render.directive';
 import { ControlContainer, NgForm } from '@angular/forms';
@@ -14,6 +14,8 @@ export class FieldRenderComponent extends FieldCoreComponent implements AfterVie
 
   public fieldRenderTemplateRefs = {};
   public field: any = { config: {} };
+
+  @Input() fileSelected: Function;
 
   @Input('field') set setField(field) {
     this.field = initField(field);

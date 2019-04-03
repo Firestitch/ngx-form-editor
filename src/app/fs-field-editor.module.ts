@@ -113,7 +113,7 @@ export function defaultConfigFactory(config) {
     FsLabelModule,
     FsDateModule,
     FsEditorRendererModule,
-    FsEditorRichTextModule,
+    FsEditorRichTextModule.forRoot(),
     FsFileModule,
     FsPromptModule.forRoot()
   ],

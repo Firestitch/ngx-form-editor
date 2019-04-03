@@ -28,7 +28,8 @@ export interface Field {
 export interface FieldEditorConfig {
   fields?: Field[],
   toolbar?: Toolbar,
-  fieldDrop?: Function
+  fieldDrop?: Function,
+  fileSelected?: Function
 }
 
 export interface Toolbar {
