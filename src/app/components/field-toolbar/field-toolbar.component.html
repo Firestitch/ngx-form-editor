@@ -11,7 +11,7 @@
         <div cdkDrag [cdkDragData]="{ field: field, item: item }" (cdkDragStarted)="dragStarted(item)" class="toolbar-field">
           <div fxFlexLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
             <button mat-icon-button><mat-icon>{{ item.icon }}</mat-icon></button>
-            <span class="label">{{ item.label }}</span>
+            <span class="label"><span class="add">Add</span> {{ item.label }}</span>
           </div>
         </div>
     </div>

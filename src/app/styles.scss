@@ -28,7 +28,7 @@ fs-field-editor {
 
     .bar {
       height: 40px;
-      background: #2196f3;
+      background: #ccc;
       border-top-left-radius: 3px;
       border-top-right-radius: 3px;
 
@@ -44,6 +44,10 @@ fs-field-editor {
       .label {
         padding-right: 10px;
         display: none;
+
+        .add {
+          display: none;
+        }
       }
     }
 
@@ -163,5 +167,39 @@ fs-field-renderer {
 
   fs-label-field {
     width: 100%;
+  }
+}
+
+.toolbar-field.cdk-drag-preview {
+  background: #ccc;
+  color: #fff;
+  border-radius: 3px;
+}
+
+@mixin fs-field-editor($theme) {
+
+  $primary: mat-palette($theme);
+
+  fs-field-editor {
+
+    .toolbar {
+
+      .bar {
+        background: mat-color($primary);
+      }
+    }
+  }
+
+  .toolbar-field.cdk-drag-preview {
+    background: mat-color($primary);
+    white-space: nowrap;
+    width: auto !important;
+    .label {
+      margin-right: 15px;
+    }
+
+    .add {
+      display: inline;
+    }
   }
 }
