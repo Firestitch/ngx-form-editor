@@ -10,13 +10,14 @@
         <mat-checkbox
           color="primary"
           [(ngModel)]="field.config.configs[item].enabled"
-          (click)="changed()"></mat-checkbox>
+          (ngModelChange)="changed()"></mat-checkbox>
       </td>
       <td class="checkbox">
         <mat-checkbox
           color="primary"
           [(ngModel)]="field.config.configs[item].required"
-          [disabled]="!field.config.configs[item].enabled"></mat-checkbox>
+          [disabled]="!field.config.configs[item].enabled"
+          (ngModelChange)="changed()"></mat-checkbox>
       </td>
       <td>
           <mat-form-field floatLabel="never">
