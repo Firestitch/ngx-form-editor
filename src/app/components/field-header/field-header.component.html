@@ -6,34 +6,33 @@
       </mat-form-field>
     </div>
     <button *ngIf="showRequired"
-      button mat-icon-button
+      mat-icon-button
       (click)="toggleRequired()"
       matTooltip="Require Response"
       [ngClass]="{ disabled: !field.config.configs.required }">
       <mat-icon>check_box</mat-icon>
     </button>
     <button
-      button mat-icon-button
+      mat-icon-button
       (click)="copy($event)"
       matTooltip="Duplicate">
       <mat-icon>filter_none</mat-icon>
     </button>
     <button
-      button mat-icon-button
-      (click)="toggleDescription()"
-      matTooltip="Description"
-      [ngClass]="{ disabled: !field.config.hasDescription }">
+      *ngIf="showDescription"
+      mat-icon-button
+      (click)="toggleDescriptionNote()"
+      matTooltip="Description & Note"
+      [ngClass]="{ disabled: !field.config.hasDescriptionNote }">
       <mat-icon>subject</mat-icon>
     </button>
     <button
-      button
       mat-icon-button
       (click)="delete($event)"
       matTooltip="Delete">
       <mat-icon>delete</mat-icon>
     </button>
     <button
-      button
       mat-icon-button
       (click)="close($event)"
       matTooltip="Collapse">
@@ -41,13 +40,22 @@
     </button>
   </div>
 
-  <mat-form-field floatLabel="never" *ngIf="field.config.hasDescription" class="description">
-    <textarea matInput placeholder="Description" [matTextareaAutosize]="true" [(ngModel)]="field.config.description" name="description" [ngModelOptions]="{ updateOn: 'blur' }" (ngModelChange)="changed($event)"></textarea>
+  <mat-form-field floatLabel="never" *ngIf="field.config.hasDescriptionNote" class="description">
+    <textarea
+      matInput
+      placeholder="Description"
+      [matTextareaAutosize]="true"
+      [(ngModel)]="field.config.configs.description"
+      name="description"
+      [ngModelOptions]="{ updateOn: 'blur' }"
+      (ngModelChange)="changed($event)">
+    </textarea>
   </mat-form-field>
 </div>
+
 <ng-template #selectedElse>
   <div class="view">
     <div class="label">{{field.config.label}}</div>
-    <div class="description">{{field.config.description}}</div>
+    <div class="description">{{field.config.configs.description}}</div>
   </div>
 </ng-template>

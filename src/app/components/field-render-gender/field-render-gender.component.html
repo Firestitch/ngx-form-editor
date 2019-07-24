@@ -1,6 +1,4 @@
-
-
-<fs-label-field>
+<fs-label-field class="multiline-message">
   <fs-label>{{field.config.label}}</fs-label>
   <mat-radio-group
     [(ngModel)]="field.data.value"
@@ -11,4 +9,7 @@
     <mat-radio-button *ngFor="let gender of field.config.configs.genders"
                       [value]="gender.value">{{gender.name}}</mat-radio-button>
   </mat-radio-group>
+  <fs-label-message>
+      {{field.config.configs.description}}
+    </fs-label-message>
 </fs-label-field>

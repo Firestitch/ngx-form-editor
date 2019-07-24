@@ -17,13 +17,14 @@ export class FieldHeaderComponent extends FieldComponent implements OnInit {
 
   @Input() fieldEditor: FieldEditorComponent;
   @Input() showRequired = true;
+  @Input() showDescription = true;
 
   constructor(private fsPrompt: FsPrompt) {
     super();
   }
 
   ngOnInit() {
-    this.field.config.hasDescription = !!this.field.config.description;
+    this.field.config.hasDescriptionNote = !!this.field.config.configs.description || !!this.field.config.configs.note;
   }
 
   toggleRequired() {
@@ -31,9 +32,8 @@ export class FieldHeaderComponent extends FieldComponent implements OnInit {
     this.fieldEditor.fieldChanged$.emit(this.field);
   }
 
-  toggleDescription() {
-    this.field.config.hasDescription = !this.field.config.hasDescription;
-    this.field.config.description = '';
+  toggleDescriptionNote() {
+    this.field.config.hasDescriptionNote = !this.field.config.hasDescriptionNote;
     this.fieldEditor.fieldChanged$.emit(this.field);
   }
 

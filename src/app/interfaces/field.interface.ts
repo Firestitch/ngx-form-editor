@@ -18,7 +18,7 @@ export interface Field {
     type: FieldType,
     label: string,
     description: string,
-    hasDescription: boolean,
+    hasDescriptionNote?: boolean,
     configs?: any,
     required?: boolean
   },

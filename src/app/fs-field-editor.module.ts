@@ -57,12 +57,21 @@ import { FieldConfigOptionsComponent } from './components/field-config-options/f
 import { FieldConfigFileComponent } from './components/field-config-file/field-config-file.component';
 import { FieldConfigGenderComponent } from './components/field-config-gender/field-config-gender.component';
 import { FieldConfigAddressComponent } from './components/field-config-address/field-config-address.component';
+import { FieldRenderNameModelComponent } from './components/field-render-name-model/field-render-name-model.component';
+import { FieldConfigHeadingComponent } from './components/field-config-heading/field-config-heading.component';
+import { FieldRenderHeadingComponent } from './components/field-render-heading/field-render-heading.component';
+import { FieldConfigContentComponent } from './components/field-config-content/field-config-content.component';
+import { FieldRenderContentComponent } from './components/field-render-content/field-render-content.component';
+
 
 export function defaultConfigFactory(config) {
   return Object.assign(config,
     { fields: [],
       toolbar: {
         items: [
+          { type: FieldType.Heading },
+          { type: FieldType.Content },
+          { type: FieldType.Divider },
           { type: FieldType.ShortText },
           { type: FieldType.LongText },
           { type: FieldType.RichText },
@@ -149,7 +158,12 @@ export function defaultConfigFactory(config) {
     FieldConfigOptionsComponent,
     FieldConfigFileComponent,
     FieldConfigGenderComponent,
-    FieldConfigAddressComponent
+    FieldConfigAddressComponent,
+    FieldRenderNameModelComponent,
+    FieldConfigHeadingComponent,
+    FieldRenderHeadingComponent,
+    FieldConfigContentComponent,
+    FieldRenderContentComponent
   ],
   providers: [
     NgForm

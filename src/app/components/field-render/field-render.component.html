@@ -40,6 +40,10 @@
         <fs-field-render-name [field]="field"></fs-field-render-name>
       </ng-container>
 
+      <ng-container *ngSwitchCase="fieldType.Heading">
+        <fs-field-render-heading [field]="field"></fs-field-render-heading>
+      </ng-container>
+
       <ng-container *ngSwitchCase="fieldType.File">
         <fs-field-render-file [field]="field" [fileSelected]="fileSelected"></fs-field-render-file>
       </ng-container>
@@ -54,6 +58,10 @@
 
       <ng-container *ngSwitchCase="fieldType.Address">
         <fs-field-render-address [field]="field"></fs-field-render-address>
+      </ng-container>
+
+      <ng-container *ngSwitchCase="fieldType.Content">
+        <fs-field-render-content [field]="field"></fs-field-render-content>
       </ng-container>
 
       <ng-container *ngSwitchDefault>

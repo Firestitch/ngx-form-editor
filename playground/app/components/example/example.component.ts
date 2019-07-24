@@ -15,6 +15,8 @@ export class ExampleComponent implements OnInit {
 
   @ViewChild('fieldEditor') fieldEditor: FieldEditorComponent;
   public config: FormEditorConfig;
+  public configured: FormEditorConfig;
+  public selectedIndex = 0;
 
   constructor(@Inject(FS_FIELD_EDITOR_CONFIG) private defaultConfig,
               public dialog: MatDialog,
@@ -297,5 +299,9 @@ export class ExampleComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {});
+  }
+
+  tabChange(event) {
+    this.selectedIndex = event.index;
   }
 }

@@ -104,7 +104,8 @@ fs-field-editor {
     transform: rotate(90deg);
   }
 
-  .description.mat-form-field {
+  .description.mat-form-field,
+  .note.mat-form-field {
     display: block;
   }
 
@@ -154,6 +155,7 @@ fs-field-renderer {
 
   .field-container {
     width: 100%;
+    padding-bottom: 10px;
   }
 
   .field-shorttext,
@@ -165,8 +167,20 @@ fs-field-renderer {
     }
   }
 
+  .field-description {
+    padding-bottom: 7px;
+    color: rgba(0,0,0,.54);
+    font-size: .75em;
+  }
+
+  .fs-form-message {
+    font-size: 75%;
+    color: rgba(0, 0, 0, 0.54);
+  }
+
   fs-label-field {
     width: 100%;
+    margin-bottom: !important;
   }
 }
 
@@ -200,6 +214,56 @@ fs-field-renderer {
 
     .add {
       display: inline;
+    }
+  }
+}
+
+fs-label-field.multiline-message .field-message {
+  position: relative !important;
+  bottom: unset !important;
+  padding-top: 7px;
+  display: block;
+  color: rgba(0, 0, 0, 0.54);
+  white-space: pre-line;
+}
+
+.mat-form-field.subscript-remove {
+  .mat-form-field-wrapper {
+    padding: 0;
+  }
+
+  .mat-form-field-underline {
+    bottom: 0;
+  }
+}
+
+.fs-form .fs-form-message {
+  margin-top: 0.54166667em;
+  min-height: 1.25em;
+}
+
+.mat-form-field.subscript-multiline {
+  .mat-form-field-wrapper {
+    padding-bottom: 0;
+
+    .mat-form-field-underline {
+      position: initial !important;
+      display: block;
+      margin-top: -1px;
+    }
+
+    .mat-form-field-subscript-wrapper,
+    .mat-form-field-ripple {
+      position: initial !important;
+      display: table;
+    }
+
+    .mat-form-field-subscript-wrapper {
+      min-height: calc(1em + 1px);
+    }
+
+    .mat-form-field-hint-wrapper {
+      white-space: pre-line;
     }
   }
 }

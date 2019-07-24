@@ -1,7 +1,7 @@
-<mat-tab-group>
+
+<mat-tab-group (selectedTabChange)="tabChange($event)">
 
   <mat-tab label="Fields Editor">
-
         <fs-field-editor
           #fieldEditor
           [config]="config"
@@ -29,10 +29,10 @@
     </mat-tab>
 
     <mat-tab label="Rendered Fields">
+      <ng-template matTabContent>
         <div class="padding">
-
           <form (fsForm)="save()">
-           <fs-field-renderer [config]="config">
+            <fs-field-renderer [config]="config">
               <ng-template fsFieldRender type="share" let-field="field">
                 <img src="/assets/google-logo.svg" height="50" *ngIf="field.config['google']">
                 <img src="/assets/facebook-logo.svg" height="50" *ngIf="field.config['facebook']">
@@ -42,12 +42,12 @@
             <button mat-raised-button color="primary" type="submit">Save</button>
           </form>
         </div>
+      </ng-template>
     </mat-tab>
     <mat-tab label="View Fields">
       <ng-template matTabContent>
         <p class="padding">
-          <fs-field-viewer [config]="config">
-          </fs-field-viewer>
+          <fs-field-viewer [config]="config"></fs-field-viewer>
         </p>
       </ng-template>
     </mat-tab>

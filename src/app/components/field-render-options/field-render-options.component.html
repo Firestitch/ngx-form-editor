@@ -1,16 +1,17 @@
 <ng-container [ngSwitch]="field.config.type">
   <ng-container *ngSwitchCase="fieldType.Dropdown">
-    <mat-form-field>
+    <mat-form-field class="subscript-multiline">
       <mat-select [placeholder]="field.config.label" [(ngModel)]="field.data.value" [required]="field.config.configs.required===true" name="{{name}}_dropdown">
         <mat-option *ngFor="let option of field.config.configs.options" [value]="option.value">
           {{option.name}}
         </mat-option>
-        <mat-hint>{{field.config.description}}</mat-hint>
       </mat-select>
+      <mat-hint>{{field.config.configs.description}}</mat-hint>
     </mat-form-field>
   </ng-container>
+
   <ng-container *ngSwitchCase="fieldType.Checkbox">
-    <fs-label-field>
+    <div class="field-wrapper">
       <fs-label>{{field.config.label}}</fs-label>
       <div fxLayout="column">
         <mat-checkbox *ngFor="let option of field.config.configs.options; index as idx"
@@ -21,37 +22,45 @@
           name="checkbox_other"
           *ngIf="field.config.configs.other"
           class="other checkbox">
-          <mat-form-field floatLabel="never">
+          <mat-form-field floatLabel="never" class="subscript-remove">
             <input matInput placeholder="Other" [(ngModel)]="field.data.value.other.value" name="other" (click)="otherSelected(field,true)">
           </mat-form-field>
         </mat-checkbox>
       </div>
-    </fs-label-field>
+      <div class="fs-form-message">
+        {{field.config.configs.description}}
+      </div>
+    </div>
   </ng-container>
+
   <ng-container *ngSwitchCase="fieldType.Choice">
+    <div class="field-wrapper">
+      <fs-label>{{field.config.label}}</fs-label>
+      <mat-radio-group
+        [(ngModel)]="field.data.value.selected"
+        messageSelector=".fs-form-message"
+        wrapperSelector=".field-wrapper"
+        labelSelector="false"
+        fxLayout="column"
+        name="{{name}}_choice"
+        [required]="field.config.configs.required===true">
+        <mat-radio-button *ngFor="let option of field.config.configs.options; index as idx"
+                          [value]="option.value"
+                          (click)="otherSelected(field,false)">{{option.name}}</mat-radio-button>
 
-    <fs-label-field>
-        <fs-label>{{field.config.label}}</fs-label>
-        <mat-radio-group
-          [(ngModel)]="field.data.value.selected"
-          fxLayout="column"
-          name="{{name}}_choice"
-          [required]="field.config.configs.required===true">
-          <mat-radio-button *ngFor="let option of field.config.configs.options; index as idx"
-                            [value]="option.value"
-                            (click)="otherSelected(field,false)">{{option.name}}</mat-radio-button>
-
-            <mat-radio-button
-              [value]="true"
-              [checked]="field.data.value.other.selected"
-              *ngIf="field.config.configs.other"
-              class="other choice">
-              <mat-form-field floatLabel="never">
-                <input matInput placeholder="Other" [(ngModel)]="field.data.value.other.value" name="other" (click)="otherSelected(field,true)">
-              </mat-form-field>
-            </mat-radio-button>
-
+          <mat-radio-button
+            [value]="true"
+            [checked]="field.data.value.other.selected"
+            *ngIf="field.config.configs.other"
+            class="other choice">
+            <mat-form-field floatLabel="never" class="subscript-remove">
+              <input matInput placeholder="Other" [(ngModel)]="field.data.value.other.value" name="other" (click)="otherSelected(field,true)">
+            </mat-form-field>
+          </mat-radio-button>
         </mat-radio-group>
-      </fs-label-field>
+        <div class="fs-form-message">
+          {{field.config.configs.description}}
+        </div>
+      </div>
   </ng-container>
 </ng-container>

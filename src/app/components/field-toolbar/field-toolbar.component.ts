@@ -36,6 +36,8 @@ export class FieldToolbarComponent implements OnInit {
     defaults[FieldType.File] =  { icon: 'publish', label: 'File' };
     defaults[FieldType.Gender] =  { icon: 'wc', label: 'Gender' };
     defaults[FieldType.Address] =  { icon: 'location_on', label: 'Address' };
+    defaults[FieldType.Heading] =  { icon: 'title', label: 'Heading' };
+    defaults[FieldType.Content] =  { icon: 'art_track', label: 'Content' };
 
     this.fieldEditor.config.toolbar.items.forEach(item => {
 
@@ -59,7 +61,7 @@ export class FieldToolbarComponent implements OnInit {
         type: item.type,
         label: item.label,
         description: '',
-        hasDescription: false
+        hasDescriptionNote: false
       },
       data: {
         value: null,

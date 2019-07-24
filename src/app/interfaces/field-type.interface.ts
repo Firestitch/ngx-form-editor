@@ -14,5 +14,7 @@ export enum FieldType {
   Gender = 'gender',
   Custom = 'custom',
   Divider = 'divider',
-  Address = 'address'
+  Address = 'address',
+  Heading = 'heading',
+  Content = 'content'
 }

@@ -121,5 +121,9 @@ export function initField(field) {
       field.data.guid = guid();
     }
 
+    if (field.config.type === FieldType.Heading && !field.config.configs.type) {
+      field.config.configs.type = 1;
+    }
+
     return field;
   }

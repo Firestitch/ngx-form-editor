@@ -26,25 +26,31 @@
           <fs-field-header  *ngIf="selectedField===field"
                             [field]="field"
                             [fieldEditor]="fieldEditor"
-                            [showRequired]="field.config.configs.showRequired!==false && field.config.type!==fieldType.Address">
+                            [showRequired]="field.config.configs.showRequired!==false && field.config.type!==fieldType.Address && field.config.type!==fieldType.Heading && field.config.type!==fieldType.Content"
+                            [showDescription]="field.config.configs.showDescription!==false && field.config.type!==fieldType.Heading && field.config.type!==fieldType.Content">
           </fs-field-header>
 
           <ng-container [ngSwitch]="field.config.type">
             <ng-container *ngSwitchCase="fieldType.ShortText">
               <ng-container *ngTemplateOutlet="fsFieldText"></ng-container>
             </ng-container>
+
             <ng-container *ngSwitchCase="fieldType.LongText">
               <ng-container *ngTemplateOutlet="fsFieldText"></ng-container>
             </ng-container>
+
             <ng-container *ngSwitchCase="fieldType.Phone">
               <ng-container *ngTemplateOutlet="fsFieldText"></ng-container>
             </ng-container>
+
             <ng-container *ngSwitchCase="fieldType.Email">
               <ng-container *ngTemplateOutlet="fsFieldText"></ng-container>
             </ng-container>
+
             <ng-container *ngSwitchCase="fieldType.Date">
               <ng-container *ngTemplateOutlet="fsFieldText"></ng-container>
             </ng-container>
+
             <ng-container *ngSwitchCase="fieldType.Time">
               <ng-container *ngTemplateOutlet="fsFieldText"></ng-container>
             </ng-container>
@@ -52,9 +58,11 @@
             <ng-container *ngSwitchCase="fieldType.Choice">
               <ng-container *ngTemplateOutlet="fsFieldOptions"></ng-container>
             </ng-container>
+
             <ng-container *ngSwitchCase="fieldType.Dropdown">
               <ng-container *ngTemplateOutlet="fsFieldOptions"></ng-container>
             </ng-container>
+
             <ng-container *ngSwitchCase="fieldType.Checkbox">
               <ng-container *ngTemplateOutlet="fsFieldOptions"></ng-container>
             </ng-container>
@@ -88,6 +96,26 @@
                 <fs-field-render-gender [field]="field"></fs-field-render-gender>
               </ng-template>
             </ng-container>
+
+            <ng-container *ngSwitchCase="fieldType.Heading">
+                <ng-container *ngIf="selectedField===field; else headingElse">
+                  <fs-field-config-heading [field]="field" [fieldEditor]="fieldEditor"></fs-field-config-heading>
+                </ng-container>
+
+                <ng-template #headingElse>
+                  <fs-field-render-heading [field]="field"></fs-field-render-heading>
+                </ng-template>
+              </ng-container>
+
+              <ng-container *ngSwitchCase="fieldType.Content">
+                <ng-container *ngIf="selectedField===field; else contentElse">
+                  <fs-field-config-content [field]="field" [fieldEditor]="fieldEditor"></fs-field-config-content>
+                </ng-container>
+
+                <ng-template #contentElse>
+                  <fs-field-render-content [field]="field"></fs-field-render-content>
+                </ng-template>
+              </ng-container>
 
             <ng-container *ngSwitchCase="fieldType.Address">
               <ng-container *ngIf="selectedField===field; else addressElse">

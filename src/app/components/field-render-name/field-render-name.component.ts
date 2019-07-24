@@ -26,4 +26,20 @@ export class FieldRenderNameComponent extends FieldComponent {
       };
     }
   }
+
+  public validate = (formControl) => {
+
+    if (this.field.config.configs.required === true) {
+
+      const value = formControl.value;
+      if (!value.first_name) {
+        throw 'First name is required';
+      }
+
+      if (!value.last_name) {
+        throw 'Last name is required';
+      }
+    }
+  }
+
 }

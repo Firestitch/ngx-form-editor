@@ -1,15 +1,15 @@
 <ng-container [ngSwitch]="field.config.type">
-  <mat-form-field *ngSwitchCase="fieldType.ShortText">
+  <mat-form-field class="subscript-multiline" *ngSwitchCase="fieldType.ShortText">
     <input
       matInput
       [placeholder]="field.config.label"
       [(ngModel)]="field.data.value"
       name="short_text"
       [required]="field.config.configs.required===true">
-    <mat-hint>{{field.config.description}}</mat-hint>
+    <mat-hint>{{field.config.configs.description}}</mat-hint>
   </mat-form-field>
 
-  <mat-form-field *ngSwitchCase="fieldType.LongText">
+  <mat-form-field class="subscript-multiline" *ngSwitchCase="fieldType.LongText">
     <textarea
       matInput
       matTextareaAutosize
@@ -19,10 +19,10 @@
       name="long_text"
       [required]="field.config.configs.required===true">
     </textarea>
-    <mat-hint>{{field.config.description}}</mat-hint>
+    <mat-hint>{{field.config.configs.description}}</mat-hint>
   </mat-form-field>
 
-  <mat-form-field *ngSwitchCase="fieldType.Date">
+  <mat-form-field class="subscript-multiline" *ngSwitchCase="fieldType.Date">
     <input
       matInput
       [placeholder]="field.config.label"
@@ -30,10 +30,10 @@
       [(ngModel)]="field.data.value"
       [name]="name"
       [required]="field.config.configs.required===true">
-    <mat-hint>{{field.config.description}}</mat-hint>
+    <mat-hint>{{field.config.configs.description}}</mat-hint>
   </mat-form-field>
 
-  <mat-form-field *ngSwitchCase="fieldType.Time">
+  <mat-form-field class="subscript-multiline" *ngSwitchCase="fieldType.Time">
     <input
       matInput
       fsDatePicker
@@ -42,10 +42,10 @@
       [(ngModel)]="field.data.value"
       [name]="name"
       [required]="field.config.configs.required===true">
-    <mat-hint>{{field.config.description}}</mat-hint>
+    <mat-hint>{{field.config.configs.description}}</mat-hint>
   </mat-form-field>
 
-  <mat-form-field *ngSwitchCase="fieldType.Phone">
+  <mat-form-field class="subscript-multiline" *ngSwitchCase="fieldType.Phone">
     <input
       matInput
       fsPhone
@@ -54,10 +54,10 @@
       fsFormPhone
       [name]="name"
       [required]="field.config.configs.required===true">
-    <mat-hint>{{field.config.description}}</mat-hint>
+    <mat-hint>{{field.config.configs.description}}</mat-hint>
   </mat-form-field>
 
-  <mat-form-field *ngSwitchCase="fieldType.Email">
+  <mat-form-field class="subscript-multiline" *ngSwitchCase="fieldType.Email">
     <input
       matInput
       [fsFormEmail]="true"
@@ -65,7 +65,7 @@
       [(ngModel)]="field.data.value"
       [name]="name"
       [required]="field.config.configs.required===true">
-    <mat-hint>{{field.config.description}}</mat-hint>
+    <mat-hint>{{field.config.configs.description}}</mat-hint>
   </mat-form-field>
 
 </ng-container>

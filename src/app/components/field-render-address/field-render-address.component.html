@@ -1,73 +1,80 @@
-<div fxLayout="column">
-  <mat-form-field *ngIf="field.config.configs.street.enabled">
-    <input
-      matInput
-      [placeholder]="field.config.configs.street.label"
-      [required]="field.config.configs.street.required"
-      [(ngModel)]="field.data.street"
-      name="street">
-  </mat-form-field>
-  <mat-form-field *ngIf="field.config.configs.address2.enabled">
-    <input
-      matInput
-      [placeholder]="field.config.configs.address2.label"
-      [required]="field.config.configs.address2.required"
-      [(ngModel)]="field.data.address2"
-      name="address2">
-  </mat-form-field>
-  <mat-form-field *ngIf="field.config.configs.city.enabled">
-    <input
-      matInput
-      [placeholder]="field.config.configs.city.label"
-      [required]="field.config.configs.city.required"
-      [(ngModel)]="field.data.city"
-      name="city">
-  </mat-form-field>
+<fs-label-field class="multiline-message">
+  <div fxLayout="column">
+    <mat-form-field *ngIf="field.config.configs.street.enabled">
+      <input
+        matInput
+        [placeholder]="field.config.configs.street.label"
+        [required]="field.config.configs.street.required"
+        [(ngModel)]="field.data.street"
+        name="street">
+    </mat-form-field>
+    <mat-form-field *ngIf="field.config.configs.address2.enabled">
+      <input
+        matInput
+        [placeholder]="field.config.configs.address2.label"
+        [required]="field.config.configs.address2.required"
+        [(ngModel)]="field.data.address2"
+        name="address2">
+    </mat-form-field>
+    <mat-form-field *ngIf="field.config.configs.city.enabled">
+      <input
+        matInput
+        [placeholder]="field.config.configs.city.label"
+        [required]="field.config.configs.city.required"
+        [(ngModel)]="field.data.city"
+        name="city">
+    </mat-form-field>
 
-  <mat-form-field *ngIf="field.config.configs.region.enabled">
-    <mat-label>{{regionLabel}}</mat-label>
-    <mat-select
-      matInput
-      *ngIf="regions.length"
-      [(ngModel)]="field.data.region"
-      [required]="field.config.configs.region.required"
-      name="region"
-      (change)="changeRegion()">
-      <mat-option *ngFor="let region of regions" [value]="region.code">
-        <span>{{region.name}}</span>
-      </mat-option>
-    </mat-select>
-    <input
-      *ngIf="!regions.length"
-      matInput
-      [(ngModel)]="field.data.region"
-      [required]="field.config.configs.region.required"
-      name="region"
-      [placeholder]="regionLabel"
-      autocomplete="off">
-  </mat-form-field>
+    <mat-form-field *ngIf="field.config.configs.region.enabled">
+      <mat-label>{{regionLabel}}</mat-label>
+      <mat-select
+        matInput
+        *ngIf="regions.length"
+        [(ngModel)]="field.data.region"
+        [required]="field.config.configs.region.required"
+        name="region"
+        (change)="changeRegion()">
+        <mat-option *ngFor="let region of regions" [value]="region.code">
+          <span>{{region.name}}</span>
+        </mat-option>
+      </mat-select>
+      <input
+        *ngIf="!regions.length"
+        matInput
+        [(ngModel)]="field.data.region"
+        [required]="field.config.configs.region.required"
+        name="region"
+        [placeholder]="regionLabel"
+        autocomplete="off">
+    </mat-form-field>
 
-  <mat-form-field *ngIf="field.config.configs.zip.enabled">
-    <input
-      matInput
-      [placeholder]="zipLabel"
-      [required]="field.config.configs.zip.required"
-      [(ngModel)]="field.data.zip"
-      name="zip">
-  </mat-form-field>
+    <mat-form-field *ngIf="field.config.configs.zip.enabled">
+      <input
+        matInput
+        [placeholder]="zipLabel"
+        [required]="field.config.configs.zip.required"
+        [(ngModel)]="field.data.zip"
+        name="zip">
+    </mat-form-field>
 
-  <mat-form-field *ngIf="field.config.configs.country.enabled">
-    <mat-select
-      [(ngModel)]="field.data.country"
-      [required]="field.config.configs.country.required"
-      name="country"
-      [placeholder]="field.config.configs.country.label"
-      (selectionChange)="changeCountry()"
-      autocomplete="country">
-      <mat-option *ngFor="let country of countries" [value]="country.code">
-        <span>{{country.name}}</span>
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
+    <mat-form-field *ngIf="field.config.configs.country.enabled">
+      <mat-select
+        [(ngModel)]="field.data.country"
+        [required]="field.config.configs.country.required"
+        name="country"
+        [placeholder]="field.config.configs.country.label"
+        (selectionChange)="changeCountry()"
+        autocomplete="country">
+        <mat-option *ngFor="let country of countries" [value]="country.code">
+          <span>{{country.name}}</span>
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
 
-</div>
+  </div>
+  <fs-label-message>
+      {{field.config.configs.description}}
+    </fs-label-message>
+</fs-label-field>
+
+
