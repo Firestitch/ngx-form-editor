@@ -68,5 +68,12 @@ export class FieldToolbarComponent implements OnInit {
         guid: guid()
       }
     };
+
+    if (this.field.config.type === FieldType.Content) {
+      const content = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. ' +
+                      'Etiam vel lacus non nulla iaculis pharetra vitae vel massa. ' +
+                      'Aliquam hendrerit pharetra metus, ac vehicula enim dapibus vitae.';
+      this.field.config.configs = { content: [{ insert: content }] };
+    }
   }
 }

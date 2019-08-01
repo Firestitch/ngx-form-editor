@@ -1,5 +1,6 @@
 import {Component, forwardRef, Input} from "@angular/core";
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from "@angular/forms";
+import { FieldComponent } from "../field/field.component";
 
 @Component({
     selector: "fs-field-render-name-model",
@@ -11,15 +12,13 @@ import {ControlValueAccessor, NG_VALUE_ACCESSOR} from "@angular/forms";
     }]
 
 })
-export class FieldRenderNameModelComponent implements ControlValueAccessor {
+export class FieldRenderNameModelComponent extends FieldComponent implements ControlValueAccessor {
   @Input() field;
 
   value;
 
   onChange: (_: any) => void = (_: any) => {};
   onTouched: () => void = () => {};
-
-  constructor() {}
 
   change(event, name) {
     this.field.data.value[name] = event;

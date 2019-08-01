@@ -24,7 +24,7 @@ export class FieldHeaderComponent extends FieldComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.field.config.hasDescriptionNote = !!this.field.config.configs.description || !!this.field.config.configs.note;
+    this.field.config.hasDescriptionNote = !!this.field.config.description || !!this.field.config.configs.note;
   }
 
   toggleRequired() {

@@ -1,77 +1,89 @@
 <div class="field-container" [ngClass]="['field-' + field.config.type]">
 
-  <fs-label-field>
-    <fs-label>{{field.config.label}}</fs-label>
-    <div *ngIf="field.config.type==fieldType.ShortText || field.config.type==fieldType.LongText || field.config.type==fieldType.Email">
-      {{field.data.value}}
-    </div>
+  <ng-container [ngSwitch]="field.config.type">
+    <ng-container *ngSwitchCase="fieldType.Content">
+      <fs-field-render-content [field]="field"></fs-field-render-content>
+    </ng-container>
 
-    <div *ngIf="field.config.type==fieldType.Date">
-      {{field.data.value | fsDate}}
-    </div>
+    <ng-container *ngSwitchCase="fieldType.Heading">
+      <fs-field-render-heading [field]="field"></fs-field-render-heading>
+    </ng-container>
 
-    <div *ngIf="field.config.type==fieldType.Time">
-      {{field.data.value | fsDate: 'time'}}
-    </div>
-
-    <div *ngIf="field.config.type==fieldType.Phone">
-      {{field.data.value}}
-    </div>
-
-    <div *ngIf="field.config.type===fieldType.Name">
-      {{field.data.value.first_name}} {{field.data.value.middle_name}} {{field.data.value.last_name}}
-    </div>
-
-    <div *ngIf="field.config.type===fieldType.File">
-      <div *ngIf="field.data?.value && field.data.value.length; else notUploaded">
-        <div *ngFor="let item of field.data.value">
-          <a [href]="item.url" [download]="item.name">{{ item.name }}</a>
+    <ng-container *ngSwitchDefault>
+      <fs-label-field>
+        <fs-label>{{field.config.label}}</fs-label>
+        <div *ngIf="field.config.type==fieldType.ShortText || field.config.type==fieldType.LongText || field.config.type==fieldType.Email">
+          {{field.data.value}}
         </div>
-      </div>
-      <ng-template #notUploaded>
-        <span>Files are not uploaded yet.</span>
-      </ng-template>
-    </div>
 
-    <div *ngIf="field.config.type==fieldType.RichText">
-      <div fsEditorRenderer [ngModel]="field.data.value" name="richtext"></div>
-    </div>
+        <div *ngIf="field.config.type==fieldType.Date">
+          {{field.data.value | fsDate}}
+        </div>
 
-    <div *ngIf="field.config.type==fieldType.Gender">
-      <ng-container *ngFor="let gender of field.config.configs.genders">
-        <span *ngIf="field.data.value===gender.value">{{gender.name}}</span>
-      </ng-container>
-    </div>
+        <div *ngIf="field.config.type==fieldType.Time">
+          {{field.data.value | fsDate: 'time'}}
+        </div>
 
-    <div *ngIf="field.config.type==fieldType.Address">
-      <div class="address">
-        <span *ngIf="field.data.street">{{field.data.street}}</span>
-        <span *ngIf="field.data.adddress2">{{field.data.address2}}</span>
-        <span *ngIf="field.data.city">{{field.data.city}}</span>
-        <span *ngIf="field.data.region">{{field.data.region}}</span>
-        <span *ngIf="field.data.zip">{{field.data.zip}}</span>
-        <span *ngIf="field.data.country">{{field.data.country}}</span>
-      </div>
-    </div>
+        <div *ngIf="field.config.type==fieldType.Phone">
+          {{field.data.value}}
+        </div>
 
-    <div *ngIf="field.config.type===fieldType.Choice && field.config.configs">
-      <ng-container *ngFor="let option of field.config.configs.options">
-        <span *ngIf="field.data.value?.selected===option.value">{{option.name}}</span>
-      </ng-container>
-      <span *ngIf="field.data.value?.other?.selected">{{field.data.value.other.value}}</span>
-    </div>
+        <div *ngIf="field.config.type===fieldType.Name">
+          {{field.data.value.first_name}} {{field.data.value.middle_name}} {{field.data.value.last_name}}
+        </div>
 
-    <div *ngIf="field.config.type===fieldType.Dropdown && field.config.configs">
-      <ng-container *ngFor="let option of field.config.configs.options">
-        <span *ngIf="field.data.value===option.value">{{option.name}}</span>
-      </ng-container>
-    </div>
+        <div *ngIf="field.config.type===fieldType.File">
+          <div *ngIf="field.data?.value && field.data.value.length; else notUploaded">
+            <div *ngFor="let item of field.data.value">
+              <a [href]="item.url" [download]="item.name">{{ item.name }}</a>
+            </div>
+          </div>
+          <ng-template #notUploaded>
+            <span>Files are not uploaded yet.</span>
+          </ng-template>
+        </div>
 
-    <div *ngIf="field.config.type===fieldType.Checkbox">
-      <ng-container *ngFor="let option of field.config.configs.options">
-        <span class="option" *ngIf=" field.data.value?.selected.indexOf(option.value)>=0">{{option.name}}</span>
-      </ng-container>
-      <span class="option" *ngIf="field.data.value?.other?.selected">{{field.data.value.other.value}}</span>
-    </div>
-  </fs-label-field>
+        <div *ngIf="field.config.type==fieldType.RichText">
+          <div fsEditorRenderer [ngModel]="field.data.value" name="richtext"></div>
+        </div>
+
+        <div *ngIf="field.config.type==fieldType.Gender">
+          <ng-container *ngFor="let gender of field.config.configs.genders">
+            <span *ngIf="field.data.value===gender.value">{{gender.name}}</span>
+          </ng-container>
+        </div>
+
+        <div *ngIf="field.config.type==fieldType.Address">
+          <div class="address">
+            <span *ngIf="field.data.street">{{field.data.street}}</span>
+            <span *ngIf="field.data.adddress2">{{field.data.address2}}</span>
+            <span *ngIf="field.data.city">{{field.data.city}}</span>
+            <span *ngIf="field.data.region">{{field.data.region}}</span>
+            <span *ngIf="field.data.zip">{{field.data.zip}}</span>
+            <span *ngIf="field.data.country">{{field.data.country}}</span>
+          </div>
+        </div>
+
+        <div *ngIf="field.config.type===fieldType.Choice && field.config.configs">
+          <ng-container *ngFor="let option of field.config.configs.options">
+            <span *ngIf="field.data.value?.selected===option.value">{{option.name}}</span>
+          </ng-container>
+          <span *ngIf="field.data.value?.other?.selected">{{field.data.value.other.value}}</span>
+        </div>
+
+        <div *ngIf="field.config.type===fieldType.Dropdown && field.config.configs">
+          <ng-container *ngFor="let option of field.config.configs.options">
+            <span *ngIf="field.data.value===option.value">{{option.name}}</span>
+          </ng-container>
+        </div>
+
+        <div *ngIf="field.config.type===fieldType.Checkbox">
+          <ng-container *ngFor="let option of field.config.configs.options">
+            <span class="option" *ngIf=" field.data.value?.selected.indexOf(option.value)>=0">{{option.name}}</span>
+          </ng-container>
+          <span class="option" *ngIf="field.data.value?.other?.selected">{{field.data.value.other.value}}</span>
+        </div>
+      </fs-label-field>
+    </ng-container>
+  </ng-container>
 </div>

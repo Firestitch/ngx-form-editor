@@ -22,7 +22,7 @@
       *ngIf="showDescription"
       mat-icon-button
       (click)="toggleDescriptionNote()"
-      matTooltip="Description & Note"
+      matTooltip="Description"
       [ngClass]="{ disabled: !field.config.hasDescriptionNote }">
       <mat-icon>subject</mat-icon>
     </button>
@@ -45,7 +45,7 @@
       matInput
       placeholder="Description"
       [matTextareaAutosize]="true"
-      [(ngModel)]="field.config.configs.description"
+      [(ngModel)]="field.config.description"
       name="description"
       [ngModelOptions]="{ updateOn: 'blur' }"
       (ngModelChange)="changed($event)">
@@ -56,6 +56,6 @@
 <ng-template #selectedElse>
   <div class="view">
     <div class="label">{{field.config.label}}</div>
-    <div class="description">{{field.config.configs.description}}</div>
+    <div class="description">{{field.config.description}}</div>
   </div>
 </ng-template>
