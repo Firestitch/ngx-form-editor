@@ -6,4 +6,5 @@
 
 @include mat-core();
 @include fs-file($mat-blue);
+@include fs-editor($mat-blue);
 @include fs-field-editor($mat-blue);

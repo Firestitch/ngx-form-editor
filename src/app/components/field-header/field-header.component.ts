@@ -68,7 +68,7 @@ export class FieldHeaderComponent extends FieldComponent implements OnInit {
     }).subscribe((value) => {
         this.fieldEditor.config.fields.splice(this.fieldEditor.config.fields.indexOf(this.field), 1);
         this.fieldEditor.unselectField();
-        this.changed();
+        this.fieldEditor.fieldRemoved$.emit({ field: this.field, event: event });
     });
   }
 

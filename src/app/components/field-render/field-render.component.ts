@@ -15,8 +15,6 @@ export class FieldRenderComponent extends FieldCoreComponent implements AfterVie
   public fieldRenderTemplateRefs = {};
   public field: any = { config: {} };
 
-  @Input() fileSelected: Function;
-
   @Input('field') set setField(field) {
     this.field = initField(field);
   }
@@ -24,7 +22,6 @@ export class FieldRenderComponent extends FieldCoreComponent implements AfterVie
   @ContentChildren(FieldRenderDirective) queryListFieldRender: QueryList<FieldRenderDirective>;
 
   ngAfterViewInit() {
-
     this.queryListFieldRender.forEach((directive: FieldRenderDirective) => {
       this.fieldRenderTemplateRefs[directive.type] = directive.templateRef;
     });

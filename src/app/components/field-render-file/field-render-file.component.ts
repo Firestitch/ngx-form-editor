@@ -5,8 +5,9 @@ import { get } from 'lodash';
 import { FsFile, FileProcessor } from '@firestitch/file';
 
 import { FieldComponent } from '../field/field.component';
-import { Field } from '../../interfaces';
-import { Observable, from, zip, of } from 'rxjs';
+import { Field, FieldEditorConfig } from '../../interfaces';
+import { Observable } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 
 @Component({
@@ -16,12 +17,12 @@ import { Observable, from, zip, of } from 'rxjs';
 })
 export class FieldRenderFileComponent extends FieldComponent {
 
-  @Input() fileSelected: Function;
-
   public allowedTypes = '';
   public selectedFiles: FsFile[] = [];
 
   private _fileProcessor = new FileProcessor();
+
+  @Input() config: FieldEditorConfig;
 
   @Input('field') set _field(field: Field) {
 
@@ -75,13 +76,14 @@ export class FieldRenderFileComponent extends FieldComponent {
     files.forEach((file, index) => {
       this.processFile(file)
       .subscribe(() => {
-        if (this.fileSelected) {
-
-          if (this.field.config.configs.allow_multiple) {
-            this.fileSelected({ field: this.field, fsFile: file, index: index });
-          } else {
-            this.fileSelected({ field: this.field, fsFile: file, index: index });
-          }
+        if (this.config.fileUpload) {
+          this.config.fileUpload(this.field, file.file, index)
+          .pipe(
+            takeUntil(this.$destory)
+          )
+          .subscribe((field: Field) => {
+            this.field = field;
+          });
         }
       });
     });

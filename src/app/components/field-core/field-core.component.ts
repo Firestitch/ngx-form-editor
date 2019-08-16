@@ -14,6 +14,7 @@ export class FieldCoreComponent {
   public config: FieldEditorConfig;
 
   @Input('config') set setConfig(config: FieldEditorConfig) {
+
     this.config = Object.assign({}, this.defaultConfig, config);
 
     if (this.config.fields) {

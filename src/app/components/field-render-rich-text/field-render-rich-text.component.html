@@ -6,4 +6,5 @@
     [options]="options"
     [name]="name">
   </fs-editor-rich-text>
+  <fs-label-message *ngIf="field.config.description">{{field.config.description}}</fs-label-message>
 </fs-label-field>

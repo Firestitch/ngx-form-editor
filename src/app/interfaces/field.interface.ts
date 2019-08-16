@@ -1,5 +1,5 @@
-import { FieldOption } from './field-option.interface';
 import { FieldType } from './field-type.interface';
+import { Observable } from 'rxjs';
 
 export enum FieldMode {
   Edit = 'edit',
@@ -15,9 +15,9 @@ export enum FieldState {
 export interface Field {
   config: {
     guid?: string,
-    type: FieldType,
-    label: string,
-    description: string,
+    type: FieldType | 'string',
+    label?: string,
+    description?: string,
     hasDescriptionNote?: boolean,
     configs?: any,
     required?: boolean
@@ -29,7 +29,17 @@ export interface FieldEditorConfig {
   fields?: Field[],
   toolbar?: Toolbar,
   fieldDrop?: Function,
-  fileSelected?: Function
+  fieldChanged?: Function,
+  fieldAdd?: Function,
+  fieldAdded?: Function,
+  fieldSelected?: Function,
+  fieldUnselected?: Function,
+  fieldMoved?: Function,
+  fieldDuplicate?: Function,
+  fieldDuplicated?: Function,
+  fieldRemoved?: Function,
+  imageUpload?: (field: Field, file: File) => Observable<string>,
+  fileUpload?: (field: Field, file: File, index: number) => Observable<Field>
 }
 
 export interface Toolbar {
@@ -37,8 +47,10 @@ export interface Toolbar {
 }
 
 export interface ToolbarItem {
-  icon: string;
+  icon?: string;
   label?: string
-  type: FieldType,
+  type: FieldType | string,
   divide?: boolean
 }
+
+

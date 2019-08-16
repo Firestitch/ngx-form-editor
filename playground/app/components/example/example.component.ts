@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject, ViewChild } from '@angular/core';
-import { FS_FIELD_EDITOR_CONFIG, FieldEditorComponent, FormEditorConfig } from '@firestitch/field-editor';
+import { FS_FIELD_EDITOR_CONFIG, FieldEditorComponent, FieldEditorConfig, FieldType } from '@firestitch/field-editor';
 import { MatDialog } from '@angular/material';
 import { DialogExampleComponent } from '../dialog-example';
 import { FsApi } from '@firestitch/api';
@@ -14,8 +14,8 @@ import { map } from 'rxjs/operators';
 export class ExampleComponent implements OnInit {
 
   @ViewChild('fieldEditor') fieldEditor: FieldEditorComponent;
-  public config: FormEditorConfig;
-  public configured: FormEditorConfig;
+  public config: FieldEditorConfig;
+  public configured: FieldEditorConfig;
   public selectedIndex = 0;
 
   constructor(@Inject(FS_FIELD_EDITOR_CONFIG) private defaultConfig,
@@ -34,6 +34,48 @@ export class ExampleComponent implements OnInit {
           field.config.configs.id = toolbarItem.config.id;
           field.config.configs.showRequired = false;
         }
+      },
+      fieldChanged: () => {
+        console.log('Field Changed');
+      },
+      fieldAdd: () => {
+        console.log('Field Add');
+      },
+      fieldAdded: () => {
+        console.log('Field Added');
+      },
+      fieldMoved: () => {
+        console.log('Field Moved');
+      },
+      fieldDuplicate: () => {
+        console.log('Field Duplicate');
+      },
+      fieldDuplicated: () => {
+        console.log('Field Duplicated');
+      },
+      fieldSelected: () => {
+        console.log('Field Selected');
+      },
+      fieldUnselected: () => {
+        console.log('Field Unselected');
+      },
+      fieldRemoved: () => {
+        console.log('Field Removed');
+      },
+      imageUpload: (field, file: File) => {
+        return this.fsApi.post('https://boilerplate.firestitch.com/api/dummy/upload', { file: file })
+            .pipe(map((response) => response.data.url))
+      },
+      fileUpload: (field, file: File, index) => {
+
+        console.log('File Selected', file);
+
+        const data = {
+          file: file
+        };
+
+        return this.fsApi.post('https://boilerplate.firestitch.com/api/dummy/upload', data)
+          .pipe(map((response) => response.data.url))
       },
       toolbar: {
         items: [{ icon: 'share',
@@ -62,7 +104,7 @@ export class ExampleComponent implements OnInit {
           config:
           {
             guid: '1',
-            type: 'dropdown',
+            type: FieldType.Dropdown,
             label: 'Dropdown Question',
             configs: {
               required: true,
@@ -84,9 +126,8 @@ export class ExampleComponent implements OnInit {
           config:
           {
             guid: '2',
-            type: 'shorttext',
+            type: FieldType.ShortText,
             label: 'Short Text Question',
-            state: 'active',
             description: 'Description Description Description'
           },
         },
@@ -95,7 +136,7 @@ export class ExampleComponent implements OnInit {
           config:
           {
             guid: '4',
-            type: 'name',
+            type: FieldType.Name,
             label: 'Name Question',
             configs: {
               other: true,
@@ -121,9 +162,8 @@ export class ExampleComponent implements OnInit {
           config:
           {
             guid: '3',
-            type: 'longtext',
-            label: 'Long Text Question',
-            state: 'active'
+            type: FieldType.LongText,
+            label: 'Long Text Question'
           },
         },
         {
@@ -131,9 +171,8 @@ export class ExampleComponent implements OnInit {
           config:
           {
             guid: '6',
-            type: 'phone',
-            label: 'Phone Question',
-            state: 'active'
+            type: FieldType.Phone,
+            label: 'Phone Question'
           },
         },
         {
@@ -141,9 +180,8 @@ export class ExampleComponent implements OnInit {
           config:
           {
             guid: '7',
-            type: 'email',
-            label: 'Email Question',
-            state: 'active'
+            type: FieldType.Email,
+            label: 'Email Question'
           },
         },
         {
@@ -151,9 +189,8 @@ export class ExampleComponent implements OnInit {
           config:
           {
             guid: '333',
-            type: 'address',
-            label: 'Address',
-            state: 'active'
+            type: FieldType.Address,
+            label: 'Address'
           },
         },
         {
@@ -161,9 +198,8 @@ export class ExampleComponent implements OnInit {
           config:
           {
             guid: '133',
-            type: 'gender',
-            label: 'Gender',
-            state: 'active'
+            type: FieldType.Gender,
+            label: 'Gender'
           },
         },
         {
@@ -171,7 +207,7 @@ export class ExampleComponent implements OnInit {
           config:
           {
             guid: '5',
-            type: 'choice',
+            type: FieldType.Choice,
             label: 'Choice Question',
             configs: {
               other: true,
@@ -197,18 +233,16 @@ export class ExampleComponent implements OnInit {
           config:
         {
             guid: '8',
-            type: 'time',
-            label: 'Time Question',
-            state: 'active'
+            type: FieldType.Time,
+            label: 'Time Question'
           },
         },
         {
           data: {},
           config: {
             guid: '9',
-            type: 'date',
-            label: 'Date Question',
-            state: 'active'
+            type: FieldType.Date,
+            label: 'Date Question'
           },
         },
         {
@@ -216,7 +250,7 @@ export class ExampleComponent implements OnInit {
           config:
           {
             guid: '10',
-            type: 'checkbox',
+            type: FieldType.Checkbox,
             label: 'Checkboxes Question',
             configs: {
               other: true,
@@ -237,55 +271,12 @@ export class ExampleComponent implements OnInit {
             }
           },
         },
-      ],
-      fileSelected: (e) => {
-
-        console.log('File Selected', e);
-
-        const data = {
-          file: e.fsFile.file
-        };
-
-        return this.fsApi.post('https://boilerplate.firestitch.com/api/dummy/upload', data)
-          .pipe(map((response) => response.data.url))
-      }
+      ]
     };
   }
 
   shareChange() {
     this.fieldEditor.fieldChanged$.emit();
-  }
-
-  changed(e) {
-    console.log('Field Changed', e);
-  }
-
-  added(e) {
-    console.log('Field Added', e);
-  }
-
-  moved(e) {
-    console.log('Field Moved', e);
-  }
-
-  duplicated(e) {
-    console.log('Field Duplicated', e);
-  }
-
-  duplicate(e) {
-    console.log('Field Duplicate', e);
-  }
-
-  add(e) {
-    console.log('Field Add', e);
-  }
-
-  selected(e) {
-    console.log('Field Selected', e);
-  }
-
-  unselected(e) {
-    console.log('Field Unselected', e);
   }
 
   save() {

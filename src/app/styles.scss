@@ -1,6 +1,7 @@
 fs-field-editor {
   .fields {
     padding-bottom: 20px;
+    min-width: 0px;
 
     .toolbar-field {
       padding: 10px 27px;
@@ -125,7 +126,7 @@ fs-field-editor {
     text-align: center;
     width: 100%;
     cursor: pointer;
-    margin: 0 0 -10px;
+    margin: 0 0 -7px;
   }
 
   &:not(.selected) {

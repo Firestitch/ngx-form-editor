@@ -4,4 +4,7 @@ export { FieldConfigDirective } from './app/directives/field-config/field-config
 export { FieldRenderDirective } from './app/directives/field-render/field-render.directive';
 export { FieldEditorComponent } from './app/components/field-editor/field-editor.component';
 export { FS_FIELD_EDITOR_CONFIG } from './app/fs-field-editor.providers';
-export { FormEditorConfig } from './app/interfaces/form-editor-config.interface';
+export { FieldEditorConfig } from './app/interfaces/field.interface';
+export { Field } from './app/interfaces/field.interface';
+export { ToolbarItem } from './app/interfaces/field.interface';
+export { Toolbar } from './app/interfaces/field.interface';
