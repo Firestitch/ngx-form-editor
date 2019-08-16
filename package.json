@@ -2,6 +2,7 @@
   "name": "@firestitch/field-editor",
   "title": "Field Editor",
   "description": "@firestitch/field-editor",
+
   "version": "7.4.7",
   "repository": {
     "type": "git",

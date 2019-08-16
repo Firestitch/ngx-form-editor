@@ -4,7 +4,7 @@
       matInput
       [placeholder]="field.config.label"
       [(ngModel)]="field.data.value"
-      name="short_text"
+      [name]="name"
       [required]="field.config.configs.required===true">
     <mat-hint>{{field.config.description}}</mat-hint>
   </mat-form-field>
@@ -16,7 +16,7 @@
       matAutosizeMinRows="1"
       [(ngModel)]="field.data.value"
       [placeholder]="field.config.label"
-      name="long_text"
+      [name]="name"
       [required]="field.config.configs.required===true">
     </textarea>
     <mat-hint>{{field.config.description}}</mat-hint>
