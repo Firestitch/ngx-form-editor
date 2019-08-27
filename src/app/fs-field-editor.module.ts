@@ -62,6 +62,8 @@ import { FieldConfigHeadingComponent } from './components/field-config-heading/f
 import { FieldRenderHeadingComponent } from './components/field-render-heading/field-render-heading.component';
 import { FieldConfigContentComponent } from './components/field-config-content/field-config-content.component';
 import { FieldRenderContentComponent } from './components/field-render-content/field-render-content.component';
+import { FieldRenderCheckboxesComponent } from './components/field-render-checkbox/field-render-checkboxes/field-render-checkboxes.component';
+import { FieldRenderCheckboxComponent } from './components/field-render-checkbox/field-render-checkbox.component';
 
 
 export function defaultConfigFactory(config) {
@@ -163,7 +165,9 @@ export function defaultConfigFactory(config) {
     FieldConfigHeadingComponent,
     FieldRenderHeadingComponent,
     FieldConfigContentComponent,
-    FieldRenderContentComponent
+    FieldRenderContentComponent,
+    FieldRenderCheckboxComponent,
+    FieldRenderCheckboxesComponent
   ],
   providers: [
     NgForm

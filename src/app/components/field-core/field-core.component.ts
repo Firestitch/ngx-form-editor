@@ -2,6 +2,7 @@ import { Component, Input, Inject } from '@angular/core';
 
 import { FieldType, FieldMode, FieldEditorConfig } from '../../interfaces';
 import { FS_FIELD_EDITOR_CONFIG } from '../../fs-field-editor.providers';
+import { initField } from '../../helpers/init-field';
 
 
 @Component({
@@ -19,9 +20,7 @@ export class FieldCoreComponent {
 
     if (this.config.fields) {
       this.config.fields.forEach(field => {
-        if (!field.data) {
-          field.data = {};
-        }
+        field = initField(field);
       });
     }
   }

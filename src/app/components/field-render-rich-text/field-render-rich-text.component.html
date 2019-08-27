@@ -4,7 +4,11 @@
   <fs-editor-rich-text
     [(ngModel)]="field.data.value"
     [options]="options"
+    [required]="field.config.configs.required"
+    messageSelector=".fs-form-message"
+    wrapperSelector="fs-label-field"
     [name]="name">
   </fs-editor-rich-text>
+  <div class="fs-form-message"></div>
   <fs-label-message *ngIf="field.config.description">{{field.config.description}}</fs-label-message>
 </fs-label-field>

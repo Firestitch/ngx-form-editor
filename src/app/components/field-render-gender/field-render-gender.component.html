@@ -1,15 +1,19 @@
 <fs-label-field class="multiline-message">
   <fs-label>{{field.config.label}}</fs-label>
   <mat-radio-group
-    [(ngModel)]="field.data.value"
     fxLayout="column"
+    [(ngModel)]="field.data.value"
     name="{{name}}_gender"
-    [required]="field.config.configs.required===true"
-    #ngModel="ngModel">
-    <mat-radio-button *ngFor="let gender of field.config.configs.genders"
-                      [value]="gender.value">{{gender.name}}</mat-radio-button>
+    messageSelector="fs-label-message"
+    wrapperSelector="fs-label-field"
+    [appendMessageClass]="false"
+    [required]="field.config.configs.required===true">
+    <mat-radio-button
+      *ngFor="let gender of field.config.configs.genders"
+      [value]="gender.value">{{gender.name}}
+    </mat-radio-button>
   </mat-radio-group>
   <fs-label-message>
-      {{field.config.description}}
-    </fs-label-message>
+    {{field.config.description}}
+  </fs-label-message>
 </fs-label-field>

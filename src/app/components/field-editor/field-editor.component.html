@@ -26,7 +26,7 @@
           <fs-field-header  *ngIf="selectedField===field"
                             [field]="field"
                             [fieldEditor]="fieldEditor"
-                            [showRequired]="field.config.configs.showRequired!==false && field.config.type!==fieldType.Address && field.config.type!==fieldType.Heading && field.config.type!==fieldType.Content"
+                            [showRequired]="field.config.configs.showRequired!==false && field.config.type!==fieldType.Address && field.config.type!==fieldType.Heading && field.config.type!==fieldType.Content && field.config.type!==fieldType.File"
                             [showDescription]="field.config.configs.showDescription!==false && field.config.type!==fieldType.Heading && field.config.type!==fieldType.Content">
           </fs-field-header>
 
@@ -156,7 +156,12 @@
               </ng-container>
 
               <ng-template #optionsElse>
-                <fs-field-render-options [field]="field"></fs-field-render-options>
+                <fs-field-render-checkbox [field]="field" *ngIf="field.config.type===fieldType.Checkbox; else optionsElse"></fs-field-render-checkbox>
+
+                <ng-template #optionsElse>
+                  <fs-field-render-options [field]="field"></fs-field-render-options>
+                </ng-template>
+
               </ng-template>
             </ng-template>
 

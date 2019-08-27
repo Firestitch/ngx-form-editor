@@ -10,35 +10,12 @@
     </mat-form-field>
   </ng-container>
 
-  <ng-container *ngSwitchCase="fieldType.Checkbox">
-    <div class="field-wrapper">
-      <fs-label>{{field.config.label}}</fs-label>
-      <div fxLayout="column">
-        <mat-checkbox *ngFor="let option of field.config.configs.options; index as idx"
-                      (change)="handleCheckbox($event, option)"
-                      [checked]="field.data.value.selected && field.data.value.selected.indexOf(option.value) !== -1">{{option.name}}</mat-checkbox>
-        <mat-checkbox
-          [(ngModel)]="field.data.value.other.selected"
-          name="checkbox_other"
-          *ngIf="field.config.configs.other"
-          class="other checkbox">
-          <mat-form-field floatLabel="never" class="subscript-remove">
-            <input matInput placeholder="Other" [(ngModel)]="field.data.value.other.value" name="other" (click)="otherSelected(field,true)">
-          </mat-form-field>
-        </mat-checkbox>
-      </div>
-      <div class="fs-form-message">
-        {{field.config.description}}
-      </div>
-    </div>
-  </ng-container>
-
   <ng-container *ngSwitchCase="fieldType.Choice">
     <div class="field-wrapper">
       <fs-label>{{field.config.label}}</fs-label>
       <mat-radio-group
         [(ngModel)]="field.data.value.selected"
-        messageSelector=".fs-form-message"
+        messageSelector=".field-message"
         wrapperSelector=".field-wrapper"
         labelSelector="false"
         fxLayout="column"
@@ -58,7 +35,7 @@
             </mat-form-field>
           </mat-radio-button>
         </mat-radio-group>
-        <div class="fs-form-message">
+        <div class="fs-form-message field-message">
           {{field.config.description}}
         </div>
       </div>

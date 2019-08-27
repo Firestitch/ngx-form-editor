@@ -33,7 +33,7 @@
       </ng-container>
 
       <ng-container *ngSwitchCase="fieldType.Checkbox">
-        <ng-container *ngTemplateOutlet="fsFieldOptions"></ng-container>
+        <fs-field-render-checkbox [field]="field"></fs-field-render-checkbox>
       </ng-container>
 
       <ng-container *ngSwitchCase="fieldType.Name">

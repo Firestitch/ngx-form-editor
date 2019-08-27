@@ -1,0 +1,15 @@
+<div class="field-wrapper">
+  <fs-label>{{field.config.label}}</fs-label>
+  <fs-field-render-checkboxes
+    [(ngModel)]="checkboxSelected"
+    name="checkboxes"
+    messageSelector=".field-message"
+    wrapperSelector=".field-wrapper"
+    [labelSelector]="false"
+    [required]="field.config.configs.required===true"
+    [field]="field">
+  </fs-field-render-checkboxes>
+  <div class="fs-form-message field-message">
+    {{field.config.description}}
+  </div>
+</div>

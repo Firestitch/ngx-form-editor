@@ -1,0 +1,23 @@
+<div *ngFor="let option of field.config.configs.options">
+  <mat-checkbox
+    (change)="handleCheckbox($event, option)"
+    [checked]="field.data.value.selected && field.data.value.selected.indexOf(option.value) !== -1">{{option.name}}
+  </mat-checkbox>
+</div>
+
+<mat-checkbox
+  *ngIf="field.config.configs.other"
+  [(ngModel)]="field.data.value.other.selected"
+  name="checkbox_other"
+  (ngModelChange)="otherCheckbox(field.data.value.other.selected)"
+  class="other checkbox">
+  <mat-form-field floatLabel="never" class="subscript-remove">
+    <input
+      matInput
+      placeholder="Other"
+      [(ngModel)]="field.data.value.other.value"
+      name="other"
+      (click)="otherInputClick($event)"
+      (focus)="otherInput(field)">
+  </mat-form-field>
+</mat-checkbox>

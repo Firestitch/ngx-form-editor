@@ -6,10 +6,11 @@ import {  Component,
   ContentChildren,
   Output,
   AfterContentInit,
-  OnDestroy} from '@angular/core';
+  OnDestroy,
+  Input} from '@angular/core';
 
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
-import { Field } from '../../interfaces';
+import { Field, FieldEditorConfig } from '../../interfaces';
 import { FieldCoreComponent } from '../field-core/field-core.component';
 import { FieldConfigDirective } from '../../directives/field-config/field-config.directive';
 import { FieldRenderDirective } from '../../directives/field-render/field-render.directive';
@@ -20,12 +21,10 @@ import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'fs-field-editor',
-  inputs: ['config'],
   templateUrl: 'field-editor.component.html',
   styleUrls: [ 'field-editor.component.scss' ]
 })
 export class FieldEditorComponent extends FieldCoreComponent implements AfterContentInit, OnDestroy {
-
 
   @Output('fieldSelected') fieldSelected$ = new EventEmitter();
   @Output('fieldUnselected') fieldUnselected$ = new EventEmitter();
@@ -43,6 +42,7 @@ export class FieldEditorComponent extends FieldCoreComponent implements AfterCon
   @HostListener('document:keydown.escape', ['$event']) onKeydownHandler(event: KeyboardEvent) {
     this.unselectField();
   }
+
   public selectedField = null;
   public fieldEditor: FieldEditorComponent = this;
   public fieldConfigTemplateRefs = {};
