@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject, ViewChild } from '@angular/core';
 import { FS_FIELD_EDITOR_CONFIG, FieldEditorComponent, FieldEditorConfig, FieldType } from '@firestitch/field-editor';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { DialogExampleComponent } from '../dialog-example';
 import { FsApi } from '@firestitch/api';
 import { map } from 'rxjs/operators';
@@ -13,7 +13,7 @@ import { map } from 'rxjs/operators';
 })
 export class ExampleComponent implements OnInit {
 
-  @ViewChild('fieldEditor') fieldEditor: FieldEditorComponent;
+  @ViewChild('fieldEditor', { static: true }) fieldEditor: FieldEditorComponent;
   public config: FieldEditorConfig;
   public configured: FieldEditorConfig;
   public selectedIndex = 0;
