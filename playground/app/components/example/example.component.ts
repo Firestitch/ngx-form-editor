@@ -77,17 +77,23 @@ export class ExampleComponent implements OnInit {
         };
 
         return this.fsApi.post('https://boilerplate.firestitch.com/api/dummy/upload', data)
-          .pipe(map((response) => ({
-            id: 99999,
-            url: response.data.url,
-            name: file.name
-          })))
+          .pipe(
+            map(response => ({
+              id: 99999,
+              url: response.data.url,
+              name: file.name
+            })
+          ))
       },
       fileRemove: (field, data) => {
+        console.log('File Remove', field, data);
         return of(true);
       },
+      fileRemoved: (field, data) => {
+        console.log('File Removed', field, data);
+      },
       fileDownload: (field, data) => {
-        window.open(data.url, 'Download');
+        window.location = data.url;
       },
       toolbar: {
         items: [{ icon: 'share',

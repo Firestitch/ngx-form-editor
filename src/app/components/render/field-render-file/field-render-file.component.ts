@@ -88,7 +88,7 @@ export class FieldRenderFileComponent extends FieldComponent implements OnInit {
 
     if (this.config && this.config.fileRemove) {
       actions.push({
-        label: 'Delete',
+        label: 'Remove',
         click: (item) => {
 
           this.config.fileRemove(this.field, item)
@@ -99,6 +99,10 @@ export class FieldRenderFileComponent extends FieldComponent implements OnInit {
             if (idx >= 0) {
               this.field.data.value.splice(idx, 1);
               this.gallery.refresh();
+
+              if (this.config.fileRemoved) {
+                this.config.fileRemoved(this.field, item);
+              }
             }
           });
         }

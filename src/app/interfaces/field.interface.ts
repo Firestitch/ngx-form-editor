@@ -41,6 +41,7 @@ export interface FieldEditorConfig {
   imageUpload?: (field: Field, file: File) => Observable<string>,
   fileUpload?: (field: Field, file: File) => Observable<{ name: string, url: string }>
   fileRemove?: (field: Field, data: any) => Observable<boolean>
+  fileRemoved?: (field: Field, data: any) => void
   fileDownload?: (field: Field, data: any) => void
 }
 
