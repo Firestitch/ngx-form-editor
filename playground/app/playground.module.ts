@@ -23,6 +23,10 @@ import { AppComponent } from './app.component';
 import { FsFormModule } from '@firestitch/form';
 import { FsApiModule } from '@firestitch/api';
 import { FsFileModule } from '@firestitch/file';
+import { FsUploadModule } from '@firestitch/upload';
+import { FsDatePickerModule } from '@firestitch/datepicker';
+import { DragulaService, DragulaModule } from 'ng2-dragula';
+import { FsGalleryModule } from '@firestitch/gallery';
 
 
 const routes: Routes = [
@@ -41,9 +45,13 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     FsExampleModule.forRoot(),
     FsPhoneModule.forRoot(),
+    FsDatePickerModule.forRoot(),
     FsMessageModule.forRoot(),
     FsFileModule.forRoot(),
     FsApiModule,
+    DragulaModule.forRoot(),
+    FsGalleryModule.forRoot(),
+    FsUploadModule.forRoot(),
     ToastrModule.forRoot({ preventDuplicates: true }),
   ],
   entryComponents: [

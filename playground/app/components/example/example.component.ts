@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { DialogExampleComponent } from '../dialog-example';
 import { FsApi } from '@firestitch/api';
 import { map } from 'rxjs/operators';
+import { of } from 'rxjs';
 
 
 @Component({
@@ -66,16 +67,27 @@ export class ExampleComponent implements OnInit {
         return this.fsApi.post('https://boilerplate.firestitch.com/api/dummy/upload', { file: file })
             .pipe(map((response) => response.data.url))
       },
-      fileUpload: (field, file: File, index) => {
+      fileUpload: (field, file: File) => {
 
         console.log('File Selected', file);
 
         const data = {
-          file: file
+          file: file,
+          sleep: 1
         };
 
         return this.fsApi.post('https://boilerplate.firestitch.com/api/dummy/upload', data)
-          .pipe(map((response) => response.data.url))
+          .pipe(map((response) => ({
+            id: 99999,
+            url: response.data.url,
+            name: file.name
+          })))
+      },
+      fileRemove: (field, data) => {
+        return of(true);
+      },
+      fileDownload: (field, data) => {
+        window.open(data.url, 'Download');
       },
       toolbar: {
         items: [{ icon: 'share',
@@ -99,10 +111,20 @@ export class ExampleComponent implements OnInit {
         //     }
         //   }
         // },
+
+        {
+          config: {
+            guid: '11',
+            type: FieldType.File,
+            label: 'File Upload',
+            configs: {
+
+            }
+          }
+        },
         {
           data: {},
-          config:
-          {
+          config: {
             guid: '1',
             type: FieldType.Dropdown,
             label: 'Dropdown Question',

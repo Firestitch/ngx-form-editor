@@ -3,6 +3,7 @@
 @import '~@firestitch/file/styles.scss';
 @import '~@firestitch/message/styles';
 @import '~@firestitch/editor/styles';
+@import '~@firestitch/gallery/styles';
 
 @include mat-core();
 @include fs-file($mat-blue);

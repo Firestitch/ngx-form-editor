@@ -39,7 +39,9 @@ export interface FieldEditorConfig {
   fieldDuplicated?: Function,
   fieldRemoved?: Function,
   imageUpload?: (field: Field, file: File) => Observable<string>,
-  fileUpload?: (field: Field, file: File, index: number) => Observable<Field>
+  fileUpload?: (field: Field, file: File) => Observable<{ name: string, url: string }>
+  fileRemove?: (field: Field, data: any) => Observable<boolean>
+  fileDownload?: (field: Field, data: any) => void
 }
 
 export interface Toolbar {

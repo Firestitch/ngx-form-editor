@@ -13,7 +13,9 @@
  *
  * Learn more in https://angular.io/docs/ts/latest/guide/browser-support.html
  */
-
+if (typeof (window as any).global === 'undefined') {
+  (window as any).global = window;
+}
 /***************************************************************************************************
  * BROWSER POLYFILLS
  */
