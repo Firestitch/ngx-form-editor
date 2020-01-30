@@ -54,7 +54,7 @@ export class FieldEditorComponent extends FieldCoreComponent implements AfterCon
     super(null);
   }
 
-  ngAfterContentInit() {
+  public ngAfterContentInit() {
     this.queryListFieldConfig.forEach((directive: FieldConfigDirective) => {
       this.fieldConfigTemplateRefs[directive.type] = directive.templateRef;
       });
@@ -154,22 +154,22 @@ export class FieldEditorComponent extends FieldCoreComponent implements AfterCon
     });
   }
 
-  fieldClick(field: Field) {
+  public fieldClick(field: Field) {
     if (this.selectedField !== field) {
       this.selectField(field);
     }
   }
 
-  fieldDragStart() {
+  public fieldDragStart() {
     this.unselectField();
   }
 
-  unselectField() {
+  public unselectField() {
     this.selectedField = null;
     this.fieldUnselected$.emit(null);
   }
 
-  selectField(field: Field) {
+  public selectField(field: Field) {
 
     if (this.selectedField) {
       this.unselectField();
@@ -179,7 +179,7 @@ export class FieldEditorComponent extends FieldCoreComponent implements AfterCon
     this.fieldSelected$.emit(field);
   }
 
-  drop(event: CdkDragDrop<string[]>) {
+  public drop(event: CdkDragDrop<string[]>) {
 
     if (event.container === event.previousContainer) {
 
@@ -206,9 +206,9 @@ export class FieldEditorComponent extends FieldCoreComponent implements AfterCon
       }
   }
 
-  ngOnDestroy() {
+  public ngOnDestroy() {
     this._destroy$.next();
     this._destroy$.complete();
   }
-}
 
+}

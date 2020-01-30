@@ -1,9 +1,10 @@
-import { Component, Input, EventEmitter, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, EventEmitter, OnInit, OnDestroy } from '@angular/core';
+
+import { guid } from '@firestitch/common';
 
 import { initField } from './../../helpers/init-field';
 import { Field, FieldMode, FieldType } from '../../interfaces';
 import { FieldEditorComponent } from '../field-editor';
-import { guid } from '@firestitch/common';
 
 
 @Component({
@@ -13,7 +14,7 @@ export class FieldComponent implements OnDestroy, OnInit {
 
   public fieldMode = FieldMode;
   public fieldType = FieldType;
-  public field: Field;
+  public field: Field = null;
   public name = 'field_' + guid();
   protected $destory = new EventEmitter();
 
@@ -29,17 +30,18 @@ export class FieldComponent implements OnDestroy, OnInit {
     this.field = this.initField(field);
   }
 
-  @Input() fieldEditor: FieldEditorComponent;
+  @Input() public fieldEditor: FieldEditorComponent = null;
 
-  ngOnDestroy() {
+  public ngOnDestroy() {
     this.$destory.complete();
   }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.field = this.initField(this.field);
   }
 
-  initField(field) {
+  public initField(field) {
     return initField(field);
   }
+
 }
