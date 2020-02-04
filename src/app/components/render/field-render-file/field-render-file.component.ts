@@ -137,13 +137,11 @@ export class FieldRenderFileComponent extends FieldComponent implements OnInit {
 
   public initField(field) {
 
-    const config = get(this.field, 'config.configs.allowed_file_types');
+    const config = get(this.field, 'config.configs.allowed_file_types') || {};
 
-    if (config) {
-      this.allowedTypes = this._getAllowedTypes(config);
-    } else {
-      this.allowedTypes = '*/*';
-    }
+    const types = this._getAllowedTypes(config);
+
+    this.allowedTypes = types.length ? types.join(',') : '*';
 
     return super.initField(field);
   }
@@ -160,14 +158,6 @@ export class FieldRenderFileComponent extends FieldComponent implements OnInit {
       allowed.push('video/*');
     }
 
-    if (allowedTypes.other) {
-      allowed.push('application/*');
-      allowed.push('audio/*');
-      allowed.push('text/*');
-      allowed.push('message/*');
-      allowed.push('model/*');
-    }
-
-    return allowed.join(',');
+    return allowed;
   }
 }

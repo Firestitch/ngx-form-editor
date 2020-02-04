@@ -37,11 +37,10 @@
   </fs-label-field>
 
   <fs-label-field>
-    <fs-label>Allowed File Types</fs-label>
+    <fs-label>Only Allow File Types</fs-label>
     <div fxFlexLayout="column" fxLayoutGap="20px">
       <mat-checkbox color="primary" [(ngModel)]="field.config.configs.allowed_file_types.image" (click)="changed()">Image</mat-checkbox>
       <mat-checkbox color="primary" [(ngModel)]="field.config.configs.allowed_file_types.video" (click)="changed()">Video</mat-checkbox>
-      <mat-checkbox color="primary" [(ngModel)]="field.config.configs.allowed_file_types.other" (click)="changed()">Other</mat-checkbox>
     </div>
   </fs-label-field>
 </div>
