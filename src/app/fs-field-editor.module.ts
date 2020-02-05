@@ -124,9 +124,9 @@ export function defaultConfigFactory(config) {
     FsLabelModule,
     FsDateModule,
     FsEditorRendererModule,
-    FsEditorRichTextModule.forRoot(),
+    FsEditorRichTextModule,
     FsFileModule,
-    FsPromptModule.forRoot()
+    FsPromptModule
   ],
   exports: [
     FieldEditorComponent,
