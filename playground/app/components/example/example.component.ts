@@ -124,7 +124,7 @@ export class ExampleComponent implements OnInit {
             type: FieldType.File,
             label: 'File Upload',
             configs: {
-
+              basic: true
             }
           }
         },

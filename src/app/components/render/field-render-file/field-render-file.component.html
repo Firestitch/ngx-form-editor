@@ -8,7 +8,8 @@
       [imageHeight]="field.config.configs.max_height"
       [accept]="allowedTypes"
       [multiple]="field.config.configs.allow_multiple">
-    <button mat-raised-button type="button" color="primary">Select File</button>
+    <button *ngIf="!field.config.configs.basic" mat-raised-button type="button" color="primary">Select File</button>
+    <button *ngIf="field.config.configs.basic" mat-raised-button type="button">Select File</button>
   </fs-file>
 
   <div class="files-preview">
