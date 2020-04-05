@@ -156,7 +156,6 @@ fs-field-renderer {
 
   .field-container {
     width: 100%;
-    padding-bottom: 10px;
   }
 
   .field-shorttext,
@@ -172,12 +171,6 @@ fs-field-renderer {
     padding-bottom: 7px;
     color: rgba(0,0,0,.54);
     font-size: .75em;
-  }
-
-  .fs-form-message {
-    font-size: 75%;
-    color: rgba(0, 0, 0, 0.54);
-    min-height: 1.25em;
   }
 
   fs-label-field {

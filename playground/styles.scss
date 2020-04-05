@@ -4,6 +4,7 @@
 @import '~@firestitch/message/styles';
 @import '~@firestitch/editor/styles';
 @import '~@firestitch/gallery/styles';
+@import '~@firestitch/form/styles';
 
 @include mat-core();
 @include fs-file($mat-blue);

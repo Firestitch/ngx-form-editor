@@ -1,6 +1,6 @@
 <div class="mat-elevation-z2 toolbar" [ngClass]="{ expanded: expand}">
   <div class="bar">
-    <button mat-icon-button (click)="expand = !expand"><mat-icon>{{ expand ? 'keyboard_arrow_up' : 'keyboard_arrow_down' }}</mat-icon></button>
+    <button mat-icon-button type="button" (click)="expand = !expand"><mat-icon>{{ expand ? 'keyboard_arrow_up' : 'keyboard_arrow_down' }}</mat-icon></button>
   </div>
   <div *ngFor="let item of fieldEditor.config.toolbar.items">
     <ng-container *ngIf="item.type==='divider'; else elseDivider">
@@ -10,7 +10,7 @@
       <div cdkDropList cdkDropListConnectedTo="fs-fields">
         <div cdkDrag [cdkDragData]="{ field: field, item: item }" (cdkDragStarted)="dragStarted(item)" class="toolbar-field">
           <div fxFlexLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
-            <button mat-icon-button><mat-icon>{{ item.icon }}</mat-icon></button>
+            <button mat-icon-button type="button"><mat-icon>{{ item.icon }}</mat-icon></button>
             <span class="label"><span class="add">Add</span> {{ item.label }}</span>
           </div>
         </div>

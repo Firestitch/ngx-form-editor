@@ -4,7 +4,7 @@
     <div fxFlexLayout="row" fxLayoutAlign="start center" class="gender-container">
 
       <div class="gender-drag" cdkDragHandle>
-        <button button mat-icon-button class="drag-button gender-drag-button"><mat-icon>drag_indicator</mat-icon></button>
+        <button button mat-icon-button type="button" class="drag-button gender-drag-button"><mat-icon>drag_indicator</mat-icon></button>
       </div>
 
       <mat-radio-button disabled="true"></mat-radio-button>
@@ -12,14 +12,14 @@
       <mat-form-field floatLabel="never" class="gender-name" fxFlex>
         <input matInput placeholder="Label" [(ngModel)]="gender.name" name="label" [ngModelOptions]="{ updateOn: 'blur' }" (ngModelChange)="changed($event)">
       </mat-form-field>
-      <button button mat-icon-button (click)="remove(idx)"><mat-icon>delete</mat-icon></button>
+      <button button mat-icon-button type="button" (click)="remove(idx)"><mat-icon>delete</mat-icon></button>
     </div>
   </div>
 </div>
 
 <div>
   <div fxFlexLayout="row" fxLayoutAlign="start center">
-    <button button mat-icon-button *ngIf="field.config.configs.genders.length"><mat-icon></mat-icon></button>
+    <button button mat-icon-button type="button" *ngIf="field.config.configs.genders.length"><mat-icon></mat-icon></button>
     <mat-checkbox disabled="true" style="visibility: hidden"></mat-checkbox>
 
     <mat-form-field floatLabel="never" class="new-option" fxFlex>

@@ -11,7 +11,7 @@
   </ng-container>
 
   <ng-container *ngSwitchCase="fieldType.Choice">
-    <div class="field-wrapper">
+    <fs-label-field class="field-wrapper">
       <fs-label>{{field.config.label}}</fs-label>
       <mat-radio-group
         [(ngModel)]="field.data.value.selected"
@@ -35,9 +35,9 @@
             </mat-form-field>
           </mat-radio-button>
         </mat-radio-group>
-        <div class="fs-form-message field-message">
-          {{field.config.description}}
-        </div>
-      </div>
+        <fs-label-message class="fs-form-message field-message">
+          <div class="fs-form-hint">{{field.config.description}}</div>
+        </fs-label-message>
+      </fs-label-field>
   </ng-container>
 </ng-container>

@@ -25,8 +25,9 @@ import { FsApiModule } from '@firestitch/api';
 import { FsFileModule } from '@firestitch/file';
 import { FsUploadModule } from '@firestitch/upload';
 import { FsDatePickerModule } from '@firestitch/datepicker';
-import { DragulaService, DragulaModule } from 'ng2-dragula';
+import { DragulaModule } from 'ng2-dragula';
 import { FsGalleryModule } from '@firestitch/gallery';
+import { FsEditorRichTextModule } from '@firestitch/editor';
 
 
 const routes: Routes = [
@@ -38,6 +39,7 @@ const routes: Routes = [
   imports: [
     BrowserModule,
     FsFieldEditorModule.forRoot(),
+    FsEditorRichTextModule.forRoot(),
     BrowserAnimationsModule,
     AppMaterialModule,
     FormsModule,

@@ -7,6 +7,7 @@
     </div>
     <button *ngIf="showRequired"
       mat-icon-button
+      type="button"
       (click)="toggleRequired()"
       matTooltip="Require Response"
       [ngClass]="{ disabled: !field.config.configs.required }">
@@ -14,6 +15,7 @@
     </button>
     <button
       mat-icon-button
+      type="button"
       (click)="copy($event)"
       matTooltip="Duplicate">
       <mat-icon>filter_none</mat-icon>
@@ -21,6 +23,7 @@
     <button
       *ngIf="showDescription"
       mat-icon-button
+      type="button"
       (click)="toggleDescriptionNote()"
       matTooltip="Description"
       [ngClass]="{ disabled: !field.config.hasDescriptionNote }">
@@ -28,12 +31,14 @@
     </button>
     <button
       mat-icon-button
+      type="button"
       (click)="delete($event)"
       matTooltip="Delete">
       <mat-icon>delete</mat-icon>
     </button>
     <button
       mat-icon-button
+      type="button"
       (click)="close($event)"
       matTooltip="Collapse">
       <mat-icon>unfold_less</mat-icon>
