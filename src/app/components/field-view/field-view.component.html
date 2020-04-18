@@ -44,7 +44,7 @@
         </div>
 
         <div *ngIf="field.config.type==fieldType.RichText">
-          <div fsEditorRenderer [ngModel]="field.data.value" name="richtext"></div>
+          <div fsEditorRenderer [content]="field.data.value"></div>
         </div>
 
         <div *ngIf="field.config.type==fieldType.Gender">
