@@ -20,7 +20,7 @@ import { GalleryLayout, FsGalleryConfig, FsGalleryComponent, mime } from '@fires
 })
 export class FieldRenderFileComponent extends FieldComponent implements OnInit {
 
-  @ViewChild(FsGalleryComponent, { static: false }) gallery: FsGalleryComponent;
+  @ViewChild(FsGalleryComponent) gallery: FsGalleryComponent;
 
   @Input() config: FieldEditorConfig;
 

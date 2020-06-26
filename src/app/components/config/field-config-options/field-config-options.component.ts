@@ -17,7 +17,7 @@ export class FieldConfigOptionsComponent extends FieldComponent {
 
   public newOption = '';
 
-  @ViewChild('addOptionInput', { static: false })
+  @ViewChild('addOptionInput')
   private _addOptionInput: ElementRef;
 
   @Input() fieldEditor: FieldEditorComponent;

@@ -7,10 +7,10 @@ import {  Component,
   Output,
   AfterContentInit,
   OnDestroy,
-  Input} from '@angular/core';
+} from '@angular/core';
 
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
-import { Field, FieldEditorConfig } from '../../interfaces';
+import { Field } from '../../interfaces';
 import { FieldCoreComponent } from '../field-core/field-core.component';
 import { FieldConfigDirective } from '../../directives/field-config/field-config.directive';
 import { FieldRenderDirective } from '../../directives/field-render/field-render.directive';

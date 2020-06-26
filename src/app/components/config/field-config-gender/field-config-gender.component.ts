@@ -15,7 +15,7 @@ export class FieldConfigGenderComponent extends FieldComponent {
 
   public newOption = '';
 
-  @ViewChild('addOptionInput', { static: false })
+  @ViewChild('addOptionInput')
   private _addOptionInput: ElementRef;
 
   @Input() fieldEditor: FieldEditorComponent;

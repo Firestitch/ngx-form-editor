@@ -171,11 +171,11 @@ export function defaultConfigFactory(config) {
   ],
   providers: [
     NgForm
-  ]
+  ],
 })
 
 export class FsFieldEditorModule {
-  static forRoot(config: FieldEditorConfig = {}): ModuleWithProviders {
+  static forRoot(config: FieldEditorConfig = {}): ModuleWithProviders<FsFieldEditorModule> {
     return {
       ngModule: FsFieldEditorModule,
       providers: [
