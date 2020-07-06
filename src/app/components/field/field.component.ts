@@ -3,7 +3,8 @@ import { Component, Input, EventEmitter, OnInit, OnDestroy } from '@angular/core
 import { guid } from '@firestitch/common';
 
 import { initField } from './../../helpers/init-field';
-import { Field, FieldMode, FieldType } from '../../interfaces';
+import { Field, FieldMode } from '../../interfaces';
+import { FieldType } from '../../enums';
 import { FieldEditorComponent } from '../field-editor';
 
 

@@ -1,28 +1,28 @@
-import { FieldType } from './field-type.interface';
+import { FieldType } from '../enums';
 import { Observable } from 'rxjs';
 
 export enum FieldMode {
   Edit = 'edit',
   Render = 'render',
-  View = 'view'
+  View = 'view',
 }
 
 export enum FieldState {
   Active = 'active',
-  Deleted = 'delete'
+  Deleted = 'delete',
 }
 
 export interface Field {
   config: {
     guid?: string,
-    type: FieldType | 'string',
+    type?: FieldType | 'string',
     label?: string,
     description?: string,
     hasDescriptionNote?: boolean,
     configs?: any,
-    required?: boolean
+    required?: boolean,
   },
-  data?: any
+  data?: any,
 }
 
 export interface FieldEditorConfig {
@@ -39,10 +39,14 @@ export interface FieldEditorConfig {
   fieldDuplicated?: Function,
   fieldRemoved?: Function,
   imageUpload?: (field: Field, file: File) => Observable<string>,
-  fileUpload?: (field: Field, file: File) => Observable<{ name: string, url: string }>
-  fileRemove?: (field: Field, data: any) => Observable<boolean>
-  fileRemoved?: (field: Field, data: any) => void
-  fileDownload?: (field: Field, data: any) => void
+  fileUpload?: (field: Field, file: File) => Observable<{ name: string, url: string }>,
+  fileRemove?: (field: Field, data: any) => Observable<boolean>,
+  fileRemoved?: (field: Field, data: any) => void,
+  fileDownload?: (field: Field, data: any) => void,
+}
+
+export interface FieldRendererConfig {
+  fields?: Field[],
 }
 
 export interface Toolbar {

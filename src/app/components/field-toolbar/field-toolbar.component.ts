@@ -2,7 +2,8 @@ import { Component, Input, OnInit } from '@angular/core';
 
 import { guid } from '@firestitch/common';
 
-import { Field, FieldType, ToolbarItem } from '../../interfaces';
+import { Field, ToolbarItem } from '../../interfaces';
+import { FieldType } from '../../enums';
 import { FieldEditorComponent } from '../field-editor';
 
 

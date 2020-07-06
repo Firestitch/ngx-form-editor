@@ -47,7 +47,8 @@ import { FieldViewerComponent } from './components/field-viewer/field-viewer.com
 import { FieldRenderRichTextComponent } from './components/render/field-render-rich-text/field-render-rich-text.component';
 import { FieldConfigDirective } from './directives/field-config/field-config.directive';
 import { FieldRenderDirective } from './directives/field-render/field-render.directive';
-import { FieldEditorConfig, FieldType } from './interfaces';
+import { FieldEditorConfig } from './interfaces';
+import { FieldType } from './enums';
 import { FieldCoreComponent } from './components/field-core/field-core.component';
 import { FieldRenderComponent } from './components/render/field-render/field-render.component';
 import { FieldViewComponent } from './components/field-view/field-view.component';

@@ -3,6 +3,7 @@ import { FieldCoreComponent } from '../../field-core/field-core.component';
 import { FieldRenderDirective } from '../../../directives/field-render/field-render.directive';
 import { ControlContainer, NgForm } from '@angular/forms';
 import { initField } from '../../../helpers/init-field';
+import { Field } from './../../../interfaces';
 
 @Component({
   selector: 'fs-field-render',
@@ -13,7 +14,7 @@ import { initField } from '../../../helpers/init-field';
 export class FieldRenderComponent extends FieldCoreComponent implements AfterViewInit {
 
   public fieldRenderTemplateRefs = {};
-  public field: any = { config: {} };
+  public field: Field = { config: {} };
 
   @Input('field') set setField(field) {
     this.field = initField(field);
