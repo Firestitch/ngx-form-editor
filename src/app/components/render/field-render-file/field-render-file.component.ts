@@ -1,6 +1,6 @@
 import { Component, Input, ChangeDetectionStrategy, ChangeDetectorRef, OnInit, ViewChild } from '@angular/core';
 
-import { get } from 'lodash';
+import { get } from 'lodash-es';
 
 import { FsFile } from '@firestitch/file';
 
