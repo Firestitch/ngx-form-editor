@@ -1,19 +1,19 @@
 <div class="fs-form-wrapper" fxFlexLayout="row" fxLayoutGap="10px">
-  <mat-form-field class="subscript-remove" *ngIf="field.config.configs.first_name?.display">
+  <mat-form-field class="subscript-remove" *ngIf="field.config.configs.firstName?.display">
     <input
       matInput
-      [name]="name + '_first_name'"
-      (ngModelChange)="change($event,'first_name')"
-      [(ngModel)]="field.data.value.first_name"
-      [placeholder]="field.config.configs.first_name.label">
+      [name]="name + 'firstName'"
+      (ngModelChange)="change($event,'firstName')"
+      [(ngModel)]="field.data.value.firstName"
+      [placeholder]="field.config.configs.firstName.label">
   </mat-form-field>
-  <mat-form-field class="subscript-remove" *ngIf="field.config.configs.last_name?.display">
+  <mat-form-field class="subscript-remove" *ngIf="field.config.configs.lastName?.display">
     <input
       matInput
-      [name]="name + '_last_name'"
-      (ngModelChange)="change($event,'last_name')"
-      [(ngModel)]="field.data.value.last_name"
-      [placeholder]="field.config.configs.last_name.label">
+      [name]="name + 'lastName'"
+      (ngModelChange)="change($event,'lastName')"
+      [(ngModel)]="field.data.value.lastName"
+      [placeholder]="field.config.configs.lastName.label">
   </mat-form-field>
   <div class="fs-form-message">
     <div class="fs-form-hint">{{field.config.description}}</div>

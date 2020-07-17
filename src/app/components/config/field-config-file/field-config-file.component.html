@@ -4,8 +4,8 @@
       <input
         matInput
         placeholder="Max Width"
-        [(ngModel)]="field.config.configs.max_width"
-        name="max_width"
+        [(ngModel)]="field.config.configs.maxWidth"
+        name="maxWidth"
         [ngModelOptions]="{ updateOn: 'blur' }"
         (ngModelChange)="changed($event)">
     </mat-form-field>
@@ -14,8 +14,8 @@
       <input
         matInput
         placeholder="Max Height"
-        [(ngModel)]="field.config.configs.max_height"
-        name="max_width"
+        [(ngModel)]="field.config.configs.maxHeight"
+        name="maxHeight"
         [ngModelOptions]="{ updateOn: 'blur' }"
         (ngModelChange)="changed($event)">
     </mat-form-field>
@@ -24,8 +24,8 @@
       <input
         matInput
         placeholder="Image Quality"
-        [(ngModel)]="field.config.configs.image_quality"
-        name="max_width"
+        [(ngModel)]="field.config.configs.imageQuality"
+        name="imageQuality"
         [ngModelOptions]="{ updateOn: 'blur' }"
         (ngModelChange)="changed($event)">
     </mat-form-field>
@@ -33,14 +33,14 @@
 
   <fs-label-field>
     <fs-label>Allow Multiple</fs-label>
-    <mat-checkbox color="primary" [(ngModel)]="field.config.configs.allow_multiple" (click)="changed()"></mat-checkbox>
+    <mat-checkbox color="primary" [(ngModel)]="field.config.configs.allowMultiple" (click)="changed()"></mat-checkbox>
   </fs-label-field>
 
   <fs-label-field>
     <fs-label>Only Allow File Types</fs-label>
     <div fxFlexLayout="column" fxLayoutGap="20px">
-      <mat-checkbox color="primary" [(ngModel)]="field.config.configs.allowed_file_types.image" (click)="changed()">Image</mat-checkbox>
-      <mat-checkbox color="primary" [(ngModel)]="field.config.configs.allowed_file_types.video" (click)="changed()">Video</mat-checkbox>
+      <mat-checkbox color="primary" [(ngModel)]="field.config.configs.allowedFileTypes.image" (click)="changed()">Image</mat-checkbox>
+      <mat-checkbox color="primary" [(ngModel)]="field.config.configs.allowedFileTypes.video" (click)="changed()">Video</mat-checkbox>
     </div>
   </fs-label-field>
 </div>

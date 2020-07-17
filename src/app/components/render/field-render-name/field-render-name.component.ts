@@ -19,9 +19,9 @@ export class FieldRenderNameComponent extends FieldComponent {
     if (!field.data || !field.data.guid || !field.data.value) {
       field.data = {
         value: {
-          first_name: null,
-          middle_name: null,
-          last_name: null
+          firstName: null,
+          middleName: null,
+          lastName: null
         }
       };
     }
@@ -32,11 +32,11 @@ export class FieldRenderNameComponent extends FieldComponent {
     if (this.field.config.configs.required === true) {
 
       const value = formControl.value;
-      if (!value.first_name) {
+      if (!value.firstName) {
         throw 'First name is required';
       }
 
-      if (!value.last_name) {
+      if (!value.lastName) {
         throw 'Last name is required';
       }
     }

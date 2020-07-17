@@ -3,11 +3,11 @@
   <fs-label>{{field.config.label}}</fs-label>
     <fs-file
       (select)="selectFile($event)"
-      [imageQuality]="field.config.configs.image_quality"
-      [imageWidth]="field.config.configs.max_width"
-      [imageHeight]="field.config.configs.max_height"
+      [imageQuality]="field.config.configs.imageQuality"
+      [imageWidth]="field.config.configs.maxWidth"
+      [imageHeight]="field.config.configs.maxHeight"
       [accept]="allowedTypes"
-      [multiple]="field.config.configs.allow_multiple">
+      [multiple]="field.config.configs.allowMultiple">
     <button *ngIf="!field.config.configs.basic" mat-raised-button type="button" color="primary">Select File</button>
     <button *ngIf="field.config.configs.basic" mat-raised-button type="button">Select File</button>
   </fs-file>

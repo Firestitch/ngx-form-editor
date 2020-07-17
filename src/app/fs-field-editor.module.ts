@@ -15,8 +15,8 @@ import { FsLabelModule } from '@firestitch/label';
 import { FsDateModule } from '@firestitch/date';
 import { FsGalleryModule } from '@firestitch/gallery';
 
-import { FS_FIELD_EDITOR_CONFIG } from './fs-field-editor.providers';
-import { FS_FIELD_EDITOR_ORIGINAL_CONFIG } from './fs-field-editor-original.providers';
+import { FS_FIELD_EDITOR_CONFIG } from './injectors/fs-field-editor.providers';
+import { FS_FIELD_EDITOR_ORIGINAL_CONFIG } from './injectors/fs-field-editor-original.providers';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -34,8 +34,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { FieldEditorComponent } from './components/field-editor/field-editor.component';
 import { FieldRenderTextComponent } from './components/render/field-render-text/field-render-text.component';
-import { FieldHeaderComponent } from './components/field-header/field-header.component';
-import { FieldToolbarComponent } from './components/field-toolbar/field-toolbar.component';
+import { FieldHeaderComponent } from './components/field-editor/field-header/field-header.component';
+import { FieldToolbarComponent } from './components/field-editor/field-toolbar/field-toolbar.component';
 import { FieldRenderOptionsComponent } from './components/render/field-render-options/field-render-options.component';
 import { FieldRenderNameComponent } from './components/render/field-render-name/field-render-name.component';
 import { FieldRenderFileComponent } from './components/render/field-render-file/field-render-file.component';
@@ -185,7 +185,7 @@ export class FsFieldEditorModule {
           provide: FS_FIELD_EDITOR_CONFIG,
           useFactory: defaultConfigFactory,
           deps: [FS_FIELD_EDITOR_ORIGINAL_CONFIG]
-        }
+        },
       ]
     };
   }

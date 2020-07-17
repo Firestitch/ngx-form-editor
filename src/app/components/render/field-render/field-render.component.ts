@@ -1,4 +1,4 @@
-import { Component, Input, AfterViewInit, QueryList, ContentChildren, EventEmitter, Output } from '@angular/core';
+import { Component, Input, AfterViewInit, QueryList, ContentChildren } from '@angular/core';
 import { FieldCoreComponent } from '../../field-core/field-core.component';
 import { FieldRenderDirective } from '../../../directives/field-render/field-render.directive';
 import { ControlContainer, NgForm } from '@angular/forms';

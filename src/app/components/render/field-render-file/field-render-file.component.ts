@@ -46,7 +46,7 @@ export class FieldRenderFileComponent extends FieldComponent implements OnInit {
 
     if (this.config.fileUpload) {
 
-      if (!this.field.config.configs.allow_multiple) {
+      if (!this.field.config.configs.allowMultiple) {
         this.field.data.value = [];
       }
 
@@ -137,7 +137,7 @@ export class FieldRenderFileComponent extends FieldComponent implements OnInit {
 
   public initField(field) {
 
-    const config = get(this.field, 'config.configs.allowed_file_types') || {};
+    const config = get(this.field, 'config.configs.allowedFileTypes') || {};
 
     const types = this._getAllowedTypes(config);
 

@@ -190,9 +190,11 @@ export class FieldEditorComponent extends FieldCoreComponent implements AfterCon
 
       const field = initField(event.item.data.field);
 
-      this.fieldAdd$.emit({ field: field,
-                            toolbarField: event.item.data.item,
-                            event: event });
+      this.fieldAdd$.emit({
+        field: field,
+        toolbarField: event.item.data.item,
+        event: event
+      });
 
       if (this.config.fieldDrop) {
         this.config.fieldDrop(field, event.item.data.item, event);
@@ -200,10 +202,12 @@ export class FieldEditorComponent extends FieldCoreComponent implements AfterCon
 
       this.config.fields.splice(event.currentIndex, 0, field);
 
-      this.fieldAdded$.emit({ field: field,
-                              toolbarField: event.item.data.item,
-                              event: event });
-      }
+      this.fieldAdded$.emit({
+        field: field,
+        toolbarField: event.item.data.item,
+        event: event
+      });
+    }
   }
 
   public ngOnDestroy() {

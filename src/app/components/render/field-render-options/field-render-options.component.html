@@ -1,7 +1,7 @@
 <ng-container [ngSwitch]="field.config.type">
   <ng-container *ngSwitchCase="fieldType.Dropdown">
     <mat-form-field class="subscript-multiline">
-      <mat-select [placeholder]="field.config.label" [(ngModel)]="field.data.value" [required]="field.config.configs.required===true" name="{{name}}_dropdown">
+      <mat-select [placeholder]="field.config.label" [(ngModel)]="field.data.value" [required]="field.config.configs.required===true" name="{{name}}Dropdown">
         <mat-option *ngFor="let option of field.config.configs.options" [value]="option.value">
           {{option.name}}
         </mat-option>
@@ -19,7 +19,7 @@
         wrapperSelector=".field-wrapper"
         labelSelector="false"
         fxLayout="column"
-        name="{{name}}_choice"
+        name="{{name}}Choice"
         [required]="field.config.configs.required===true">
         <mat-radio-button *ngFor="let option of field.config.configs.options; index as idx"
                           [value]="option.value"

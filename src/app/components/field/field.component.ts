@@ -16,7 +16,7 @@ export class FieldComponent implements OnDestroy, OnInit {
   public fieldMode = FieldMode;
   public fieldType = FieldType;
   public field: Field = null;
-  public name = 'field_' + guid();
+  public name = `field-${guid()}`;
   protected $destory = new EventEmitter();
 
   public changed(event?) {

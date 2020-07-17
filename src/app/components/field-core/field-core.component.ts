@@ -2,7 +2,7 @@ import { Component, Input, Inject } from '@angular/core';
 
 import { FieldMode, FieldEditorConfig } from '../../interfaces';
 import { FieldType } from '../../enums';
-import { FS_FIELD_EDITOR_CONFIG } from '../../fs-field-editor.providers';
+import { FS_FIELD_EDITOR_CONFIG } from '../../injectors/fs-field-editor.providers';
 import { initField } from '../../helpers/init-field';
 
 

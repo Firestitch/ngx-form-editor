@@ -45,38 +45,38 @@ export function initField(field) {
     }
 
     if (field.config.type === FieldType.Name) {
-      if (!field.config.configs.first_name) {
-        field.config.configs.first_name = { display: true, label: 'First Name' };
+      if (!field.config.configs.firstName) {
+        field.config.configs.firstName = { display: true, label: 'First Name' };
       }
 
-      if (!field.config.configs.last_name) {
-        field.config.configs.last_name = { display: true, label: 'Last Name' };
+      if (!field.config.configs.lastName) {
+        field.config.configs.lastName = { display: true, label: 'Last Name' };
       }
     }
 
     if (field.config.type === FieldType.File) {
-      if (field.config.configs.max_width === undefined ) {
-        field.config.configs.max_width = 1024;
+      if (field.config.configs.maxWidth === undefined ) {
+        field.config.configs.maxWidth = 1024;
       }
 
-      if (field.config.configs.max_height === undefined ) {
-        field.config.configs.max_height = 768;
+      if (field.config.configs.maxHeight === undefined ) {
+        field.config.configs.maxHeight = 768;
       }
 
-      if (field.config.configs.image_quality === undefined ) {
-        field.config.configs.image_quality = .8;
+      if (field.config.configs.imageQuality === undefined ) {
+        field.config.configs.imageQuality = .8;
       }
 
-      if (field.config.configs.allowed_file_types === undefined ) {
-        field.config.configs.allowed_file_types = {
+      if (field.config.configs.allowedFileTypes === undefined ) {
+        field.config.configs.allowedFileTypes = {
           image: true,
           video: true,
           other: true
         };
       }
 
-      if (field.config.configs.allow_multiple === undefined ) {
-        field.config.configs.allow_multiple = true;
+      if (field.config.configs.allowMultiple === undefined ) {
+        field.config.configs.allowMultiple = true;
       }
     }
 

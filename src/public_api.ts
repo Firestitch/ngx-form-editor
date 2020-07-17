@@ -7,7 +7,7 @@ export { FieldRendererComponent } from './app/components/field-renderer/field-re
 export { FieldViewerComponent } from './app/components/field-viewer/field-viewer.component';
 export { FieldRenderComponent } from './app/components/render/field-render/field-render.component';
 export { FieldViewComponent } from './app/components/field-view/field-view.component';
-export { FS_FIELD_EDITOR_CONFIG } from './app/fs-field-editor.providers';
+export { FS_FIELD_EDITOR_CONFIG } from './app/injectors/fs-field-editor.providers';
 export { FieldEditorConfig } from './app/interfaces/field.interface';
 export { Field } from './app/interfaces/field.interface';
 export { ToolbarItem } from './app/interfaces/field.interface';
