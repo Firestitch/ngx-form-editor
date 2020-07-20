@@ -1,0 +1,33 @@
+<fs-checkbox-group
+  #checkboxes
+  [(ngModel)]="this.field.data.value.selected"
+  [name]="'checkboxes' + name"
+  orientation="vertical"
+  [label]="field.config.label"
+  [fsFormFunction]="validate"
+  messageSelector=".field-message">
+    <mat-checkbox
+      *ngFor="let item of this.field.config.configs.options"
+      [value]="item.value">
+        {{ item.name }}
+    </mat-checkbox>
+    <mat-checkbox
+      *ngIf="field.config.configs.other"
+      [(ngModel)]="field.data.value.other.selected"
+      value="other"
+      (click)="otherCheckboxClick($event)"
+      [name]="'checkboxOther' + name"
+      class="other checkbox">
+      <mat-form-field floatLabel="never" class="subscript-remove">
+        <input
+          matInput
+          placeholder="Other"
+          (click)="otherInputClick($event)"
+          [(ngModel)]="field.data.value.other.value"
+          name="other">
+      </mat-form-field>
+    </mat-checkbox>
+  <fs-label-message class="fs-form-message field-message">
+    <div class="fs-form-hint">{{field.config.description}}</div>
+  </fs-label-message>
+</fs-checkbox-group>

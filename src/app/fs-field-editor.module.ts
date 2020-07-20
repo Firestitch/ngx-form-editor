@@ -1,22 +1,8 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
-
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { DragDropModule } from '@angular/cdk/drag-drop';
-
-import { FsCommonModule } from '@firestitch/common';
-import { FsPromptModule } from '@firestitch/prompt';
-import { FsFormModule } from '@firestitch/form';
-import { FsDatePickerModule } from '@firestitch/datepicker';
-import { FsPhoneModule } from '@firestitch/phone';
-import { FsFileModule } from '@firestitch/file';
-import { FsEditorRichTextModule, FsEditorRendererModule } from '@firestitch/editor';
-import { FsLabelModule } from '@firestitch/label';
-import { FsDateModule } from '@firestitch/date';
-import { FsGalleryModule } from '@firestitch/gallery';
-
-import { FS_FIELD_EDITOR_CONFIG } from './injectors/fs-field-editor.providers';
-import { FS_FIELD_EDITOR_ORIGINAL_CONFIG } from './injectors/fs-field-editor-original.providers';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -30,7 +16,21 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
-import { FlexLayoutModule } from '@angular/flex-layout';
+import { FsCommonModule } from '@firestitch/common';
+import { FsPromptModule } from '@firestitch/prompt';
+import { FsFormModule } from '@firestitch/form';
+import { FsDatePickerModule } from '@firestitch/datepicker';
+import { FsPhoneModule } from '@firestitch/phone';
+import { FsFileModule } from '@firestitch/file';
+import { FsEditorRichTextModule, FsEditorRendererModule } from '@firestitch/editor';
+import { FsLabelModule } from '@firestitch/label';
+import { FsDateModule } from '@firestitch/date';
+import { FsGalleryModule } from '@firestitch/gallery';
+import { FsCheckboxGroupModule } from '@firestitch/checkboxgroup';
+import { FsRadioGroupModule } from '@firestitch/radiogroup';
+
+import { FS_FIELD_EDITOR_CONFIG } from './injectors/fs-field-editor.providers';
+import { FS_FIELD_EDITOR_ORIGINAL_CONFIG } from './injectors/fs-field-editor-original.providers';
 
 import { FieldEditorComponent } from './components/field-editor/field-editor.component';
 import { FieldRenderTextComponent } from './components/render/field-render-text/field-render-text.component';
@@ -62,8 +62,7 @@ import { FieldConfigHeadingComponent } from './components/config/field-config-he
 import { FieldRenderHeadingComponent } from './components/render/field-render-heading/field-render-heading.component';
 import { FieldConfigContentComponent } from './components/config/field-config-content/field-config-content.component';
 import { FieldRenderContentComponent } from './components/render/field-render-content/field-render-content.component';
-import { FieldRenderCheckboxesComponent } from './components/field-render-checkbox/field-render-checkboxes/field-render-checkboxes.component';
-import { FieldRenderCheckboxComponent } from './components/field-render-checkbox/field-render-checkbox.component';
+import { FieldRenderCheckboxComponent } from './components/render/field-render-checkbox/field-render-checkbox.component';
 
 
 export function defaultConfigFactory(config) {
@@ -127,7 +126,9 @@ export function defaultConfigFactory(config) {
     FsEditorRendererModule,
     FsEditorRichTextModule,
     FsFileModule,
-    FsPromptModule
+    FsPromptModule,
+    FsCheckboxGroupModule,
+    FsRadioGroupModule,
   ],
   exports: [
     FieldEditorComponent,
@@ -168,7 +169,6 @@ export function defaultConfigFactory(config) {
     FieldConfigContentComponent,
     FieldRenderContentComponent,
     FieldRenderCheckboxComponent,
-    FieldRenderCheckboxesComponent
   ],
   providers: [
     NgForm

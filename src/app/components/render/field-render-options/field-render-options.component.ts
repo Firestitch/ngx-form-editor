@@ -1,20 +1,38 @@
-import { Component, ChangeDetectionStrategy, SkipSelf } from '@angular/core';
+import { Component, ViewChild, OnInit } from '@angular/core';
+import { ControlContainer, NgForm, NgModel } from '@angular/forms';
 
 import { FieldComponent } from '../../field/field.component';
-import { ControlContainer, NgForm } from '@angular/forms';
-
 
 @Component({
   selector: 'fs-field-render-options',
   templateUrl: 'field-render-options.component.html',
-  styleUrls: [ 'field-render-options.component.scss' ],
-  viewProviders: [ { provide: ControlContainer, useExisting: NgForm } ]
+  styleUrls: ['field-render-options.component.scss'],
+  viewProviders: [{ provide: ControlContainer, useExisting: NgForm }]
 })
-export class FieldRenderOptionsComponent extends FieldComponent {
+export class FieldRenderOptionsComponent extends FieldComponent implements OnInit {
 
-  public newOption = '';
+  @ViewChild('radiobuttons', { read: NgModel }) public radiobuttons: NgModel;
 
-  otherSelected(field, value) {
-    field.data.value.other.selected = value;
+  public selected;
+
+  public ngOnInit(): void {
+    super.ngOnInit();
+    this.selected = this.field.data.value.selected;
+  }
+
+  public otherInputClick(event: KeyboardEvent) {
+    this.selected = 'other';
+    this.radioChange(this.selected);
+  }
+
+  public radioChange(value) {
+    this.field.data.value.other.selected = value === 'other';
+    this.field.data.value.selected = value === 'other' ? null : value;
+  }
+
+  public validate = () => {
+    if (this.field.config.configs.required === true && !this.radiobuttons.value) {
+      throw 'This field is required';
+    }
   }
 }
