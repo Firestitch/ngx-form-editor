@@ -21,7 +21,8 @@
         [label]="field.config.label"
         [name]="'choices' + name"
         [fsFormFunction]="validate"
-        messageSelector=".field-message"
+        [attr.validation-required]="this.field.config.configs.required"
+        messageSelector=".fs-form-message"
         orientation="vertical">
       <mat-radio-button
         *ngFor="let item of field.config.configs.options"
@@ -41,7 +42,5 @@
             name="other">
         </mat-form-field>
       </mat-radio-button>
-      <fs-label-message class="fs-form-message field-message">
-        <div class="fs-form-hint">{{field.config.description}}</div>
-      </fs-label-message>
+      <mat-hint>{{field.config.description}}</mat-hint>
     </fs-radio-group>

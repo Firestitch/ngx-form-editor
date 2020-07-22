@@ -25,6 +25,11 @@ mat-checkbox {
     position: relative;
   }
 
+  [validation-required='true'] .fs-form-label:after {
+    content: ' *';
+    display: contents;
+  }
+
   .other {
 
     mat-form-field {
