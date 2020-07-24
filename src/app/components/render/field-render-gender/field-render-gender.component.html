@@ -1,19 +1,12 @@
-<fs-label-field>
-  <fs-label>{{field.config.label}}</fs-label>
-  <mat-radio-group
-    fxLayout="column"
+<fs-radio-group
     [(ngModel)]="field.data.value"
-    name="{{name}}Gender"
-    messageSelector=".field-message"
-    wrapperSelector=".fs-label-field"
-    [appendMessageClass]="false"
-    [required]="field.config.configs.required===true">
-    <mat-radio-button
-      *ngFor="let gender of field.config.configs.genders"
-      [value]="gender.value">{{gender.name}}
-    </mat-radio-button>
-  </mat-radio-group>
-  <fs-label-message class="fs-form-message field-message">
-    <div class="fs-form-hint">{{field.config.description}}</div>
-  </fs-label-message>
-</fs-label-field>
+    [label]="field.config.label"
+    [name]="'gender' + name"
+    [required]="field.config.configs.required===true"
+    orientation="vertical">
+  <mat-radio-button
+    *ngFor="let gender of field.config.configs.genders"
+    [value]="gender.value">{{gender.name}}
+  </mat-radio-button>
+  <mat-hint>{{field.config.description}}</mat-hint>
+</fs-radio-group>

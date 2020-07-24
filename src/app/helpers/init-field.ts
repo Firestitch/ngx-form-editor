@@ -85,8 +85,7 @@ export function initField(field) {
         field.config.configs.genders = [
           { name: 'Male', value: 'male' },
           { name: 'Female', value: 'female' },
-          { name: 'Transgender', value: 'transgender' },
-          { name: 'Prefer not to say', value: 'not_specified' }
+          { name: 'Other', value: 'other' },
         ];
       }
     }
