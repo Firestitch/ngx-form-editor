@@ -2,7 +2,13 @@
   <div fxFlexLayout="row" fxLayoutAlign="start center">
     <div fxFlex>
       <mat-form-field floatLabel="never" class="label">
-        <input matInput placeholder="Label" [(ngModel)]="field.config.label" name="label" [ngModelOptions]="{ updateOn: 'blur' }" (ngModelChange)="changed($event)">
+        <input
+          matInput
+          placeholder="Label"
+          [(ngModel)]="field.config.label"
+          name="label"
+          [ngModelOptions]="{ updateOn: 'blur' }"
+          (ngModelChange)="changed.emit(field)">
       </mat-form-field>
     </div>
     <button *ngIf="showRequired"
@@ -53,7 +59,7 @@
       [(ngModel)]="field.config.description"
       name="description"
       [ngModelOptions]="{ updateOn: 'blur' }"
-      (ngModelChange)="changed($event)">
+      (ngModelChange)="changed.emit(field)">
     </textarea>
   </mat-form-field>
 </div>

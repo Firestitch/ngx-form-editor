@@ -22,6 +22,7 @@ export class FieldRenderCheckboxComponent extends FieldComponent {
     event.preventDefault();
     this.field.data.value.other.selected = !this.field.data.value.other.selected;
     this.checkboxes.control.updateValueAndValidity();
+    this.changed.emit(this.field);
   }
 
   public validate = () => {

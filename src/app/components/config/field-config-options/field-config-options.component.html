@@ -13,7 +13,7 @@
       </ng-container>
 
       <mat-form-field floatLabel="never" class="option-label" fxFlex>
-        <input matInput placeholder="Label" [(ngModel)]="option.name" name="label" [ngModelOptions]="{ updateOn: 'blur' }" (ngModelChange)="changed($event)">
+        <input matInput placeholder="Label" [(ngModel)]="option.name" name="label" [ngModelOptions]="{ updateOn: 'blur' }" (ngModelChange)="changed.emit(field)">
       </mat-form-field>
 
       <button button mat-icon-button type="button" (click)="removeOption(idx)"><mat-icon>delete</mat-icon></button>

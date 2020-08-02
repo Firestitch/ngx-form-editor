@@ -1,8 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 
 import { FsPrompt } from '@firestitch/prompt';
-
 import { guid } from '@firestitch/common';
+
 import { FieldComponent } from '../../field/field.component';
 import { FieldEditorComponent } from '..';
 import { cloneDeep } from 'lodash-es';
@@ -29,12 +29,12 @@ export class FieldHeaderComponent extends FieldComponent implements OnInit {
 
   toggleRequired() {
     this.field.config.configs.required = !this.field.config.configs.required;
-    this.fieldEditor.fieldChanged$.emit(this.field);
+    this.changed.emit(this.field);
   }
 
   toggleDescriptionNote() {
     this.field.config.hasDescriptionNote = !this.field.config.hasDescriptionNote;
-    this.fieldEditor.fieldChanged$.emit(this.field);
+    this.changed.emit(this.field);
   }
 
   copy(event: Event) {
@@ -46,11 +46,11 @@ export class FieldHeaderComponent extends FieldComponent implements OnInit {
 
     copiedField.config.guid = guid();
     copiedField.data = {};
-    this.fieldEditor.fieldDuplicate$.emit(copiedField);
+    this.fieldEditor.fieldDuplicate.emit(copiedField);
 
     this.fieldEditor.config.fields.splice(idx, 0, copiedField);
     this.fieldEditor.selectField(copiedField);
-    this.fieldEditor.fieldDuplicated$.emit(copiedField);
+    this.fieldEditor.fieldDuplicated.emit(copiedField);
   }
 
   close(e) {
@@ -68,7 +68,7 @@ export class FieldHeaderComponent extends FieldComponent implements OnInit {
     }).subscribe((value) => {
         this.fieldEditor.config.fields.splice(this.fieldEditor.config.fields.indexOf(this.field), 1);
         this.fieldEditor.unselectField();
-        this.fieldEditor.fieldRemoved$.emit({ field: this.field, event: event });
+        this.fieldEditor.fieldRemoved.emit({ field: this.field, event: event });
     });
   }
 

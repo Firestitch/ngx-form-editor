@@ -1,5 +1,6 @@
 <fs-editor-rich-text
   [(ngModel)]="field.data.value"
+  (ngModelChange)="changed.emit(field)"
   [options]="options"
   [label]="field.config.label"
   [hint]="field.config.description"

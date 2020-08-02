@@ -1,16 +1,6 @@
 import { FieldType } from '../enums';
 import { Observable } from 'rxjs';
 
-export enum FieldMode {
-  Edit = 'edit',
-  Render = 'render',
-  View = 'view',
-}
-
-export enum FieldState {
-  Active = 'active',
-  Deleted = 'delete',
-}
 
 export interface Field {
   config: {
@@ -29,7 +19,7 @@ export interface FieldEditorConfig {
   fields?: Field[],
   toolbar?: Toolbar,
   fieldDrop?: Function,
-  fieldChanged?: Function,
+  fieldChanged?: (field?: Field) => void,
   fieldAdd?: Function,
   fieldAdded?: Function,
   fieldSelected?: Function,
@@ -47,6 +37,7 @@ export interface FieldEditorConfig {
 
 export interface FieldRendererConfig {
   fields?: Field[],
+  fieldChanged?: (field?: Field) => void,
 }
 
 export interface Toolbar {

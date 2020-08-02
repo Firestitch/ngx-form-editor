@@ -28,6 +28,7 @@ export class FieldRenderAddressComponent extends FieldComponent {
     const country = filter(this.countries, { code: this.field.data.country })[0];
     this.regions = country  && country.regions ? country.regions : [];
     this.updateCountryRegionLabels(country);
+    this.changed.emit(this.field);
   }
 
   public changeRegion() {

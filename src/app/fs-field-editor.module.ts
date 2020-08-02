@@ -36,7 +36,8 @@ import { FieldEditorComponent } from './components/field-editor/field-editor.com
 import { FieldRenderTextComponent } from './components/render/field-render-text/field-render-text.component';
 import { FieldHeaderComponent } from './components/field-editor/field-header/field-header.component';
 import { FieldToolbarComponent } from './components/field-editor/field-toolbar/field-toolbar.component';
-import { FieldRenderOptionsComponent } from './components/render/field-render-options/field-render-options.component';
+import { FieldRenderChoiceComponent } from './components/render/field-render-choice/field-render-choice.component';
+import { FieldRenderDropdownComponent } from './components/render/field-render-dropdown/field-render-dropdown.component';
 import { FieldRenderNameComponent } from './components/render/field-render-name/field-render-name.component';
 import { FieldRenderFileComponent } from './components/render/field-render-file/field-render-file.component';
 import { FieldRenderGenderComponent } from './components/render/field-render-gender/field-render-gender.component';
@@ -143,7 +144,8 @@ export function defaultConfigFactory(config) {
     FieldEditorComponent,
     FieldRendererComponent,
     FieldViewerComponent,
-    FieldRenderOptionsComponent,
+    FieldRenderChoiceComponent,
+    FieldRenderDropdownComponent,
     FieldToolbarComponent,
     FieldHeaderComponent,
     FieldRenderTextComponent,

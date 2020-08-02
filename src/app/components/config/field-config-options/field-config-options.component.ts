@@ -1,12 +1,12 @@
 import { Component, Input, ViewChild, ElementRef } from '@angular/core';
 
-import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+
 import { FsPrompt } from '@firestitch/prompt';
 import { guid } from '@firestitch/common';
 
 import { FieldEditorComponent } from '../../field-editor';
 import { FieldComponent } from '../../field/field.component';
-
 
 @Component({
   selector: 'fs-field-config-options',
@@ -46,12 +46,12 @@ export class FieldConfigOptionsComponent extends FieldComponent {
     }
 
     this._addOptionInput.nativeElement.focus();
-    this.changed();
+    this.changed.emit(this.field);
   }
 
   otherToggle() {
     this.field.config.configs.other = !this.field.config.configs.other;
-    this.changed();
+    this.changed.emit(this.field);
   }
 
   removeOption(index: number) {
@@ -60,12 +60,12 @@ export class FieldConfigOptionsComponent extends FieldComponent {
       template: 'Are you sure you would like to remove this option?',
     }).subscribe((value) => {
         this.field.config.configs.options.splice(index, 1);
-        this.changed();
+        this.changed.emit(this.field);
     });
   }
 
   drop(event: CdkDragDrop<string[]>) {
     moveItemInArray(this.field.config.configs.options, event.previousIndex, event.currentIndex);
-    this.changed();
+    this.changed.emit(this.field);
   }
 }

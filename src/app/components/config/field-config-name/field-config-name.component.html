@@ -1,6 +1,6 @@
 <div class="options">
   <div fxFlexLayout="row" fxLayoutAlign="start center">
-    <mat-checkbox color="primary" [(ngModel)]="field.config.configs.firstName.display" (ngModelChange)="changed()"></mat-checkbox>
+    <mat-checkbox color="primary" [(ngModel)]="field.config.configs.firstName.display" (ngModelChange)="changed.emit(field)"></mat-checkbox>
 
     <mat-form-field floatLabel="never" fxFlex>
       <input
@@ -10,12 +10,12 @@
         [disabled]="!field.config.configs.firstName.display"
         name="firstName"
         [ngModelOptions]="{ updateOn: 'blur' }"
-        (ngModelChange)="changed($event)">
+        (ngModelChange)="changed.emit(field)">
     </mat-form-field>
   </div>
 
   <div fxFlexLayout="row" fxLayoutAlign="start center">
-    <mat-checkbox color="primary" [(ngModel)]="field.config.configs.lastName.display" (ngModelChange)="changed()"></mat-checkbox>
+    <mat-checkbox color="primary" [(ngModel)]="field.config.configs.lastName.display" (ngModelChange)="changed.emit(field)"></mat-checkbox>
 
     <mat-form-field floatLabel="never" fxFlex>
       <input
@@ -25,7 +25,7 @@
         [disabled]="!field.config.configs.lastName.display"
         name="lastName"
         [ngModelOptions]="{ updateOn: 'blur' }"
-        (ngModelChange)="changed($event)">
+        (ngModelChange)="changed.emit(field)">
     </mat-form-field>
   </div>
 </div>

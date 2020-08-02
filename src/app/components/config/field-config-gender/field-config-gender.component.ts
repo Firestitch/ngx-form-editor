@@ -34,7 +34,7 @@ export class FieldConfigGenderComponent extends FieldComponent {
     this.newOption = '';
 
     this._addOptionInput.nativeElement.focus();
-    this.changed();
+    this.changed.emit(this.field);
   }
 
   remove(index: number) {
@@ -43,12 +43,12 @@ export class FieldConfigGenderComponent extends FieldComponent {
       template: 'Are you sure you would like to remove this gender?',
     }).subscribe((value) => {
         this.field.config.configs.genders.splice(index, 1);
-        this.changed();
+        this.changed.emit(this.field);
     });
   }
 
   drop(event: CdkDragDrop<string[]>) {
     moveItemInArray(this.field.config.configs.genders, event.previousIndex, event.currentIndex);
-    this.changed();
+    this.changed.emit(this.field);
   }
 }

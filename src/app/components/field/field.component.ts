@@ -1,27 +1,26 @@
-import { Component, Input, EventEmitter, OnInit, OnDestroy } from '@angular/core';
+import { Component, Input, EventEmitter, OnInit, OnDestroy, Output } from '@angular/core';
 
 import { guid } from '@firestitch/common';
 
 import { initField } from './../../helpers/init-field';
-import { Field, FieldMode } from '../../interfaces';
-import { FieldType } from '../../enums';
+import { Field } from '../../interfaces';
+import { FieldType, FieldMode } from '../../enums';
 import { FieldEditorComponent } from '../field-editor';
 
 
 @Component({
-  template: ''
+  template: '',
 })
 export class FieldComponent implements OnDestroy, OnInit {
+
+  @Output() changed = new EventEmitter();
 
   public fieldMode = FieldMode;
   public fieldType = FieldType;
   public field: Field = null;
   public name = `field-${guid()}`;
-  protected $destory = new EventEmitter();
 
-  public changed(event?) {
-    this.fieldEditor.fieldChanged$.emit({ field: this.field, event: event });
-  }
+  protected $destory = new EventEmitter();
 
   @Input('field') set _field(field: Field) {
     this.setField(field);

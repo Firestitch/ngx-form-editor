@@ -1,8 +1,10 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ControlContainer, NgForm } from '@angular/forms';
 
+import { takeUntil } from 'rxjs/operators';
+
 import { FieldCoreComponent } from '../field-core';
-import { FieldRendererConfig } from './../../interfaces/field.interface';
+import { FieldRendererConfig, Field } from './../../interfaces';
 
 @Component({
   selector: 'fs-field-renderer',
@@ -10,6 +12,19 @@ import { FieldRendererConfig } from './../../interfaces/field.interface';
   styleUrls: [ 'field-renderer.component.scss' ],
   viewProviders: [ { provide: ControlContainer, useExisting: NgForm } ],
 })
-export class FieldRendererComponent extends FieldCoreComponent {
-  @Input() config: FieldRendererConfig;
+export class FieldRendererComponent extends FieldCoreComponent implements OnInit {
+
+  @Input() public config: FieldRendererConfig;
+
+  public ngOnInit(): void {
+    this.fieldChanged
+      .pipe(
+        takeUntil(this._destroy$)
+      )
+      .subscribe((item: Field) => {
+        if (this.config.fieldChanged) {
+          this.config.fieldChanged(item);
+        }
+      });
+  }
 }

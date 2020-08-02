@@ -10,7 +10,7 @@
       <mat-radio-button disabled="true"></mat-radio-button>
 
       <mat-form-field floatLabel="never" class="gender-name" fxFlex>
-        <input matInput placeholder="Label" [(ngModel)]="gender.name" name="label" [ngModelOptions]="{ updateOn: 'blur' }" (ngModelChange)="changed($event)">
+        <input matInput placeholder="Label" [(ngModel)]="gender.name" name="label" [ngModelOptions]="{ updateOn: 'blur' }" (ngModelChange)="changed.emit(field)">
       </mat-form-field>
       <button button mat-icon-button type="button" (click)="remove(idx)"><mat-icon>delete</mat-icon></button>
     </div>

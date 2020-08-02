@@ -7,6 +7,7 @@ import {  Component,
   Output,
   AfterContentInit,
   OnDestroy,
+  OnInit,
 } from '@angular/core';
 
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
@@ -24,17 +25,16 @@ import { takeUntil } from 'rxjs/operators';
   templateUrl: 'field-editor.component.html',
   styleUrls: [ 'field-editor.component.scss' ]
 })
-export class FieldEditorComponent extends FieldCoreComponent implements AfterContentInit, OnDestroy {
+export class FieldEditorComponent extends FieldCoreComponent implements AfterContentInit, OnInit {
 
-  @Output('fieldSelected') fieldSelected$ = new EventEmitter();
-  @Output('fieldUnselected') fieldUnselected$ = new EventEmitter();
-  @Output('fieldChanged')  fieldChanged$ = new EventEmitter();
-  @Output('fieldAdded')  fieldAdded$ = new EventEmitter();
-  @Output('fieldAdd')  fieldAdd$ = new EventEmitter();
-  @Output('fieldMoved')  fieldMoved$ = new EventEmitter();
-  @Output('fieldDuplicate')  fieldDuplicate$ = new EventEmitter();
-  @Output('fieldDuplicated')  fieldDuplicated$ = new EventEmitter();
-  @Output('fieldRemoved')  fieldRemoved$ = new EventEmitter();
+  @Output() public fieldSelected = new EventEmitter();
+  @Output() public fieldUnselected = new EventEmitter();
+  @Output() public fieldAdded = new EventEmitter();
+  @Output() public fieldAdd = new EventEmitter();
+  @Output() public fieldMoved = new EventEmitter();
+  @Output() public fieldDuplicate = new EventEmitter();
+  @Output() public fieldDuplicated = new EventEmitter();
+  @Output() public fieldRemoved = new EventEmitter();
 
   @ContentChildren(FieldConfigDirective) queryListFieldConfig: QueryList<FieldConfigDirective>;
   @ContentChildren(FieldRenderDirective) queryListFieldRender: QueryList<FieldRenderDirective>;
@@ -48,32 +48,28 @@ export class FieldEditorComponent extends FieldCoreComponent implements AfterCon
   public fieldConfigTemplateRefs = {};
   public fieldRenderTemplateRefs = {};
 
-  private _destroy$ = new Subject();
-
-  constructor(private elRef: ElementRef) {
-    super(null);
-  }
-
   public ngAfterContentInit() {
     this.queryListFieldConfig.forEach((directive: FieldConfigDirective) => {
       this.fieldConfigTemplateRefs[directive.type] = directive.templateRef;
-      });
-
-      this.queryListFieldRender.forEach((directive: FieldRenderDirective) => {
-      this.fieldRenderTemplateRefs[directive.type] = directive.templateRef;
     });
 
-    this.fieldChanged$
+    this.queryListFieldRender.forEach((directive: FieldRenderDirective) => {
+      this.fieldRenderTemplateRefs[directive.type] = directive.templateRef;
+    });
+  }
+
+  public ngOnInit(): void {
+    this.fieldChanged
     .pipe(
       takeUntil(this._destroy$)
     )
-    .subscribe(item => {
+    .subscribe((item: Field) => {
       if (this.config.fieldChanged) {
         this.config.fieldChanged(item);
       }
     });
 
-    this.fieldAdd$
+    this.fieldAdd
     .pipe(
       takeUntil(this._destroy$)
     )
@@ -83,7 +79,7 @@ export class FieldEditorComponent extends FieldCoreComponent implements AfterCon
       }
     });
 
-    this.fieldAdded$
+    this.fieldAdded
     .pipe(
       takeUntil(this._destroy$)
     )
@@ -93,7 +89,7 @@ export class FieldEditorComponent extends FieldCoreComponent implements AfterCon
       }
     });
 
-    this.fieldSelected$
+    this.fieldSelected
     .pipe(
       takeUntil(this._destroy$)
     )
@@ -103,7 +99,7 @@ export class FieldEditorComponent extends FieldCoreComponent implements AfterCon
       }
     });
 
-    this.fieldUnselected$
+    this.fieldUnselected
     .pipe(
       takeUntil(this._destroy$)
     )
@@ -113,7 +109,7 @@ export class FieldEditorComponent extends FieldCoreComponent implements AfterCon
       }
     });
 
-    this.fieldMoved$
+    this.fieldMoved
     .pipe(
       takeUntil(this._destroy$)
     )
@@ -123,7 +119,7 @@ export class FieldEditorComponent extends FieldCoreComponent implements AfterCon
       }
     });
 
-    this.fieldDuplicate$
+    this.fieldDuplicate
     .pipe(
       takeUntil(this._destroy$)
     )
@@ -133,7 +129,7 @@ export class FieldEditorComponent extends FieldCoreComponent implements AfterCon
       }
     });
 
-    this.fieldDuplicated$
+    this.fieldDuplicated
     .pipe(
       takeUntil(this._destroy$)
     )
@@ -143,7 +139,7 @@ export class FieldEditorComponent extends FieldCoreComponent implements AfterCon
       }
     });
 
-    this.fieldRemoved$
+    this.fieldRemoved
     .pipe(
       takeUntil(this._destroy$)
     )
@@ -166,7 +162,7 @@ export class FieldEditorComponent extends FieldCoreComponent implements AfterCon
 
   public unselectField() {
     this.selectedField = null;
-    this.fieldUnselected$.emit(null);
+    this.fieldUnselected.emit(null);
   }
 
   public selectField(field: Field) {
@@ -176,7 +172,7 @@ export class FieldEditorComponent extends FieldCoreComponent implements AfterCon
     }
 
     this.selectedField = field;
-    this.fieldSelected$.emit(field);
+    this.fieldSelected.emit(field);
   }
 
   public drop(event: CdkDragDrop<string[]>) {
@@ -184,13 +180,13 @@ export class FieldEditorComponent extends FieldCoreComponent implements AfterCon
     if (event.container === event.previousContainer) {
 
       moveItemInArray(this.config.fields, event.previousIndex, event.currentIndex);
-      this.fieldMoved$.emit({ event: event });
+      this.fieldMoved.emit({ event: event });
 
     } else {
 
       const field = initField(event.item.data.field);
 
-      this.fieldAdd$.emit({
+      this.fieldAdd.emit({
         field: field,
         toolbarField: event.item.data.item,
         event: event
@@ -202,17 +198,12 @@ export class FieldEditorComponent extends FieldCoreComponent implements AfterCon
 
       this.config.fields.splice(event.currentIndex, 0, field);
 
-      this.fieldAdded$.emit({
+      this.fieldAdded.emit({
         field: field,
         toolbarField: event.item.data.item,
         event: event
       });
     }
-  }
-
-  public ngOnDestroy() {
-    this._destroy$.next();
-    this._destroy$.complete();
   }
 
 }

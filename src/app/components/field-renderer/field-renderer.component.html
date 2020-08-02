@@ -1,5 +1,8 @@
-<div fxLayout="column" fxLayoutAlign="start start">
-  <ng-container *ngFor="let field of config.fields">
-    <fs-field-render [field]="field" [config]="config"></fs-field-render>
-  </ng-container>
+<div *ngFor="let field of config.fields">
+  <fs-field-render
+    [attr.data-guid]="field.config.guid"
+    [field]="field"
+    [config]="config"
+    (fieldChanged)="fieldChanged.emit($event)">
+  </fs-field-render>
 </div>

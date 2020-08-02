@@ -5,6 +5,7 @@ import { DialogExampleComponent } from '../dialog-example';
 import { FsApi } from '@firestitch/api';
 import { map } from 'rxjs/operators';
 import { of } from 'rxjs';
+import { Field } from 'package/public_api';
 
 
 @Component({
@@ -36,8 +37,8 @@ export class ExampleComponent implements OnInit {
           field.config.configs.showRequired = false;
         }
       },
-      fieldChanged: () => {
-        console.log('Field Changed');
+      fieldChanged: (field: Field) => {
+        console.log('Field Changed', field);
       },
       fieldAdd: () => {
         console.log('Field Add');
@@ -304,7 +305,7 @@ export class ExampleComponent implements OnInit {
   }
 
   shareChange() {
-    this.fieldEditor.fieldChanged$.emit();
+    this.fieldEditor.fieldChanged.emit();
   }
 
   save() {

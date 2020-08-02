@@ -2,6 +2,7 @@
     #checkboxes
     [(ngModel)]="this.field.data.value.selected"
     [name]="'checkboxes' + name"
+    (ngModelChange)="changed.emit(field)"
     orientation="vertical"
     [label]="field.config.label"
     [fsFormFunction]="validate"
@@ -25,6 +26,7 @@
         placeholder="Other"
         (click)="otherInputClick($event)"
         [(ngModel)]="field.data.value.other.value"
+        (ngModelChange)="changed.emit(field)"
         name="other">
     </mat-form-field>
   </mat-checkbox>

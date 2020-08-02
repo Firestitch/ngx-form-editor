@@ -2,6 +2,7 @@
   [fsFormFunction]="validate"
   messageSelector="fs-form-message"
   labelSelector="disable-label-selector"
+  (ngModelChange)="changed.emit(field)"
   name="{{name}}LastName"
   [field]="field"
   [(ngModel)]="field.data.value">

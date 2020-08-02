@@ -25,19 +25,19 @@
       </ng-container>
 
       <ng-container *ngSwitchCase="fieldType.Choice">
-        <ng-container *ngTemplateOutlet="fsFieldOptions"></ng-container>
+        <fs-field-render-choice [field]="field" (changed)="fieldChanged.emit($event)"></fs-field-render-choice>
       </ng-container>
 
       <ng-container *ngSwitchCase="fieldType.Dropdown">
-        <ng-container *ngTemplateOutlet="fsFieldOptions"></ng-container>
+        <fs-field-render-dropdown [field]="field" (changed)="fieldChanged.emit($event)"></fs-field-render-dropdown>
       </ng-container>
 
       <ng-container *ngSwitchCase="fieldType.Checkbox">
-        <fs-field-render-checkbox [field]="field"></fs-field-render-checkbox>
+        <fs-field-render-checkbox [field]="field" (changed)="fieldChanged.emit($event)"></fs-field-render-checkbox>
       </ng-container>
 
       <ng-container *ngSwitchCase="fieldType.Name">
-        <fs-field-render-name [field]="field"></fs-field-render-name>
+        <fs-field-render-name [field]="field" (changed)="fieldChanged.emit($event)"></fs-field-render-name>
       </ng-container>
 
       <ng-container *ngSwitchCase="fieldType.Heading">
@@ -49,15 +49,15 @@
       </ng-container>
 
       <ng-container *ngSwitchCase="fieldType.RichText">
-        <fs-field-render-rich-text [field]="field" [config]="config"></fs-field-render-rich-text>
+        <fs-field-render-rich-text [field]="field" [config]="config" (changed)="fieldChanged.emit($event)"></fs-field-render-rich-text>
       </ng-container>
 
       <ng-container *ngSwitchCase="fieldType.Gender">
-        <fs-field-render-gender [field]="field"></fs-field-render-gender>
+        <fs-field-render-gender [field]="field" (changed)="fieldChanged.emit($event)"></fs-field-render-gender>
       </ng-container>
 
       <ng-container *ngSwitchCase="fieldType.Address">
-        <fs-field-render-address [field]="field"></fs-field-render-address>
+        <fs-field-render-address [field]="field" (changed)="fieldChanged.emit($event)"></fs-field-render-address>
       </ng-container>
 
       <ng-container *ngSwitchCase="fieldType.Content">
@@ -69,11 +69,8 @@
       </ng-container>
 
       <ng-template #fsFieldText>
-        <fs-field-render-text [field]="field"></fs-field-render-text>
+        <fs-field-render-text [field]="field" (changed)="fieldChanged.emit($event)"></fs-field-render-text>
       </ng-template>
 
-      <ng-template #fsFieldOptions>
-        <fs-field-render-options [field]="field"></fs-field-render-options>
-      </ng-template>
     </ng-container>
   </div>

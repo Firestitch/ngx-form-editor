@@ -2,6 +2,7 @@
     [(ngModel)]="field.data.value"
     [label]="field.config.label"
     [name]="'gender' + name"
+    (ngModelChange)="changed.emit(field)"
     [required]="field.config.configs.required===true"
     orientation="vertical">
   <mat-radio-button

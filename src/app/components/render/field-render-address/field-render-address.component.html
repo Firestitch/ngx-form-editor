@@ -6,6 +6,7 @@
         [placeholder]="field.config.configs.street.label"
         [required]="field.config.configs.street.required"
         [(ngModel)]="field.data.street"
+        (ngModelChange)="changed.emit(field)"
         name="street">
     </mat-form-field>
     <mat-form-field *ngIf="field.config.configs.address2.enabled">
@@ -14,6 +15,7 @@
         [placeholder]="field.config.configs.address2.label"
         [required]="field.config.configs.address2.required"
         [(ngModel)]="field.data.address2"
+        (ngModelChange)="changed.emit(field)"
         name="address2">
     </mat-form-field>
     <mat-form-field *ngIf="field.config.configs.city.enabled">
@@ -22,6 +24,7 @@
         [placeholder]="field.config.configs.city.label"
         [required]="field.config.configs.city.required"
         [(ngModel)]="field.data.city"
+        (ngModelChange)="changed.emit(field)"
         name="city">
     </mat-form-field>
 
@@ -32,6 +35,7 @@
         *ngIf="regions.length"
         [(ngModel)]="field.data.region"
         [required]="field.config.configs.region.required"
+        (ngModelChange)="changed.emit(field)"
         name="region"
         (change)="changeRegion()">
         <mat-option *ngFor="let region of regions" [value]="region.code">
@@ -43,6 +47,7 @@
         matInput
         [(ngModel)]="field.data.region"
         [required]="field.config.configs.region.required"
+        (ngModelChange)="changed.emit(field)"
         name="region"
         [placeholder]="regionLabel"
         autocomplete="off">
@@ -54,6 +59,7 @@
         [placeholder]="zipLabel"
         [required]="field.config.configs.zip.required"
         [(ngModel)]="field.data.zip"
+        (ngModelChange)="changed.emit(field)"
         name="zip">
     </mat-form-field>
 

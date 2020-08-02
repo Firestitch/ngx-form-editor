@@ -1,0 +1,31 @@
+<fs-radio-group
+    #radiobuttons
+    [(ngModel)]="selected"
+    (ngModelChange)="radioChange($event)"
+    [label]="field.config.label"
+    [name]="'choices' + name"
+    [fsFormFunction]="validate"
+    [attr.validation-required]="this.field.config.configs.required"
+    messageSelector=".fs-form-message"
+    orientation="vertical">
+  <mat-radio-button
+    *ngFor="let item of field.config.configs.options"
+    [value]="item.value">
+      {{ item.name }}
+  </mat-radio-button>
+  <mat-radio-button
+    *ngIf="field.config.configs.other"
+    value="other"
+    class="other choice">
+    <mat-form-field floatLabel="never" class="subscript-remove">
+      <input
+        matInput
+        placeholder="Other"
+        (click)="otherInputClick($event)"
+        (ngModelChange)="changed.emit(field)"
+        [(ngModel)]="field.data.value.other.value"
+        name="other">
+    </mat-form-field>
+  </mat-radio-button>
+  <mat-hint>{{field.config.description}}</mat-hint>
+</fs-radio-group>

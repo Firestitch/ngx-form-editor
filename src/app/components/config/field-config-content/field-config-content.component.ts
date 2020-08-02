@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
-import { FieldComponent } from '../../field/field.component';
 import { FsEditorRichTextOptions } from '@firestitch/editor';
-import { of } from 'rxjs';
 
+import { FieldComponent } from '../../field/field.component';
 
 @Component({
   selector: 'fs-field-config-content',
@@ -11,6 +10,7 @@ import { of } from 'rxjs';
   styleUrls: [ 'field-config-content.component.scss' ],
 })
 export class FieldConfigContentComponent extends FieldComponent implements OnInit {
+
   public options: FsEditorRichTextOptions = {};
 
   ngOnInit() {
@@ -24,4 +24,5 @@ export class FieldConfigContentComponent extends FieldComponent implements OnIni
       }
     }
   }
+
 }

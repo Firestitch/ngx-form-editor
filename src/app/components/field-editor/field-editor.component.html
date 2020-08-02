@@ -23,11 +23,13 @@
             </button>
           </div>
 
-          <fs-field-header  *ngIf="selectedField===field"
-                            [field]="field"
-                            [fieldEditor]="fieldEditor"
-                            [showRequired]="field.config.configs.showRequired!==false && field.config.type!==fieldType.Address && field.config.type!==fieldType.Heading && field.config.type!==fieldType.Content && field.config.type!==fieldType.File"
-                            [showDescription]="field.config.configs.showDescription!==false && field.config.type!==fieldType.Heading && field.config.type!==fieldType.Content">
+          <fs-field-header
+            *ngIf="selectedField===field"
+            [field]="field"
+            [fieldEditor]="fieldEditor"
+            (changed)="fieldChanged.emit($event)"
+            [showRequired]="field.config.configs.showRequired!==false && field.config.type!==fieldType.Address && field.config.type!==fieldType.Heading && field.config.type!==fieldType.Content && field.config.type!==fieldType.File"
+            [showDescription]="field.config.configs.showDescription!==false && field.config.type!==fieldType.Heading && field.config.type!==fieldType.Content">
           </fs-field-header>
 
           <ng-container [ngSwitch]="field.config.type">
@@ -56,20 +58,35 @@
             </ng-container>
 
             <ng-container *ngSwitchCase="fieldType.Choice">
-              <ng-container *ngTemplateOutlet="fsFieldOptions"></ng-container>
+              <ng-container *ngIf="selectedField===field; else elseChoice">
+                <fs-field-config-options [field]="field" [fieldEditor]="fieldEditor" (changed)="fieldChanged.emit($event)"></fs-field-config-options>
+              </ng-container>
+              <ng-template #elseChoice>
+                <fs-field-render-choice [field]="field"></fs-field-render-choice>
+              </ng-template>
             </ng-container>
 
             <ng-container *ngSwitchCase="fieldType.Dropdown">
-              <ng-container *ngTemplateOutlet="fsFieldOptions"></ng-container>
+              <ng-container *ngIf="selectedField===field; else elseDropdown">
+                <fs-field-config-options [field]="field" [fieldEditor]="fieldEditor" (changed)="fieldChanged.emit($event)"></fs-field-config-options>
+              </ng-container>
+              <ng-template #elseDropdown>
+                <fs-field-render-dropdown [field]="field"></fs-field-render-dropdown>
+              </ng-template>
             </ng-container>
 
             <ng-container *ngSwitchCase="fieldType.Checkbox">
-              <ng-container *ngTemplateOutlet="fsFieldOptions"></ng-container>
+              <ng-container *ngIf="selectedField===field; else elseCheckbox">
+                <fs-field-config-options [field]="field" [fieldEditor]="fieldEditor" (changed)="fieldChanged.emit($event)"></fs-field-config-options>
+              </ng-container>
+              <ng-template #elseCheckbox>
+                <fs-field-render-checkbox [field]="field"></fs-field-render-checkbox>
+              </ng-template>
             </ng-container>
 
             <ng-container *ngSwitchCase="fieldType.Name">
               <ng-container *ngIf="selectedField===field; else nameElse">
-                <fs-field-config-name [field]="field" [fieldEditor]="fieldEditor"></fs-field-config-name>
+                <fs-field-config-name [field]="field" (changed)="fieldChanged.emit($event)"></fs-field-config-name>
               </ng-container>
 
               <ng-template #nameElse>
@@ -79,7 +96,7 @@
 
             <ng-container *ngSwitchCase="fieldType.File">
               <ng-container *ngIf="selectedField===field; else fileElse">
-                  <fs-field-config-file [field]="field" [fieldEditor]="fieldEditor"></fs-field-config-file>
+                  <fs-field-config-file [field]="field" (changed)="fieldChanged.emit($event)"></fs-field-config-file>
               </ng-container>
 
               <ng-template #fileElse>
@@ -89,7 +106,7 @@
 
             <ng-container *ngSwitchCase="fieldType.Gender">
               <ng-container *ngIf="selectedField===field; else genderElse">
-                <fs-field-config-gender [field]="field" [fieldEditor]="fieldEditor"></fs-field-config-gender>
+                <fs-field-config-gender [field]="field" (changed)="fieldChanged.emit($event)"></fs-field-config-gender>
               </ng-container>
 
               <ng-template #genderElse>
@@ -99,7 +116,7 @@
 
             <ng-container *ngSwitchCase="fieldType.Heading">
                 <ng-container *ngIf="selectedField===field; else headingElse">
-                  <fs-field-config-heading [field]="field" [fieldEditor]="fieldEditor"></fs-field-config-heading>
+                  <fs-field-config-heading [field]="field" (changed)="fieldChanged.emit($event)"></fs-field-config-heading>
                 </ng-container>
 
                 <ng-template #headingElse>
@@ -109,7 +126,7 @@
 
               <ng-container *ngSwitchCase="fieldType.Content">
                 <ng-container *ngIf="selectedField===field; else contentElse">
-                  <fs-field-config-content [field]="field" [fieldEditor]="fieldEditor"></fs-field-config-content>
+                  <fs-field-config-content [field]="field" [fieldEditor]="fieldEditor" (changed)="fieldChanged.emit($event)"></fs-field-config-content>
                 </ng-container>
 
                 <ng-template #contentElse>
@@ -119,7 +136,7 @@
 
             <ng-container *ngSwitchCase="fieldType.Address">
               <ng-container *ngIf="selectedField===field; else addressElse">
-                <fs-field-config-address [field]="field" [fieldEditor]="fieldEditor"></fs-field-config-address>
+                <fs-field-config-address [field]="field" (changed)="fieldChanged.emit($event)"></fs-field-config-address>
               </ng-container>
 
               <ng-template #addressElse>
@@ -148,21 +165,6 @@
 
             <ng-template #fsFieldText>
               <fs-field-render-text [field]="field" *ngIf="selectedField!==field"></fs-field-render-text>
-            </ng-template>
-
-            <ng-template #fsFieldOptions>
-              <ng-container *ngIf="selectedField===field; else optionsElse">
-                <fs-field-config-options [field]="field" [fieldEditor]="fieldEditor"></fs-field-config-options>
-              </ng-container>
-
-              <ng-template #optionsElse>
-                <fs-field-render-checkbox [field]="field" *ngIf="field.config.type===fieldType.Checkbox; else optionsElse"></fs-field-render-checkbox>
-
-                <ng-template #optionsElse>
-                  <fs-field-render-options [field]="field"></fs-field-render-options>
-                </ng-template>
-
-              </ng-template>
             </ng-template>
 
           </ng-container>
