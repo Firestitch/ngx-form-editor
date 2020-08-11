@@ -1,4 +1,4 @@
-import { Component, Input, AfterViewInit, QueryList, ContentChildren } from '@angular/core';
+import { Component, Input, AfterContentInit } from '@angular/core';
 import { ControlContainer, NgForm } from '@angular/forms';
 
 import { FieldCoreComponent } from '../../field-core/field-core.component';
@@ -12,7 +12,7 @@ import { Field } from './../../../interfaces';
   templateUrl: 'field-render.component.html',
   viewProviders: [ { provide: ControlContainer, useExisting: NgForm} ],
 })
-export class FieldRenderComponent extends FieldCoreComponent implements AfterViewInit {
+export class FieldRenderComponent extends FieldCoreComponent implements AfterContentInit {
 
   public fieldRenderTemplateRefs = {};
   public field: Field = { config: {} };
@@ -21,10 +21,10 @@ export class FieldRenderComponent extends FieldCoreComponent implements AfterVie
     this.field = initField(field);
   }
 
-  @ContentChildren(FieldRenderDirective) queryListFieldRender: QueryList<FieldRenderDirective>;
+  @Input() public fieldRenders: FieldRenderDirective[] = [];
 
-  ngAfterViewInit() {
-    this.queryListFieldRender.forEach((directive: FieldRenderDirective) => {
+  public ngAfterContentInit() {
+    this.fieldRenders.forEach((directive: FieldRenderDirective) => {
       this.fieldRenderTemplateRefs[directive.type] = directive.templateRef;
     });
   }

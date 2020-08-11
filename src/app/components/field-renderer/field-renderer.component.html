@@ -2,6 +2,7 @@
   <fs-field-render
     [attr.data-guid]="field.config.guid"
     [field]="field"
+    [fieldRenders]="fieldRenders"
     [config]="config"
     (fieldChanged)="fieldChanged.emit($event)">
   </fs-field-render>

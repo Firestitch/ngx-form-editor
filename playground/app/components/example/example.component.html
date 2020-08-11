@@ -26,8 +26,8 @@
           <form (fsForm)="save()">
             <fs-field-renderer [config]="config">
               <ng-template fsFieldRender type="share" let-field="field">
-                <img src="/assets/google-logo.svg" height="50" *ngIf="field.config['google']">
-                <img src="/assets/facebook-logo.svg" height="50" *ngIf="field.config['facebook']">
+                <img src="/assets/google-logo.svg" height="50" *ngIf="field.config.configs['google']">
+                <img src="/assets/facebook-logo.svg" height="50" *ngIf="field.config.configs['facebook']">
               </ng-template>
             </fs-field-renderer>
 

@@ -1,12 +1,10 @@
 import { Component, OnInit, Inject, ViewChild } from '@angular/core';
-import { FS_FIELD_EDITOR_CONFIG, FieldEditorComponent, FieldEditorConfig, FieldType } from '@firestitch/field-editor';
+import { FS_FIELD_EDITOR_CONFIG, FieldEditorComponent, FieldEditorConfig, FieldType, Field } from '@firestitch/field-editor';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogExampleComponent } from '../dialog-example';
 import { FsApi } from '@firestitch/api';
 import { map } from 'rxjs/operators';
 import { of } from 'rxjs';
-import { Field } from 'package/public_api';
-
 
 @Component({
   selector: 'example',

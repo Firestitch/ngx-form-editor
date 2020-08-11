@@ -16,14 +16,12 @@ import { FieldCoreComponent } from '../field-core/field-core.component';
 import { FieldConfigDirective } from '../../directives/field-config/field-config.directive';
 import { FieldRenderDirective } from '../../directives/field-render/field-render.directive';
 import { initField } from './../../helpers/init-field';
-import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-
 
 @Component({
   selector: 'fs-field-editor',
   templateUrl: 'field-editor.component.html',
-  styleUrls: [ 'field-editor.component.scss' ]
+  styleUrls: [ 'field-editor.component.scss' ],
 })
 export class FieldEditorComponent extends FieldCoreComponent implements AfterContentInit, OnInit {
 
