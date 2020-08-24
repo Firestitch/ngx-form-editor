@@ -48,6 +48,7 @@ import { FieldViewerComponent } from './components/field-viewer/field-viewer.com
 import { FieldRenderRichTextComponent } from './components/render/field-render-rich-text/field-render-rich-text.component';
 import { FieldConfigDirective } from './directives/field-config/field-config.directive';
 import { FieldRenderDirective } from './directives/field-render/field-render.directive';
+import { FieldViewDirective } from './directives/field-view/field-view.directive';
 import { FieldEditorConfig } from './interfaces';
 import { FieldType } from './enums';
 import { FieldCoreComponent } from './components/field-core/field-core.component';
@@ -138,12 +139,14 @@ export function defaultConfigFactory(config) {
     FieldConfigDirective,
     FieldRenderDirective,
     FieldRenderComponent,
-    FieldViewComponent
+    FieldViewComponent,
+    FieldViewDirective,
   ],
   declarations: [
     FieldEditorComponent,
     FieldRendererComponent,
     FieldViewerComponent,
+    FieldViewDirective,
     FieldRenderChoiceComponent,
     FieldRenderDropdownComponent,
     FieldToolbarComponent,
@@ -171,6 +174,7 @@ export function defaultConfigFactory(config) {
     FieldConfigContentComponent,
     FieldRenderContentComponent,
     FieldRenderCheckboxComponent,
+    FieldViewDirective,
   ],
   providers: [
     NgForm

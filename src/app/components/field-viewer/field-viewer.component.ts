@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, ContentChildren, QueryList, AfterContentInit } from '@angular/core';
 import { FieldCoreComponent } from '../field-core';
+import { FieldViewDirective } from './../../directives/field-view/field-view.directive';
 
 @Component({
   selector: 'fs-field-viewer',
@@ -7,6 +8,16 @@ import { FieldCoreComponent } from '../field-core';
   templateUrl: 'field-viewer.component.html',
   styleUrls: [ 'field-viewer.component.scss' ],
 })
-export class FieldViewerComponent extends FieldCoreComponent {
+export class FieldViewerComponent extends FieldCoreComponent implements AfterContentInit {
 
+  @ContentChildren(FieldViewDirective)
+  public fieldViews: QueryList<FieldViewDirective>;
+
+  public fieldViewTemplateRefs = {};
+
+  public ngAfterContentInit() {
+    this.fieldViews.forEach((directive: FieldViewDirective) => {
+      this.fieldViewTemplateRefs[directive.type] = directive.templateRef;
+    });
+  }
 }

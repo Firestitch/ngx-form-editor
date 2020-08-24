@@ -39,7 +39,15 @@
     <mat-tab label="View Fields">
       <ng-template matTabContent>
         <p class="padding">
-          <fs-field-viewer [config]="config"></fs-field-viewer>
+          <fs-field-viewer [config]="config">
+            <ng-template fsFieldView type="share" let-field="field">
+              <fs-label-field>
+                <fs-label>Share</fs-label>
+                <img src="/assets/google-logo.svg" height="50" *ngIf="field.config.configs['google']">
+                <img src="/assets/facebook-logo.svg" height="50" *ngIf="field.config.configs['facebook']">
+              </fs-label-field>
+            </ng-template>
+          </fs-field-viewer>
         </p>
       </ng-template>
     </mat-tab>

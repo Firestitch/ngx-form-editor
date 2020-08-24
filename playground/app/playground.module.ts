@@ -23,6 +23,7 @@ import { AppComponent } from './app.component';
 import { FsFormModule } from '@firestitch/form';
 import { FsApiModule } from '@firestitch/api';
 import { FsFileModule } from '@firestitch/file';
+import { FsLabelModule } from '@firestitch/label';
 import { FsUploadModule } from '@firestitch/upload';
 import { FsDatePickerModule } from '@firestitch/datepicker';
 import { DragulaModule } from 'ng2-dragula';
@@ -44,6 +45,7 @@ const routes: Routes = [
     AppMaterialModule,
     FormsModule,
     FsFormModule,
+    FsLabelModule,
     RouterModule.forRoot(routes),
     FsExampleModule.forRoot(),
     FsPhoneModule.forRoot(),
