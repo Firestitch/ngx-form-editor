@@ -37,10 +37,6 @@ export function initField(field) {
         if (!isObject(field.data.value)) {
           field.data.value = { selected: selected };
         }
-
-        if (typeof field.data.value.other !== 'object') {
-          field.data.value.other = { selected: false, value: '' };
-        }
       }
     }
 
@@ -91,6 +87,11 @@ export function initField(field) {
     }
 
     if (field.config.type === FieldType.Address) {
+
+      if (!isObject(field.data.value)) {
+        field.data.value = {};
+      }
+
       if (!field.config.configs.street) {
         field.config.configs.street = { enabled: true, label: 'Street' };
       }

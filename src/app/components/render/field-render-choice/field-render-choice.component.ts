@@ -12,22 +12,16 @@ import { FieldComponent } from '../../field/field.component';
 export class FieldRenderChoiceComponent extends FieldComponent implements OnInit {
 
   @ViewChild('radiobuttons', { read: NgModel }) public radiobuttons: NgModel;
-
-  public selected;
-
-  public ngOnInit(): void {
+ public ngOnInit(): void {
     super.ngOnInit();
-    this.selected = this.field.data.value.selected;
   }
 
-  public otherInputClick(event: KeyboardEvent) {
-    this.selected = 'other';
-    this.radioChange(this.selected);
+  public otherInputClick() {
+    this.field.data.value.selected = 'other';
+    this.changed.emit(this.field);
   }
 
-  public radioChange(value) {
-    this.field.data.value.other.selected = value === 'other';
-    this.field.data.value.selected = value === 'other' ? null : value;
+  public radioChange() {
     this.changed.emit(this.field);
   }
 

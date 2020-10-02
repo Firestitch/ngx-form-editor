@@ -5,7 +5,7 @@
         matInput
         [placeholder]="field.config.configs.street.label"
         [required]="field.config.configs.street.required"
-        [(ngModel)]="field.data.street"
+        [(ngModel)]="field.data.value.street"
         (ngModelChange)="changed.emit(field)"
         name="street">
     </mat-form-field>
@@ -14,7 +14,7 @@
         matInput
         [placeholder]="field.config.configs.address2.label"
         [required]="field.config.configs.address2.required"
-        [(ngModel)]="field.data.address2"
+        [(ngModel)]="field.data.value.address2"
         (ngModelChange)="changed.emit(field)"
         name="address2">
     </mat-form-field>
@@ -23,7 +23,7 @@
         matInput
         [placeholder]="field.config.configs.city.label"
         [required]="field.config.configs.city.required"
-        [(ngModel)]="field.data.city"
+        [(ngModel)]="field.data.value.city"
         (ngModelChange)="changed.emit(field)"
         name="city">
     </mat-form-field>
@@ -33,7 +33,7 @@
       <mat-select
         matInput
         *ngIf="regions.length"
-        [(ngModel)]="field.data.region"
+        [(ngModel)]="field.data.value.region"
         [required]="field.config.configs.region.required"
         (ngModelChange)="changed.emit(field)"
         name="region"
@@ -45,7 +45,7 @@
       <input
         *ngIf="!regions.length"
         matInput
-        [(ngModel)]="field.data.region"
+        [(ngModel)]="field.data.value.region"
         [required]="field.config.configs.region.required"
         (ngModelChange)="changed.emit(field)"
         name="region"
@@ -58,14 +58,14 @@
         matInput
         [placeholder]="zipLabel"
         [required]="field.config.configs.zip.required"
-        [(ngModel)]="field.data.zip"
+        [(ngModel)]="field.data.value.zip"
         (ngModelChange)="changed.emit(field)"
         name="zip">
     </mat-form-field>
 
     <mat-form-field *ngIf="field.config.configs.country.enabled">
       <mat-select
-        [(ngModel)]="field.data.country"
+        [(ngModel)]="field.data.value.country"
         [required]="field.config.configs.country.required"
         name="country"
         [placeholder]="field.config.configs.country.label"

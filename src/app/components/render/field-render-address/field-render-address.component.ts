@@ -25,18 +25,18 @@ export class FieldRenderAddressComponent extends FieldComponent {
   }
 
   public changeCountry() {
-    const country = filter(this.countries, { code: this.field.data.country })[0];
+    const country = filter(this.countries, { code: this.field.data.value.country })[0];
     this.regions = country  && country.regions ? country.regions : [];
     this.updateCountryRegionLabels(country);
     this.changed.emit(this.field);
   }
 
   public changeRegion() {
-    const country = filter(this.countries, { code: this.field.data.country })[0];
+    const country = filter(this.countries, { code: this.field.data.value.country })[0];
 
     if (country && country.regions) {
-      const region = filter(country.regions, { code: this.field.data.region })[0];
-      this.field.data.region = region.code;
+      const region = filter(country.regions, { code: this.field.data.value.region })[0];
+      this.field.data.value.region = region.code;
     }
   }
 

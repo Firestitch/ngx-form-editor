@@ -1,7 +1,7 @@
 <fs-radio-group
     #radiobuttons
-    [(ngModel)]="selected"
-    (ngModelChange)="radioChange($event)"
+    [(ngModel)]="field.data.value.selected"
+    (ngModelChange)="radioChange()"
     [label]="field.config.label"
     [name]="'choices' + name"
     [fsFormFunction]="validate"
@@ -16,15 +16,16 @@
   <mat-radio-button
     *ngIf="field.config.configs.other"
     value="other"
+    [name]="'otherChoice' + name"
     class="other choice">
     <mat-form-field floatLabel="never" class="subscript-remove">
       <input
         matInput
         placeholder="Other"
-        (click)="otherInputClick($event)"
+        (click)="otherInputClick()"
         (ngModelChange)="changed.emit(field)"
-        [(ngModel)]="field.data.value.other.value"
-        name="other">
+        [(ngModel)]="field.data.value.other"
+        [name]="'otherInput' + name">
     </mat-form-field>
   </mat-radio-button>
   <mat-hint>{{field.config.description}}</mat-hint>

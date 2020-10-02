@@ -2,6 +2,7 @@
     #checkboxes
     [(ngModel)]="this.field.data.value.selected"
     [name]="'checkboxes' + name"
+    [compareWith]="compareWith"
     (ngModelChange)="changed.emit(field)"
     orientation="vertical"
     [label]="field.config.label"
@@ -15,9 +16,7 @@
   </mat-checkbox>
   <mat-checkbox
       *ngIf="field.config.configs.other"
-      [(ngModel)]="field.data.value.other.selected"
       value="other"
-      (click)="otherCheckboxClick($event)"
       [name]="'checkboxOther' + name"
       class="other checkbox">
     <mat-form-field floatLabel="never" class="subscript-remove">
@@ -25,9 +24,9 @@
         matInput
         placeholder="Other"
         (click)="otherInputClick($event)"
-        [(ngModel)]="field.data.value.other.value"
+        [(ngModel)]="field.data.value.other"
         (ngModelChange)="changed.emit(field)"
-        name="other">
+        [name]="'otherInput' + name">
     </mat-form-field>
   </mat-checkbox>
   <mat-hint>{{field.config.description}}</mat-hint>
