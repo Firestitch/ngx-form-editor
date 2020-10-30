@@ -1,4 +1,4 @@
-import { Component, SkipSelf, forwardRef } from '@angular/core';
+import { Component } from '@angular/core';
 
 import { FieldComponent } from '../../field/field.component';
 import { ControlContainer, NgForm } from '@angular/forms';

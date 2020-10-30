@@ -68,7 +68,7 @@
           <ng-container *ngFor="let option of field.config.configs.options">
             <span *ngIf="field.data.value?.selected===option.value">{{option.name}}</span>
           </ng-container>
-          <span *ngIf="field.data.value?.other?.selected">{{field.data.value.other.value}}</span>
+          <span *ngIf="field.data.value?.selected==='other'">{{field.data.value?.other}}</span>
         </div>
 
         <div *ngIf="field.config.type===fieldType.Dropdown && field.config.configs">
@@ -79,9 +79,9 @@
 
         <div *ngIf="field.config.type===fieldType.Checkbox">
           <ng-container *ngFor="let option of field.config.configs.options">
-            <span class="option" *ngIf=" field.data.value?.selected.indexOf(option.value)>=0">{{option.name}}</span>
+            <span class="option" *ngIf="field.data.value?.selected.indexOf(option.value)!==-1">{{option.name}}</span>
           </ng-container>
-          <span class="option" *ngIf="field.data.value?.other?.selected">{{field.data.value.other.value}}</span>
+          <span class="option" *ngIf="field.data.value?.selected.indexOf('other')!==-1">{{field.data.value?.other}}</span>
         </div>
       </fs-label-field>
     </ng-container>
