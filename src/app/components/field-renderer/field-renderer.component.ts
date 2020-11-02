@@ -15,8 +15,6 @@ import { FieldRenderDirective } from './../../directives/field-render/field-rend
 })
 export class FieldRendererComponent extends FieldCoreComponent implements OnInit {
 
-  @Input() public config: FieldRendererConfig;
-
   @ContentChildren(FieldRenderDirective)
   public fieldRenders: QueryList<FieldRenderDirective>;
 
@@ -27,7 +25,7 @@ export class FieldRendererComponent extends FieldCoreComponent implements OnInit
       )
       .subscribe((item: Field) => {
         if (this.config.fieldChanged) {
-          this.config.fieldChanged(item);
+          this.config.fieldChanged(this.fieldEditorService.output(item));
         }
       });
   }

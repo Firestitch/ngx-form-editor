@@ -28,6 +28,7 @@ export interface FieldEditorConfig {
   fieldDuplicate?: Function,
   fieldDuplicated?: Function,
   fieldRemoved?: Function,
+  case?: 'camel' | 'snake',
   imageUpload?: (field: Field, file: File) => Observable<string>,
   fileUpload?: (field: Field, file: File) => Observable<{ name: string, url: string }>,
   fileRemove?: (field: Field, data: any) => Observable<boolean>,

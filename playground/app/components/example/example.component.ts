@@ -159,28 +159,19 @@ export class ExampleComponent implements OnInit {
           },
         },
         {
-          data: {},
+          data: {
+
+          },
           config:
           {
             guid: '4',
             type: FieldType.Name,
             label: 'Name Question',
             configs: {
-              other: true,
-              options: [
-                {
-                  value: '33',
-                  name: 'First Name'
-                },
-                {
-                  value: '44',
-                  name: 'Middle Name'
-                },
-                {
-                  value: '55',
-                  name: 'Last Name'
-                }
-              ]
+              first_name: {
+                display: true,
+                label: 'test'
+              }
             }
           }
         },

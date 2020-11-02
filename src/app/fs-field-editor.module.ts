@@ -1,3 +1,4 @@
+import { FieldEditorService } from './services/field-editor.service';
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
@@ -182,10 +183,11 @@ export function defaultConfigFactory(config) {
 })
 
 export class FsFieldEditorModule {
-  static forRoot(config: FieldEditorConfig = {}): ModuleWithProviders<FsFieldEditorModule> {
+  static forRoot(config: FieldEditorConfig = { case: 'camel' }): ModuleWithProviders<FsFieldEditorModule> {
     return {
       ngModule: FsFieldEditorModule,
       providers: [
+        FieldEditorService,
         { provide: FS_FIELD_EDITOR_ORIGINAL_CONFIG, useValue: config },
         {
           provide: FS_FIELD_EDITOR_CONFIG,

@@ -39,7 +39,7 @@ const routes: Routes = [
   bootstrap: [AppComponent],
   imports: [
     BrowserModule,
-    FsFieldEditorModule.forRoot(),
+    FsFieldEditorModule.forRoot({ case: 'snake' }),
     FsEditorRichTextModule.forRoot(),
     BrowserAnimationsModule,
     AppMaterialModule,

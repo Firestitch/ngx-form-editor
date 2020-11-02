@@ -40,7 +40,8 @@ export function initField(field) {
       }
     }
 
-    if (field.config.type === FieldType.Name) {
+  if (field.config.type === FieldType.Name) {
+
       if (!field.config.configs.firstName) {
         field.config.configs.firstName = { display: true, label: 'First Name' };
       }

@@ -63,7 +63,7 @@ export class FieldEditorComponent extends FieldCoreComponent implements AfterCon
     )
     .subscribe((item: Field) => {
       if (this.config.fieldChanged) {
-        this.config.fieldChanged(item);
+        this.config.fieldChanged(this.fieldEditorService.output(item));
       }
     });
 
@@ -73,7 +73,7 @@ export class FieldEditorComponent extends FieldCoreComponent implements AfterCon
     )
     .subscribe(item => {
       if (this.config.fieldAdd) {
-        this.config.fieldAdd(item);
+        this.config.fieldAdd(this.fieldEditorService.output(item));
       }
     });
 
@@ -83,7 +83,7 @@ export class FieldEditorComponent extends FieldCoreComponent implements AfterCon
     )
     .subscribe(item => {
       if (this.config.fieldAdded) {
-        this.config.fieldAdded(item);
+        this.config.fieldAdded(this.fieldEditorService.output(item));
       }
     });
 
@@ -93,7 +93,7 @@ export class FieldEditorComponent extends FieldCoreComponent implements AfterCon
     )
     .subscribe(item => {
       if (this.config.fieldSelected) {
-        this.config.fieldSelected(item);
+        this.config.fieldSelected(this.fieldEditorService.output(item));
       }
     });
 
@@ -103,7 +103,7 @@ export class FieldEditorComponent extends FieldCoreComponent implements AfterCon
     )
     .subscribe(item => {
       if (this.config.fieldUnselected) {
-        this.config.fieldUnselected(item);
+        this.config.fieldUnselected(this.fieldEditorService.output(item));
       }
     });
 
@@ -113,7 +113,7 @@ export class FieldEditorComponent extends FieldCoreComponent implements AfterCon
     )
     .subscribe(item => {
       if (this.config.fieldMoved) {
-        this.config.fieldMoved(item);
+        this.config.fieldMoved(this.fieldEditorService.output(item));
       }
     });
 
@@ -123,7 +123,7 @@ export class FieldEditorComponent extends FieldCoreComponent implements AfterCon
     )
     .subscribe(item => {
       if (this.config.fieldDuplicate) {
-        this.config.fieldDuplicate(item);
+        this.config.fieldDuplicate(this.fieldEditorService.output(item));
       }
     });
 
@@ -133,7 +133,7 @@ export class FieldEditorComponent extends FieldCoreComponent implements AfterCon
     )
     .subscribe(item => {
       if (this.config.fieldDuplicated) {
-        this.config.fieldDuplicated(item);
+        this.config.fieldDuplicated(this.fieldEditorService.output(item));
       }
     });
 
@@ -143,7 +143,7 @@ export class FieldEditorComponent extends FieldCoreComponent implements AfterCon
     )
     .subscribe(item => {
       if (this.config.fieldRemoved) {
-        this.config.fieldRemoved(item);
+        this.config.fieldRemoved(this.fieldEditorService.output(item));
       }
     });
   }
