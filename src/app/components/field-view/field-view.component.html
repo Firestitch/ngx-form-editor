@@ -79,9 +79,9 @@
 
         <div *ngIf="field.config.type===fieldType.Checkbox">
           <ng-container *ngFor="let option of field.config.configs.options">
-            <span class="option" *ngIf="field.data.value?.selected.indexOf(option.value)!==-1">{{option.name}}</span>
+            <span class="option" *ngIf="field.data.value?.selected?.indexOf(option.value)!==-1">{{option.name}}</span>
           </ng-container>
-          <span class="option" *ngIf="field.data.value?.selected.indexOf('other')!==-1">{{field.data.value?.other}}</span>
+          <span class="option" *ngIf="field.data.value?.selected?.indexOf('other')!==-1">{{field.data.value?.other}}</span>
         </div>
       </fs-label-field>
     </ng-container>
