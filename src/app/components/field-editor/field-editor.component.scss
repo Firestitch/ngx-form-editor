@@ -12,3 +12,9 @@
 .fs-field:hover .field-drag .mat-icon {
   color: inherit;
 }
+
+#fs-fields {
+  display: flex;
+  flex-direction: column;
+  align-self: stretch;
+}
