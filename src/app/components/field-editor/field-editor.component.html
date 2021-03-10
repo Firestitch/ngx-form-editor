@@ -143,6 +143,10 @@
                 <fs-field-render-content [field]="field"></fs-field-render-content>
               </ng-container>
 
+              <ng-container *ngSwitchCase="fieldType.Signature">
+                <fs-field-render-signature [field]="field"></fs-field-render-signature>
+              </ng-container>
+
               <ng-container *ngSwitchCase="fieldType.Address">
                 <fs-field-render-address [field]="field"></fs-field-render-address>
               </ng-container>

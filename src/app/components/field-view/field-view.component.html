@@ -71,6 +71,10 @@
           <span *ngIf="field.data.value?.selected==='other'">{{field.data.value?.other}}</span>
         </div>
 
+        <div *ngIf="field.config.type===fieldType.Signature && field.config.configs">
+          <img [src]="field.data.value">
+        </div>
+
         <div *ngIf="field.config.type===fieldType.Dropdown && field.config.configs">
           <ng-container *ngFor="let option of field.config.configs.options">
             <span *ngIf="field.data.value===option.value">{{option.name}}</span>
