@@ -17,7 +17,8 @@ import {
   ExampleComponent,
   ExamplesComponent,
   FieldRenderComponent,
-  FieldViewComponent
+  FieldViewComponent,
+  SectionsComponent,
 } from './components';
 import { AppComponent } from './app.component';
 import { FsFormModule } from '@firestitch/form';
@@ -67,7 +68,8 @@ const routes: Routes = [
     ExampleComponent,
     DialogExampleComponent,
     FieldRenderComponent,
-    FieldViewComponent
+    FieldViewComponent,
+    SectionsComponent,
   ]
 })
 export class PlaygroundModule {

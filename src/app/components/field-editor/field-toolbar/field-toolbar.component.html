@@ -1,19 +1,27 @@
-<div class="mat-elevation-z2 toolbar" [ngClass]="{ expanded: expand}">
-  <div class="bar">
-    <button mat-icon-button type="button" (click)="expand = !expand"><mat-icon>{{ expand ? 'keyboard_arrow_up' : 'keyboard_arrow_down' }}</mat-icon></button>
-  </div>
-  <div *ngFor="let item of fieldEditor.config.toolbar.items">
-    <ng-container *ngIf="item.type==='divider'; else elseDivider">
-      <mat-divider></mat-divider>
+<div class="mat-elevation-z2 toolbar">
+  <!--<div class="horizontal-collapse" [ngClass]="{ 'first-item-section': firstItemIsSection }">
+    <button mat-icon-button type="button" (click)="toggleCollapse()">
+      <mat-icon>
+        {{ expanded ? 'keyboard_arrow_right' : 'keyboard_arrow_left' }}
+        keyboard_arrow_right
+      </mat-icon>
+    </button>
+  </div>-->
+  <div class="fields-list" [ngClass]="{ 'minimized': !expanded }">
+    <ng-container *ngFor="let item of items">
+      <ng-container *ngIf="item.section else simpleItem">
+        <fs-field-toolbar-section
+          [sectionItem]="item"
+          [fieldEditor]="fieldEditor">
+        </fs-field-toolbar-section>
+      </ng-container>
+
+      <ng-template #simpleItem>
+        <fs-field-toolbar-item
+          [item]="item"
+          [fieldEditor]="fieldEditor">
+        </fs-field-toolbar-item>
+      </ng-template>
     </ng-container>
-    <ng-template #elseDivider>
-      <div cdkDropList cdkDropListConnectedTo="fs-fields">
-        <div cdkDrag [cdkDragData]="{ field: field, item: item }" (cdkDragStarted)="dragStarted(item)" class="toolbar-field">
-          <div fxFlexLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
-            <button mat-icon-button type="button"><mat-icon>{{ item.icon }}</mat-icon></button>
-            <span class="label"><span class="add">Add</span> {{ item.label }}</span>
-          </div>
-        </div>
-    </div>
-  </ng-template>
+  </div>
 </div>

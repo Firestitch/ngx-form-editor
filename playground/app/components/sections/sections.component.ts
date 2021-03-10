@@ -1,17 +1,21 @@
 import { Component, OnInit, Inject, ViewChild } from '@angular/core';
-import { FS_FIELD_EDITOR_CONFIG, FieldEditorComponent, FieldEditorConfig, FieldType, Field } from '@firestitch/field-editor';
 import { MatDialog } from '@angular/material/dialog';
-import { DialogExampleComponent } from '../dialog-example';
+
+import { FS_FIELD_EDITOR_CONFIG, FieldEditorComponent, FieldEditorConfig, FieldType, Field } from '@firestitch/field-editor';
 import { FsApi } from '@firestitch/api';
-import { map } from 'rxjs/operators';
+
 import { of } from 'rxjs';
+import { map } from 'rxjs/operators';
+
+import { DialogExampleComponent } from '../dialog-example';
+
 
 @Component({
-  selector: 'example',
-  templateUrl: 'example.component.html',
-  styleUrls: ['example.component.scss']
+  selector: 'sections',
+  templateUrl: 'sections.component.html',
+  styleUrls: ['sections.component.scss']
 })
-export class ExampleComponent implements OnInit {
+export class SectionsComponent implements OnInit {
 
   @ViewChild('fieldEditor', { static: true }) fieldEditor: FieldEditorComponent;
   public config: FieldEditorConfig;
@@ -95,12 +99,23 @@ export class ExampleComponent implements OnInit {
         window.location = data.url;
       },
       toolbar: {
-        items: [{ icon: 'share',
-                  label: 'Share',
-                  type: 'share',
-                  config: { id: 99 }
-                }]
-                .concat(this.defaultConfig.toolbar.items)
+        items: [
+          {
+            section: 'Standart Fields',
+            items: [
+              {
+                icon: 'share',
+                label: 'Share',
+                type: 'share',
+                disabled: true,
+              }
+            ],
+          },
+          {
+            section: 'Add Custom Fields',
+            items: this.defaultConfig.toolbar.items,
+          },
+        ]
       },
       fields: [
         // {

@@ -1,0 +1,13 @@
+.section-content {
+  overflow: hidden;
+  //height: 0;
+  //transition: height ease-in 1500ms;
+
+  &.expanded {
+    //height: auto;
+  }
+}
+
+.label {
+  text-transform: uppercase;
+}

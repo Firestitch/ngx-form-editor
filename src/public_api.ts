@@ -9,7 +9,12 @@ export { FieldRenderComponent } from './app/components/render/field-render/field
 export { FieldViewComponent } from './app/components/field-view/field-view.component';
 export { FieldViewDirective } from './app/directives/field-view/field-view.directive';
 export { FS_FIELD_EDITOR_CONFIG } from './app/injectors/fs-field-editor.providers';
-export { FieldEditorConfig } from './app/interfaces/field.interface';
-export { Field } from './app/interfaces/field.interface';
-export { ToolbarItem } from './app/interfaces/field.interface';
-export { Toolbar } from './app/interfaces/field.interface';
+export {
+  ToolbarItem,
+  ToolbarSection,
+  Toolbar,
+  ToolbarItems,
+  Field,
+  FieldEditorConfig,
+  FieldRendererConfig,
+} from './app/interfaces/field.interface';

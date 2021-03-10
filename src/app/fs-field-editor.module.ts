@@ -2,6 +2,7 @@ import { FieldEditorService } from './services/field-editor.service';
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 
@@ -66,6 +67,8 @@ import { FieldRenderHeadingComponent } from './components/render/field-render-he
 import { FieldConfigContentComponent } from './components/config/field-config-content/field-config-content.component';
 import { FieldRenderContentComponent } from './components/render/field-render-content/field-render-content.component';
 import { FieldRenderCheckboxComponent } from './components/render/field-render-checkbox/field-render-checkbox.component';
+import { FieldToolbarSectionComponent } from './components/field-editor/field-toolbar-section/field-toolbar-section.component';
+import { FieldToolbarItemComponent } from './components/field-editor/field-toolbar-item/field-toolbar-item.component';
 
 
 export function defaultConfigFactory(config) {
@@ -102,6 +105,7 @@ export function defaultConfigFactory(config) {
   imports: [
     CommonModule,
     FormsModule,
+    BrowserAnimationsModule,
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
@@ -151,6 +155,8 @@ export function defaultConfigFactory(config) {
     FieldRenderChoiceComponent,
     FieldRenderDropdownComponent,
     FieldToolbarComponent,
+    FieldToolbarSectionComponent,
+    FieldToolbarItemComponent,
     FieldHeaderComponent,
     FieldRenderTextComponent,
     FieldRenderNameComponent,

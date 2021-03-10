@@ -42,14 +42,20 @@ export interface FieldRendererConfig {
 }
 
 export interface Toolbar {
-  items: ToolbarItem[];
+  items: ToolbarItems;
 }
+
+export type ToolbarItems = ToolbarItem[] | ToolbarSection[];
 
 export interface ToolbarItem {
   icon?: string;
-  label?: string
-  type: FieldType | string,
-  divide?: boolean
+  label?: string;
+  type: FieldType | string;
+  divide?: boolean;
+  disabled?: boolean;
 }
 
-
+export interface ToolbarSection {
+  section: string;
+  items: ToolbarItem[];
+}

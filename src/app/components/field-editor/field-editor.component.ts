@@ -1,22 +1,25 @@
 import {  Component,
   HostListener,
   EventEmitter,
-  ElementRef,
   QueryList,
   ContentChildren,
   Output,
   AfterContentInit,
-  OnDestroy,
   OnInit,
 } from '@angular/core';
 
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+
+import { guid } from '@firestitch/common';
+
+import { takeUntil } from 'rxjs/operators';
+
 import { Field } from '../../interfaces';
 import { FieldCoreComponent } from '../field-core/field-core.component';
 import { FieldConfigDirective } from '../../directives/field-config/field-config.directive';
 import { FieldRenderDirective } from '../../directives/field-render/field-render.directive';
 import { initField } from './../../helpers/init-field';
-import { takeUntil } from 'rxjs/operators';
+
 
 @Component({
   selector: 'fs-field-editor',
@@ -45,6 +48,7 @@ export class FieldEditorComponent extends FieldCoreComponent implements AfterCon
   public fieldEditor: FieldEditorComponent = this;
   public fieldConfigTemplateRefs = {};
   public fieldRenderTemplateRefs = {};
+  public editorId = 'fs-fields-' + guid();
 
   public ngAfterContentInit() {
     this.queryListFieldConfig.forEach((directive: FieldConfigDirective) => {

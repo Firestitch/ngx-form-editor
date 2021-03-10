@@ -28,7 +28,7 @@ export class FieldEditorService {
       return data.map(item => {
         return this._config.case === 'snake' ? snakecaseKeys(item, { deep: true }) : item;
       });
-    } else {
+    } else if (data) {
       return this._config.case === 'snake' ? snakecaseKeys(data, { deep: true }) : data;
     }
   }

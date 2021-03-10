@@ -1,3 +1,5 @@
+@import '~@angular/material/theming';
+
 fs-field-editor {
   .fields {
     padding-bottom: 20px;
@@ -24,12 +26,19 @@ fs-field-editor {
     border-radius: 3px;
     position: relative;
 
+    .fs-field-toolbar-section {
+      &:first-of-type {
+        .section {
+          border-top-left-radius: 3px;
+          border-top-right-radius: 3px;
+        }
+      }
+    }
 
-    .bar {
+    .section {
       height: 40px;
-      background: #ccc;
-      border-top-left-radius: 3px;
-      border-top-right-radius: 3px;
+      border-bottom: 1px solid rgb(199 199 199 / 40%);
+      padding-right: 25px;
 
       mat-icon {
         color: #fff;
@@ -37,21 +46,11 @@ fs-field-editor {
     }
 
     .toolbar-field {
-      margin: 5px 5px;
       cursor: pointer;
 
-      .label {
-        padding-right: 10px;
-        display: none;
-
-        .add {
-          display: none;
-        }
+      &.disabled {
+        color: $dark-disabled-text;
       }
-    }
-
-    &.expanded .toolbar-field .label {
-      display: block;
     }
   }
 
@@ -235,8 +234,9 @@ fs-field-renderer {
 
     .toolbar {
 
-      .bar {
+      .section {
         background: mat-color($primary);
+        color: mat-contrast($primary, 500);
       }
     }
   }
