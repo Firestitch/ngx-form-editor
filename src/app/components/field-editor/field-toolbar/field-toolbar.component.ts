@@ -1,5 +1,4 @@
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
-import { matExpansionAnimations } from '@angular/material';
 
 import { Field, ToolbarItems } from '../../../interfaces';
 import { FieldEditorComponent } from '..';
@@ -11,7 +10,6 @@ import { TOOLBAR_DEFAULTS } from '../../../helpers/toolbar-defaults';
   templateUrl: 'field-toolbar.component.html',
   styleUrls: [ 'field-toolbar.component.scss' ],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  animations: [matExpansionAnimations.bodyExpansion],
 })
 export class FieldToolbarComponent implements OnInit {
 

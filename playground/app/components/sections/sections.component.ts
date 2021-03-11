@@ -101,7 +101,11 @@ export class SectionsComponent implements OnInit {
       toolbar: {
         items: [
           {
-            section: 'Standart Fields',
+            section: 'Custom Fields',
+            items: this.defaultConfig.toolbar.items,
+          },
+          {
+            section: 'Standard Fields',
             items: [
               {
                 icon: 'share',
@@ -110,10 +114,6 @@ export class SectionsComponent implements OnInit {
                 disabled: true,
               }
             ],
-          },
-          {
-            section: 'Add Custom Fields',
-            items: this.defaultConfig.toolbar.items,
           },
         ]
       },
