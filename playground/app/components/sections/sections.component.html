@@ -16,6 +16,18 @@
             </div>
           </ng-template>
 
+          <ng-template fsFieldConfig type="signpad" let-field="field">
+            <div fxLayout="column">
+              <fs-signature (changed)="field.data.value"></fs-signature>
+            </div>
+          </ng-template>
+
+          <ng-template fsFieldRender type="signpad" let-field="field">
+            <fs-label-field>
+              <fs-label>Signature</fs-label>
+              <fs-signature (change)="field.data.value = $event"></fs-signature>
+            </fs-label-field>
+          </ng-template>
         </fs-field-editor>
     </mat-tab>
 
@@ -27,6 +39,13 @@
               <ng-template fsFieldRender type="share" let-field="field">
                 <img src="/assets/google-logo.svg" height="50" *ngIf="field.config.configs['google']">
                 <img src="/assets/facebook-logo.svg" height="50" *ngIf="field.config.configs['facebook']">
+              </ng-template>
+
+              <ng-template fsFieldRender type="signpad" let-field="field">
+                <fs-label-field>
+                  <fs-label>Signature</fs-label>
+                  <fs-signature (change)="field.data.value = $event"></fs-signature>
+                </fs-label-field>
               </ng-template>
             </fs-field-renderer>
 
@@ -44,6 +63,13 @@
                 <fs-label>Share</fs-label>
                 <img src="/assets/google-logo.svg" height="50" *ngIf="field.config.configs['google']">
                 <img src="/assets/facebook-logo.svg" height="50" *ngIf="field.config.configs['facebook']">
+              </fs-label-field>
+            </ng-template>
+
+            <ng-template fsFieldView type="signpad" let-field="field">
+              <fs-label-field>
+                <fs-label>Signature</fs-label>
+                <img [src]="field.data.value">
               </fs-label-field>
             </ng-template>
           </fs-field-viewer>

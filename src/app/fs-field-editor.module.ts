@@ -69,7 +69,6 @@ import { FieldRenderContentComponent } from './components/render/field-render-co
 import { FieldRenderCheckboxComponent } from './components/render/field-render-checkbox/field-render-checkbox.component';
 import { FieldToolbarSectionComponent } from './components/field-editor/field-toolbar-section/field-toolbar-section.component';
 import { FieldToolbarItemComponent } from './components/field-editor/field-toolbar-item/field-toolbar-item.component';
-import { FieldRenderSignatureComponent } from './components/render/field-render-signature/field-render-signature.component';
 
 
 export function defaultConfigFactory(config) {
@@ -89,7 +88,6 @@ export function defaultConfigFactory(config) {
           { type: FieldType.Checkbox },
           { type: FieldType.Date },
           { type: FieldType.Time },
-          { type: FieldType.Signature },
           { type: FieldType.Divider },
           { type: FieldType.Name },
           { type: FieldType.Phone },
@@ -183,7 +181,6 @@ export function defaultConfigFactory(config) {
     FieldConfigContentComponent,
     FieldRenderContentComponent,
     FieldRenderCheckboxComponent,
-    FieldRenderSignatureComponent,
     FieldViewDirective,
   ],
   providers: [

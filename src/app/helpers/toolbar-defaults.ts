@@ -17,5 +17,4 @@ export const TOOLBAR_DEFAULTS = {
   [FieldType.Address]: { icon: 'location_on', label: 'Address' },
   [FieldType.Heading]: { icon: 'title', label: 'Heading' },
   [FieldType.Content]: { icon: 'art_track', label: 'Content' },
-  [FieldType.Signature]: { icon: 'create', label: 'Signature' },
 };

@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 export interface Field {
   config: {
     guid?: string,
-    type?: FieldType | 'string',
+    type?: FieldType | string,
     label?: string,
     description?: string,
     hasDescriptionNote?: boolean,
