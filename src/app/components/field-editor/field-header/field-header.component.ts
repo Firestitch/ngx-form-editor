@@ -4,7 +4,7 @@ import { FsPrompt } from '@firestitch/prompt';
 import { guid } from '@firestitch/common';
 
 import { FieldComponent } from '../../field/field.component';
-import { FieldEditorComponent } from '..';
+import { FieldEditorComponent } from '../field-editor.component';
 import { cloneDeep } from 'lodash-es';
 
 

@@ -14,7 +14,7 @@ import { guid } from '@firestitch/common';
 
 import { takeUntil } from 'rxjs/operators';
 
-import { Field } from '../../interfaces';
+import { Field } from '../../interfaces/field.interface';
 import { FieldCoreComponent } from '../field-core/field-core.component';
 import { FieldConfigDirective } from '../../directives/field-config/field-config.directive';
 import { FieldRenderDirective } from '../../directives/field-render/field-render.directive';

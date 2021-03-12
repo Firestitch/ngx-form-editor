@@ -3,8 +3,8 @@ import { ControlContainer, NgForm } from '@angular/forms';
 
 import { takeUntil } from 'rxjs/operators';
 
-import { FieldCoreComponent } from '../field-core';
-import { FieldRendererConfig, Field } from './../../interfaces';
+import { FieldCoreComponent } from '../field-core/field-core.component';
+import { Field } from './../../interfaces/field.interface';
 import { FieldRenderDirective } from './../../directives/field-render/field-render.directive';
 
 @Component({

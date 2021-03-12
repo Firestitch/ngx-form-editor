@@ -3,9 +3,10 @@ import { Component, Input, EventEmitter, OnInit, OnDestroy, Output } from '@angu
 import { guid } from '@firestitch/common';
 
 import { initField } from './../../helpers/init-field';
-import { Field } from '../../interfaces';
-import { FieldType, FieldMode } from '../../enums';
-import { FieldEditorComponent } from '../field-editor';
+import { Field } from '../../interfaces/field.interface';
+import { FieldType } from '../../enums/field-type';
+import { FieldMode } from '../../enums/field-mode';
+import { FieldEditorComponent } from '../field-editor/field-editor.component';
 
 
 @Component({

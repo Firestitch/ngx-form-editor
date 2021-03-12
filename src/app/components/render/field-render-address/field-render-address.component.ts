@@ -3,7 +3,7 @@ import { Component, Input } from '@angular/core';
 import { FieldComponent } from '../../field/field.component';
 import { COUNTRIES } from '../../../constants/countries';
 import { filter } from 'lodash-es';
-import { Field } from '../../../interfaces';
+import { Field } from '../../../interfaces/field.interface';
 import { NgForm, ControlContainer } from '@angular/forms';
 
 

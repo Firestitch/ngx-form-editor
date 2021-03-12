@@ -5,8 +5,8 @@ import {
   OnInit,
 } from '@angular/core';
 
-import { Field, ToolbarItems } from '../../../interfaces';
-import { FieldEditorComponent } from '..';
+import { Field, ToolbarItems } from '../../../interfaces/field.interface';
+import { FieldEditorComponent } from '../field-editor.component';
 import { TOOLBAR_DEFAULTS } from '../../../helpers/toolbar-defaults';
 import { BACKDROP_CLASS, TOOLBAR_MENU_CLASS } from '../../../constants/backdrop-class';
 

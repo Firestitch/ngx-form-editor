@@ -2,8 +2,9 @@ import { Component, Input, Inject, Output, EventEmitter, OnDestroy } from '@angu
 
 import { Subject } from 'rxjs';
 
-import { FieldEditorConfig } from '../../interfaces';
-import { FieldType, FieldMode } from '../../enums';
+import { FieldEditorConfig } from '../../interfaces/field.interface';
+import { FieldType } from '../../enums/field-type';
+import { FieldMode } from '../../enums/field-mode';
 import { FieldEditorService } from '../../services/field-editor.service';
 import { FS_FIELD_EDITOR_CONFIG } from '../../injectors/fs-field-editor.providers';
 import { initField } from '../../helpers/init-field';

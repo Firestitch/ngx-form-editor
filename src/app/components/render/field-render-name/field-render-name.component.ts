@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 
 import { FieldComponent } from '../../field/field.component';
-import { Field } from '../../../interfaces';
+import { Field } from '../../../interfaces/field.interface';
 import { NgForm, ControlContainer } from '@angular/forms';
 
 

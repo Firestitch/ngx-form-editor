@@ -1,5 +1,5 @@
 import { guid } from '@firestitch/common';
-import { FieldType } from '../enums';
+import { FieldType } from '../enums/field-type';
 import { isObject } from 'lodash-es';
 
 

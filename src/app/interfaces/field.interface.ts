@@ -1,4 +1,4 @@
-import { FieldType } from '../enums';
+import { FieldType } from '../enums/field-type';
 import { Observable } from 'rxjs';
 
 

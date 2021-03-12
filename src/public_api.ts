@@ -1,5 +1,5 @@
 export { FsFieldEditorModule } from './app/fs-field-editor.module';
-export { FieldType } from './app/enums';
+export { FieldType } from './app/enums/field-type';
 export { FieldConfigDirective } from './app/directives/field-config/field-config.directive';
 export { FieldRenderDirective } from './app/directives/field-render/field-render.directive';
 export { FieldEditorComponent } from './app/components/field-editor/field-editor.component';

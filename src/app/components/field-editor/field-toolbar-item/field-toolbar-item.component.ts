@@ -1,5 +1,4 @@
-import { ChangeDetectionStrategy, Component, Inject, Input } from '@angular/core';
-import { DOCUMENT } from '@angular/common';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 import { MatMenuTrigger } from '@angular/material/menu';
 
@@ -32,15 +31,13 @@ export class FieldToolbarItemComponent {
 
   public field: Field = null;
 
-  constructor(
-    @Inject(DOCUMENT) private _document: Document,
-  ) {}
+  constructor() {}
 
   private get _backdrop(): Element {
-    return this._document.getElementsByClassName(BACKDROP_CLASS).item(0);
+    return document.getElementsByClassName(BACKDROP_CLASS).item(0);
   }
 
-  public dragStarted(item: { icon: string, label: string, type: FieldType }): void {
+  public dragStarted(item: ToolbarItem): void {
     this._hideMenuBackdrop();
     this.fieldEditor.unselectField();
 

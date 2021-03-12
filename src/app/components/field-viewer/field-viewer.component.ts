@@ -1,5 +1,5 @@
 import { Component, ContentChildren, QueryList, AfterContentInit } from '@angular/core';
-import { FieldCoreComponent } from '../field-core';
+import { FieldCoreComponent } from '../field-core/field-core.component';
 import { FieldViewDirective } from './../../directives/field-view/field-view.directive';
 
 @Component({

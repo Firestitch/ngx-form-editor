@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { FieldCoreComponent } from '../field-core';
+import { FieldCoreComponent } from '../field-core/field-core.component';
 
 
 @Component({

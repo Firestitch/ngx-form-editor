@@ -4,7 +4,7 @@ import { ControlContainer, NgForm } from '@angular/forms';
 import { FsEditorRichTextOptions } from '@firestitch/editor';
 
 import { FieldComponent } from '../../field/field.component';
-import { FieldEditorConfig } from './../../../interfaces';
+import { FieldEditorConfig } from './../../../interfaces/field.interface';
 
 @Component({
   selector: 'fs-field-render-rich-text',

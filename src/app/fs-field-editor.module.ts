@@ -53,8 +53,8 @@ import { FieldRenderRichTextComponent } from './components/render/field-render-r
 import { FieldConfigDirective } from './directives/field-config/field-config.directive';
 import { FieldRenderDirective } from './directives/field-render/field-render.directive';
 import { FieldViewDirective } from './directives/field-view/field-view.directive';
-import { FieldEditorConfig } from './interfaces';
-import { FieldType } from './enums';
+import { FieldEditorConfig } from './interfaces/field.interface';
+import { FieldType } from './enums/field-type';
 import { FieldCoreComponent } from './components/field-core/field-core.component';
 import { FieldRenderComponent } from './components/render/field-render/field-render.component';
 import { FieldViewComponent } from './components/field-view/field-view.component';

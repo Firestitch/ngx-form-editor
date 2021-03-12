@@ -4,7 +4,7 @@ import { ControlContainer, NgForm } from '@angular/forms';
 import { FieldCoreComponent } from '../../field-core/field-core.component';
 import { FieldRenderDirective } from '../../../directives/field-render/field-render.directive';
 import { initField } from '../../../helpers/init-field';
-import { Field } from './../../../interfaces';
+import { Field } from './../../../interfaces/field.interface';
 
 @Component({
   selector: 'fs-field-render',

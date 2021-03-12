@@ -5,7 +5,7 @@ import { get } from 'lodash-es';
 import { FsFile } from '@firestitch/file';
 
 import { FieldComponent } from '../../field/field.component';
-import { Field, FieldEditorConfig } from '../../../interfaces';
+import { Field, FieldEditorConfig } from '../../../interfaces/field.interface';
 import { takeUntil } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { FileRenderFile } from '../../../classes/file-render-file';
