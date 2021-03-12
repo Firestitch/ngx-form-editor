@@ -31,6 +31,8 @@ import { FsGalleryModule } from '@firestitch/gallery';
 import { FsCheckboxGroupModule } from '@firestitch/checkboxgroup';
 import { FsRadioGroupModule } from '@firestitch/radiogroup';
 
+import { AngularStickyThingsModule } from '@w11k/angular-sticky-things';
+
 import { FS_FIELD_EDITOR_CONFIG } from './injectors/fs-field-editor.providers';
 import { FS_FIELD_EDITOR_ORIGINAL_CONFIG } from './injectors/fs-field-editor-original.providers';
 
@@ -118,6 +120,7 @@ export function defaultConfigFactory(config) {
     FlexLayoutModule,
 
     DragDropModule,
+    AngularStickyThingsModule,
 
     FsFormModule,
     FsCommonModule,

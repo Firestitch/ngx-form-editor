@@ -221,17 +221,6 @@ fs-field-renderer {
 
   $primary: mat-palette($theme);
 
-  fs-field-editor {
-
-    .toolbar {
-
-      .section {
-        background: mat-color($primary);
-        color: mat-contrast($primary, 500);
-      }
-    }
-  }
-
   .toolbar-field.cdk-drag-preview {
     background: mat-color($primary);
     white-space: nowrap;
