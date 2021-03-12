@@ -233,6 +233,10 @@ fs-field-renderer {
       display: inline;
     }
   }
+
+  .toolbar-button {
+    color: mat-contrast($primary, 500);
+  }
 }
 
 .fs-field-toolbar-menu-hidden {
