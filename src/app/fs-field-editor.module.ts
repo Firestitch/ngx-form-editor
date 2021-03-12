@@ -70,6 +70,8 @@ import { FieldConfigContentComponent } from './components/config/field-config-co
 import { FieldRenderContentComponent } from './components/render/field-render-content/field-render-content.component';
 import { FieldRenderCheckboxComponent } from './components/render/field-render-checkbox/field-render-checkbox.component';
 import { FieldToolbarItemComponent } from './components/field-editor/field-toolbar-item/field-toolbar-item.component';
+import { FieldRenderTermsComponent } from './components/render/field-render-terms/field-render-terms.component';
+import { FieldConfigTermsComponent } from './components/config/field-config-terms/field-config-terms.component';
 
 
 export function defaultConfigFactory(config) {
@@ -93,6 +95,7 @@ export function defaultConfigFactory(config) {
           { type: FieldType.Email },
           { type: FieldType.Address },
           { type: FieldType.Gender },
+          { type: FieldType.Terms },
           { type: FieldType.Divider },
           { type: FieldType.File },
         ]
@@ -181,6 +184,8 @@ export function defaultConfigFactory(config) {
     FieldRenderContentComponent,
     FieldRenderCheckboxComponent,
     FieldViewDirective,
+    FieldRenderTermsComponent,
+    FieldConfigTermsComponent,
   ],
   providers: [
     NgForm

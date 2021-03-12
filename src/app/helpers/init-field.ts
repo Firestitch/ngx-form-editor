@@ -126,5 +126,12 @@ export function initField(field) {
       field.config.configs.type = 1;
     }
 
+    if (field.config.type === FieldType.Terms) {
+      field.config.configs = {
+        termsLabel: 'I can confirm I have read and accepted the terms & conditions.',
+        termsContentSource: 'none',
+      };
+    }
+
     return field;
   }

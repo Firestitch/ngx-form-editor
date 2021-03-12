@@ -1,0 +1,8 @@
+<div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="8px">
+  <div fxLayout="column">
+    <mat-checkbox>{{field.config.configs.termsLabel}}</mat-checkbox>
+  </div>
+  <div fxLayout="column">
+    <a href="#" *ngIf="field.config.configs.termsContentSource==='url'">{{field.config.configs.termsContentLabel}}</a>
+  </div>
+</div>

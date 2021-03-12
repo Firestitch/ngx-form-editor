@@ -1,0 +1,37 @@
+<div fxLayout="column">
+  <mat-form-field>
+    <input
+      matInput
+      placeholder="Terms & Condition Label"
+      [(ngModel)]="field.config.configs.termsLabel"
+      name="termsLabel">
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-select
+      [(ngModel)]="field.config.configs.termsContentSource"
+      name="termsContentSource"
+      placeholder="Terms & Conditions Content">
+      <mat-option value="none">None</mat-option>
+      <mat-option value="url">URL</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <ng-container *ngIf="field.config.configs.termsContentSource==='url'">
+    <mat-form-field>
+      <input
+        matInput
+        placeholder="Terms & Conditions Content URL"
+        [(ngModel)]="field.config.configs.termsContentUrl"
+        name="termsContentUrl">
+    </mat-form-field>
+
+    <mat-form-field>
+      <input
+        matInput
+        placeholder="Terms & Conditions Content Label"
+        [(ngModel)]="field.config.configs.termsContentLabel"
+        name="termsContentLabel">
+    </mat-form-field>
+  </ng-container>
+</div>

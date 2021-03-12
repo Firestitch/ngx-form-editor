@@ -3,6 +3,7 @@ export enum FieldType {
   ShortText = 'shorttext',
   LongText = 'longtext',
   Name = 'name',
+  Terms = 'terms',
   Choice = 'choice',
   Phone = 'phone',
   Email = 'email',

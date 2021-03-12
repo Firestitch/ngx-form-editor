@@ -184,6 +184,18 @@ export class ExampleComponent implements OnInit {
           }
         },
         {
+          data: {
+            value: '',
+          },
+          config:
+            {
+              guid: '4',
+              type: FieldType.Terms,
+              label: 'Terms',
+              configs: {}
+            }
+        },
+        {
           data: {},
           config:
           {
