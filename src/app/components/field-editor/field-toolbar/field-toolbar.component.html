@@ -1,27 +1,39 @@
-<div class="mat-elevation-z2 toolbar">
-  <!--<div class="horizontal-collapse" [ngClass]="{ 'first-item-section': firstItemIsSection }">
-    <button mat-icon-button type="button" (click)="toggleCollapse()">
-      <mat-icon>
-        {{ expanded ? 'keyboard_arrow_right' : 'keyboard_arrow_left' }}
-        keyboard_arrow_right
-      </mat-icon>
-    </button>
-  </div>-->
-  <div class="fields-list" [ngClass]="{ 'minimized': !expanded }">
-    <ng-container *ngFor="let item of items">
-      <ng-container *ngIf="item.section else simpleItem">
-        <fs-field-toolbar-section
-          [sectionItem]="item"
-          [fieldEditor]="fieldEditor">
-        </fs-field-toolbar-section>
-      </ng-container>
+<button mat-fab color="primary" [matMenuTriggerFor]="menu" #trigger="matMenuTrigger">
+  <mat-icon>
+    add
+  </mat-icon>
+</button>
 
-      <ng-template #simpleItem>
-        <fs-field-toolbar-item
-          [item]="item"
-          [fieldEditor]="fieldEditor">
-        </fs-field-toolbar-item>
-      </ng-template>
+<mat-menu #menu="matMenu" [backdropClass]="backdropClass" [class]="menuClass">
+  <ng-container *ngFor="let item of items">
+    <ng-container *ngIf="item.section else simpleItem">
+      <button mat-menu-item [matMenuTriggerFor]="subMenu">
+        {{ item.section }}
+      </button>
+      <mat-menu #subMenu="matMenu">
+        <ng-container *ngFor="let subItem of item.items">
+          <ng-template
+            [ngTemplateOutlet]="itemTpl"
+            [ngTemplateOutletContext]="{ $implicit: subItem }">
+          </ng-template>
+        </ng-container>
+      </mat-menu>
     </ng-container>
-  </div>
-</div>
+
+    <ng-template #simpleItem>
+      <ng-template
+        [ngTemplateOutlet]="itemTpl"
+        [ngTemplateOutletContext]="{ $implicit: item }">
+      </ng-template>
+    </ng-template>
+  </ng-container>
+</mat-menu>
+
+
+<ng-template let-item #itemTpl>
+  <fs-field-toolbar-item
+    [menuTrigger]="trigger"
+    [item]="item"
+    [fieldEditor]="fieldEditor">
+  </fs-field-toolbar-item>
+</ng-template>

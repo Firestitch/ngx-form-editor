@@ -26,15 +26,6 @@ fs-field-editor {
     border-radius: 3px;
     position: relative;
 
-    .fs-field-toolbar-section {
-      &:first-of-type {
-        .section {
-          border-top-left-radius: 3px;
-          border-top-right-radius: 3px;
-        }
-      }
-    }
-
     .section {
       height: 40px;
       border-bottom: 1px solid rgb(199 199 199 / 40%);
@@ -252,5 +243,22 @@ fs-field-renderer {
     .add {
       display: inline;
     }
+  }
+}
+
+.fs-field-toolbar-menu-hidden {
+  display: none;
+}
+
+
+.fs-field-toolbar-menu > .mat-menu-content > .mat-menu-item-submenu-trigger {
+  padding-right: 0;
+  padding-left: 32px;
+
+  &:after {
+    left: 16px;
+    right: 0;
+    border-width: 5px 5px 5px 0;
+    border-color: transparent currentColor transparent transparent;
   }
 }

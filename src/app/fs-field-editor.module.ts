@@ -67,7 +67,6 @@ import { FieldRenderHeadingComponent } from './components/render/field-render-he
 import { FieldConfigContentComponent } from './components/config/field-config-content/field-config-content.component';
 import { FieldRenderContentComponent } from './components/render/field-render-content/field-render-content.component';
 import { FieldRenderCheckboxComponent } from './components/render/field-render-checkbox/field-render-checkbox.component';
-import { FieldToolbarSectionComponent } from './components/field-editor/field-toolbar-section/field-toolbar-section.component';
 import { FieldToolbarItemComponent } from './components/field-editor/field-toolbar-item/field-toolbar-item.component';
 
 
@@ -78,11 +77,9 @@ export function defaultConfigFactory(config) {
         items: [
           { type: FieldType.Heading },
           { type: FieldType.Content },
-          { type: FieldType.Divider },
           { type: FieldType.ShortText },
           { type: FieldType.LongText },
           { type: FieldType.RichText },
-          { type: FieldType.Divider },
           { type: FieldType.Dropdown },
           { type: FieldType.Choice },
           { type: FieldType.Checkbox },
@@ -155,7 +152,6 @@ export function defaultConfigFactory(config) {
     FieldRenderChoiceComponent,
     FieldRenderDropdownComponent,
     FieldToolbarComponent,
-    FieldToolbarSectionComponent,
     FieldToolbarItemComponent,
     FieldHeaderComponent,
     FieldRenderTextComponent,

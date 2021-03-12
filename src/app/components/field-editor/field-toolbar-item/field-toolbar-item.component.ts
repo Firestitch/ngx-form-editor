@@ -1,10 +1,16 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Inject, Input } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+
+import { MatMenuTrigger } from '@angular/material/menu';
+
+import { CdkDragDrop } from '@angular/cdk/drag-drop';
 
 import { guid } from '@firestitch/common';
 
 import { FieldEditorComponent } from '../../field-editor/field-editor.component';
 import { Field, ToolbarItem } from '../../../interfaces/field.interface';
 import { FieldType } from '../../../enums/field-type';
+import { BACKDROP_CLASS, BACKDROP_HIDDEN_CLASS } from '../../../constants/backdrop-class';
 
 
 @Component({
@@ -19,12 +25,25 @@ export class FieldToolbarItemComponent {
   public item: ToolbarItem;
 
   @Input()
+  public menuTrigger: MatMenuTrigger;
+
+  @Input()
   public fieldEditor: FieldEditorComponent;
 
   public field: Field = null;
 
-  public dragStarted(item: { icon: string, label: string, type: FieldType }) {
+  constructor(
+    @Inject(DOCUMENT) private _document: Document,
+  ) {}
+
+  private get _backdrop(): Element {
+    return this._document.getElementsByClassName(BACKDROP_CLASS).item(0);
+  }
+
+  public dragStarted(item: { icon: string, label: string, type: FieldType }): void {
+    this._hideMenuBackdrop();
     this.fieldEditor.unselectField();
+
     this.field = {
       config: {
         guid: guid(),
@@ -47,4 +66,27 @@ export class FieldToolbarItemComponent {
     }
   }
 
+  public dragDropped(event: CdkDragDrop<any>): void {
+    this._restoreMenuBackdrop();
+
+    if (event.container !== event.previousContainer) {
+      this.menuTrigger.closeMenu();
+    }
+  }
+
+  private _hideMenuBackdrop(): void {
+    const backdropEl = this._backdrop;
+
+    if (backdropEl) {
+      backdropEl.classList.add(BACKDROP_HIDDEN_CLASS)
+    }
+  }
+
+  private _restoreMenuBackdrop(): void {
+    const backdropEl = this._backdrop;
+
+    if (backdropEl) {
+      backdropEl.classList.remove(BACKDROP_HIDDEN_CLASS)
+    }
+  }
 }

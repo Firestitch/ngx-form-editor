@@ -1,8 +1,14 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Input,
+  OnInit,
+} from '@angular/core';
 
 import { Field, ToolbarItems } from '../../../interfaces';
 import { FieldEditorComponent } from '..';
 import { TOOLBAR_DEFAULTS } from '../../../helpers/toolbar-defaults';
+import { BACKDROP_CLASS, TOOLBAR_MENU_CLASS } from '../../../constants/backdrop-class';
 
 
 @Component({
@@ -15,6 +21,9 @@ export class FieldToolbarComponent implements OnInit {
 
   @Input()
   public fieldEditor: FieldEditorComponent;
+
+  public readonly backdropClass = BACKDROP_CLASS;
+  public readonly menuClass = TOOLBAR_MENU_CLASS;
 
   public field: Field = null;
   public expanded = true;
@@ -31,10 +40,6 @@ export class FieldToolbarComponent implements OnInit {
   public ngOnInit() {
     this._initItems(this.fieldEditor.config.toolbar.items);
   }
-
-  // public toggleCollapse(): void {
-  //   this.expanded = !this.expanded;
-  // }
 
   private _initItems(items: ToolbarItems) {
     items.forEach(item => {

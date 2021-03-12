@@ -17,7 +17,7 @@
       <div class="field-container" [ngClass]="['field-' + field.config.type]">
 
         <div class="field-drag" cdkDragHandle>
-          <button button mat-icon-button type="button" class="drag-button">
+          <button mat-icon-button type="button" class="drag-button">
             <mat-icon>drag_indicator</mat-icon>
           </button>
         </div>
@@ -141,10 +141,6 @@
 
               <ng-container *ngSwitchCase="fieldType.Content">
                 <fs-field-render-content [field]="field"></fs-field-render-content>
-              </ng-container>
-
-              <ng-container *ngSwitchCase="fieldType.Signature">
-                <fs-field-render-signature [field]="field"></fs-field-render-signature>
               </ng-container>
 
               <ng-container *ngSwitchCase="fieldType.Address">
