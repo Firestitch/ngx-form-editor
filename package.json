@@ -73,7 +73,7 @@
     "@firestitch/radiogroup": "~9.0.0",
     "@firestitch/scroll": "^8.0.0",
     "@firestitch/scroll-picker": "^8.0.0",
-    "@firestitch/signature": "^10.0.1",
+    "@firestitch/signature": "^10.0.2",
     "@firestitch/store": "^7.0.0",
     "@firestitch/upload": "^8.0.0",
     "@types/quill": "^1.3.3",
