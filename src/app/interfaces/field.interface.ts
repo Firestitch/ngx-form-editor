@@ -20,7 +20,7 @@ export interface FsFieldEditorCallbackParams {
   field?: Field;
   fields?: Field[];
   event?: PointerEvent | CdkDragDrop<unknown>;
-  toolbarField?: any;
+  toolbarField?: ToolbarItem;
 }
 
 export type FsFieldEditorCallbackFn = (data: FsFieldEditorCallbackParams) => void
@@ -63,6 +63,7 @@ export interface ToolbarItem {
   type: FieldType | string;
   divide?: boolean;
   disabled?: boolean;
+  config?: Record<string, unknown>;
 }
 
 export interface ToolbarSection {

@@ -43,6 +43,7 @@ export class FieldToolbarItemComponent {
 
     this.field = {
       config: {
+        ...this.item.config,
         guid: guid(),
         type: item.type,
         label: item.label,
