@@ -175,7 +175,9 @@
 
 
 <div class="toolbar-container" #boundary>
+  <div #spacer></div>
   <fs-field-toolbar stickyThing
+                    [spacer]="spacer"
                     [fieldEditor]="fieldEditor"
                     [boundary]="boundary" marginTop="30">
   </fs-field-toolbar>
