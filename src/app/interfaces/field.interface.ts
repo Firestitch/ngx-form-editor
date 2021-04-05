@@ -19,7 +19,7 @@ export interface Field {
 export interface FsFieldEditorCallbackParams {
   field?: Field;
   fields?: Field[];
-  event?: PointerEvent | CdkDragDrop<unknown>;
+  event?: PointerEvent | CdkDragDrop<unknown> | Event;
   toolbarField?: ToolbarItem;
 }
 
