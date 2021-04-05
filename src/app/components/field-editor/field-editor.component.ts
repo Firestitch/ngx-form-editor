@@ -12,9 +12,11 @@ import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
 import { guid } from '@firestitch/common';
 
-import { takeUntil } from 'rxjs/operators';
+import { map, takeUntil } from 'rxjs/operators';
 
-import { Field } from '../../interfaces/field.interface';
+import { cloneDeep } from 'lodash-es';
+
+import { Field, FsFieldEditorCallbackParams } from '../../interfaces/field.interface';
 import { FieldCoreComponent } from '../field-core/field-core.component';
 import { FieldConfigDirective } from '../../directives/field-config/field-config.directive';
 import { FieldRenderDirective } from '../../directives/field-render/field-render.directive';
@@ -28,14 +30,14 @@ import { initField } from './../../helpers/init-field';
 })
 export class FieldEditorComponent extends FieldCoreComponent implements AfterContentInit, OnInit {
 
-  @Output() public fieldSelected = new EventEmitter();
-  @Output() public fieldUnselected = new EventEmitter();
-  @Output() public fieldAdded = new EventEmitter();
-  @Output() public fieldAdd = new EventEmitter();
-  @Output() public fieldMoved = new EventEmitter();
-  @Output() public fieldDuplicate = new EventEmitter();
-  @Output() public fieldDuplicated = new EventEmitter();
-  @Output() public fieldRemoved = new EventEmitter();
+  @Output() public fieldSelected = new EventEmitter<FsFieldEditorCallbackParams>();
+  @Output() public fieldUnselected = new EventEmitter<FsFieldEditorCallbackParams>();
+  @Output() public fieldAdded = new EventEmitter<FsFieldEditorCallbackParams>();
+  @Output() public fieldAdd = new EventEmitter<FsFieldEditorCallbackParams>();
+  @Output() public fieldMoved = new EventEmitter<FsFieldEditorCallbackParams>();
+  @Output() public fieldDuplicate = new EventEmitter<FsFieldEditorCallbackParams>();
+  @Output() public fieldDuplicated = new EventEmitter<FsFieldEditorCallbackParams>();
+  @Output() public fieldRemoved = new EventEmitter<FsFieldEditorCallbackParams>();
 
   @ContentChildren(FieldConfigDirective) queryListFieldConfig: QueryList<FieldConfigDirective>;
   @ContentChildren(FieldRenderDirective) queryListFieldRender: QueryList<FieldRenderDirective>;
@@ -63,6 +65,12 @@ export class FieldEditorComponent extends FieldCoreComponent implements AfterCon
   public ngOnInit(): void {
     this.fieldChanged
     .pipe(
+      map((item) => {
+        return {
+          fields: cloneDeep(this.config.fields),
+          ...item,
+        };
+      }),
       takeUntil(this._destroy$)
     )
     .subscribe((item: Field) => {
@@ -73,6 +81,12 @@ export class FieldEditorComponent extends FieldCoreComponent implements AfterCon
 
     this.fieldAdd
     .pipe(
+      map((item) => {
+        return {
+          fields: cloneDeep(this.config.fields),
+          ...item,
+        };
+      }),
       takeUntil(this._destroy$)
     )
     .subscribe(item => {
@@ -83,6 +97,12 @@ export class FieldEditorComponent extends FieldCoreComponent implements AfterCon
 
     this.fieldAdded
     .pipe(
+      map((item) => {
+        return {
+          fields: cloneDeep(this.config.fields),
+          ...item,
+        };
+      }),
       takeUntil(this._destroy$)
     )
     .subscribe(item => {
@@ -93,6 +113,12 @@ export class FieldEditorComponent extends FieldCoreComponent implements AfterCon
 
     this.fieldSelected
     .pipe(
+      map((item) => {
+        return {
+          fields: cloneDeep(this.config.fields),
+          ...item,
+        };
+      }),
       takeUntil(this._destroy$)
     )
     .subscribe(item => {
@@ -103,6 +129,12 @@ export class FieldEditorComponent extends FieldCoreComponent implements AfterCon
 
     this.fieldUnselected
     .pipe(
+      map((item) => {
+        return {
+          fields: cloneDeep(this.config.fields),
+          ...item,
+        };
+      }),
       takeUntil(this._destroy$)
     )
     .subscribe(item => {
@@ -113,6 +145,12 @@ export class FieldEditorComponent extends FieldCoreComponent implements AfterCon
 
     this.fieldMoved
     .pipe(
+      map((item) => {
+        return {
+          fields: cloneDeep(this.config.fields),
+          ...item,
+        };
+      }),
       takeUntil(this._destroy$)
     )
     .subscribe(item => {
@@ -123,6 +161,12 @@ export class FieldEditorComponent extends FieldCoreComponent implements AfterCon
 
     this.fieldDuplicate
     .pipe(
+      map((item) => {
+        return {
+          fields: cloneDeep(this.config.fields),
+          ...item,
+        };
+      }),
       takeUntil(this._destroy$)
     )
     .subscribe(item => {
@@ -133,6 +177,12 @@ export class FieldEditorComponent extends FieldCoreComponent implements AfterCon
 
     this.fieldDuplicated
     .pipe(
+      map((item) => {
+        return {
+          fields: cloneDeep(this.config.fields),
+          ...item,
+        };
+      }),
       takeUntil(this._destroy$)
     )
     .subscribe(item => {
@@ -143,6 +193,12 @@ export class FieldEditorComponent extends FieldCoreComponent implements AfterCon
 
     this.fieldRemoved
     .pipe(
+      map((item) => {
+        return {
+          fields: cloneDeep(this.config.fields),
+          ...item,
+        };
+      }),
       takeUntil(this._destroy$)
     )
     .subscribe(item => {
@@ -163,8 +219,10 @@ export class FieldEditorComponent extends FieldCoreComponent implements AfterCon
   }
 
   public unselectField() {
+    this.fieldUnselected.emit({
+      field: this.selectedField,
+    });
     this.selectedField = null;
-    this.fieldUnselected.emit(null);
   }
 
   public selectField(field: Field) {
@@ -174,7 +232,7 @@ export class FieldEditorComponent extends FieldCoreComponent implements AfterCon
     }
 
     this.selectedField = field;
-    this.fieldSelected.emit(field);
+    this.fieldSelected.emit({ field });
   }
 
   public drop(event: CdkDragDrop<string[]>) {

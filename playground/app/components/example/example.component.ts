@@ -42,29 +42,29 @@ export class ExampleComponent implements OnInit {
       fieldChanged: (field: Field) => {
         console.log('Field Changed', field);
       },
-      fieldAdd: () => {
-        console.log('Field Add');
+      fieldAdd: (data) => {
+        console.log('Field Add', data);
       },
-      fieldAdded: () => {
-        console.log('Field Added');
+      fieldAdded: (data) => {
+        console.log('Field Added', data);
       },
-      fieldMoved: () => {
-        console.log('Field Moved');
+      fieldMoved: (data) => {
+        console.log('Field Moved', data);
       },
-      fieldDuplicate: () => {
-        console.log('Field Duplicate');
+      fieldDuplicate: (data) => {
+        console.log('Field Duplicate', data);
       },
-      fieldDuplicated: () => {
-        console.log('Field Duplicated');
+      fieldDuplicated: (data) => {
+        console.log('Field Duplicated', data);
       },
-      fieldSelected: () => {
-        console.log('Field Selected');
+      fieldSelected: (data) => {
+        console.log('Field Selected', data);
       },
-      fieldUnselected: () => {
-        console.log('Field Unselected');
+      fieldUnselected: (data) => {
+        console.log('Field Unselected', data);
       },
-      fieldRemoved: () => {
-        console.log('Field Removed');
+      fieldRemoved: (data) => {
+        console.log('Field Removed', data);
       },
       imageUpload: (field, file: File) => {
         return this.fsApi.post('https://boilerplate.firestitch.com/api/dummy/upload', { file: file })

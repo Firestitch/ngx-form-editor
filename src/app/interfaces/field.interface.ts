@@ -1,5 +1,6 @@
 import { FieldType } from '../enums/field-type';
 import { Observable } from 'rxjs';
+import { CdkDragDrop } from '@angular/cdk/drag-drop';
 
 
 export interface Field {
@@ -15,19 +16,28 @@ export interface Field {
   data?: any,
 }
 
+export interface FsFieldEditorCallbackParams {
+  field?: Field;
+  fields?: Field[];
+  event?: PointerEvent | CdkDragDrop<unknown>;
+  toolbarField?: any;
+}
+
+export type FsFieldEditorCallbackFn = (data: FsFieldEditorCallbackParams) => void
+
 export interface FieldEditorConfig {
   fields?: Field[],
   toolbar?: Toolbar,
   fieldDrop?: Function,
   fieldChanged?: (field?: Field) => void,
-  fieldAdd?: Function,
-  fieldAdded?: Function,
-  fieldSelected?: Function,
-  fieldUnselected?: Function,
-  fieldMoved?: Function,
-  fieldDuplicate?: Function,
-  fieldDuplicated?: Function,
-  fieldRemoved?: Function,
+  fieldAdd?: FsFieldEditorCallbackFn,
+  fieldAdded?: FsFieldEditorCallbackFn,
+  fieldSelected?: FsFieldEditorCallbackFn,
+  fieldUnselected?: FsFieldEditorCallbackFn,
+  fieldMoved?: FsFieldEditorCallbackFn,
+  fieldDuplicate?: FsFieldEditorCallbackFn,
+  fieldDuplicated?: FsFieldEditorCallbackFn,
+  fieldRemoved?: FsFieldEditorCallbackFn,
   case?: 'camel' | 'snake',
   imageUpload?: (field: Field, file: File) => Observable<string>,
   fileUpload?: (field: Field, file: File) => Observable<{ name: string, url: string }>,

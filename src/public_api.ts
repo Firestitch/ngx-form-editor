@@ -17,4 +17,7 @@ export {
   Field,
   FieldEditorConfig,
   FieldRendererConfig,
+  FsFieldEditorCallbackFn,
+  FsFieldEditorCallbackParams,
 } from './app/interfaces/field.interface';
+
