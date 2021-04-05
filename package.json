@@ -53,7 +53,7 @@
     "@firestitch/clear": "^8.0.0",
     "@firestitch/common": "^7.0.5",
     "@firestitch/date": "^8.0.1",
-    "@firestitch/datepicker": "^8.1.1",
+    "@firestitch/datepicker": "^8.6.1",
     "@firestitch/dialog": "^8.2.2",
     "@firestitch/drawer": "^8.0.2",
     "@firestitch/editor": "^8.2.1",

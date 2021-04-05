@@ -242,8 +242,14 @@ export class ExampleComponent implements OnInit {
             label: 'Gender',
             configs: {
               genders: [
-                'male',
-                'female',
+                {
+                  name: 'Male',
+                  value: 'male',
+                },
+                {
+                  name: 'Female',
+                  value: 'female',
+                },
               ],
             },
           },
@@ -284,7 +290,9 @@ export class ExampleComponent implements OnInit {
           },
         },
         {
-          data: {},
+          data: {
+            value: new Date(),
+          },
           config: {
             guid: '9',
             type: FieldType.Date,
