@@ -11,7 +11,6 @@ export enum FieldType {
   Checkbox = 'checkbox',
   Date = 'date',
   File = 'file',
-  RichText = 'richtext',
   Gender = 'gender',
   Custom = 'custom',
   Divider = 'divider',

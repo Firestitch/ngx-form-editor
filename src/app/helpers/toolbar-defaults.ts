@@ -3,7 +3,6 @@ import { FieldType } from '../enums/field-type';
 export const TOOLBAR_DEFAULTS = {
   [FieldType.ShortText]: { icon: 'short_text', label: 'Short Text'},
   [FieldType.LongText]: { icon: 'subject', label: 'Long Text' },
-  [FieldType.RichText]: { icon: 'text_format', label: 'Rich Text'},
   [FieldType.Dropdown]: { icon: 'arrow_drop_down_circle', label: 'Dropdown' },
   [FieldType.Choice]: { icon: 'radio_button_checked', label: 'Choice' },
   [FieldType.Checkbox]: { icon: 'check_box', label: 'Checkboxes' },

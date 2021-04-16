@@ -59,10 +59,6 @@
         <fs-field-render-file [field]="field" [config]="config"></fs-field-render-file>
       </ng-container>
 
-      <ng-container *ngSwitchCase="fieldType.RichText">
-        <fs-field-render-rich-text [field]="field" [config]="config" (changed)="fieldChanged.emit($event)"></fs-field-render-rich-text>
-      </ng-container>
-
       <ng-container *ngSwitchCase="fieldType.Gender">
         <fs-field-render-gender [field]="field" (changed)="fieldChanged.emit($event)"></fs-field-render-gender>
       </ng-container>

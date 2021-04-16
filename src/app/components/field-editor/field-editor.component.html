@@ -153,15 +153,6 @@
               <fs-field-render-address [field]="field"></fs-field-render-address>
             </ng-container>
 
-            <ng-container *ngSwitchCase="fieldType.RichText">
-              <!-- TODO when editor bug is fixed make this pretty -->
-              <fs-label-field *ngIf="selectedField!==field">
-                <fs-label>{{field.config.label}}</fs-label>
-                <!-- <fs-field-render-rich-text *ngIf="field.config.type===fieldType.RichText"
-                        [field]="field"></fs-field-render-rich-text> -->
-              </fs-label-field>
-            </ng-container>
-
             <ng-template #fsFieldText>
               <fs-field-render-text [field]="field"></fs-field-render-text>
             </ng-template>

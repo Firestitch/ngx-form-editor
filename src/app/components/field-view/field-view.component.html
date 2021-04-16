@@ -2,7 +2,13 @@
 
   <ng-container [ngSwitch]="field.config.type">
     <ng-container *ngSwitchCase="fieldType.Content">
-      <fs-field-render-content [field]="field"></fs-field-render-content>
+      <fs-label-field>
+        <fs-label>{{field.config.label}}</fs-label>
+
+        <fs-html-renderer
+          [html]="field.data.content">
+        </fs-html-renderer>
+      </fs-label-field>
     </ng-container>
 
     <ng-container *ngSwitchCase="fieldType.Heading">
@@ -41,10 +47,6 @@
           <ng-template #notUploaded>
             <span>Files are not uploaded yet.</span>
           </ng-template>
-        </div>
-
-        <div *ngIf="field.config.type==fieldType.RichText">
-          <div fsEditorRenderer [content]="field.data.value"></div>
         </div>
 
         <div *ngIf="field.config.type==fieldType.Gender">

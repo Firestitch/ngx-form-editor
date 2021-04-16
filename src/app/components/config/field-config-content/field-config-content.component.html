@@ -1,6 +1,5 @@
-
-  <fs-editor-rich-text
-    [(ngModel)]="field.config.configs.content"
-    [options]="options"
-    [name]="name">
-  </fs-editor-rich-text>
+<fs-html-editor
+  [(ngModel)]="field.data.value"
+  [config]="field.config.configs"
+  [name]="name">
+</fs-html-editor>

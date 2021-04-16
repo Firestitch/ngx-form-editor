@@ -2,11 +2,11 @@
 @import '../src/app/styles.scss';
 @import '~@firestitch/file/styles.scss';
 @import '~@firestitch/message/styles';
-@import '~@firestitch/editor/styles';
+@import '~@firestitch/html-editor/styles';
 @import '~@firestitch/gallery/styles';
 @import '~@firestitch/form/styles';
 
 @include mat-core();
 @include fs-file($mat-blue);
-@include fs-editor($mat-blue);
+@include fs-html-editor($mat-blue);
 @include fs-field-editor($mat-blue);

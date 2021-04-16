@@ -1,4 +1,13 @@
-<div
-  fsEditorRenderer
-  [content]="field.config.configs.content">
-</div>
+<fs-label-field>
+  <fs-label>{{field.config.label}}</fs-label>
+
+  <fs-html-editor
+    [(ngModel)]="field.data.value"
+    [config]="field.config.configs"
+    [name]="name">
+  </fs-html-editor>
+
+  <fs-label-message *ngIf="field.config.description">
+    {{ field.config.description }}
+  </fs-label-message>
+</fs-label-field>

@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 
-import { FsEditorRichTextOptions } from '@firestitch/editor';
-
 import { FieldComponent } from '../../field/field.component';
 
 @Component({
@@ -11,18 +9,18 @@ import { FieldComponent } from '../../field/field.component';
 })
 export class FieldConfigContentComponent extends FieldComponent implements OnInit {
 
-  public options: FsEditorRichTextOptions = {};
+  // public options: FsEditorRichTextOptions = {};
 
   ngOnInit() {
     super.ngOnInit();
 
-    if (this.fieldEditor.config.imageUpload) {
-      this.options.image = {
-        upload: (file: File) => {
-          return this.fieldEditor.config.imageUpload(this.field, file);
-        }
-      }
-    }
+    // if (this.fieldEditor.config.imageUpload) {
+    //   this.options.image = {
+    //     upload: (file: File) => {
+    //       return this.fieldEditor.config.imageUpload(this.field, file);
+    //     }
+    //   }
+    // }
   }
 
 }

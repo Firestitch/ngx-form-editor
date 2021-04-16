@@ -23,12 +23,12 @@ import { FsFormModule } from '@firestitch/form';
 import { FsDatePickerModule } from '@firestitch/datepicker';
 import { FsPhoneModule } from '@firestitch/phone';
 import { FsFileModule } from '@firestitch/file';
-import { FsEditorRichTextModule, FsEditorRendererModule } from '@firestitch/editor';
 import { FsLabelModule } from '@firestitch/label';
 import { FsDateModule } from '@firestitch/date';
 import { FsGalleryModule } from '@firestitch/gallery';
 import { FsCheckboxGroupModule } from '@firestitch/checkboxgroup';
 import { FsRadioGroupModule } from '@firestitch/radiogroup';
+import { FsHtmlEditorModule } from '@firestitch/html-editor';
 
 import { AngularStickyThingsModule } from '@w11k/angular-sticky-things';
 
@@ -48,7 +48,6 @@ import { FieldRenderAddressComponent } from './components/render/field-render-ad
 import { FieldComponent } from './components/field/field.component';
 import { FieldRendererComponent } from './components/field-renderer/field-renderer.component';
 import { FieldViewerComponent } from './components/field-viewer/field-viewer.component';
-import { FieldRenderRichTextComponent } from './components/render/field-render-rich-text/field-render-rich-text.component';
 import { FieldConfigDirective } from './directives/field-config/field-config.directive';
 import { FieldRenderDirective } from './directives/field-render/field-render.directive';
 import { FieldViewDirective } from './directives/field-view/field-view.directive';
@@ -73,6 +72,7 @@ import { FieldRenderTermsComponent } from './components/render/field-render-term
 import { FieldConfigTermsComponent } from './components/config/field-config-terms/field-config-terms.component';
 
 
+
 export function defaultConfigFactory(config) {
   return Object.assign(config,
     { fields: [],
@@ -82,7 +82,6 @@ export function defaultConfigFactory(config) {
           { type: FieldType.Content },
           { type: FieldType.ShortText },
           { type: FieldType.LongText },
-          { type: FieldType.RichText },
           { type: FieldType.Dropdown },
           { type: FieldType.Choice },
           { type: FieldType.Checkbox },
@@ -131,8 +130,7 @@ export function defaultConfigFactory(config) {
     FsGalleryModule,
     FsLabelModule,
     FsDateModule,
-    FsEditorRendererModule,
-    FsEditorRichTextModule,
+    FsHtmlEditorModule,
     FsFileModule,
     FsPromptModule,
     FsCheckboxGroupModule,
@@ -164,7 +162,6 @@ export function defaultConfigFactory(config) {
     FieldRenderGenderComponent,
     FieldRenderAddressComponent,
     FieldComponent,
-    FieldRenderRichTextComponent,
     FieldConfigDirective,
     FieldRenderDirective,
     FieldCoreComponent,
