@@ -1,4 +1,5 @@
-import {  Component,
+import {
+  Component,
   HostListener,
   EventEmitter,
   QueryList,
@@ -6,6 +7,8 @@ import {  Component,
   Output,
   AfterContentInit,
   OnInit,
+  Input,
+  ElementRef,
 } from '@angular/core';
 
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
@@ -29,6 +32,9 @@ import { initField } from './../../helpers/init-field';
   styleUrls: [ 'field-editor.component.scss' ],
 })
 export class FieldEditorComponent extends FieldCoreComponent implements AfterContentInit, OnInit {
+
+  @Input()
+  public scrollContainer: string | ElementRef = null;
 
   @Output() public fieldSelected = new EventEmitter<FsFieldEditorCallbackParams>();
   @Output() public fieldUnselected = new EventEmitter<FsFieldEditorCallbackParams>();

@@ -170,7 +170,9 @@
   <fs-field-toolbar stickyThing
                     [spacer]="spacer"
                     [fieldEditor]="fieldEditor"
-                    [boundary]="boundary" marginTop="30">
+                    [scrollContainer]="scrollContainer"
+                    [boundary]="scrollContainer ? null : boundary"
+                    marginTop="30">
   </fs-field-toolbar>
 </div>
 
