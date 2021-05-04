@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { FieldComponent } from '../../field/field.component';
 import { ControlContainer, NgForm } from '@angular/forms';
@@ -9,6 +9,14 @@ import { ControlContainer, NgForm } from '@angular/forms';
   templateUrl: 'field-render-content.component.html',
   viewProviders: [ { provide: ControlContainer, useExisting: NgForm } ]
 })
-export class FieldRenderContentComponent extends FieldComponent {
+export class FieldRenderContentComponent extends FieldComponent implements OnInit {
 
+  public ngOnInit(): void {
+    super.ngOnInit();
+
+    this.field.config.configs = {
+      ...this.field.config.configs,
+      autofocus: false,
+    };
+  }
 }

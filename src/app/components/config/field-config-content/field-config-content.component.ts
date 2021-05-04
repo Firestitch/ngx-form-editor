@@ -14,6 +14,11 @@ export class FieldConfigContentComponent extends FieldComponent implements OnIni
   ngOnInit() {
     super.ngOnInit();
 
+    this.field.config.configs = {
+      ...this.field.config.configs,
+      autofocus: false,
+    };
+
     // if (this.fieldEditor.config.imageUpload) {
     //   this.options.image = {
     //     upload: (file: File) => {

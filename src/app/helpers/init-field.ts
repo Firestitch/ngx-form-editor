@@ -68,7 +68,8 @@ export function initField(field) {
         field.config.configs.allowedFileTypes = {
           image: true,
           video: true,
-          other: true
+          pdf: true,
+          other: true,
         };
       }
 

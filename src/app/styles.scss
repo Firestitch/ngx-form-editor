@@ -1,8 +1,11 @@
 @import '~@angular/material/theming';
 
 fs-field-editor {
+  padding: 12px;
+
   .fields {
     padding-bottom: 20px;
+    margin-right: -60px;
     .toolbar-field {
       padding: 10px 27px;
       background: #F7F7F7;

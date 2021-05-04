@@ -4,7 +4,7 @@
      (cdkDropListDropped)="drop($event)"
      [style.min-height]="config.fields.length ? 'auto' : '400px'"
      [id]="editorId">
-  <div  *ngFor="let field of config.fields;"
+    <div  *ngFor="let field of config.fields;"
         class="fs-field field"
         cdkDrag
         cdkDragLockAxis="y"
@@ -168,11 +168,11 @@
 <div class="toolbar-container" #boundary>
   <div #spacer></div>
   <fs-field-toolbar stickyThing
-                    [spacer]="spacer"
-                    [fieldEditor]="fieldEditor"
-                    [scrollContainer]="scrollContainer"
-                    [boundary]="scrollContainer ? null : boundary"
-                    marginTop="30">
+              [spacer]="spacer"
+              [fieldEditor]="fieldEditor"
+              [scrollContainer]="scrollContainer"
+              [boundary]="scrollContainer ? null : boundary"
+              marginTop="30">
   </fs-field-toolbar>
 </div>
 

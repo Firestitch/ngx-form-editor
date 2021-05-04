@@ -23,7 +23,7 @@ export interface FsFieldEditorCallbackParams {
   toolbarField?: ToolbarItem;
 }
 
-export type FsFieldEditorCallbackFn = (data: FsFieldEditorCallbackParams) => void
+export type FsFieldEditorCallbackFn = (data: FsFieldEditorCallbackParams) => void | Observable<Field>;
 
 export interface FieldEditorConfig {
   fields?: Field[],

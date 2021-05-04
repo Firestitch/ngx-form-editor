@@ -15,7 +15,7 @@ import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
 import { guid } from '@firestitch/common';
 
-import { map, takeUntil } from 'rxjs/operators';
+import { filter, map, takeUntil } from 'rxjs/operators';
 
 import { cloneDeep } from 'lodash-es';
 
@@ -24,6 +24,7 @@ import { FieldCoreComponent } from '../field-core/field-core.component';
 import { FieldConfigDirective } from '../../directives/field-config/field-config.directive';
 import { FieldRenderDirective } from '../../directives/field-render/field-render.directive';
 import { initField } from './../../helpers/init-field';
+import { isObservable, Observable, of } from 'rxjs';
 
 
 @Component({
@@ -68,150 +69,130 @@ export class FieldEditorComponent extends FieldCoreComponent implements AfterCon
     });
   }
 
+  public get fields(): Field[] {
+    return cloneDeep(this.config.fields);
+  }
+
   public ngOnInit(): void {
     this.fieldChanged
-    .pipe(
-      map((item) => {
-        return {
-          fields: cloneDeep(this.config.fields),
-          ...item,
-        };
-      }),
-      takeUntil(this._destroy$)
-    )
-    .subscribe((item: Field) => {
-      if (this.config.fieldChanged) {
+      .pipe(
+        filter(() => !!this.config.fieldChanged),
+        map((item) => {
+          return {
+            fields: this.fields,
+            ...item,
+          };
+        }),
+        takeUntil(this._destroy$)
+      )
+      .subscribe((item: Field) => {
         this.config.fieldChanged(this.fieldEditorService.output(item));
-      }
-    });
-
-    this.fieldAdd
-    .pipe(
-      map((item) => {
-        return {
-          fields: cloneDeep(this.config.fields),
-          ...item,
-        };
-      }),
-      takeUntil(this._destroy$)
-    )
-    .subscribe(item => {
-      if (this.config.fieldAdd) {
-        this.config.fieldAdd(this.fieldEditorService.output(item));
-      }
-    });
+      });
 
     this.fieldAdded
-    .pipe(
-      map((item) => {
-        return {
-          fields: cloneDeep(this.config.fields),
-          ...item,
-        };
-      }),
-      takeUntil(this._destroy$)
-    )
-    .subscribe(item => {
-      if (this.config.fieldAdded) {
+      .pipe(
+        filter(() => !!this.config.fieldAdded),
+        map((item) => {
+          return {
+            fields: this.fields,
+            ...item,
+          };
+        }),
+        takeUntil(this._destroy$)
+      )
+      .subscribe(item => {
         this.config.fieldAdded(this.fieldEditorService.output(item));
-      }
-    });
+      });
 
     this.fieldSelected
-    .pipe(
-      map((item) => {
-        return {
-          fields: cloneDeep(this.config.fields),
-          ...item,
-        };
-      }),
-      takeUntil(this._destroy$)
-    )
-    .subscribe(item => {
-      if (this.config.fieldSelected) {
+      .pipe(
+        filter(() => !!this.config.fieldSelected),
+        map((item) => {
+          return {
+            fields: this.fields,
+            ...item,
+          };
+        }),
+        takeUntil(this._destroy$)
+      )
+      .subscribe(item => {
         this.config.fieldSelected(this.fieldEditorService.output(item));
-      }
-    });
+      });
 
     this.fieldUnselected
-    .pipe(
-      map((item) => {
-        return {
-          fields: cloneDeep(this.config.fields),
-          ...item,
-        };
-      }),
-      takeUntil(this._destroy$)
-    )
-    .subscribe(item => {
-      if (this.config.fieldUnselected) {
+      .pipe(
+        filter(() => !!this.config.fieldUnselected),
+        map((item) => {
+          return {
+            fields: this.fields,
+            ...item,
+          };
+        }),
+        takeUntil(this._destroy$)
+      )
+      .subscribe(item => {
         this.config.fieldUnselected(this.fieldEditorService.output(item));
-      }
-    });
+      });
 
     this.fieldMoved
-    .pipe(
-      map((item) => {
-        return {
-          fields: cloneDeep(this.config.fields),
-          ...item,
-        };
-      }),
-      takeUntil(this._destroy$)
-    )
-    .subscribe(item => {
-      if (this.config.fieldMoved) {
+      .pipe(
+        filter(() => !!this.config.fieldMoved),
+        map((item) => {
+          return {
+            fields: this.fields,
+            ...item,
+          };
+        }),
+        takeUntil(this._destroy$)
+      )
+      .subscribe(item => {
         this.config.fieldMoved(this.fieldEditorService.output(item));
-      }
-    });
+      });
 
     this.fieldDuplicate
-    .pipe(
-      map((item) => {
-        return {
-          fields: cloneDeep(this.config.fields),
-          ...item,
-        };
-      }),
-      takeUntil(this._destroy$)
-    )
-    .subscribe(item => {
-      if (this.config.fieldDuplicate) {
+      .pipe(
+        filter(() => !!this.config.fieldDuplicate),
+        map((item) => {
+          return {
+            fields: this.fields,
+            ...item,
+          };
+        }),
+        takeUntil(this._destroy$)
+      )
+      .subscribe(item => {
         this.config.fieldDuplicate(this.fieldEditorService.output(item));
-      }
-    });
+      });
 
     this.fieldDuplicated
-    .pipe(
-      map((item) => {
-        return {
-          fields: cloneDeep(this.config.fields),
-          ...item,
-        };
-      }),
-      takeUntil(this._destroy$)
-    )
-    .subscribe(item => {
-      if (this.config.fieldDuplicated) {
+      .pipe(
+        filter(() => !!this.config.fieldDuplicated),
+        map((item) => {
+          return {
+            fields: this.fields,
+            ...item,
+          };
+        }),
+        takeUntil(this._destroy$)
+      )
+      .subscribe(item => {
         this.config.fieldDuplicated(this.fieldEditorService.output(item));
-      }
-    });
+      });
 
     this.fieldRemoved
-    .pipe(
-      map((item) => {
-        return {
-          fields: cloneDeep(this.config.fields),
-          ...item,
-        };
-      }),
-      takeUntil(this._destroy$)
-    )
-    .subscribe(item => {
-      if (this.config.fieldRemoved) {
+      .pipe(
+        filter(() => !!this.config.fieldRemoved),
+        map((item) => {
+          return {
+            fields: this.fields,
+            ...item,
+          };
+        }),
+        takeUntil(this._destroy$)
+      )
+      .subscribe(item => {
         this.config.fieldRemoved(this.fieldEditorService.output(item));
-      }
-    });
+      });
   }
 
   public fieldClick(field: Field) {
@@ -252,23 +233,34 @@ export class FieldEditorComponent extends FieldCoreComponent implements AfterCon
 
       const field = initField(event.item.data.field);
 
-      this.fieldAdd.emit({
-        field: field,
+      const data: FsFieldEditorCallbackParams = {
+        field,
         toolbarField: event.item.data.item,
-        event: event
-      });
+        event,
+        fields: this.fields,
+      };
 
-      if (this.config.fieldDrop) {
-        this.config.fieldDrop(field, event.item.data.item, event);
-      }
+      const result = this.config.fieldAdd(this.fieldEditorService.output(data));
+      const result$ = isObservable(result) ? result : of(field);
 
-      this.config.fields.splice(event.currentIndex, 0, field);
+      this.fieldAdd.emit(this.fieldEditorService.output(data));
 
-      this.fieldAdded.emit({
-        field: field,
-        toolbarField: event.item.data.item,
-        event: event
-      });
+      result$
+        .subscribe((field: Field) => {
+
+          if (this.config.fieldDrop) {
+            this.config.fieldDrop(field, event.item.data.item, event);
+          }
+
+          this.config.fields.splice(event.currentIndex, 0, field);
+
+          this.fieldAdded.emit({
+            field,
+            toolbarField: event.item.data.item,
+            event,
+          });
+        });
+
     }
   }
 

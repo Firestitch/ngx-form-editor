@@ -1,10 +1,14 @@
 import { Component, OnInit, Inject, ViewChild } from '@angular/core';
-import { FS_FIELD_EDITOR_CONFIG, FieldEditorComponent, FieldEditorConfig, FieldType, Field } from '@firestitch/field-editor';
+import {
+  FS_FIELD_EDITOR_CONFIG, FieldEditorComponent, FieldEditorConfig,
+  FieldType, Field, FsFieldEditorCallbackParams,
+} from '@firestitch/field-editor';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogExampleComponent } from '../dialog-example';
 import { FsApi } from '@firestitch/api';
 import { map } from 'rxjs/operators';
 import { of } from 'rxjs';
+import { guid } from '@firestitch/common';
 
 @Component({
   selector: 'example',
@@ -18,9 +22,11 @@ export class ExampleComponent implements OnInit {
   public configured: FieldEditorConfig;
   public selectedIndex = 0;
 
-  constructor(@Inject(FS_FIELD_EDITOR_CONFIG) private defaultConfig,
-              public dialog: MatDialog,
-              public fsApi: FsApi)  {}
+  constructor(
+    @Inject(FS_FIELD_EDITOR_CONFIG) private defaultConfig,
+    public dialog: MatDialog,
+    public fsApi: FsApi,
+  ) { }
 
   ngOnInit() {
 
@@ -42,32 +48,34 @@ export class ExampleComponent implements OnInit {
       fieldChanged: (field: Field) => {
         console.log('Field Changed', field);
       },
-      fieldAdd: (data) => {
+      fieldAdd: (data: FsFieldEditorCallbackParams) => {
         console.log('Field Add', data);
+        data.field.config.guid = guid();
+        return of(data.field);
       },
-      fieldAdded: (data) => {
+      fieldAdded: (data: FsFieldEditorCallbackParams) => {
         console.log('Field Added', data);
       },
-      fieldMoved: (data) => {
+      fieldMoved: (data: FsFieldEditorCallbackParams) => {
         console.log('Field Moved', data);
       },
-      fieldDuplicate: (data) => {
+      fieldDuplicate: (data: FsFieldEditorCallbackParams) => {
         console.log('Field Duplicate', data);
       },
-      fieldDuplicated: (data) => {
+      fieldDuplicated: (data: FsFieldEditorCallbackParams) => {
         console.log('Field Duplicated', data);
       },
-      fieldSelected: (data) => {
+      fieldSelected: (data: FsFieldEditorCallbackParams) => {
         console.log('Field Selected', data);
       },
-      fieldUnselected: (data) => {
+      fieldUnselected: (data: FsFieldEditorCallbackParams) => {
         console.log('Field Unselected', data);
       },
-      fieldRemoved: (data) => {
+      fieldRemoved: (data: FsFieldEditorCallbackParams) => {
         console.log('Field Removed', data);
       },
       imageUpload: (field, file: File) => {
-        return this.fsApi.post('https://boilerplate.firestitch.com/api/dummy/upload', { file: file })
+        return this.fsApi.post('https://boilerplate.firestitch.com/api/dummy/upload', { file })
             .pipe(map((response) => response.data.url))
       },
       fileUpload: (field, file: File) => {

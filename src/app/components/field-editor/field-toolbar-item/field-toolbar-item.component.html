@@ -2,7 +2,9 @@
   <mat-divider></mat-divider>
 </ng-container>
 <ng-template #elseDivider>
-  <button mat-menu-item [disabled]="item.disabled">
+  <button
+      mat-menu-item
+      [disabled]="item.disabled">
     <div cdkDropList [cdkDropListConnectedTo]="fieldEditor.editorId">
       <div class="toolbar-field"
            [ngClass]="{ disabled: item.disabled }"

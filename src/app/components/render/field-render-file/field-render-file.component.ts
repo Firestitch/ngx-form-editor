@@ -150,16 +150,18 @@ export class FieldRenderFileComponent extends FieldComponent implements OnInit {
 
     const allowed = [];
 
-    if (allowedTypes.image) {
-      allowed.push('image/*');
-    }
+    if (!allowedTypes.other) {
+      if (allowedTypes.image) {
+        allowed.push('image/*');
+      }
 
-    if (allowedTypes.video) {
-      allowed.push('video/*');
-    }
+      if (allowedTypes.video) {
+        allowed.push('video/*');
+      }
 
-    if (allowedTypes.pdf) {
-      allowed.push('application/pdf');
+      if (allowedTypes.pdf) {
+        allowed.push('application/pdf');
+      }
     }
 
     return allowed;
