@@ -158,6 +158,10 @@ export class FieldRenderFileComponent extends FieldComponent implements OnInit {
       allowed.push('video/*');
     }
 
+    if (allowedTypes.pdf) {
+      allowed.push('application/pdf');
+    }
+
     return allowed;
   }
 }
