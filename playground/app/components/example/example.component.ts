@@ -311,7 +311,7 @@ export class ExampleComponent implements OnInit {
         },
         {
           data: {
-            value: new Date(),
+            value: '2021-05-06T18:59:01+00:00',
           },
           config: {
             guid: '9',

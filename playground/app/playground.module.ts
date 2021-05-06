@@ -30,6 +30,7 @@ import { FsDatePickerModule } from '@firestitch/datepicker';
 import { DragulaModule } from 'ng2-dragula';
 import { FsGalleryModule } from '@firestitch/gallery';
 import { FsSignatureModule } from '@firestitch/signature';
+import { FsSelectionModule } from '@firestitch/selection';
 import { FsHtmlEditorModule } from '@firestitch/html-editor';
 
 
@@ -60,6 +61,7 @@ const routes: Routes = [
     FsUploadModule.forRoot(),
     ToastrModule.forRoot({ preventDuplicates: true }),
     FsSignatureModule,
+    FsSelectionModule.forRoot(),
   ],
   entryComponents: [
     DialogExampleComponent

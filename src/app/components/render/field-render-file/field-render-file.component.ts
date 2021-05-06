@@ -118,8 +118,11 @@ export class FieldRenderFileComponent extends FieldComponent implements OnInit {
           mime: mime(data.name)
         }
       },
-      imageHeightScale: 0.8,
-      imageWidth: 200,
+      thumbnail: {
+        heightScale: 0.8,
+        width: 200,
+      },
+      filters: [],
       layout: GalleryLayout.Flow,
       toolbar: false,
       zoom: false,
@@ -129,7 +132,7 @@ export class FieldRenderFileComponent extends FieldComponent implements OnInit {
           actions: actions
         }
       },
-      fetch: (query) => {
+      fetch: () => {
         return of(this.field.data.value);
       },
     };

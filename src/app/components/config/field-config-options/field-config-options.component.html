@@ -47,7 +47,14 @@
     <mat-checkbox disabled="true" style="visibility: hidden" *ngIf="(field.config.type===fieldType.Checkbox || field.config.type===fieldType.Choice) && field.config.configs.options.length"></mat-checkbox>
 
     <mat-form-field floatLabel="never" class="new-option" fxFlex>
-      <input matInput #addOptionInput placeholder="Add New Option" [(ngModel)]="newOption" name="newOption" (keydown)="addOption($event)">
+      <input
+        matInput
+        autofocus
+        #addOptionInput
+        placeholder="Add New Option"
+        [(ngModel)]="newOption"
+        name="newOption"
+        (keydown)="addOption($event)">
     </mat-form-field>
     <ng-container *ngIf="(field.config.type === fieldType.Checkbox || field.config.type === fieldType.Choice) && field.config.configs.options.length">
       <span class="or">OR</span> <button mat-button type="button" color="primary" (click)="otherToggle()">{{ field.config.configs.other ? 'Remove' : 'Add' }} "Other" Option</button>

@@ -70,7 +70,7 @@ import { FieldRenderCheckboxComponent } from './components/render/field-render-c
 import { FieldToolbarItemComponent } from './components/field-editor/field-toolbar-item/field-toolbar-item.component';
 import { FieldRenderTermsComponent } from './components/render/field-render-terms/field-render-terms.component';
 import { FieldConfigTermsComponent } from './components/config/field-config-terms/field-config-terms.component';
-
+import { FieldRenderDateComponent } from './components/render/field-render-date/field-render-date.component';
 
 
 export function defaultConfigFactory(config) {
@@ -148,39 +148,43 @@ export function defaultConfigFactory(config) {
   ],
   declarations: [
     FieldEditorComponent,
-    FieldRendererComponent,
-    FieldViewerComponent,
-    FieldViewDirective,
-    FieldRenderChoiceComponent,
-    FieldRenderDropdownComponent,
     FieldToolbarComponent,
     FieldToolbarItemComponent,
     FieldHeaderComponent,
+    FieldComponent,
+    FieldViewerComponent,
+    FieldCoreComponent,
+
+    FieldViewComponent,
+    FieldViewDirective,
+    FieldViewDirective,
+
+    FieldRendererComponent,
+    FieldRenderChoiceComponent,
+    FieldRenderDropdownComponent,
     FieldRenderTextComponent,
     FieldRenderNameComponent,
     FieldRenderFileComponent,
     FieldRenderGenderComponent,
     FieldRenderAddressComponent,
-    FieldComponent,
-    FieldConfigDirective,
     FieldRenderDirective,
-    FieldCoreComponent,
     FieldRenderComponent,
-    FieldViewComponent,
+    FieldRenderNameModelComponent,
+    FieldRenderHeadingComponent,
+    FieldRenderContentComponent,
+    FieldRenderCheckboxComponent,
+    FieldRenderTermsComponent,
+    FieldRenderDateComponent,
+
     FieldConfigNameComponent,
     FieldConfigOptionsComponent,
     FieldConfigFileComponent,
     FieldConfigGenderComponent,
     FieldConfigAddressComponent,
-    FieldRenderNameModelComponent,
     FieldConfigHeadingComponent,
-    FieldRenderHeadingComponent,
     FieldConfigContentComponent,
-    FieldRenderContentComponent,
-    FieldRenderCheckboxComponent,
-    FieldViewDirective,
-    FieldRenderTermsComponent,
     FieldConfigTermsComponent,
+    FieldConfigDirective,
   ],
   providers: [
     NgForm

@@ -77,7 +77,7 @@ export class FieldEditorComponent extends FieldCoreComponent implements AfterCon
     this.fieldChanged
       .pipe(
         filter(() => !!this.config.fieldChanged),
-        map((item) => {
+        map((item: any) => {
           return {
             fields: this.fields,
             ...item,
@@ -100,8 +100,9 @@ export class FieldEditorComponent extends FieldCoreComponent implements AfterCon
         }),
         takeUntil(this._destroy$)
       )
-      .subscribe(item => {
-        this.config.fieldAdded(this.fieldEditorService.output(item));
+      .subscribe((event: FsFieldEditorCallbackParams) => {
+        this.config.fieldAdded(this.fieldEditorService.output(event));
+        this.selectField(event.field);
       });
 
     this.fieldSelected
@@ -240,8 +241,11 @@ export class FieldEditorComponent extends FieldCoreComponent implements AfterCon
         fields: this.fields,
       };
 
-      const result = this.config.fieldAdd(this.fieldEditorService.output(data));
-      const result$ = isObservable(result) ? result : of(field);
+      let result$ = of(field);
+      if (this.config.fieldAdd) {
+        const result = this.config.fieldAdd(this.fieldEditorService.output(data));
+        result$ = isObservable(result) ? result : result$;
+      }
 
       this.fieldAdd.emit(this.fieldEditorService.output(data));
 

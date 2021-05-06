@@ -24,7 +24,7 @@
       </ng-container>
 
       <ng-container *ngSwitchCase="fieldType.Date">
-        <ng-container *ngTemplateOutlet="fsFieldText"></ng-container>
+        <fs-field-render-date [field]="field" (changed)="fieldChanged.emit($event)"></fs-field-render-date>
       </ng-container>
 
       <ng-container *ngSwitchCase="fieldType.Time">

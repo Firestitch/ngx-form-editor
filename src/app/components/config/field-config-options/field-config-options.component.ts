@@ -28,8 +28,8 @@ export class FieldConfigOptionsComponent extends FieldComponent {
     super();
   }
 
-  addOption(e) {
-    if (e.code !== 'Enter' && e.code !== 'Tab') {
+  public addOption(e): void {
+    if (e.key !== 'Enter' && e.key !== 'Tab') {
       return;
     }
 
