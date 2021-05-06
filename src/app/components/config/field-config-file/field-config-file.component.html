@@ -1,16 +1,16 @@
 <div class="options">
   <fs-label-field>
     <fs-label>Allow Multiple</fs-label>
-    <mat-checkbox color="primary" [(ngModel)]="field.config.configs.allowMultiple" (click)="changed.emit(field)"></mat-checkbox>
+    <mat-checkbox color="primary" [(ngModel)]="field.config.configs.allowMultiple" (ngModelChange)="changed.emit(field)"></mat-checkbox>
   </fs-label-field>
 
   <fs-label-field>
     <fs-label>Allow file types</fs-label>
     <div fxFlexLayout="column" fxLayoutGap="20px">
-      <mat-checkbox color="primary" [(ngModel)]="field.config.configs.allowedFileTypes.image" (click)="changed.emit(field)">Image</mat-checkbox>
-      <mat-checkbox color="primary" [(ngModel)]="field.config.configs.allowedFileTypes.video" (click)="changed.emit(field)">Video</mat-checkbox>
-      <mat-checkbox color="primary" [(ngModel)]="field.config.configs.allowedFileTypes.pdf" (click)="changed.emit(field)">PDF</mat-checkbox>
-      <mat-checkbox color="primary" [(ngModel)]="field.config.configs.allowedFileTypes.other" (click)="changed.emit(field)">Other</mat-checkbox>
+      <mat-checkbox color="primary" [(ngModel)]="field.config.configs.allowedFileTypes.image" (ngModelChange)="changed.emit(field)">Image</mat-checkbox>
+      <mat-checkbox color="primary" [(ngModel)]="field.config.configs.allowedFileTypes.video" (ngModelChange)="changed.emit(field)">Video</mat-checkbox>
+      <mat-checkbox color="primary" [(ngModel)]="field.config.configs.allowedFileTypes.pdf" (ngModelChange)="changed.emit(field)">PDF</mat-checkbox>
+      <mat-checkbox color="primary" [(ngModel)]="field.config.configs.allowedFileTypes.other" (ngModelChange)="changed.emit(field)">Other</mat-checkbox>
     </div>
   </fs-label-field>
 
