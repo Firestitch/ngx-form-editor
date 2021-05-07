@@ -7,6 +7,7 @@ import { ControlContainer, NgForm } from '@angular/forms';
 @Component({
   selector: 'fs-field-render-text',
   templateUrl: 'field-render-text.component.html',
+  styleUrls: ['field-render-text.component.scss'],
   viewProviders: [ { provide: ControlContainer, useExisting: NgForm } ]
 })
 export class FieldRenderTextComponent extends FieldComponent {

@@ -5,14 +5,6 @@
   }
 }
 
-.field-drag .mat-icon {
-  color: #b7b7b7;
-}
-
-.fs-field:hover .field-drag .mat-icon {
-  color: inherit;
-}
-
 #fs-fields {
   display: flex;
   flex-direction: column;
@@ -22,4 +14,3 @@
 .toolbar-container {
   width: 60px;
 }
-

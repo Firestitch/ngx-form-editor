@@ -1,50 +1,79 @@
 <div class="options">
-  <fs-label-field>
-    <fs-label>Allow Multiple</fs-label>
-    <mat-checkbox color="primary" [(ngModel)]="field.config.configs.allowMultiple" (ngModelChange)="changed.emit(field)"></mat-checkbox>
-  </fs-label-field>
+  <div class="row-allow">
+    <fs-label-field>
+      <fs-label>Allow Multiple</fs-label>
+      <mat-checkbox color="primary" [(ngModel)]="field.config.configs.allowMultiple" (ngModelChange)="changed.emit(field)"></mat-checkbox>
+    </fs-label-field>
 
-  <fs-label-field>
-    <fs-label>Allow file types</fs-label>
-    <div fxFlexLayout="column" fxLayoutGap="20px">
-      <mat-checkbox color="primary" [(ngModel)]="field.config.configs.allowedFileTypes.image" (ngModelChange)="changed.emit(field)">Image</mat-checkbox>
-      <mat-checkbox color="primary" [(ngModel)]="field.config.configs.allowedFileTypes.video" (ngModelChange)="changed.emit(field)">Video</mat-checkbox>
-      <mat-checkbox color="primary" [(ngModel)]="field.config.configs.allowedFileTypes.pdf" (ngModelChange)="changed.emit(field)">PDF</mat-checkbox>
-      <mat-checkbox color="primary" [(ngModel)]="field.config.configs.allowedFileTypes.other" (ngModelChange)="changed.emit(field)">Other</mat-checkbox>
-    </div>
-  </fs-label-field>
+    <fs-label-field>
+      <fs-label>Allow file types</fs-label>
+      <div fxFlexLayout="column" fxLayoutGap="20px">
+        <mat-checkbox
+            color="primary"
+            [(ngModel)]="field.config.configs.allowedFileTypes.other"
+            (ngModelChange)="changed.emit(field)">
+          Any
+        </mat-checkbox>
+        <mat-checkbox
+            color="primary"
+            *ngIf="!field.config.configs.allowedFileTypes.other"
+            [(ngModel)]="field.config.configs.allowedFileTypes.image"
+            (ngModelChange)="changed.emit(field)">
+          Image
+        </mat-checkbox>
+        <mat-checkbox
+            color="primary"
+            *ngIf="!field.config.configs.allowedFileTypes.other"
+            [(ngModel)]="field.config.configs.allowedFileTypes.video"
+            (ngModelChange)="changed.emit(field)">
+            Video
+        </mat-checkbox>
+        <mat-checkbox
+            color="primary"
+            *ngIf="!field.config.configs.allowedFileTypes.other"
+            [(ngModel)]="field.config.configs.allowedFileTypes.pdf"
+            (ngModelChange)="changed.emit(field)">
+          PDF
+        </mat-checkbox>
+      </div>
+    </fs-label-field>
+  </div>
 
-  <div *ngIf="field.config.configs.allowedFileTypes.image"
-       fxFlexLayout="column"
-       fxLayoutGap="20px">
-    <mat-form-field fxFlex>
+  <div
+      *ngIf="field.config.configs.allowedFileTypes.image || field.config.configs.allowedFileTypes.other"
+      fxFlexLayout="column"
+      fxLayoutGap="20px">
+    <mat-form-field>
       <input
         matInput
-        placeholder="Max Width"
+        placeholder="Max Image Width"
         [(ngModel)]="field.config.configs.maxWidth"
         name="maxWidth"
         [ngModelOptions]="{ updateOn: 'blur' }"
         (ngModelChange)="changed.emit(field)">
     </mat-form-field>
 
-    <mat-form-field fxFlex>
+    <mat-form-field>
       <input
         matInput
-        placeholder="Max Height"
+        placeholder="Max Image Height"
         [(ngModel)]="field.config.configs.maxHeight"
         name="maxHeight"
         [ngModelOptions]="{ updateOn: 'blur' }"
         (ngModelChange)="changed.emit(field)">
     </mat-form-field>
 
-    <mat-form-field fxFlex>
+    <mat-form-field>
       <input
         matInput
         placeholder="Image Quality"
-        [(ngModel)]="field.config.configs.imageQuality"
+        [(ngModel)]="imageQuality"
         name="imageQuality"
         [ngModelOptions]="{ updateOn: 'blur' }"
-        (ngModelChange)="changed.emit(field)">
+        (ngModelChange)="imageQualityChange($event)">
+        <span matSuffix>
+          %
+        </span>
     </mat-form-field>
   </div>
 </div>

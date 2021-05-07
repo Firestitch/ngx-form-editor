@@ -1,0 +1,9 @@
+.row-allow {
+  display: flex;
+  fs-label-field {
+    width: auto;
+    + fs-label-field {
+      margin-left: 20px;
+    }
+  }
+}

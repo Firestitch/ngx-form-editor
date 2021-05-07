@@ -1,10 +1,12 @@
-import {Component, forwardRef, Input} from "@angular/core";
-import {ControlValueAccessor, NG_VALUE_ACCESSOR} from "@angular/forms";
-import { FieldComponent } from "../../field/field.component";
+import {Component, forwardRef, Input} from '@angular/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+
+import { FieldComponent } from '../../field/field.component';
 
 @Component({
-    selector: "fs-field-render-name-model",
-    templateUrl: "./field-render-name-model.component.html",
+    selector: 'fs-field-render-name-model',
+    templateUrl: './field-render-name-model.component.html',
+    styleUrls: ['./field-render-name-model.component.scss'],
     providers: [{
         provide: NG_VALUE_ACCESSOR,
         useExisting: forwardRef(() => FieldRenderNameModelComponent),

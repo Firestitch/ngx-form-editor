@@ -4,7 +4,8 @@
      (cdkDropListDropped)="drop($event)"
      [style.min-height]="config.fields.length ? 'auto' : '400px'"
      [id]="editorId">
-    <div  *ngFor="let field of config.fields;"
+    <div
+        *ngFor="let field of config.fields;"
         class="fs-field field"
         cdkDrag
         cdkDragLockAxis="y"
@@ -15,7 +16,7 @@
     <div class="field-container" [ngClass]="['field-' + field.config.type]">
 
       <div class="field-drag" cdkDragHandle>
-        <button mat-icon-button type="button" class="drag-button">
+        <button mat-icon-button type="button" class="drag-button field-drag-button">
           <mat-icon>drag_indicator</mat-icon>
         </button>
       </div>

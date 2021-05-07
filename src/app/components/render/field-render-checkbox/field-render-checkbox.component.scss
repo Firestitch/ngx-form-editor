@@ -10,10 +10,18 @@
   }
 
   .other {
+    width: 400px;
+    max-width: 100%;
+
+    ::ng-deep .mat-checkbox-layout {
+      display: flex;
+      .mat-checkbox-label {
+        flex-grow: 1;
+      }
+    }
 
     mat-form-field {
       width: 100%;
-      max-width: 400px;
       margin-top: -3px;
     }
 
@@ -22,8 +30,6 @@
     }
 
     &.choice {
-
-
       mat-form-field {
         margin-top: -3px;
       }

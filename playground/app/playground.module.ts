@@ -31,6 +31,7 @@ import { DragulaModule } from 'ng2-dragula';
 import { FsGalleryModule } from '@firestitch/gallery';
 import { FsSignatureModule } from '@firestitch/signature';
 import { FsSelectionModule } from '@firestitch/selection';
+import { FsListModule } from '@firestitch/list';
 import { FsHtmlEditorModule } from '@firestitch/html-editor';
 
 
@@ -62,6 +63,7 @@ const routes: Routes = [
     ToastrModule.forRoot({ preventDuplicates: true }),
     FsSignatureModule,
     FsSelectionModule.forRoot(),
+    FsListModule.forRoot(),
   ],
   entryComponents: [
     DialogExampleComponent
