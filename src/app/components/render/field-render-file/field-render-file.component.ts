@@ -10,7 +10,6 @@ import { takeUntil } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { FileRenderFile } from '../../../classes/file-render-file';
 import { GalleryLayout, FsGalleryConfig, FsGalleryComponent, mime } from '@firestitch/gallery';
-import { ItemType } from '@firestitch/filter';
 
 
 @Component({

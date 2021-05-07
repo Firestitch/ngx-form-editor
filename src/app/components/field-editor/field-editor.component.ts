@@ -9,6 +9,7 @@ import {
   OnInit,
   Input,
   ElementRef,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
@@ -24,18 +25,19 @@ import { FieldCoreComponent } from '../field-core/field-core.component';
 import { FieldConfigDirective } from '../../directives/field-config/field-config.directive';
 import { FieldRenderDirective } from '../../directives/field-render/field-render.directive';
 import { initField } from './../../helpers/init-field';
-import { isObservable, Observable, of } from 'rxjs';
+import { isObservable, of } from 'rxjs';
 
 
 @Component({
   selector: 'fs-field-editor',
   templateUrl: 'field-editor.component.html',
-  styleUrls: [ 'field-editor.component.scss' ],
+  styleUrls: ['field-editor.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FieldEditorComponent extends FieldCoreComponent implements AfterContentInit, OnInit {
 
   @Input()
-  public scrollContainer: string | ElementRef = null;
+  public scrollContainer: string | HTMLElement = null;
 
   @Output() public fieldSelected = new EventEmitter<FsFieldEditorCallbackParams>();
   @Output() public fieldUnselected = new EventEmitter<FsFieldEditorCallbackParams>();

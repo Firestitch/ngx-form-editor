@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 import { FieldComponent } from '../../field/field.component';
 import { Field } from '../../../interfaces/field.interface';
@@ -8,7 +8,8 @@ import { NgForm, ControlContainer } from '@angular/forms';
 @Component({
   selector: 'fs-field-render-name',
   templateUrl: 'field-render-name.component.html',
-  viewProviders: [ { provide: ControlContainer, useExisting: NgForm } ]
+  viewProviders: [{ provide: ControlContainer, useExisting: NgForm }],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FieldRenderNameComponent extends FieldComponent {
 

@@ -1,4 +1,4 @@
-import { Component, Input, EventEmitter, OnInit, OnDestroy, Output } from '@angular/core';
+import { Component, Input, EventEmitter, OnInit, OnDestroy, Output, ChangeDetectionStrategy } from '@angular/core';
 
 import { guid } from '@firestitch/common';
 
@@ -11,6 +11,7 @@ import { FieldEditorComponent } from '../field-editor/field-editor.component';
 
 @Component({
   template: '',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FieldComponent implements OnDestroy, OnInit {
 

@@ -1,11 +1,12 @@
-import { Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { FieldCoreComponent } from '../field-core/field-core.component';
 
 
 @Component({
   selector: 'fs-field-view',
   templateUrl: 'field-view.component.html',
-  styleUrls: [ 'field-view.component.scss' ],
+  styleUrls: ['field-view.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FieldViewComponent extends FieldCoreComponent {
   public field: any = { config: {} };

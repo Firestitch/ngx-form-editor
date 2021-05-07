@@ -1,4 +1,4 @@
-import { Component, ViewChild, OnInit } from '@angular/core';
+import { Component, ViewChild, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ControlContainer, NgForm, NgModel } from '@angular/forms';
 
 import { FieldComponent } from '../../field/field.component';
@@ -7,7 +7,8 @@ import { FieldComponent } from '../../field/field.component';
   selector: 'fs-field-render-choice',
   templateUrl: 'field-render-choice.component.html',
   styleUrls: ['field-render-choice.component.scss'],
-  viewProviders: [{ provide: ControlContainer, useExisting: NgForm }]
+  viewProviders: [{ provide: ControlContainer, useExisting: NgForm }],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FieldRenderChoiceComponent extends FieldComponent implements OnInit {
 

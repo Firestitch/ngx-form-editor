@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ContentChildren, QueryList, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ContentChildren, QueryList, ChangeDetectionStrategy } from '@angular/core';
 import { ControlContainer, NgForm } from '@angular/forms';
 
 import { takeUntil } from 'rxjs/operators';
@@ -11,7 +11,8 @@ import { FieldRenderDirective } from './../../directives/field-render/field-rend
   selector: 'fs-field-renderer',
   templateUrl: 'field-renderer.component.html',
   styleUrls: [ 'field-renderer.component.scss' ],
-  viewProviders: [ { provide: ControlContainer, useExisting: NgForm } ],
+  viewProviders: [{ provide: ControlContainer, useExisting: NgForm }],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FieldRendererComponent extends FieldCoreComponent implements OnInit {
 

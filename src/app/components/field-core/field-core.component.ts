@@ -1,4 +1,4 @@
-import { Component, Input, Inject, Output, EventEmitter, OnDestroy } from '@angular/core';
+import { Component, Input, Inject, Output, EventEmitter, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
 
 import { Subject } from 'rxjs';
 
@@ -11,6 +11,7 @@ import { initField } from '../../helpers/init-field';
 
 @Component({
   template: '',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FieldCoreComponent implements OnDestroy {
 

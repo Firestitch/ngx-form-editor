@@ -1,4 +1,4 @@
-import { Component, Input, ViewChild, ElementRef } from '@angular/core';
+import { Component, Input, ViewChild, ElementRef, ChangeDetectionStrategy } from '@angular/core';
 
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
@@ -11,7 +11,8 @@ import { FieldComponent } from '../../field/field.component';
 @Component({
   selector: 'fs-field-config-options',
   templateUrl: 'field-config-options.component.html',
-  styleUrls: [ 'field-config-options.component.scss' ],
+  styleUrls: ['field-config-options.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FieldConfigOptionsComponent extends FieldComponent {
 

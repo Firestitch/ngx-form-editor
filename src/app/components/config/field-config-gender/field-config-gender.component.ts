@@ -1,4 +1,4 @@
-import { Component, Input, ViewChild, ElementRef } from '@angular/core';
+import { Component, Input, ViewChild, ElementRef, ChangeDetectionStrategy } from '@angular/core';
 
 import { FieldComponent } from '../../field/field.component';
 import { FsPrompt } from '@firestitch/prompt';
@@ -9,7 +9,8 @@ import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 @Component({
   selector: 'fs-field-config-gender',
   templateUrl: 'field-config-gender.component.html',
-  styleUrls: [ 'field-config-gender.component.scss' ],
+  styleUrls: ['field-config-gender.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FieldConfigGenderComponent extends FieldComponent {
 

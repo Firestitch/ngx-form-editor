@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 
 import { FsPrompt } from '@firestitch/prompt';
 import { guid } from '@firestitch/common';
@@ -11,7 +11,8 @@ import { cloneDeep } from 'lodash-es';
 @Component({
   selector: 'fs-field-header',
   templateUrl: 'field-header.component.html',
-  styleUrls: [ 'field-header.component.scss' ],
+  styleUrls: ['field-header.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FieldHeaderComponent extends FieldComponent implements OnInit {
 

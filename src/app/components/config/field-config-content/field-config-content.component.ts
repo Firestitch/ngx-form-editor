@@ -1,11 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 
 import { FieldComponent } from '../../field/field.component';
 
 @Component({
   selector: 'fs-field-config-content',
   templateUrl: 'field-config-content.component.html',
-  styleUrls: [ 'field-config-content.component.scss' ],
+  styleUrls: ['field-config-content.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FieldConfigContentComponent extends FieldComponent implements OnInit {
 

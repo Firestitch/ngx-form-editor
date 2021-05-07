@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 import { FieldComponent } from '../../field/field.component';
 import { COUNTRIES } from '../../../constants/countries';
@@ -11,7 +11,8 @@ import { NgForm, ControlContainer } from '@angular/forms';
   selector: 'fs-field-render-address',
   styleUrls: ['field-render-address.component.scss'],
   templateUrl: 'field-render-address.component.html',
-  viewProviders: [ { provide: ControlContainer, useExisting: NgForm } ]
+  viewProviders: [{ provide: ControlContainer, useExisting: NgForm }],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FieldRenderAddressComponent extends FieldComponent {
   public countries = COUNTRIES;

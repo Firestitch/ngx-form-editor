@@ -1,4 +1,4 @@
-import {Component, forwardRef, Input} from '@angular/core';
+import {ChangeDetectionStrategy, Component, forwardRef, Input} from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 import { FieldComponent } from '../../field/field.component';
@@ -11,8 +11,8 @@ import { FieldComponent } from '../../field/field.component';
         provide: NG_VALUE_ACCESSOR,
         useExisting: forwardRef(() => FieldRenderNameModelComponent),
         multi: true
-    }]
-
+  }],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FieldRenderNameModelComponent extends FieldComponent implements ControlValueAccessor {
   @Input() field;

@@ -1,4 +1,4 @@
-import { Component, Input, AfterContentInit } from '@angular/core';
+import { Component, Input, AfterContentInit, ChangeDetectionStrategy } from '@angular/core';
 import { ControlContainer, NgForm } from '@angular/forms';
 
 import { FieldCoreComponent } from '../../field-core/field-core.component';
@@ -10,7 +10,8 @@ import { Field } from './../../../interfaces/field.interface';
   selector: 'fs-field-render',
   styleUrls: ['field-render.component.scss'],
   templateUrl: 'field-render.component.html',
-  viewProviders: [ { provide: ControlContainer, useExisting: NgForm} ],
+  viewProviders: [{ provide: ControlContainer, useExisting: NgForm }],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FieldRenderComponent extends FieldCoreComponent implements AfterContentInit {
 

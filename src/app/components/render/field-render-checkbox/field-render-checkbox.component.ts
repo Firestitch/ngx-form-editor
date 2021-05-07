@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ViewChild } from '@angular/core';
 import { ControlContainer, NgForm, NgModel } from '@angular/forms';
 
 import { FieldComponent } from '../../field/field.component';
@@ -7,7 +7,8 @@ import { FieldComponent } from '../../field/field.component';
   selector: 'fs-field-render-checkbox',
   templateUrl: 'field-render-checkbox.component.html',
   styleUrls: [ 'field-render-checkbox.component.scss' ],
-  viewProviders: [ { provide: ControlContainer, useExisting: NgForm } ],
+  viewProviders: [{ provide: ControlContainer, useExisting: NgForm }],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FieldRenderCheckboxComponent extends FieldComponent {
 

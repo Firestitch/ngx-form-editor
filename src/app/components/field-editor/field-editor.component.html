@@ -168,12 +168,13 @@
 
 <div class="toolbar-container" #boundary>
   <div #spacer></div>
-  <fs-field-toolbar stickyThing
-              [spacer]="spacer"
-              [fieldEditor]="fieldEditor"
-              [scrollContainer]="scrollContainer"
-              [boundary]="scrollContainer ? null : boundary"
-              marginTop="30">
+  <fs-field-toolbar
+    stickyThing
+    [spacer]="spacer"
+    [fieldEditor]="fieldEditor"
+    [scrollContainer]="scrollContainer"
+    [boundary]="scrollContainer ? null : boundary"
+    marginTop="30">
   </fs-field-toolbar>
 </div>
 

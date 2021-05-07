@@ -1,5 +1,5 @@
 import { ControlContainer, NgForm } from '@angular/forms';
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 
 import { parse } from '@firestitch/date';
 
@@ -9,7 +9,8 @@ import { FieldComponent } from '../../field/field.component';
 @Component({
   selector: 'fs-field-render-date',
   templateUrl: 'field-render-date.component.html',
-  viewProviders: [ { provide: ControlContainer, useExisting: NgForm } ]
+  viewProviders: [{ provide: ControlContainer, useExisting: NgForm }],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FieldRenderDateComponent extends FieldComponent implements OnInit {
 
