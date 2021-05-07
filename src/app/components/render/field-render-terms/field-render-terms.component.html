@@ -1,8 +1,13 @@
 <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="8px">
   <div fxLayout="column">
-    <mat-checkbox>{{field.config.configs.termsLabel}}</mat-checkbox>
+    <mat-checkbox
+      [name]="name"
+      [(ngModel)]="field.data.value"
+      (ngModelChange)="changed.emit(field)">
+      {{ field.config.configs.termsLabel }}
+    </mat-checkbox>
   </div>
   <div fxLayout="column">
-    <a href="#" *ngIf="field.config.configs.termsContentSource==='url'">{{field.config.configs.termsContentLabel}}</a>
+    <a [href]="field.config.configs.termsContentUrl" *ngIf="field.config.configs.termsContentSource==='url'">{{field.config.configs.termsContentLabel}}</a>
   </div>
 </div>

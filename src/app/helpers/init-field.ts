@@ -128,10 +128,12 @@ export function initField(field) {
     }
 
     if (field.config.type === FieldType.Terms) {
-      field.config.configs = {
-        termsLabel: 'I can confirm I have read and accepted the terms & conditions.',
-        termsContentSource: 'none',
-      };
+      if (!field.config.configs) {
+        field.config.configs = {
+          termsLabel: 'I can confirm I have read and accepted the terms & conditions.',
+          termsContentSource: 'none',
+        };
+      }
     }
 
     return field;

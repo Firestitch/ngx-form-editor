@@ -4,12 +4,15 @@
       matInput
       placeholder="Terms & Condition Label"
       [(ngModel)]="field.config.configs.termsLabel"
+      [ngModelOptions]="{ updateOn: 'blur' }"
+      (ngModelChange)="changed.emit(field)"
       name="termsLabel">
   </mat-form-field>
 
   <mat-form-field>
     <mat-select
       [(ngModel)]="field.config.configs.termsContentSource"
+      (ngModelChange)="changed.emit(field)"
       name="termsContentSource"
       placeholder="Terms & Conditions Content">
       <mat-option value="none">None</mat-option>
@@ -23,6 +26,8 @@
         matInput
         placeholder="Terms & Conditions Content URL"
         [(ngModel)]="field.config.configs.termsContentUrl"
+        [ngModelOptions]="{ updateOn: 'blur' }"
+        (ngModelChange)="changed.emit(field)"
         name="termsContentUrl">
     </mat-form-field>
 
@@ -31,6 +36,8 @@
         matInput
         placeholder="Terms & Conditions Content Label"
         [(ngModel)]="field.config.configs.termsContentLabel"
+        [ngModelOptions]="{ updateOn: 'blur' }"
+        (ngModelChange)="changed.emit(field)"
         name="termsContentLabel">
     </mat-form-field>
   </ng-container>
