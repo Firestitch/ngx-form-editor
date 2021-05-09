@@ -9,12 +9,12 @@
       [accept]="allowedTypes"
       [multiple]="field.config.configs.allowMultiple">
     <button mat-raised-button type="button" color="default">
-      <mat-icon>cloud_upload</mat-icon>
+      <mat-icon>file_upload</mat-icon>
       Select File
     </button>
   </fs-file>
 
-  <div class="files-preview">
+  <div class="files-preview" [hidden]="!field.data?.value?.length">
     <fs-gallery [config]="galleryConfig"></fs-gallery>
   </div>
 </fs-label-field>

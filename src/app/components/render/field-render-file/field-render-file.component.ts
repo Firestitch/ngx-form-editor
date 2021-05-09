@@ -1,15 +1,16 @@
 import { Component, Input, ChangeDetectionStrategy, ChangeDetectorRef, OnInit, ViewChild } from '@angular/core';
 
-import { get } from 'lodash-es';
-
 import { FsFile } from '@firestitch/file';
+
+import { takeUntil } from 'rxjs/operators';
+
+import { get } from 'lodash-es';
 
 import { FieldComponent } from '../../field/field.component';
 import { Field, FieldEditorConfig } from '../../../interfaces/field.interface';
-import { takeUntil } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { FileRenderFile } from '../../../classes/file-render-file';
-import { GalleryLayout, FsGalleryConfig, FsGalleryComponent, mime } from '@firestitch/gallery';
+import { GalleryLayout, FsGalleryConfig, FsGalleryComponent, mime, ThumbnailScale } from '@firestitch/gallery';
 
 
 @Component({
@@ -119,8 +120,8 @@ export class FieldRenderFileComponent extends FieldComponent implements OnInit {
         }
       },
       thumbnail: {
-        heightScale: 0.8,
         width: 200,
+        scale: ThumbnailScale.None,
       },
       noResults: false,
       layout: GalleryLayout.Flow,
@@ -128,14 +129,20 @@ export class FieldRenderFileComponent extends FieldComponent implements OnInit {
       zoom: false,
       info: {
         icon: true,
-        menu: {
-          actions: actions
-        }
       },
       fetch: () => {
         return of(this.field.data.value);
       },
     };
+
+    if (actions.length) {
+      this.galleryConfig.info = {
+        icon: true,
+        menu: {
+          actions,
+        },
+      };
+    }
   }
 
   public initField(field) {

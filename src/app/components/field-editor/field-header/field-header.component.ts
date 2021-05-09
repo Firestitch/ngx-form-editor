@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 
 import { FsPrompt } from '@firestitch/prompt';
 import { guid } from '@firestitch/common';
@@ -20,7 +20,10 @@ export class FieldHeaderComponent extends FieldComponent implements OnInit {
   @Input() showRequired = true;
   @Input() showDescription = true;
 
-  constructor(private fsPrompt: FsPrompt) {
+  constructor(
+    private _prompt: FsPrompt,
+    private _cdRef: ChangeDetectorRef,
+  ) {
     super();
   }
 
@@ -63,13 +66,14 @@ export class FieldHeaderComponent extends FieldComponent implements OnInit {
     event.preventDefault();
     event.stopPropagation();
 
-    this.fsPrompt.confirm({
+    this._prompt.confirm({
       title: 'Confirm',
       template: 'Are you sure you would like to remove this field?',
-    }).subscribe((value) => {
-        this.fieldEditor.config.fields.splice(this.fieldEditor.config.fields.indexOf(this.field), 1);
-        this.fieldEditor.unselectField();
-        this.fieldEditor.fieldRemoved.emit({ field: this.field, event: event });
+    }).subscribe(() => {
+      this.fieldEditor.config.fields.splice(this.fieldEditor.config.fields.indexOf(this.field), 1);
+      this.fieldEditor.unselectField();
+      this.fieldEditor.fieldRemoved.emit({ field: this.field, event: event });
+      this._cdRef.markForCheck();
     });
   }
 

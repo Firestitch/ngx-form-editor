@@ -24,7 +24,7 @@ export class FieldRenderComponent extends FieldCoreComponent implements AfterCon
 
   @Input() public fieldRenders: FieldRenderDirective[] = [];
 
-  public ngAfterContentInit() {
+  public ngAfterContentInit(): void {
     this.fieldRenders.forEach((directive: FieldRenderDirective) => {
       this.fieldRenderTemplateRefs[directive.type] = directive.templateRef;
     });
