@@ -7,7 +7,9 @@
       {{ field.config.configs.termsLabel }}
     </mat-checkbox>
   </div>
-  <div fxLayout="column">
-    <a [href]="field.config.configs.termsContentUrl" *ngIf="field.config.configs.termsContentSource==='url'">{{field.config.configs.termsContentLabel}}</a>
+  <div fxLayout="column" *ngIf="field.config.configs.termsContentSource==='url'">
+    <a [href]="field.config.configs.termsContentUrl" target="_blank">
+      {{field.config.configs.termsContentLabel}}
+    </a>
   </div>
 </div>

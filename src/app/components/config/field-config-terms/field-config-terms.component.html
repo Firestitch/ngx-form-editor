@@ -28,7 +28,8 @@
         [(ngModel)]="field.config.configs.termsContentUrl"
         [ngModelOptions]="{ updateOn: 'blur' }"
         (ngModelChange)="changed.emit(field)"
-        name="termsContentUrl">
+        name="termsContentUrl"
+        [fsFormUrl]="true">
     </mat-form-field>
 
     <mat-form-field>

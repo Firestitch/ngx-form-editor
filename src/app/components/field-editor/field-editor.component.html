@@ -4,6 +4,7 @@
         cdkDropList
         (cdkDropListDropped)="drop($event)"
         [id]="editorId">
+      <form fsForm>
         <div
             *ngFor="let field of config.fields;"
             class="fs-field field"
@@ -163,6 +164,7 @@
           </ng-template>
         </div>
       </div>
+      </form>
     </div>
   </div>
 
