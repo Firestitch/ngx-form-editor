@@ -239,7 +239,7 @@ export class ExampleComponent implements OnInit {
         config:
         {
           guid: '4',
-          type: FieldType.Terms,
+          type: 'terms',
           label: 'Terms',
           configs: {}
         }
