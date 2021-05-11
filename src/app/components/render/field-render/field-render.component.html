@@ -47,10 +47,6 @@
         <fs-field-render-name [field]="field" (changed)="fieldChanged.emit($event)"></fs-field-render-name>
       </ng-container>
 
-      <ng-container *ngSwitchCase="fieldType.Terms">
-        <fs-field-render-terms [field]="field" (changed)="fieldChanged.emit($event)"></fs-field-render-terms>
-      </ng-container>
-
       <ng-container *ngSwitchCase="fieldType.Heading">
         <fs-field-render-heading [field]="field"></fs-field-render-heading>
       </ng-container>

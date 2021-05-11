@@ -57,10 +57,6 @@
                   <fs-field-config-name [field]="field" (changed)="fieldChanged.emit($event)"></fs-field-config-name>
                 </ng-container>
 
-                <ng-container *ngSwitchCase="fieldType.Terms">
-                  <fs-field-config-terms [field]="field" (changed)="fieldChanged.emit($event)"></fs-field-config-terms>
-                </ng-container>
-
                 <ng-container *ngSwitchCase="fieldType.File">
                   <fs-field-config-file [field]="field" (changed)="fieldChanged.emit($event)"></fs-field-config-file>
                 </ng-container>
@@ -129,10 +125,6 @@
 
                 <ng-container *ngSwitchCase="fieldType.Name">
                   <fs-field-render-name [field]="field"></fs-field-render-name>
-                </ng-container>
-
-                <ng-container *ngSwitchCase="fieldType.Terms">
-                  <fs-field-render-terms [field]="field"></fs-field-render-terms>
                 </ng-container>
 
                 <ng-container *ngSwitchCase="fieldType.File">

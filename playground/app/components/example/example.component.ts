@@ -112,6 +112,12 @@ export class ExampleComponent implements OnInit {
             label: 'Signature',
             type: 'signpad',
             config: {},
+          },
+          {
+            icon: 'check_box',
+            label: 'Terms & Conditions',
+            type: 'terms',
+            config: {},
           }
 
         ].concat(this.defaultConfig.toolbar.items)
