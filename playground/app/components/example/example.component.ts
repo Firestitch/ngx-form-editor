@@ -116,7 +116,7 @@ export class ExampleComponent implements OnInit {
 
         ].concat(this.defaultConfig.toolbar.items)
       },
-      //fields: this.getFields(),
+      fields: this.getFields(),
     };
   }
 
