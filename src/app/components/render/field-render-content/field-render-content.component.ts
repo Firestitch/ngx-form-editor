@@ -1,7 +1,10 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { ControlContainer, NgForm } from '@angular/forms';
+
+import { FsHtmlEditorConfig } from '@firestitch/html-editor';
 
 import { FieldComponent } from '../../field/field.component';
-import { ControlContainer, NgForm } from '@angular/forms';
+import { FieldEditorConfig } from '../../../interfaces/field.interface';
 
 
 @Component({
@@ -12,12 +15,23 @@ import { ControlContainer, NgForm } from '@angular/forms';
 })
 export class FieldRenderContentComponent extends FieldComponent implements OnInit {
 
+  @Input() config: FieldEditorConfig;
+
+  public editorConfig: FsHtmlEditorConfig;
+
   public ngOnInit(): void {
     super.ngOnInit();
 
-    this.field.config.configs = {
-      ...this.field.config.configs,
+    this.editorConfig = {
       autofocus: false,
     };
+
+    if (this.config?.imageUpload) {
+      this.editorConfig.image = {
+        upload: (file: File) => {
+          return this.config.imageUpload(this.field, file);
+        }
+      }
+    }
   }
 }

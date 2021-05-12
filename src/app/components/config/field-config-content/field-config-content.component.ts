@@ -27,14 +27,6 @@ export class FieldConfigContentComponent extends FieldComponent implements OnIni
       ...this.field.config.configs,
       autofocus: false,
     };
-
-    if (this.fieldEditor.config.imageUpload) {
-      this.config.image = {
-        upload: (file: File) => {
-          return this.fieldEditor.config.imageUpload(this.field, file);
-        }
-      }
-    }
   }
 
 }
