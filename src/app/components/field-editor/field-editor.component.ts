@@ -152,10 +152,7 @@ export class FieldEditorComponent implements OnInit, AfterContentInit, OnDestroy
           takeUntil(this._destroy$),
         )
         .subscribe((newField: Field) => {
-          this.fieldEditor.fieldDrop({
-            field: newField,
-            event,
-          });
+          this.fieldEditor.fieldDrop(field);
 
           this.fieldEditor.config.fields.splice(event.currentIndex, 0, newField);
 

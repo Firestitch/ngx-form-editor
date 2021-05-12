@@ -140,7 +140,7 @@ export class FieldEditorService implements OnDestroy {
     }
   }
 
-  public fieldDrop(item: FsFieldEditorCallbackParams) {
+  public fieldDrop(item: Field) {
     if (this.config.fieldDrop) {
       item = this._prepareItem(item);
 
