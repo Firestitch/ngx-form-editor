@@ -67,7 +67,6 @@ export class FieldEditorComponent implements OnInit, AfterContentInit, OnDestroy
   constructor(
     @Inject(DOCUMENT) public document: any,
     public fieldEditor: FieldEditorService,
-    private _cdRef: ChangeDetectorRef,
   ) {}
 
   @Input('config')
