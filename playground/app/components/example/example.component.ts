@@ -251,7 +251,10 @@ export class ExampleComponent implements OnInit {
           guid: '4',
           type: 'terms',
           label: 'Terms',
-          configs: {}
+          configs: {
+            termsLabel: 'I can confirm I have read and accepted the terms & conditions.',
+            termsContentSource: 'none',
+          },
         }
       },
       {

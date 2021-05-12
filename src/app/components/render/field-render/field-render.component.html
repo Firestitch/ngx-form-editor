@@ -64,7 +64,7 @@
       </ng-container>
 
       <ng-container *ngSwitchCase="fieldType.Content">
-        <fs-field-render-content [field]="field"></fs-field-render-content>
+        <fs-field-render-content [field]="field" [config]="fieldEditor.config"></fs-field-render-content>
       </ng-container>
 
       <ng-template #fsFieldText>

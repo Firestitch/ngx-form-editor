@@ -31,7 +31,9 @@ export class FieldRenderComponent implements AfterContentInit {
   @Input()
   public fieldRenders: FieldRenderDirective[] = [];
 
-  constructor(public fieldEditor: FieldEditorService) {
+  constructor(
+    public fieldEditor: FieldEditorService,
+  ) {
   }
 
   @Input('field')

@@ -1,4 +1,17 @@
-mat-form-field {
+
+
+fs-address {
   width: 400px;
   max-width: 100%;
+  display: block;
+
+  ::ng-deep {
+    .mat-form-field {
+      padding: 0;
+    }
+
+    .city-region-zip-country {
+      flex-direction: column !important;
+    }
+  }
 }

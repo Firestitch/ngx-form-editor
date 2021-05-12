@@ -34,6 +34,9 @@ import { FsSelectionModule } from '@firestitch/selection';
 import { FsListModule } from '@firestitch/list';
 import { FsHtmlEditorModule } from '@firestitch/html-editor';
 import { TermsFieldModule } from './modules/terms-field';
+import { LAZY_MAPS_API_CONFIG } from '@agm/core';
+import { GOOGLE_MAP_KEY } from '@firestitch/address';
+import { GoogleMapConfig } from './google-map.config';
 
 
 const routes: Routes = [
@@ -65,7 +68,6 @@ const routes: Routes = [
     FsSignatureModule,
     FsSelectionModule.forRoot(),
     FsListModule.forRoot(),
-
     TermsFieldModule,
   ],
   entryComponents: [
@@ -79,7 +81,14 @@ const routes: Routes = [
     FieldRenderComponent,
     FieldViewComponent,
     SectionsComponent,
-  ]
+  ],
+  providers: [
+    {
+      provide: LAZY_MAPS_API_CONFIG,
+      useClass: GoogleMapConfig,
+    },
+    { provide: GOOGLE_MAP_KEY, useValue: 'AIzaSyAoT2RLzCSFUb148F4uLXyAuquAzjcjyGk' },
+  ],
 })
 export class PlaygroundModule {
 }

@@ -2,7 +2,7 @@
   "name": "@firestitch/field-editor",
   "title": "Field Editor",
   "description": "@firestitch/field-editor",
-  "version": "9.6.2",
+  "version": "9.7.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/Firestitch/ngx-field-editor"
@@ -46,6 +46,7 @@
     "@angular/router": "^9.1.11",
     "@compodoc/compodoc": "^1.1.11",
     "@firestitch/api": "^8.1.4",
+    "@firestitch/address": "^8.5.2",
     "@firestitch/autocomplete": "^8.1.0",
     "@firestitch/autocomplete-chips": "^8.1.2",
     "@firestitch/badge": "^8.0.0",
@@ -110,7 +111,9 @@
     "tslint": "^5.20.1",
     "tsmodels": "^0.4.7",
     "typescript": "3.8.3",
-    "zone.js": "~0.10.3"
+    "zone.js": "~0.10.3",
+    "@agm/core": "^1.1.0",
+    "@types/googlemaps": "^3.39.2"
   },
   "peerDependencies": {
     "@firestitch/file": ">=8.3.0",
