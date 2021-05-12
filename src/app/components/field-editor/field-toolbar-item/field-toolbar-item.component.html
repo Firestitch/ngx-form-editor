@@ -11,6 +11,7 @@
            cdkDrag
            [cdkDragData]="{ field: field, item: item }"
            [cdkDragDisabled]="item.disabled"
+           (click)="itemClick(item)"
            (cdkDragStarted)="dragStarted(item)"
            (cdkDragDropped)="dragDropped($event)">
         <div fxFlexLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">

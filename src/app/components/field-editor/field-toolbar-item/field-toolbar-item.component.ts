@@ -71,6 +71,11 @@ export class FieldToolbarItemComponent {
     }
   }
 
+  public itemClick(item: ToolbarItem): void {
+    const field = this._prepareField(item)
+    this.fieldEditor.insertNewField(field);
+  }
+
   private _hideMenuBackdrop(): void {
     const backdropEl = this._backdrop;
 
@@ -85,5 +90,22 @@ export class FieldToolbarItemComponent {
     if (backdropEl) {
       backdropEl.classList.remove(BACKDROP_HIDDEN_CLASS)
     }
+  }
+
+  private _prepareField(item: ToolbarItem): Field {
+    return {
+      config: {
+        ...this.item.config,
+        guid: guid(),
+        type: item.type,
+        label: item.label,
+        description: '',
+        hasDescriptionNote: false
+      },
+      data: {
+        value: null,
+        guid: guid()
+      }
+    };
   }
 }

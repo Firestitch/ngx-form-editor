@@ -86,8 +86,8 @@ export class FieldEditorComponent implements OnInit, AfterContentInit, OnDestroy
         }),
       )
       .subscribe(() => {
-        this.fieldEditor.unselectField();
-        this._cdRef.markForCheck();
+        // this.fieldEditor.unselectField();
+        // this._cdRef.markForCheck();
       });
 
   }
@@ -132,37 +132,11 @@ export class FieldEditorComponent implements OnInit, AfterContentInit, OnDestroy
       });
 
     } else {
-
-      const field = initField(event.item.data.field);
-
-      const data: FsFieldEditorCallbackParams = {
-        field,
-        toolbarField: event.item.data.item,
-        event,
-        fields: this.fieldEditor.fields,
-      };
-
-      let result$ = of(field);
-
-      const result = this.fieldEditor.fieldAdd(data);
-      result$ = isObservable(result) ? result : result$;
-
-      result$
-        .pipe(
-          takeUntil(this._destroy$),
-        )
-        .subscribe((newField: Field) => {
-          this.fieldEditor.fieldDrop(field);
-
-          this.fieldEditor.config.fields.splice(event.currentIndex, 0, newField);
-
-          this.fieldEditor.fieldAdded({
-            field: newField,
-            toolbarField: event.item.data.item,
-            event,
-          });
-        });
-
+      this.fieldEditor.insertNewField(
+        event.item.data.field,
+        event.currentIndex,
+        event
+      );
     }
   }
 

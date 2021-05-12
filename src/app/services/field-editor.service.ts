@@ -1,8 +1,10 @@
 import { Injectable, Inject, OnDestroy } from '@angular/core';
+import { CdkDragDrop } from '@angular/cdk/drag-drop';
 
 import { guid } from '@firestitch/common';
 
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { BehaviorSubject, isObservable, Observable, of, Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 import { cloneDeep } from 'lodash-es';
 
@@ -50,6 +52,10 @@ export class FieldEditorService implements OnDestroy {
     return !!this.config?.fields;
   }
 
+  public get numberOfFields(): number {
+    return this.config.fields.length;
+  }
+
   public ngOnDestroy(): void {
     this._destroy$.next();
     this._destroy$.complete();
@@ -84,6 +90,47 @@ export class FieldEditorService implements OnDestroy {
     }
   }
 
+  public insertNewField(field: Field, index?: number, event?: CdkDragDrop<string[]>) {
+    field = initField(field);
+
+    if (index === undefined) {
+      if (this.selectedField) {
+        index = this.config.fields.indexOf(this.selectedField) + 1;
+      } else {
+        index = this.numberOfFields;
+      }
+    }
+
+    const data: FsFieldEditorCallbackParams = {
+      field,
+      toolbarField: event?.item.data.item,
+      event,
+      fields: this.fields,
+    };
+
+    let result$ = of(field);
+
+    const result = this.fieldAdd(data);
+    result$ = isObservable(result) ? result : result$;
+
+    result$
+      .pipe(
+        takeUntil(this._destroy$),
+      )
+      .subscribe((newField: Field) => {
+        this.fieldDrop(field);
+
+        this.config.fields.splice(index, 0, newField);
+
+        this.selectField(newField);
+
+        this.fieldAdded({
+          field: newField,
+          toolbarField: event?.item.data.item,
+        });
+      });
+  }
+
   public fieldChanged(item: Field) {
     if (this.config.fieldChanged) {
       item = this._prepareItem(item);
@@ -92,7 +139,7 @@ export class FieldEditorService implements OnDestroy {
     }
   }
 
-  public fieldAdd(item: FsFieldEditorCallbackParams): Observable<unknown> | void {
+  public fieldAdd(item: FsFieldEditorCallbackParams): Observable<Field> | void {
     if (this.config.fieldAdd) {
       item = this._prepareItem(item);
 
