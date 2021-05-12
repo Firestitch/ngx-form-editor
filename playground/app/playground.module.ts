@@ -87,7 +87,7 @@ const routes: Routes = [
       provide: LAZY_MAPS_API_CONFIG,
       useClass: GoogleMapConfig,
     },
-    { provide: GOOGLE_MAP_KEY, useValue: 'AIzaSyAoT2RLzCSFUb148F4uLXyAuquAzjcjyGk' },
+    { provide: GOOGLE_MAP_KEY, useValue: '' },
   ],
 })
 export class PlaygroundModule {
