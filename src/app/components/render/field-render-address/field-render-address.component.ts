@@ -1,17 +1,24 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, Optional } from '@angular/core';
+import { ControlContainer, NgForm } from '@angular/forms';
 
 import { FieldComponent } from '../../field/field.component';
 import { COUNTRIES } from '../../../constants/countries';
 import { filter } from 'lodash-es';
 import { Field } from '../../../interfaces/field.interface';
-import { NgForm, ControlContainer } from '@angular/forms';
+import { ngFormProviderFactory } from '../../../helpers/ng-form-provider-factory';
 
 
 @Component({
   selector: 'fs-field-render-address',
   styleUrls: ['field-render-address.component.scss'],
   templateUrl: 'field-render-address.component.html',
-  viewProviders: [{ provide: ControlContainer, useExisting: NgForm }],
+  viewProviders: [
+    {
+      provide: ControlContainer,
+      useFactory: ngFormProviderFactory,
+      deps: [[new Optional(), NgForm]],
+    }
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FieldRenderAddressComponent extends FieldComponent {

@@ -4,13 +4,15 @@ import {
   ContentChildren,
   QueryList,
   ChangeDetectionStrategy,
-  Input
+  Input,
+  Optional
 } from '@angular/core';
 import { ControlContainer, NgForm } from '@angular/forms';
 
 import { FieldEditorConfig } from './../../interfaces/field.interface';
 import { FieldRenderDirective } from './../../directives/field-render/field-render.directive';
 import { FieldEditorService } from '../../services/field-editor.service';
+import { ngFormProviderFactory } from '../../helpers/ng-form-provider-factory';
 
 @Component({
   selector: 'fs-field-renderer',
@@ -19,7 +21,13 @@ import { FieldEditorService } from '../../services/field-editor.service';
   providers: [
     FieldEditorService,
   ],
-  viewProviders: [{ provide: ControlContainer, useExisting: NgForm }],
+  viewProviders: [
+    {
+      provide: ControlContainer,
+      useFactory: ngFormProviderFactory,
+      deps: [[new Optional(), NgForm]],
+    }
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FieldRendererComponent implements OnInit {

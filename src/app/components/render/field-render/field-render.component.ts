@@ -1,17 +1,25 @@
-import { Component, Input, AfterContentInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, Input, AfterContentInit, ChangeDetectionStrategy, Optional } from '@angular/core';
 import { ControlContainer, NgForm } from '@angular/forms';
 
+import { ngFormProviderFactory } from '../../../helpers/ng-form-provider-factory';
 import { FieldRenderDirective } from '../../../directives/field-render/field-render.directive';
 import { initField } from '../../../helpers/init-field';
 import { Field } from './../../../interfaces/field.interface';
 import { FieldEditorService } from '../../../services/field-editor.service';
 import { FieldType } from '../../../enums/field-type';
 
+
 @Component({
   selector: 'fs-field-render',
   styleUrls: ['field-render.component.scss'],
   templateUrl: 'field-render.component.html',
-  viewProviders: [{ provide: ControlContainer, useExisting: NgForm }],
+  viewProviders: [
+    {
+      provide: ControlContainer,
+      useFactory: ngFormProviderFactory,
+      deps: [[new Optional(), NgForm]],
+    }
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FieldRenderComponent implements AfterContentInit {

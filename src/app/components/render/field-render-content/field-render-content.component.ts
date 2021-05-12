@@ -1,23 +1,33 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, Optional } from '@angular/core';
 import { ControlContainer, NgForm } from '@angular/forms';
 
 import { FsHtmlEditorConfig } from '@firestitch/html-editor';
 
+import { FieldEditorService } from '../../../services/field-editor.service';
+import { ngFormProviderFactory } from '../../../helpers/ng-form-provider-factory';
 import { FieldComponent } from '../../field/field.component';
-import { FieldEditorConfig } from '../../../interfaces/field.interface';
+
 
 
 @Component({
   selector: 'fs-field-render-content',
   templateUrl: 'field-render-content.component.html',
-  viewProviders: [{ provide: ControlContainer, useExisting: NgForm }],
+  viewProviders: [
+    {
+      provide: ControlContainer,
+      useFactory: ngFormProviderFactory,
+      deps: [[new Optional(), NgForm]],
+    }
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FieldRenderContentComponent extends FieldComponent implements OnInit {
 
-  @Input() config: FieldEditorConfig;
-
   public editorConfig: FsHtmlEditorConfig;
+
+  constructor(public fieldEditor: FieldEditorService) {
+    super();
+  }
 
   public ngOnInit(): void {
     super.ngOnInit();
@@ -26,10 +36,10 @@ export class FieldRenderContentComponent extends FieldComponent implements OnIni
       autofocus: false,
     };
 
-    if (this.config?.imageUpload) {
+    if (this.fieldEditor.config?.imageUpload) {
       this.editorConfig.image = {
         upload: (file: File) => {
-          return this.config.imageUpload(this.field, file);
+          return this.fieldEditor.config.imageUpload(this.field, file);
         }
       }
     }

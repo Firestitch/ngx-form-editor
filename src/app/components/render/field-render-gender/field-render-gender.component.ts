@@ -1,14 +1,21 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Optional } from '@angular/core';
+import { ControlContainer, NgForm } from '@angular/forms';
 
 import { FieldComponent } from '../../field/field.component';
-import { NgForm, ControlContainer } from '@angular/forms';
+import { ngFormProviderFactory } from '../../../helpers/ng-form-provider-factory';
 
 
 @Component({
   selector: 'fs-field-render-gender',
   styleUrls: ['field-render-gender.component.scss'],
   templateUrl: 'field-render-gender.component.html',
-  viewProviders: [{ provide: ControlContainer, useExisting: NgForm }],
+  viewProviders: [
+    {
+      provide: ControlContainer,
+      useFactory: ngFormProviderFactory,
+      deps: [[new Optional(), NgForm]],
+    }
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FieldRenderGenderComponent extends FieldComponent {
