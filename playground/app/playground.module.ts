@@ -33,6 +33,7 @@ import { FsSignatureModule } from '@firestitch/signature';
 import { FsSelectionModule } from '@firestitch/selection';
 import { FsListModule } from '@firestitch/list';
 import { FsHtmlEditorModule } from '@firestitch/html-editor';
+import { TermsFieldModule } from './modules/terms-field';
 
 
 const routes: Routes = [
@@ -64,6 +65,8 @@ const routes: Routes = [
     FsSignatureModule,
     FsSelectionModule.forRoot(),
     FsListModule.forRoot(),
+
+    TermsFieldModule,
   ],
   entryComponents: [
     DialogExampleComponent

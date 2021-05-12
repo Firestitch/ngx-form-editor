@@ -117,7 +117,12 @@ export class ExampleComponent implements OnInit {
             icon: 'check_box',
             label: 'Terms & Conditions',
             type: 'terms',
-            config: {},
+            config: {
+              configs: {
+                termsLabel: 'I can confirm I have read and accepted the terms & conditions.',
+                termsContentSource: 'none',
+              },
+            },
           }
 
         ].concat(this.defaultConfig.toolbar.items)
@@ -128,6 +133,10 @@ export class ExampleComponent implements OnInit {
 
   shareChange() {
     this.fieldEditor.fieldChanged.emit();
+  }
+
+  public fieldChanged(editor: FieldEditorComponent): void {
+    editor.fieldChanged.emit();
   }
 
   save() {

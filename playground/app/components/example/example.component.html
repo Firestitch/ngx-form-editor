@@ -30,69 +30,21 @@
             </div>
           </ng-template>
 
-          <ng-template fsFieldConfig type="terms" let-field="field">
+          <ng-template fsFieldConfig type="terms" let-field="field" let-fieldEditor="fieldEditor">
             <div fxLayout="column">
-              <mat-form-field>
-                <input
-                  matInput
-                  placeholder="Terms & Condition Label"
-                  [(ngModel)]="field.config.configs.termsLabel"
-                  [ngModelOptions]="{ updateOn: 'blur' }"
-                  name="termsLabel">
-              </mat-form-field>
-
-              <mat-form-field>
-                <mat-select
-                  [(ngModel)]="field.config.configs.termsContentSource"
-                  name="termsContentSource"
-                  placeholder="Terms & Conditions Content">
-                  <mat-option value="none">None</mat-option>
-                  <mat-option value="url">URL</mat-option>
-                </mat-select>
-              </mat-form-field>
-
-              <ng-container *ngIf="field.config.configs.termsContentSource==='url'">
-                <mat-form-field>
-                  <input
-                    matInput
-                    placeholder="Terms & Conditions Content URL"
-                    [(ngModel)]="field.config.configs.termsContentUrl"
-                    [ngModelOptions]="{ updateOn: 'blur' }"
-                    name="termsContentUrl"
-                    [fsFormUrl]="true">
-                </mat-form-field>
-
-                <mat-form-field>
-                  <input
-                    matInput
-                    placeholder="Terms & Conditions Content Label"
-                    [(ngModel)]="field.config.configs.termsContentLabel"
-                    [ngModelOptions]="{ updateOn: 'blur' }"
-                    name="termsContentLabel">
-                </mat-form-field>
-              </ng-container>
+              <app-terms-field-config name="terms"
+                                      [ngModel]="field"
+                                      (ngModelChange)="fieldChanged(fieldEditor)">
+              </app-terms-field-config>
             </div>
           </ng-template>
 
-          <ng-template fsFieldRender type="terms" let-field="field">
-            <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="8px">
-              <fs-label-field>
-                <fs-label>
-                  {{ field.config.label }}
-                </fs-label>
-                <div fxLayout="column">
-                  <mat-checkbox
-                    [name]="name"
-                    [(ngModel)]="field.data.value">
-                    {{ field.config.configs.termsLabel }}
-                  </mat-checkbox>
-                </div>
-                <div fxLayout="column" *ngIf="field.config.configs.termsContentSource==='url'">
-                  <a [href]="field.config.configs.termsContentUrl" target="_blank">
-                    {{field.config.configs.termsContentLabel}}
-                  </a>
-                </div>
-              </fs-label-field>
+          <ng-template fsFieldRender type="terms" let-field="field" let-fieldEditor="fieldEditor">
+            <div fxLayout="column">
+              <app-terms-field-render name="terms"
+                                      [ngModel]="field"
+                                      (ngModelChange)="fieldChanged(fieldEditor)">
+              </app-terms-field-render>
             </div>
           </ng-template>
         </fs-field-editor>
@@ -113,6 +65,15 @@
                   <fs-label>Signature</fs-label>
                   <fs-signature (change)="field.data.value = $event"></fs-signature>
                 </fs-label-field>
+              </ng-template>
+
+              <ng-template fsFieldRender type="terms" let-field="field" let-fieldEditor="fieldEditor">
+                <div fxLayout="column">
+                  <app-terms-field-render name="terms"
+                                          [ngModel]="field"
+                                          (ngModelChange)="fieldChanged(fieldEditor)">
+                  </app-terms-field-render>
+                </div>
               </ng-template>
             </fs-field-renderer>
 
@@ -138,6 +99,14 @@
                 <fs-label>Signature</fs-label>
                 <img [src]="field.data.value">
               </fs-label-field>
+            </ng-template>
+
+            <ng-template fsFieldView type="signpad" let-field="field">
+              <app-terms-field-render name="terms"
+                                      [disabled]="true"
+                                      [ngModel]="field"
+                                      (ngModelChange)="fieldChanged(fieldEditor)">
+              </app-terms-field-render>
             </ng-template>
           </fs-field-viewer>
         </p>
