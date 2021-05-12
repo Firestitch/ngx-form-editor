@@ -49,14 +49,6 @@ fs-field-toolbar {
     }
   }
 
-  ::ng-deep {
-    .cdk-drag-placeholder {
-      background: #f9f9f9;
-      padding: 8px;
-      border-radius: 6px;
-    }
-  }
-
   &:not(.cdk-drop-list-dragging) {
     ::ng-deep {
       .fs-field:not(.selected):hover {

@@ -8,9 +8,6 @@
         <ng-container *ngFor="let field of fieldEditor.config.fields">
           <fs-field-editor-item
             class="fs-field field"
-            cdkDrag
-            cdkDragLockAxis="y"
-            (cdkDragStarted)="fieldDragStart()"
             (click)="fieldClick(field)"
             [field]="field"
             [fieldConfigTemplateRefs]="fieldConfigTemplateRefs"

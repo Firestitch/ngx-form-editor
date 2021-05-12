@@ -112,10 +112,6 @@ export class FieldEditorComponent implements OnInit, AfterContentInit, OnDestroy
     }
   }
 
-  public fieldDragStart() {
-    this.fieldEditor.unselectField();
-  }
-
   public drop(event: CdkDragDrop<string[]>) {
 
     if (event.container === event.previousContainer) {

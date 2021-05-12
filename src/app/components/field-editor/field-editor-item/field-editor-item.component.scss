@@ -38,6 +38,12 @@
   }
 }
 
+.cdk-drag-placeholder {
+  background: #f9f9f9;
+  padding: 8px;
+  border-radius: 6px;
+}
+
 .label.mat-form-field {
   display: block;
   margin-right: 10px;
