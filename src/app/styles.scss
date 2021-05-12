@@ -14,7 +14,10 @@
   &.cdk-drag-placeholder {
     background: #F7F7F7;
 
-    .field-container,
+    & > * {
+      visibility: hidden;
+    }
+
     .option-container {
       visibility: hidden;
     }

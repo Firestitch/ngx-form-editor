@@ -1,8 +1,5 @@
 :host {
   display: block;
-  border-radius: 6px;
-  margin: 8px 0;
-  padding: 0 20px 10px 20px;
 
   &.selected .field-container {
     box-sizing: border-box;
@@ -36,6 +33,12 @@
     position: relative;
     cursor: initial;
   }
+}
+
+.field-container {
+  border-radius: 6px;
+  margin: 8px 0;
+  padding: 0 20px 10px 20px;
 }
 
 .cdk-drag-placeholder {
