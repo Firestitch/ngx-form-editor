@@ -49,7 +49,7 @@ export class FieldEditorService implements OnDestroy {
   }
 
   public get hasFields(): boolean {
-    return !!this.config?.fields;
+    return this.config?.fields.length > 0;
   }
 
   public get numberOfFields(): number {
