@@ -6,10 +6,10 @@ import { CdkDragDrop } from '@angular/cdk/drag-drop';
 
 import { guid } from '@firestitch/common';
 
-import { FieldEditorComponent } from '../../field-editor/field-editor.component';
 import { Field, ToolbarItem } from '../../../interfaces/field.interface';
 import { FieldType } from '../../../enums/field-type';
 import { BACKDROP_CLASS, BACKDROP_HIDDEN_CLASS } from '../../../constants/backdrop-class';
+import { FieldEditorService } from '../../../services/field-editor.service';
 
 
 @Component({
@@ -26,12 +26,11 @@ export class FieldToolbarItemComponent {
   @Input()
   public menuTrigger: MatMenuTrigger;
 
-  @Input()
-  public fieldEditor: FieldEditorComponent;
-
   public field: Field = null;
 
-  constructor() {}
+  constructor(
+    public fieldEditor: FieldEditorService,
+  ) {}
 
   private get _backdrop(): Element {
     return document.getElementsByClassName(BACKDROP_CLASS).item(0);

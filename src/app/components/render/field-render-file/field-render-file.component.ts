@@ -7,10 +7,11 @@ import { takeUntil } from 'rxjs/operators';
 import { get } from 'lodash-es';
 
 import { FieldComponent } from '../../field/field.component';
-import { Field, FieldEditorConfig } from '../../../interfaces/field.interface';
+import { Field } from '../../../interfaces/field.interface';
 import { of } from 'rxjs';
 import { FileRenderFile } from '../../../classes/file-render-file';
 import { GalleryLayout, FsGalleryConfig, FsGalleryComponent, mime, ThumbnailScale } from '@firestitch/gallery';
+import { FieldEditorService } from '../../../services/field-editor.service';
 
 
 @Component({
@@ -22,8 +23,6 @@ import { GalleryLayout, FsGalleryConfig, FsGalleryComponent, mime, ThumbnailScal
 export class FieldRenderFileComponent extends FieldComponent implements OnInit {
 
   @ViewChild(FsGalleryComponent) gallery: FsGalleryComponent;
-
-  @Input() config: FieldEditorConfig;
 
   @Input('field') set _field(field: Field) {
 
@@ -39,13 +38,16 @@ export class FieldRenderFileComponent extends FieldComponent implements OnInit {
   public allowedTypes = '';
   public galleryConfig: FsGalleryConfig;
 
-  public constructor(private _cdRef: ChangeDetectorRef) {
+  public constructor(
+    public fieldEditor: FieldEditorService,
+    private _cdRef: ChangeDetectorRef,
+  ) {
     super();
   }
 
   public selectFile(files: any) {
 
-    if (this.config.fileUpload) {
+    if (this.fieldEditor.config.fileUpload) {
 
       if (!this.field.config.configs.allowMultiple) {
         this.field.data.value = [];
@@ -59,7 +61,7 @@ export class FieldRenderFileComponent extends FieldComponent implements OnInit {
 
       files.forEach((file: FsFile, index) => {
 
-        this.config.fileUpload(this.field, file.file)
+        this.fieldEditor.config.fileUpload(this.field, file.file)
         .pipe(
           takeUntil(this.$destory)
         )
@@ -78,21 +80,21 @@ export class FieldRenderFileComponent extends FieldComponent implements OnInit {
     super.ngOnInit();
 
     const actions = [];
-    if (this.config && this.config.fileDownload) {
+    if (this.fieldEditor.config && this.fieldEditor.config.fileDownload) {
       actions.push({
         label: 'Download',
         click: (item) => {
-          this.config.fileDownload(this.field, item);
+          this.fieldEditor.config.fileDownload(this.field, item);
         }
       });
     }
 
-    if (this.config && this.config.fileRemove) {
+    if (this.fieldEditor.config && this.fieldEditor.config.fileRemove) {
       actions.push({
         label: 'Remove',
         click: (item) => {
 
-          this.config.fileRemove(this.field, item)
+          this.fieldEditor.config.fileRemove(this.field, item)
           .subscribe(() => {
 
             const idx = this.field.data.value.indexOf(item);
@@ -101,8 +103,8 @@ export class FieldRenderFileComponent extends FieldComponent implements OnInit {
               this.field.data.value.splice(idx, 1);
               this.gallery.refresh();
 
-              if (this.config.fileRemoved) {
-                this.config.fileRemoved(this.field, item);
+              if (this.fieldEditor.config.fileRemoved) {
+                this.fieldEditor.config.fileRemoved(this.field, item);
               }
             }
           });

@@ -9,6 +9,7 @@ import { FsApi } from '@firestitch/api';
 import { map } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { guid } from '@firestitch/common';
+import { FieldEditorService } from '../../../../src/app/services/field-editor.service';
 
 @Component({
   selector: 'example',
@@ -132,11 +133,11 @@ export class ExampleComponent implements OnInit {
   }
 
   shareChange() {
-    this.fieldEditor.fieldChanged.emit();
+    // this.fieldEditor.fieldChanged.emit();
   }
 
-  public fieldChanged(editor: FieldEditorComponent): void {
-    editor.fieldChanged.emit();
+  public fieldChanged(editor: FieldEditorService, field: Field): void {
+    editor.fieldChanged(field);
   }
 
   save() {

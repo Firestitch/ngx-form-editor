@@ -1,14 +1,13 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  Input,
   OnInit,
 } from '@angular/core';
 
 import { Field, ToolbarItems } from '../../../interfaces/field.interface';
-import { FieldEditorComponent } from '../field-editor.component';
 import { TOOLBAR_DEFAULTS } from '../../../helpers/toolbar-defaults';
 import { BACKDROP_CLASS, TOOLBAR_MENU_CLASS } from '../../../constants/backdrop-class';
+import { FieldEditorService } from '../../../services/field-editor.service';
 
 
 @Component({
@@ -19,15 +18,16 @@ import { BACKDROP_CLASS, TOOLBAR_MENU_CLASS } from '../../../constants/backdrop-
 })
 export class FieldToolbarComponent implements OnInit {
 
-  @Input()
-  public fieldEditor: FieldEditorComponent;
-
   public readonly backdropClass = BACKDROP_CLASS;
   public readonly menuClass = TOOLBAR_MENU_CLASS;
 
   public field: Field = null;
   public expanded = true;
   public withSections = false;
+
+  constructor(
+    public fieldEditor: FieldEditorService,
+  ) {}
 
   public get items(): ToolbarItems {
     return this.fieldEditor.config.toolbar.items;

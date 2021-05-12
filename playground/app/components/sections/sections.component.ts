@@ -312,7 +312,7 @@ export class SectionsComponent implements OnInit {
   }
 
   shareChange() {
-    this.fieldEditor.fieldChanged.emit();
+    // this.fieldEditor.fieldChanged.emit();
   }
 
   save() {

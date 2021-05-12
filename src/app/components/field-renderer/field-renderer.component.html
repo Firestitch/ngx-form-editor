@@ -1,9 +1,7 @@
-<div *ngFor="let field of config.fields">
+<div *ngFor="let field of fieldEditor.config.fields">
   <fs-field-render
     [attr.data-guid]="field.config.guid"
     [field]="field"
-    [fieldRenders]="fieldRenders"
-    [config]="config"
-    (fieldChanged)="fieldChanged.emit($event)">
+    [fieldRenders]="fieldRenders">
   </fs-field-render>
 </div>

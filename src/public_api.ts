@@ -8,6 +8,7 @@ export { FieldViewerComponent } from './app/components/field-viewer/field-viewer
 export { FieldRenderComponent } from './app/components/render/field-render/field-render.component';
 export { FieldViewComponent } from './app/components/field-view/field-view.component';
 export { FieldViewDirective } from './app/directives/field-view/field-view.directive';
+export { FieldEditorService } from './app/services/field-editor.service';
 export { FS_FIELD_EDITOR_CONFIG } from './app/injectors/fs-field-editor.providers';
 export {
   ToolbarItem,

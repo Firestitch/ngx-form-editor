@@ -53,7 +53,6 @@ import { FieldRenderDirective } from './directives/field-render/field-render.dir
 import { FieldViewDirective } from './directives/field-view/field-view.directive';
 import { FieldEditorConfig } from './interfaces/field.interface';
 import { FieldType } from './enums/field-type';
-import { FieldCoreComponent } from './components/field-core/field-core.component';
 import { FieldRenderComponent } from './components/render/field-render/field-render.component';
 import { FieldViewComponent } from './components/field-view/field-view.component';
 import { FieldConfigNameComponent } from './components/config/field-config-name/field-config-name.component';
@@ -69,6 +68,7 @@ import { FieldRenderContentComponent } from './components/render/field-render-co
 import { FieldRenderCheckboxComponent } from './components/render/field-render-checkbox/field-render-checkbox.component';
 import { FieldToolbarItemComponent } from './components/field-editor/field-toolbar-item/field-toolbar-item.component';
 import { FieldRenderDateComponent } from './components/render/field-render-date/field-render-date.component';
+import { FieldEditorItemComponent } from './components/field-editor/field-editor-item/field-editor-item.component';
 
 
 export function defaultConfigFactory(config) {
@@ -145,12 +145,12 @@ export function defaultConfigFactory(config) {
   ],
   declarations: [
     FieldEditorComponent,
+    FieldEditorItemComponent,
     FieldToolbarComponent,
     FieldToolbarItemComponent,
     FieldHeaderComponent,
     FieldComponent,
     FieldViewerComponent,
-    FieldCoreComponent,
 
     FieldViewComponent,
     FieldViewDirective,
@@ -180,9 +180,6 @@ export function defaultConfigFactory(config) {
     FieldConfigHeadingComponent,
     FieldConfigContentComponent,
     FieldConfigDirective,
-  ],
-  providers: [
-    NgForm
   ],
 })
 

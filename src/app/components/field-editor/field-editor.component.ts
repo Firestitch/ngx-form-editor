@@ -1,31 +1,34 @@
 import {
   Component,
   HostListener,
-  EventEmitter,
   QueryList,
   ContentChildren,
   Output,
   AfterContentInit,
   OnInit,
   Input,
-  ElementRef,
-  ChangeDetectionStrategy,
+  ChangeDetectionStrategy, ViewChildren, ElementRef, Inject, ChangeDetectorRef, OnDestroy,
 } from '@angular/core';
 
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
 import { guid } from '@firestitch/common';
 
-import { filter, map, takeUntil } from 'rxjs/operators';
+import { debounceTime, filter, takeUntil } from 'rxjs/operators';
 
-import { cloneDeep } from 'lodash-es';
 
-import { Field, FsFieldEditorCallbackParams } from '../../interfaces/field.interface';
-import { FieldCoreComponent } from '../field-core/field-core.component';
+import {
+  Field,
+  FieldEditorConfig,
+  FsFieldEditorCallbackParams
+} from '../../interfaces/field.interface';
 import { FieldConfigDirective } from '../../directives/field-config/field-config.directive';
 import { FieldRenderDirective } from '../../directives/field-render/field-render.directive';
 import { initField } from './../../helpers/init-field';
-import { isObservable, of } from 'rxjs';
+import { fromEvent, isObservable, of, Subject } from 'rxjs';
+import { FieldEditorItemComponent } from './field-editor-item/field-editor-item.component';
+import { DOCUMENT } from '@angular/common';
+import { FieldEditorService } from '../../services/field-editor.service';
 
 
 @Component({
@@ -33,33 +36,61 @@ import { isObservable, of } from 'rxjs';
   templateUrl: 'field-editor.component.html',
   styleUrls: ['field-editor.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [
+    FieldEditorService,
+  ],
 })
-export class FieldEditorComponent extends FieldCoreComponent implements AfterContentInit, OnInit {
+export class FieldEditorComponent implements OnInit, AfterContentInit, OnDestroy {
 
   @Input()
   public scrollContainer: string | HTMLElement = null;
 
-  @Output() public fieldSelected = new EventEmitter<FsFieldEditorCallbackParams>();
-  @Output() public fieldUnselected = new EventEmitter<FsFieldEditorCallbackParams>();
-  @Output() public fieldAdded = new EventEmitter<FsFieldEditorCallbackParams>();
-  @Output() public fieldAdd = new EventEmitter<FsFieldEditorCallbackParams>();
-  @Output() public fieldMoved = new EventEmitter<FsFieldEditorCallbackParams>();
-  @Output() public fieldDuplicate = new EventEmitter<FsFieldEditorCallbackParams>();
-  @Output() public fieldDuplicated = new EventEmitter<FsFieldEditorCallbackParams>();
-  @Output() public fieldRemoved = new EventEmitter<FsFieldEditorCallbackParams>();
+  @ContentChildren(FieldConfigDirective)
+  public queryListFieldConfig: QueryList<FieldConfigDirective>;
 
-  @ContentChildren(FieldConfigDirective) queryListFieldConfig: QueryList<FieldConfigDirective>;
-  @ContentChildren(FieldRenderDirective) queryListFieldRender: QueryList<FieldRenderDirective>;
+  @ContentChildren(FieldRenderDirective)
+  public queryListFieldRender: QueryList<FieldRenderDirective>;
 
-  @HostListener('document:keydown.escape', ['$event']) onKeydownHandler(event: KeyboardEvent) {
-    this.unselectField();
+  @HostListener('document:keydown.escape', ['$event'])
+  public onKeydownHandler(event: KeyboardEvent) {
+    this.fieldEditor.unselectField();
   }
 
-  public selectedField = null;
-  public fieldEditor: FieldEditorComponent = this;
   public fieldConfigTemplateRefs = {};
   public fieldRenderTemplateRefs = {};
-  public editorId = 'fs-fields-' + guid();
+
+  @ViewChildren(FieldEditorItemComponent, { read: ElementRef })
+  private _editorItems: ElementRef[];
+
+  private _destroy$ = new Subject<void>();
+
+  constructor(
+    @Inject(DOCUMENT) public document: any,
+    public fieldEditor: FieldEditorService,
+    private _cdRef: ChangeDetectorRef,
+  ) {}
+
+  @Input('config')
+  set setConfig(config: FieldEditorConfig) {
+    this.fieldEditor.setConfig(config);
+  }
+
+  public ngOnInit(): void {
+    fromEvent(this.document, 'click')
+      .pipe(
+        debounceTime(200),
+        filter((event: Event) => {
+          return !this._editorItems.find((item) => {
+            return item.nativeElement.contains(event.target);
+          });
+        }),
+      )
+      .subscribe(() => {
+        this.fieldEditor.unselectField();
+        this._cdRef.markForCheck();
+      });
+
+  }
 
   public ngAfterContentInit() {
     this.queryListFieldConfig.forEach((directive: FieldConfigDirective) => {
@@ -71,166 +102,34 @@ export class FieldEditorComponent extends FieldCoreComponent implements AfterCon
     });
   }
 
-  public get fields(): Field[] {
-    return cloneDeep(this.config.fields);
-  }
-
-  public ngOnInit(): void {
-    this.fieldChanged
-      .pipe(
-        filter(() => !!this.config.fieldChanged),
-        map((item: any) => {
-          return {
-            fields: this.fields,
-            ...item,
-          };
-        }),
-        takeUntil(this._destroy$)
-      )
-      .subscribe((item: Field) => {
-        this.config.fieldChanged(this.fieldEditorService.output(item));
-      });
-
-    this.fieldAdded
-      .pipe(
-        filter(() => !!this.config.fieldAdded),
-        map((item) => {
-          return {
-            fields: this.fields,
-            ...item,
-          };
-        }),
-        takeUntil(this._destroy$)
-      )
-      .subscribe((event: FsFieldEditorCallbackParams) => {
-        this.config.fieldAdded(this.fieldEditorService.output(event));
-        this.selectField(event.field);
-      });
-
-    this.fieldSelected
-      .pipe(
-        filter(() => !!this.config.fieldSelected),
-        map((item) => {
-          return {
-            fields: this.fields,
-            ...item,
-          };
-        }),
-        takeUntil(this._destroy$)
-      )
-      .subscribe(item => {
-        this.config.fieldSelected(this.fieldEditorService.output(item));
-      });
-
-    this.fieldUnselected
-      .pipe(
-        filter(() => !!this.config.fieldUnselected),
-        map((item) => {
-          return {
-            fields: this.fields,
-            ...item,
-          };
-        }),
-        takeUntil(this._destroy$)
-      )
-      .subscribe(item => {
-        this.config.fieldUnselected(this.fieldEditorService.output(item));
-      });
-
-    this.fieldMoved
-      .pipe(
-        filter(() => !!this.config.fieldMoved),
-        map((item) => {
-          return {
-            fields: this.fields,
-            ...item,
-          };
-        }),
-        takeUntil(this._destroy$)
-      )
-      .subscribe(item => {
-        this.config.fieldMoved(this.fieldEditorService.output(item));
-      });
-
-    this.fieldDuplicate
-      .pipe(
-        filter(() => !!this.config.fieldDuplicate),
-        map((item) => {
-          return {
-            fields: this.fields,
-            ...item,
-          };
-        }),
-        takeUntil(this._destroy$)
-      )
-      .subscribe(item => {
-        this.config.fieldDuplicate(this.fieldEditorService.output(item));
-      });
-
-    this.fieldDuplicated
-      .pipe(
-        filter(() => !!this.config.fieldDuplicated),
-        map((item) => {
-          return {
-            fields: this.fields,
-            ...item,
-          };
-        }),
-        takeUntil(this._destroy$)
-      )
-      .subscribe(item => {
-        this.config.fieldDuplicated(this.fieldEditorService.output(item));
-      });
-
-    this.fieldRemoved
-      .pipe(
-        filter(() => !!this.config.fieldRemoved),
-        map((item) => {
-          return {
-            fields: this.fields,
-            ...item,
-          };
-        }),
-        takeUntil(this._destroy$)
-      )
-      .subscribe(item => {
-        this.config.fieldRemoved(this.fieldEditorService.output(item));
-      });
+  public ngOnDestroy(): void {
+    this._destroy$.next();
+    this._destroy$.complete();
   }
 
   public fieldClick(field: Field) {
-    if (this.selectedField !== field) {
-      this.selectField(field);
+    if (this.fieldEditor.selectedField !== field) {
+      this.fieldEditor.selectField(field);
     }
   }
 
   public fieldDragStart() {
-    this.unselectField();
-  }
-
-  public unselectField() {
-    this.fieldUnselected.emit({
-      field: this.selectedField,
-    });
-    this.selectedField = null;
-  }
-
-  public selectField(field: Field) {
-
-    if (this.selectedField) {
-      this.unselectField();
-    }
-
-    this.selectedField = field;
-    this.fieldSelected.emit({ field });
+    this.fieldEditor.unselectField();
   }
 
   public drop(event: CdkDragDrop<string[]>) {
 
     if (event.container === event.previousContainer) {
 
-      moveItemInArray(this.config.fields, event.previousIndex, event.currentIndex);
-      this.fieldMoved.emit({ event: event });
+      moveItemInArray(
+        this.fieldEditor.config.fields,
+        event.previousIndex,
+        event.currentIndex,
+      );
+
+      this.fieldEditor.fieldMoved({
+        event: event,
+      });
 
     } else {
 
@@ -240,28 +139,28 @@ export class FieldEditorComponent extends FieldCoreComponent implements AfterCon
         field,
         toolbarField: event.item.data.item,
         event,
-        fields: this.fields,
+        fields: this.fieldEditor.fields,
       };
 
       let result$ = of(field);
-      if (this.config.fieldAdd) {
-        const result = this.config.fieldAdd(this.fieldEditorService.output(data));
-        result$ = isObservable(result) ? result : result$;
-      }
 
-      this.fieldAdd.emit(this.fieldEditorService.output(data));
+      const result = this.fieldEditor.fieldAdd(data);
+      result$ = isObservable(result) ? result : result$;
 
       result$
-        .subscribe((field: Field) => {
+        .pipe(
+          takeUntil(this._destroy$),
+        )
+        .subscribe((newField: Field) => {
+          this.fieldEditor.fieldDrop({
+            field: newField,
+            event,
+          });
 
-          if (this.config.fieldDrop) {
-            this.config.fieldDrop(field, event.item.data.item, event);
-          }
+          this.fieldEditor.config.fields.splice(event.currentIndex, 0, newField);
 
-          this.config.fields.splice(event.currentIndex, 0, field);
-
-          this.fieldAdded.emit({
-            field,
+          this.fieldEditor.fieldAdded({
+            field: newField,
             toolbarField: event.item.data.item,
             event,
           });

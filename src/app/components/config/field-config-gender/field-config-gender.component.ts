@@ -2,7 +2,6 @@ import { Component, Input, ViewChild, ElementRef, ChangeDetectionStrategy } from
 
 import { FieldComponent } from '../../field/field.component';
 import { FsPrompt } from '@firestitch/prompt';
-import { FieldEditorComponent } from '../../field-editor/field-editor.component';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
 
@@ -18,8 +17,6 @@ export class FieldConfigGenderComponent extends FieldComponent {
 
   @ViewChild('addOptionInput')
   private _addOptionInput: ElementRef;
-
-  @Input() fieldEditor: FieldEditorComponent;
 
   constructor(private fsPrompt: FsPrompt) {
     super();

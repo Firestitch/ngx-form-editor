@@ -6,7 +6,6 @@ import { initField } from './../../helpers/init-field';
 import { Field } from '../../interfaces/field.interface';
 import { FieldType } from '../../enums/field-type';
 import { FieldMode } from '../../enums/field-mode';
-import { FieldEditorComponent } from '../field-editor/field-editor.component';
 
 
 @Component({
@@ -31,8 +30,6 @@ export class FieldComponent implements OnDestroy, OnInit {
   public setField(field) {
     this.field = this.initField(field);
   }
-
-  @Input() public fieldEditor: FieldEditorComponent = null;
 
   public ngOnDestroy() {
     this.$destory.complete();

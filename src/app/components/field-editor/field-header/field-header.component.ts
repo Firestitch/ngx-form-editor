@@ -1,11 +1,18 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  Input,
+  OnInit
+} from '@angular/core';
 
 import { FsPrompt } from '@firestitch/prompt';
 import { guid } from '@firestitch/common';
 
-import { FieldComponent } from '../../field/field.component';
-import { FieldEditorComponent } from '../field-editor.component';
 import { cloneDeep } from 'lodash-es';
+
+import { FieldComponent } from '../../field/field.component';
+import { FieldEditorService } from '../../../services/field-editor.service';
 
 
 @Component({
@@ -16,11 +23,11 @@ import { cloneDeep } from 'lodash-es';
 })
 export class FieldHeaderComponent extends FieldComponent implements OnInit {
 
-  @Input() fieldEditor: FieldEditorComponent;
   @Input() showRequired = true;
   @Input() showDescription = true;
 
   constructor(
+    public fieldEditor: FieldEditorService,
     private _prompt: FsPrompt,
     private _cdRef: ChangeDetectorRef,
   ) {
@@ -50,11 +57,11 @@ export class FieldHeaderComponent extends FieldComponent implements OnInit {
 
     copiedField.config.guid = guid();
     copiedField.data = {};
-    this.fieldEditor.fieldDuplicate.emit(copiedField);
+    this.fieldEditor.fieldDuplicate(copiedField);
 
     this.fieldEditor.config.fields.splice(idx, 0, copiedField);
     this.fieldEditor.selectField(copiedField);
-    this.fieldEditor.fieldDuplicated.emit(copiedField);
+    this.fieldEditor.fieldDuplicated(copiedField);
   }
 
   close(e) {
@@ -72,7 +79,7 @@ export class FieldHeaderComponent extends FieldComponent implements OnInit {
     }).subscribe(() => {
       this.fieldEditor.config.fields.splice(this.fieldEditor.config.fields.indexOf(this.field), 1);
       this.fieldEditor.unselectField();
-      this.fieldEditor.fieldRemoved.emit({ field: this.field, event: event });
+      this.fieldEditor.fieldRemoved({ field: this.field, event: event });
       this._cdRef.markForCheck();
     });
   }
