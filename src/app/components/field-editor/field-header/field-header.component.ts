@@ -72,16 +72,25 @@ export class FieldHeaderComponent extends FieldComponent implements OnInit {
   delete(event: Event) {
     event.preventDefault();
     event.stopPropagation();
+    this.fieldEditor.inDeletionMode = true;
 
-    this._prompt.confirm({
-      title: 'Confirm',
-      template: 'Are you sure you would like to remove this field?',
-    }).subscribe(() => {
-      this.fieldEditor.config.fields.splice(this.fieldEditor.config.fields.indexOf(this.field), 1);
-      this.fieldEditor.unselectField();
-      this.fieldEditor.fieldRemoved({ field: this.field, event: event });
-      this._cdRef.markForCheck();
-    });
+    this._prompt
+      .confirm({
+        title: 'Confirm',
+        template: 'Are you sure you would like to remove this field?',
+      })
+      .subscribe({
+        next: () => {
+          this.fieldEditor.inDeletionMode = false;
+          this.fieldEditor.config.fields.splice(this.fieldEditor.config.fields.indexOf(this.field), 1);
+          this.fieldEditor.unselectField();
+          this.fieldEditor.fieldRemoved({ field: this.field, event: event });
+          this._cdRef.markForCheck();
+        },
+        error: () => {
+          this.fieldEditor.inDeletionMode = false;
+        },
+      });
   }
 
 }

@@ -25,6 +25,8 @@ export class FieldEditorService implements OnDestroy {
   public config: FieldEditorConfig = {};
   public editorId = 'fs-fields-' + guid();
 
+  public inDeletionMode = false;
+
   private _selectedField$ = new BehaviorSubject<Field>(null);
   private _destroy$ = new Subject<void>();
 

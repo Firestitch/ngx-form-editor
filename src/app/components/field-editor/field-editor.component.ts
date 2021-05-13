@@ -3,18 +3,19 @@ import {
   HostListener,
   QueryList,
   ContentChildren,
-  Output,
   AfterContentInit,
   OnInit,
   Input,
-  ChangeDetectionStrategy, ViewChildren, ElementRef, Inject, ChangeDetectorRef, OnDestroy,
+  ChangeDetectionStrategy,
+  ElementRef,
+  Inject,
+  ChangeDetectorRef,
+  OnDestroy,
 } from '@angular/core';
 
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
-import { guid } from '@firestitch/common';
-
-import { debounceTime, filter, takeUntil } from 'rxjs/operators';
+import { filter, takeUntil } from 'rxjs/operators';
 
 
 import {
@@ -29,6 +30,7 @@ import { fromEvent, isObservable, of, Subject } from 'rxjs';
 import { FieldEditorItemComponent } from './field-editor-item/field-editor-item.component';
 import { DOCUMENT } from '@angular/common';
 import { FieldEditorService } from '../../services/field-editor.service';
+import { clickOutsideElement } from '../../helpers/click-outside-element';
 
 
 @Component({
@@ -59,14 +61,13 @@ export class FieldEditorComponent implements OnInit, AfterContentInit, OnDestroy
   public fieldConfigTemplateRefs = {};
   public fieldRenderTemplateRefs = {};
 
-  @ViewChildren(FieldEditorItemComponent, { read: ElementRef })
-  private _editorItems: ElementRef[];
-
   private _destroy$ = new Subject<void>();
 
   constructor(
     @Inject(DOCUMENT) public document: any,
     public fieldEditor: FieldEditorService,
+    private _cdRef: ChangeDetectorRef,
+    private _elRef: ElementRef,
   ) {}
 
   @Input('config')
@@ -75,20 +76,7 @@ export class FieldEditorComponent implements OnInit, AfterContentInit, OnDestroy
   }
 
   public ngOnInit(): void {
-    fromEvent(this.document, 'click')
-      .pipe(
-        debounceTime(200),
-        filter((event: Event) => {
-          return !this._editorItems.find((item) => {
-            return item.nativeElement.contains(event.target);
-          });
-        }),
-      )
-      .subscribe(() => {
-        // this.fieldEditor.unselectField();
-        // this._cdRef.markForCheck();
-      });
-
+    this._listenClickOutside();
   }
 
   public ngAfterContentInit() {
@@ -133,6 +121,21 @@ export class FieldEditorComponent implements OnInit, AfterContentInit, OnDestroy
         event
       );
     }
+  }
+
+  private _listenClickOutside(): void {
+    fromEvent(this.document, 'click')
+      .pipe(
+        filter(() => !!this.fieldEditor.selectedField && !this.fieldEditor.inDeletionMode),
+        filter((event: Event) => {
+          return clickOutsideElement(event, this._elRef.nativeElement);
+        }),
+        takeUntil(this._destroy$),
+      )
+      .subscribe(() => {
+        this.fieldEditor.unselectField();
+        this._cdRef.markForCheck();
+      });
   }
 
 }
