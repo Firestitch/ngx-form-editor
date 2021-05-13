@@ -26,7 +26,7 @@ export class FieldHeaderComponent extends FieldComponent implements OnInit {
   @Input() showRequired = true;
   @Input() showDescription = true;
 
-  constructor(
+  public constructor(
     public fieldEditor: FieldEditorService,
     private _prompt: FsPrompt,
     private _cdRef: ChangeDetectorRef,
@@ -34,21 +34,21 @@ export class FieldHeaderComponent extends FieldComponent implements OnInit {
     super();
   }
 
-  ngOnInit() {
+  public ngOnInit(): void {
     this.field.config.hasDescriptionNote = !!this.field.config.description || !!this.field.config.configs.note;
   }
 
-  toggleRequired() {
+  public toggleRequired(): void {
     this.field.config.configs.required = !this.field.config.configs.required;
     this.changed.emit(this.field);
   }
 
-  toggleDescriptionNote() {
+  public toggleDescriptionNote(): void {
     this.field.config.hasDescriptionNote = !this.field.config.hasDescriptionNote;
     this.changed.emit(this.field);
   }
 
-  copy(event: Event) {
+  public copy(event: Event): void {
     event.preventDefault();
     event.stopPropagation();
 
@@ -64,12 +64,7 @@ export class FieldHeaderComponent extends FieldComponent implements OnInit {
     this.fieldEditor.fieldDuplicated(copiedField);
   }
 
-  close(e) {
-    e.stopPropagation();
-    this.fieldEditor.unselectField();
-  }
-
-  delete(event: Event) {
+  public delete(event: Event): void {
     event.preventDefault();
     event.stopPropagation();
     this.fieldEditor.inDeletionMode = true;

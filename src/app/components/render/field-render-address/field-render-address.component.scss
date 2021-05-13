@@ -1,13 +1,13 @@
 
 
 fs-address {
-  width: 400px;
   max-width: 100%;
   display: block;
 
   ::ng-deep {
+    fs-address-region,
     .mat-form-field {
-      padding: 0;
+      padding: 0 !important;
     }
 
     .city-region-zip-country {

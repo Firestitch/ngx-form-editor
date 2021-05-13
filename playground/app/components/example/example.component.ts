@@ -120,7 +120,7 @@ export class ExampleComponent implements OnInit {
             type: 'terms',
             config: {
               configs: {
-                termsLabel: 'I can confirm I have read and accepted the terms & conditions.',
+                termsLabel: 'I have read and accepted the terms & conditions.',
                 termsContentSource: 'none',
               },
             },
@@ -252,7 +252,7 @@ export class ExampleComponent implements OnInit {
           type: 'terms',
           label: 'Terms',
           configs: {
-            termsLabel: 'I can confirm I have read and accepted the terms & conditions.',
+            termsLabel: 'I have read and accepted the terms & conditions.',
             termsContentSource: 'none',
           },
         }

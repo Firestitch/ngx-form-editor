@@ -39,6 +39,12 @@
   border-radius: 6px;
   margin: 8px 0;
   padding: 0 20px 10px 20px;
+  box-sizing: border-box;
+}
+
+.field-render {
+  width: 420px;
+  max-width: 100%;
 }
 
 .cdk-drag-placeholder {

@@ -56,8 +56,9 @@
         name="newOption"
         (keydown)="addOption($event)">
     </mat-form-field>
-    <ng-container *ngIf="(field.config.type === fieldType.Checkbox || field.config.type === fieldType.Choice) && field.config.configs.options.length">
-      <span class="or">OR</span> <button mat-button type="button" color="primary" (click)="otherToggle()">{{ field.config.configs.other ? 'Remove' : 'Add' }} "Other" Option</button>
+    <ng-container *ngIf="(field.config.type === fieldType.Checkbox || field.config.type === fieldType.Choice) && field.config.configs.options.length && !field.config.configs.other">
+      <span class="or">Or</span> <button mat-button type="button" color="primary" (click)="otherToggle()">
+        {{ field.config.configs.other ? 'Remove' : 'Add' }} "Other" Option</button>
     </ng-container>
 
     <button button mat-icon-button type="button" style="visibility: hidden"><mat-icon>delete</mat-icon></button>
