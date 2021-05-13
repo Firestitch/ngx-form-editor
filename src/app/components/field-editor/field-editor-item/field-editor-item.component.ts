@@ -4,6 +4,8 @@ import {
   TemplateRef,
   HostBinding,
   ChangeDetectionStrategy,
+  OnInit,
+  ElementRef,
 } from '@angular/core';
 
 import { Field } from '../../../interfaces/field.interface';
@@ -19,7 +21,7 @@ import { FieldEditorService } from '../../../services/field-editor.service';
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FieldEditorItemComponent {
+export class FieldEditorItemComponent implements OnInit {
 
   @Input()
   public field: Field;
@@ -34,6 +36,7 @@ export class FieldEditorItemComponent {
 
   constructor(
     public fieldEditor: FieldEditorService,
+    private _elRef: ElementRef,
   ) {
   }
 
@@ -62,6 +65,19 @@ export class FieldEditorItemComponent {
     return this.field.config.configs.showDescription !== false
       && this.field.config.type !== FieldType.Heading
       && this.field.config.type !== FieldType.Content
+  }
+
+  public ngOnInit(): void {
+    if (this.field === this.fieldEditor.scrollTargetField) {
+      this.fieldEditor.resetScrollTarget();
+
+      setTimeout(() => {
+          this._elRef.nativeElement.scrollIntoView({
+            block: 'nearest',
+            behavior: 'smooth',
+          });
+      }, 0);
+    }
   }
 
 }

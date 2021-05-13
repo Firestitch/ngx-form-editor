@@ -28,10 +28,11 @@ export class FieldEditorService implements OnDestroy {
   public inDeletionMode = false;
 
   private _selectedField$ = new BehaviorSubject<Field>(null);
+  private _scrollTargetField: Field = null;
   private _destroy$ = new Subject<void>();
 
   constructor(
-    @Inject(FS_FIELD_EDITOR_CONFIG) private _defaultConfig: FieldEditorConfig
+    @Inject(FS_FIELD_EDITOR_CONFIG) private _defaultConfig: FieldEditorConfig,
   ) {}
 
   public get selectedField(): Field {
@@ -56,6 +57,10 @@ export class FieldEditorService implements OnDestroy {
 
   public get numberOfFields(): number {
     return this.config.fields.length;
+  }
+
+  public get scrollTargetField(): Field {
+    return this._scrollTargetField;
   }
 
   public ngOnDestroy(): void {
@@ -125,6 +130,8 @@ export class FieldEditorService implements OnDestroy {
         this.config.fields.splice(index, 0, newField);
 
         this.selectField(newField);
+
+        this._scrollTargetField = newField;
 
         this.fieldAdded({
           field: newField,
@@ -211,6 +218,10 @@ export class FieldEditorService implements OnDestroy {
 
       this.config.fieldRemoved(item);
     }
+  }
+
+  public resetScrollTarget(): void {
+    this._scrollTargetField = null;
   }
 
   private _prepareItem(params: Field | FsFieldEditorCallbackParams) {
