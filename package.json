@@ -99,7 +99,7 @@
     "iscroll": "^5.2.0",
     "lodash-es": "^4.17.15",
     "moment": "^2.24.0",
-    "ng-packagr": "^9.1.5",
+    "ng-packagr": "^10.1.1",
     "ng2-dragula": "^2.1.0",
     "ngx-highlightjs": "^4.1.0-beta",
     "ngx-toastr": "^11.2.1",
