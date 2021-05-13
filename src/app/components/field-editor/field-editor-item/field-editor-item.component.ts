@@ -64,7 +64,4 @@ export class FieldEditorItemComponent {
       && this.field.config.type !== FieldType.Content
   }
 
-  public dragStarted(): void {
-    this.fieldEditor.unselectField();
-  }
 }

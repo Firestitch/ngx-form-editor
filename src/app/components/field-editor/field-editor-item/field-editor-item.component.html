@@ -1,8 +1,7 @@
 <div class="field-container"
      [ngClass]="['field-' + field.config.type]"
      cdkDrag
-     cdkDragLockAxis="y"
-     (cdkDragStarted)="dragStarted()">
+     cdkDragLockAxis="y">
   <div class="field-drag" cdkDragHandle>
     <button mat-icon-button type="button" class="drag-button field-drag-button">
       <mat-icon>drag_indicator</mat-icon>
