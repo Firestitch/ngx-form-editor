@@ -1,9 +1,10 @@
 import { ChangeDetectionStrategy, Component, ViewChild, Optional } from '@angular/core';
 import { ControlContainer, NgForm, NgModel } from '@angular/forms';
 
-import { ngFormProviderFactory } from '../../../helpers/ng-form-provider-factory';
+import { controlContainerFactory } from '@firestitch/core';
 
 import { FieldComponent } from '../../field/field.component';
+
 
 @Component({
   selector: 'fs-field-render-checkbox',
@@ -12,7 +13,7 @@ import { FieldComponent } from '../../field/field.component';
   viewProviders: [
     {
       provide: ControlContainer,
-      useFactory: ngFormProviderFactory,
+      useFactory: controlContainerFactory,
       deps: [[new Optional(), NgForm]],
     }
   ],

@@ -2,9 +2,9 @@ import { ChangeDetectionStrategy, Component, OnInit, Optional } from '@angular/c
 import { ControlContainer, NgForm } from '@angular/forms';
 
 import { FsHtmlEditorConfig } from '@firestitch/html-editor';
+import { controlContainerFactory } from '@firestitch/core';
 
 import { FieldEditorService } from '../../../services/field-editor.service';
-import { ngFormProviderFactory } from '../../../helpers/ng-form-provider-factory';
 import { FieldComponent } from '../../field/field.component';
 
 
@@ -15,7 +15,7 @@ import { FieldComponent } from '../../field/field.component';
   viewProviders: [
     {
       provide: ControlContainer,
-      useFactory: ngFormProviderFactory,
+      useFactory: controlContainerFactory,
       deps: [[new Optional(), NgForm]],
     }
   ],

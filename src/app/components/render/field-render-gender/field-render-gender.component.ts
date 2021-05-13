@@ -1,8 +1,9 @@
 import { ChangeDetectionStrategy, Component, Optional } from '@angular/core';
 import { ControlContainer, NgForm } from '@angular/forms';
 
+import { controlContainerFactory } from '@firestitch/core';
+
 import { FieldComponent } from '../../field/field.component';
-import { ngFormProviderFactory } from '../../../helpers/ng-form-provider-factory';
 
 
 @Component({
@@ -12,7 +13,7 @@ import { ngFormProviderFactory } from '../../../helpers/ng-form-provider-factory
   viewProviders: [
     {
       provide: ControlContainer,
-      useFactory: ngFormProviderFactory,
+      useFactory: controlContainerFactory,
       deps: [[new Optional(), NgForm]],
     }
   ],

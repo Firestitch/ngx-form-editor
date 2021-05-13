@@ -9,10 +9,12 @@ import {
 } from '@angular/core';
 import { ControlContainer, NgForm } from '@angular/forms';
 
+import { controlContainerFactory } from '@firestitch/core';
+
 import { FieldEditorConfig } from './../../interfaces/field.interface';
 import { FieldRenderDirective } from './../../directives/field-render/field-render.directive';
 import { FieldEditorService } from '../../services/field-editor.service';
-import { ngFormProviderFactory } from '../../helpers/ng-form-provider-factory';
+
 
 @Component({
   selector: 'fs-field-renderer',
@@ -24,7 +26,7 @@ import { ngFormProviderFactory } from '../../helpers/ng-form-provider-factory';
   viewProviders: [
     {
       provide: ControlContainer,
-      useFactory: ngFormProviderFactory,
+      useFactory: controlContainerFactory,
       deps: [[new Optional(), NgForm]],
     }
   ],

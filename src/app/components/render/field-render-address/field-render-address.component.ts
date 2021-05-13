@@ -2,9 +2,10 @@ import { ChangeDetectionStrategy, Component, OnInit, Optional } from '@angular/c
 import { ControlContainer, NgForm } from '@angular/forms';
 
 import { IFsAddressConfig } from '@firestitch/address';
+import { controlContainerFactory } from '@firestitch/core';
 
 import { FieldComponent } from '../../field/field.component';
-import { ngFormProviderFactory } from '../../../helpers/ng-form-provider-factory';
+
 
 
 @Component({
@@ -14,9 +15,9 @@ import { ngFormProviderFactory } from '../../../helpers/ng-form-provider-factory
   viewProviders: [
     {
       provide: ControlContainer,
-      useFactory: ngFormProviderFactory,
+      useFactory: controlContainerFactory,
       deps: [[new Optional(), NgForm]],
-    }
+    },
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

@@ -4,18 +4,16 @@
         cdkDropList
         (cdkDropListDropped)="drop($event)"
         [id]="fieldEditor.editorId">
-      <form fsForm>
-        <ng-container *ngFor="let field of fieldEditor.config.fields">
-          <fs-field-editor-item
-            class="fs-field field"
-            (click)="fieldClick(field)"
-            [field]="field"
-            [fieldConfigTemplateRefs]="fieldConfigTemplateRefs"
-            [fieldRenderTemplateRefs]="fieldRenderTemplateRefs"
-            >
-          </fs-field-editor-item>
-        </ng-container>
-      </form>
+      <ng-container *ngFor="let field of fieldEditor.config.fields">
+        <fs-field-editor-item
+          class="fs-field field"
+          (click)="fieldClick(field)"
+          [field]="field"
+          [fieldConfigTemplateRefs]="fieldConfigTemplateRefs"
+          [fieldRenderTemplateRefs]="fieldRenderTemplateRefs"
+        >
+        </fs-field-editor-item>
+      </ng-container>
     </div>
   </div>
 

@@ -1,7 +1,7 @@
 import { Component, Input, AfterContentInit, ChangeDetectionStrategy, Optional } from '@angular/core';
 import { ControlContainer, NgForm } from '@angular/forms';
 
-import { ngFormProviderFactory } from '../../../helpers/ng-form-provider-factory';
+import { controlContainerFactory } from '@firestitch/core';
 import { FieldRenderDirective } from '../../../directives/field-render/field-render.directive';
 import { initField } from '../../../helpers/init-field';
 import { Field } from './../../../interfaces/field.interface';
@@ -16,7 +16,7 @@ import { FieldType } from '../../../enums/field-type';
   viewProviders: [
     {
       provide: ControlContainer,
-      useFactory: ngFormProviderFactory,
+      useFactory: controlContainerFactory,
       deps: [[new Optional(), NgForm]],
     }
   ],
