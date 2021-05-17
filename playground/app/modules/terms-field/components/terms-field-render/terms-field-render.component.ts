@@ -3,8 +3,16 @@ import {
   ChangeDetectorRef,
   Component,
   forwardRef,
+  HostBinding,
 } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import {
+  AbstractControl,
+  ControlValueAccessor,
+  NG_VALIDATORS,
+  NG_VALUE_ACCESSOR,
+  ValidationErrors,
+  Validator
+} from '@angular/forms';
 
 import { Field } from '@firestitch/field-editor';
 
@@ -14,6 +22,11 @@ import { Field } from '@firestitch/field-editor';
   templateUrl: './terms-field-render.component.html',
   providers: [
     {
+      provide: NG_VALIDATORS,
+      useExisting: TermsFieldRenderComponent,
+      multi: true,
+    },
+    {
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => TermsFieldRenderComponent),
       multi: true,
@@ -21,7 +34,10 @@ import { Field } from '@firestitch/field-editor';
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TermsFieldRenderComponent implements ControlValueAccessor {
+export class TermsFieldRenderComponent implements ControlValueAccessor, Validator {
+
+  @HostBinding('class.fs-form-wrapper')
+  private _formWrapper = true;
 
   private _onChange: (value: unknown) => void;
   private _onTouch: (value: unknown) => void;
@@ -40,6 +56,21 @@ export class TermsFieldRenderComponent implements ControlValueAccessor {
 
   public get field(): Field {
     return this._field;
+  }
+
+  public validate(control: AbstractControl): ValidationErrors | null {
+    let errors = null;
+
+    if (this.field?.config.configs.required
+      && !this._field.data.value
+      && control.dirty
+    ) {
+      errors = { required: true };
+    }
+
+    this._cdRef.markForCheck();
+
+    return errors;
   }
 
   public writeValue(obj: any): void {
