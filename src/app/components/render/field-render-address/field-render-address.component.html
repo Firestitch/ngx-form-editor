@@ -1,5 +1,5 @@
 <fs-address
   [config]="config"
-  [address]="field.data.value"
-  (ngModelChange)="changed.emit(field)">
+  [(address)]="field.data.value"
+  (addressChange)="changed.emit(field)">
 +</fs-address>
