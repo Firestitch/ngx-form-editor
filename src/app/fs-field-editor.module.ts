@@ -66,6 +66,7 @@ import { FieldConfigHeadingComponent } from './components/config/field-config-he
 import { FieldRenderHeadingComponent } from './components/render/field-render-heading/field-render-heading.component';
 import { FieldConfigContentComponent } from './components/config/field-config-content/field-config-content.component';
 import { FieldRenderContentComponent } from './components/render/field-render-content/field-render-content.component';
+import { FieldFilePickerComponent } from './components/render/field-render-file/file-picker/field-file-picker.component';
 import { FieldRenderCheckboxComponent } from './components/render/field-render-checkbox/field-render-checkbox.component';
 import { FieldToolbarItemComponent } from './components/field-editor/field-toolbar-item/field-toolbar-item.component';
 import { FieldRenderDateComponent } from './components/render/field-render-date/field-render-date.component';
@@ -153,6 +154,7 @@ export function defaultConfigFactory(config) {
     FieldHeaderComponent,
     FieldComponent,
     FieldViewerComponent,
+    FieldFilePickerComponent,
 
     FieldViewComponent,
     FieldViewDirective,

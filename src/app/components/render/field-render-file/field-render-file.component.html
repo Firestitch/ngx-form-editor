@@ -1,20 +1,15 @@
 
-<fs-label-field>
-  <fs-label>{{field.config.label}}</fs-label>
-    <fs-file
-      (select)="selectFile($event)"
-      [imageQuality]="field.config.configs.imageQuality"
-      [imageWidth]="field.config.configs.maxWidth"
-      [imageHeight]="field.config.configs.maxHeight"
-      [accept]="allowedTypes"
-      [multiple]="field.config.configs.allowMultiple">
-    <button mat-raised-button type="button" color="default">
-      <mat-icon>file_upload</mat-icon>
-      Select File
-    </button>
-  </fs-file>
-  <fs-label-message class="fs-form-message" *ngIf="field.config.description">
-    <div class="fs-form-hint">{{ field.config.description }}</div>
+<fs-label-field class="fs-form-wrapper">
+  <fs-label class="fs-form-label">{{ field.config.label }}</fs-label>
+  <app-field-file-picker
+    [field]="field"
+    [name]="name"
+    [required]="field.config.configs.required"
+    (ngModelChange)="change($event)"
+    [(ngModel)]="field.data.label">
+  </app-field-file-picker>
+  <fs-label-message class="fs-form-message">
+    <div class="fs-form-hint" *ngIf="field.config.description">{{ field.config.description }}</div>
   </fs-label-message>
 </fs-label-field>
 

@@ -8,7 +8,7 @@ import { DialogExampleComponent } from '../dialog-example';
 import { FsApi } from '@firestitch/api';
 import { map } from 'rxjs/operators';
 import { of } from 'rxjs';
-import { guid } from '@firestitch/common';
+import { filter, guid } from '@firestitch/common';
 import { FieldEditorService } from '../../../../src/app/services/field-editor.service';
 
 @Component({
@@ -44,6 +44,10 @@ export class ExampleComponent implements OnInit {
       },
       fieldChanged: (field: Field) => {
         console.log('Field Changed', field);
+        const configField = this.config.fields
+          .find((item) => {
+            return item.config.guid === field.config.guid;
+          });
       },
       fieldAdd: (data: FsFieldEditorCallbackParams) => {
         console.log('Field Add', data);

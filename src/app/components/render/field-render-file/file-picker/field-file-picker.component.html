@@ -1,0 +1,12 @@
+<fs-file
+    (select)="selectFile($event)"
+    [imageQuality]="field.config.configs.imageQuality"
+    [imageWidth]="field.config.configs.maxWidth"
+    [imageHeight]="field.config.configs.maxHeight"
+    [accept]="allowedTypes"
+    [multiple]="field.config.configs.allowMultiple">
+  <button mat-raised-button type="button" color="default">
+    <mat-icon>file_upload</mat-icon>
+    Select File
+  </button>
+</fs-file>

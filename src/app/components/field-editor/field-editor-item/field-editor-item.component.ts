@@ -58,7 +58,6 @@ export class FieldEditorItemComponent implements OnInit {
       && this.field.config.type !== FieldType.Address
       && this.field.config.type !== FieldType.Heading
       && this.field.config.type !== FieldType.Content
-      && this.field.config.type !== FieldType.File
   }
 
   public get showDescription(): boolean {

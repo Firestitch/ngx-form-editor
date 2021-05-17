@@ -1,5 +1,5 @@
 <fs-field-render-name-model
-  [fsFormFunction]="validate"
+  [validate]="validate"
   labelSelector="disable-label-selector"
   (ngModelChange)="changed.emit(field)"
   name="{{name}}LastName"
