@@ -6,7 +6,11 @@ import {
 
 import { Field, ToolbarItems } from '../../../interfaces/field.interface';
 import { TOOLBAR_DEFAULTS } from '../../../helpers/toolbar-defaults';
-import { BACKDROP_CLASS, TOOLBAR_MENU_CLASS } from '../../../constants/backdrop-class';
+import {
+  BACKDROP_CLASS,
+  TOOLBAR_MENU_CLASS,
+  TOOLBAR_SUB_MENU_CLASS
+} from '../../../constants/backdrop-class';
 import { FieldEditorService } from '../../../services/field-editor.service';
 
 
@@ -20,6 +24,7 @@ export class FieldToolbarComponent implements OnInit {
 
   public readonly backdropClass = BACKDROP_CLASS;
   public readonly menuClass = TOOLBAR_MENU_CLASS;
+  public readonly subMenuClass = TOOLBAR_SUB_MENU_CLASS;
 
   public field: Field = null;
   public expanded = true;
