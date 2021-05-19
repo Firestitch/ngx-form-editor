@@ -6,6 +6,7 @@ import { of } from 'rxjs';
 
 import { FieldComponent } from '../../field/field.component';
 import { FieldEditorService } from '../../../services/field-editor.service';
+import { FieldFilePickerComponent } from './file-picker/field-file-picker.component';
 
 
 @Component({
@@ -15,6 +16,9 @@ import { FieldEditorService } from '../../../services/field-editor.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FieldRenderFileComponent extends FieldComponent implements OnInit {
+
+  @ViewChild(FieldFilePickerComponent)
+  public filePicker: FieldFilePickerComponent;
 
   @ViewChild(FsGalleryComponent)
   public gallery: FsGalleryComponent;
@@ -56,12 +60,12 @@ export class FieldRenderFileComponent extends FieldComponent implements OnInit {
 
           this.fieldEditor.config.fileRemove(this.field, item)
           .subscribe(() => {
-
             const idx = this.field.data.value.indexOf(item);
 
             if (idx >= 0) {
               this.field.data.value.splice(idx, 1);
               this.gallery.refresh();
+              this.filePicker.triggerChange();
 
               if (this.fieldEditor.config.fileRemoved) {
                 this.fieldEditor.config.fileRemoved(this.field, item);

@@ -1,16 +1,14 @@
 import { Component, Input, ChangeDetectionStrategy, ChangeDetectorRef,
   OnInit, OnDestroy, forwardRef, Optional, } from '@angular/core';
 import {
-  AbstractControl, ControlContainer, ControlValueAccessor,
-  NgForm, NG_VALIDATORS, NG_VALUE_ACCESSOR, Validator,
+  ControlContainer, ControlValueAccessor,
+  NgForm, NG_VALUE_ACCESSOR,
 } from '@angular/forms';
 
 import { FsFile } from '@firestitch/file';
 
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-
-import { get } from 'lodash-es';
 
 import { Field } from '../../../../interfaces/field.interface';
 import { FileRenderFile } from '../../../../classes/file-render-file';
@@ -96,9 +94,12 @@ export class FieldFilePickerComponent implements OnInit, OnDestroy, ControlValue
     this.onTouched = fn;
   }
 
-  public ngOnInit() {
+  public triggerChange(): void {
+    this.onChange(this._files);
+  }
 
-    const config = get(this.field, 'config.configs.allowedFileTypes') || {};
+  public ngOnInit() {
+    const config = this.field.config?.configs?.allowedFileTypes || {};
     const types = this._getAllowedTypes(config);
 
     this.allowedTypes = types.length ? types.join(',') : '*';
