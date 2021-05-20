@@ -6,7 +6,7 @@
     [name]="name"
     [required]="field.config.configs.required"
     (ngModelChange)="change($event)"
-    [(ngModel)]="field.data.label">
+    [(ngModel)]="field.data.value">
   </app-field-file-picker>
   <fs-label-message class="fs-form-message">
     <div class="fs-form-hint" *ngIf="field.config.description">{{ field.config.description }}</div>
@@ -16,3 +16,4 @@
 <div class="files-preview" [hidden]="!field.data?.value?.length">
   <fs-gallery [config]="galleryConfig"></fs-gallery>
 </div>
+

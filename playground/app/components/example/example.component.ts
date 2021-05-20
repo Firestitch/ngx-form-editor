@@ -184,6 +184,15 @@ export class ExampleComponent implements OnInit {
           configs: {
             basic: true
           }
+        },
+        data: {
+          value: [
+            {
+              id: 99999,
+              url: 'http://picsum.photos/id/275/500/300.jpg',
+              name: 'adorable-animal-blur-406014.jpg',
+            }
+          ]
         }
       },
       {

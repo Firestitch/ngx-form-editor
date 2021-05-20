@@ -46,7 +46,7 @@ export class FieldFilePickerComponent implements OnInit, OnDestroy, ControlValue
   private _destroy$ = new Subject();
 
   public constructor(
-    public fieldEditor: FieldEditorService,
+    private _fieldEditor: FieldEditorService,
     private _cdRef: ChangeDetectorRef,
   ) {
   }
@@ -54,7 +54,7 @@ export class FieldFilePickerComponent implements OnInit, OnDestroy, ControlValue
   public selectFile(files: any) {
     this.onTouched();
 
-    if (this.fieldEditor.config.fileUpload) {
+    if (this._fieldEditor.config.fileUpload) {
 
       if (!this.field.config.configs.allowMultiple) {
         files = [files];
@@ -62,7 +62,7 @@ export class FieldFilePickerComponent implements OnInit, OnDestroy, ControlValue
 
       files.forEach((fsFile: FsFile) => {
 
-        this.fieldEditor.config.fileUpload(this.field, fsFile.file)
+        this._fieldEditor.config.fileUpload(this.field, fsFile.file)
         .pipe(
           takeUntil(this._destroy$)
         )
@@ -105,21 +105,21 @@ export class FieldFilePickerComponent implements OnInit, OnDestroy, ControlValue
     this.allowedTypes = types.length ? types.join(',') : '*';
 
     const actions = [];
-    if (this.fieldEditor.config && this.fieldEditor.config.fileDownload) {
+    if (this._fieldEditor.config && this._fieldEditor.config.fileDownload) {
       actions.push({
         label: 'Download',
         click: (item) => {
-          this.fieldEditor.config.fileDownload(this.field, item);
+          this._fieldEditor.config.fileDownload(this.field, item);
         }
       });
     }
 
-    if (this.fieldEditor.config && this.fieldEditor.config.fileRemove) {
+    if (this._fieldEditor.config && this._fieldEditor.config.fileRemove) {
       actions.push({
         label: 'Remove',
         click: (item) => {
 
-          this.fieldEditor.config.fileRemove(this.field, item)
+          this._fieldEditor.config.fileRemove(this.field, item)
           .subscribe(() => {
 
             const idx = this._files.indexOf(item);
@@ -128,8 +128,8 @@ export class FieldFilePickerComponent implements OnInit, OnDestroy, ControlValue
               this._files.splice(idx, 1);
               this.onChange(this._files);
 
-              if (this.fieldEditor.config.fileRemoved) {
-                this.fieldEditor.config.fileRemoved(this.field, item);
+              if (this._fieldEditor.config.fileRemoved) {
+                this._fieldEditor.config.fileRemoved(this.field, item);
               }
             }
           });
