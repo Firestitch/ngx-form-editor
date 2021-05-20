@@ -1,24 +1,26 @@
 <fs-label-field>
-  <fs-label class="fs-form-label">
+  <fs-label *ngIf="field?.config.label">
     {{ field?.config.label }}
   </fs-label>
-  <div fxLayout="column" *ngIf="field">
-    <mat-checkbox
+  <mat-checkbox
       name="terms-label"
       [(ngModel)]="field.data.value"
       (ngModelChange)="fieldChange(field)"
       [disabled]="disabled">
-      {{ field.config.configs.termsLabel }}
+      {{ field.config.configs.agreeLabel }}
+      <a
+          *ngIf="field?.config.configs.displayType==='url'"
+          (click)="urlClick($event)"
+          [href]="field.config.configs.url" target="_blank">
+        {{field.config.configs.linkLabel}}
+      </a>
+      <a
+          *ngIf="field?.config.configs.displayType==='dialog'"
+          (click)="dialogClick($event)">
+        {{field.config.configs.linkLabel}}
+      </a>
     </mat-checkbox>
-  </div>
-  <div fxLayout="column" *ngIf="field?.config.configs.termsContentSource==='url'">
-    <a [href]="field.config.configs.termsContentUrl" target="_blank">
-      {{field.config.configs.termsContentLabel}}
-    </a>
-  </div>
-
   <fs-label-message>
-    <div class="fs-form-message">
-    </div>
+    <div class="fs-form-message"></div>
   </fs-label-message>
 </fs-label-field>

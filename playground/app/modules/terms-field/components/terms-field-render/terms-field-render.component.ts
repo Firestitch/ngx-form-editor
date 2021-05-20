@@ -3,7 +3,6 @@ import {
   ChangeDetectorRef,
   Component,
   forwardRef,
-  HostBinding,
 } from '@angular/core';
 import {
   AbstractControl,
@@ -13,8 +12,10 @@ import {
   ValidationErrors,
   Validator
 } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 
 import { Field } from '@firestitch/field-editor';
+import { TermsFieldDialogComponent } from '../terms-field-dialog';
 
 
 @Component({
@@ -36,9 +37,6 @@ import { Field } from '@firestitch/field-editor';
 })
 export class TermsFieldRenderComponent implements ControlValueAccessor, Validator {
 
-  @HostBinding('class.fs-form-wrapper')
-  private _formWrapper = true;
-
   private _onChange: (value: unknown) => void;
   private _onTouch: (value: unknown) => void;
 
@@ -47,6 +45,7 @@ export class TermsFieldRenderComponent implements ControlValueAccessor, Validato
 
   constructor(
     private _cdRef: ChangeDetectorRef,
+    private _dialog: MatDialog,
   ) {
   }
 
@@ -71,6 +70,19 @@ export class TermsFieldRenderComponent implements ControlValueAccessor, Validato
     this._cdRef.markForCheck();
 
     return errors;
+  }
+
+  public urlClick(event: UIEvent): void {
+    event.stopPropagation();
+  }
+
+  public dialogClick(event: UIEvent): void {
+    event.preventDefault();
+
+    this._dialog.open(TermsFieldDialogComponent, {
+      data: { content: this.field.config.configs.content },
+      minWidth: '500px',
+    });
   }
 
   public writeValue(obj: any): void {

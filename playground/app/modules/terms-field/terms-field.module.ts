@@ -13,6 +13,11 @@ import { FsLabelModule } from '@firestitch/label';
 
 import { TermsFieldConfigComponent } from './components/terms-field-config';
 import { TermsFieldRenderComponent } from './components/terms-field-render';
+import { FsHtmlEditorModule } from '@firestitch/html-editor';
+import { TermsFieldDialogComponent } from './components/terms-field-dialog';
+import { FsDialogModule } from '@firestitch/dialog';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
 
 
 @NgModule({
@@ -26,13 +31,18 @@ import { TermsFieldRenderComponent } from './components/terms-field-render';
     MatFormFieldModule,
     MatSelectModule,
     MatCheckboxModule,
+    MatDialogModule,
+    MatButtonModule,
 
     FsFormModule,
     FsLabelModule,
+    FsHtmlEditorModule,
+    FsDialogModule,
   ],
   declarations: [
     TermsFieldConfigComponent,
     TermsFieldRenderComponent,
+    TermsFieldDialogComponent,
   ],
   exports: [
     TermsFieldConfigComponent,

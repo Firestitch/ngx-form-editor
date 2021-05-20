@@ -2,8 +2,8 @@
   <mat-form-field>
     <input
       matInput
-      placeholder="Terms & Condition Label"
-      [(ngModel)]="field.config.configs.termsLabel"
+      placeholder="'I Agree' Label"
+      [(ngModel)]="field.config.configs.agreeLabel"
       (ngModelChange)="fieldChange(field)"
       [ngModelOptions]="{ updateOn: 'blur' }"
       [disabled]="disabled"
@@ -12,39 +12,53 @@
 
   <mat-form-field>
     <mat-select
-      [(ngModel)]="field.config.configs.termsContentSource"
+      [(ngModel)]="field.config.configs.displayType"
       (ngModelChange)="fieldChange(field)"
       [disabled]="disabled"
       name="terms-content-source"
-      placeholder="Terms & Conditions Content">
+      placeholder="Display Terms & Conditions With">
       <mat-option value="none">None</mat-option>
       <mat-option value="url">URL</mat-option>
+      <mat-option value="dialog">Dialog</mat-option>
     </mat-select>
   </mat-form-field>
 
-  <ng-container *ngIf="field.config.configs.termsContentSource==='url'">
-    <mat-form-field>
-      <input
-        matInput
-        placeholder="Terms & Conditions Content URL"
-        [(ngModel)]="field.config.configs.termsContentUrl"
-        (ngModelChange)="fieldChange(field)"
-        [ngModelOptions]="{ updateOn: 'blur' }"
-        [disabled]="disabled"
-        name="terms-content-url"
-        [fsFormUrl]="true"
-        [fsFormUrlProtocol]="true">
-    </mat-form-field>
+  <mat-form-field
+      *ngIf="field.config.configs.displayType==='url'">
+    <input
+      matInput
+      placeholder="Terms & Conditions URL"
+      [(ngModel)]="field.config.configs.url"
+      (ngModelChange)="fieldChange(field)"
+      [ngModelOptions]="{ updateOn: 'blur' }"
+      [disabled]="disabled"
+      name="terms-content-url"
+      [fsFormUrl]="true"
+      [fsFormUrlProtocol]="true">
+  </mat-form-field>
 
-    <mat-form-field>
-      <input
-        matInput
-        placeholder="Terms & Conditions Content Label"
-        [(ngModel)]="field.config.configs.termsContentLabel"
-        (ngModelChange)="fieldChange(field)"
-        [ngModelOptions]="{ updateOn: 'blur' }"
-        [disabled]="disabled"
-        name="terms-content-label">
-    </mat-form-field>
-  </ng-container>
+  <mat-form-field
+      *ngIf="field.config.configs.displayType==='url' || field.config.configs.displayType==='dialog'">
+    <input
+      matInput
+      placeholder="Terms & Conditions Link Label"
+      [(ngModel)]="field.config.configs.linkLabel"
+      (ngModelChange)="fieldChange(field)"
+      [ngModelOptions]="{ updateOn: 'blur' }"
+      [disabled]="disabled"
+      name="terms-content-label">
+  </mat-form-field>
+
+  <fs-label-field
+      *ngIf="field.config.configs.displayType==='dialog'">
+    <fs-label>
+      Terms & Conditions Content
+    </fs-label>
+    <fs-html-editor
+      [(ngModel)]="field.config.configs.content"
+      (ngModelChange)="fieldChange(field)"
+      name="terms-content">
+    </fs-html-editor>
+  </fs-label-field>
+
 </div>

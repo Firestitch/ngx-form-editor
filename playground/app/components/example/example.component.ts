@@ -265,8 +265,11 @@ export class ExampleComponent implements OnInit {
           type: 'terms',
           label: 'Terms',
           configs: {
-            termsLabel: 'I have read and accepted the terms & conditions.',
-            termsContentSource: 'none',
+            agreeLabel: 'I have read and accepted the ',
+            displayType: 'dialog',
+            url: 'https://google.com',
+            content: this._getTerms(),
+            linkLabel: 'terms & conditions',
           },
         }
       },
@@ -401,5 +404,22 @@ export class ExampleComponent implements OnInit {
         },
       },
     ];
+  }
+
+  public _getTerms() {
+    return `
+<b>COOKIES</b>
+<br>
+"Cookies" are small encrypted data files (containing references to user ID information supplied by the user and stored on our secure server) that may write to your hard drive once you have accessed a Web site. Staples uses cookies to enhance your shopping experience with us. Cookies are used to keep track of your shopping cart and to save your password so you do not have to re-enter it each time you visit the Site. To learn more about how we protect customer information, please review our Privacy Statement.
+<br><br><br>
+<b>COPYRIGHTS, TRADEMARKS & RESTRICTIONS</b>
+<br>
+The material included herein, including site design, text, graphics and the selection and arrangement thereof are copyrighted © by Staples, Inc. ALL RIGHTS RESERVED. Staples.com®, Staples®, that was easy®, other trademarks and all page headers, custom graphics and custom icons are service marks and trademarks of Staples the Office Superstore, LLC. All other trademarks, product names and company names or logos cited herein are the property of their respective owners.
+<br>
+The Site and all materials on the Site, including, but not limited to, images, illustrations, posts, audio clips and video clips (the "Materials") are the property of Staples and its affiliates and licensors and are protected from unauthorized copying and dissemination by copyrights that are owned or licensed by Staples and by copyright law, trademark law, international conventions and other intellectual property laws. You may not reproduce, perform, create derivative works from, republish, upload, post, transmit or distribute in any way whatsoever any Materials from the Site (or any other Web site owned or operated by Staples or its subsidiaries or affiliates) without Staples' prior written permission. However, you may print in hard copy portions of the Site with the sole intent of placing an order with Staples or applying for credit. Printing Materials for any other reason, or transferring Materials for use on any other Web site, or the modification, distribution or republication of Materials without Staples' prior written permission is strictly prohibited. Any modification of Materials, or any portion thereof, or use of Materials for any other purpose constitutes an infringement of trademark or other proprietary rights of Staples or third parties.
+<br><br><br>
+<b>LINKS</b>
+<br>
+Staples is not responsible for the content of any unaffiliated Web sites that may be linked to or from the Site. These links are provided for your convenience only and you access them at your own risk. Any other Web site accessed from the Site is independent from Staples, and Staples has no control over the content of that other Web site. In addition, a link to any other Web site does not imply that Staples endorses or accepts any responsibility for the content or use of such other Web site. In no event shall any reference to any third party or third-party product or service be construed as an approval or endorsement by Staples of that third party or of any product or service provided by a third party.`    ;
   }
 }

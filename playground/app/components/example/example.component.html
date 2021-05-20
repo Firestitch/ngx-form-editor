@@ -72,9 +72,10 @@
 
               <ng-template fsFieldRender type="terms" let-field="field" let-fieldEditor="fieldEditor">
                 <div fxLayout="column">
-                  <app-terms-field-render name="terms"
-                                          [ngModel]="field"
-                                          (ngModelChange)="fieldChanged(fieldEditor, field)">
+                  <app-terms-field-render
+                    name="terms"
+                    [ngModel]="field"
+                    (ngModelChange)="fieldChanged(fieldEditor, field)">
                   </app-terms-field-render>
                 </div>
               </ng-template>
