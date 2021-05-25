@@ -40,9 +40,7 @@
 
         <div *ngIf="field.config.type===fieldType.File">
           <div *ngIf="field.data?.value && field.data.value.length; else notUploaded">
-            <div *ngFor="let item of field.data.value">
-              <a [href]="item.url" [download]="item.name">{{ item.name }}</a>
-            </div>
+            <fs-gallery [config]="galleryConfig"></fs-gallery>
           </div>
           <ng-template #notUploaded>
             <span>Files are not uploaded yet.</span>
