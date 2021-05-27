@@ -11,9 +11,7 @@
   <fs-field-header
     *ngIf="isSelectedField"
     [field]="field"
-    (changed)="fieldEditor.fieldChanged($event)"
-    [showRequired]="showRequired"
-    [showDescription]="showDescription">
+    (changed)="fieldEditor.fieldChanged($event)">
   </fs-field-header>
 
   <ng-container *ngIf="isSelectedField; else renderField">

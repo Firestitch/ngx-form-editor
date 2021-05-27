@@ -1,6 +1,5 @@
 import {
   Component,
-  OnInit,
   ContentChildren,
   QueryList,
   ChangeDetectionStrategy,
@@ -32,7 +31,7 @@ import { FieldEditorService } from '../../services/field-editor.service';
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FieldRendererComponent implements OnInit {
+export class FieldRendererComponent {
 
   @ContentChildren(FieldRenderDirective)
   public fieldRenders: QueryList<FieldRenderDirective>;
@@ -46,5 +45,4 @@ export class FieldRendererComponent implements OnInit {
     this.fieldEditor.setConfig(config);
   }
 
-  public ngOnInit(): void {}
 }

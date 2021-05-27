@@ -11,3 +11,8 @@
 @include fs-html-editor($mat-blue);
 @include fs-field-editor($mat-blue);
 @include fs-form($mat-blue);
+
+.small {
+  font-size: 75%;
+  color: #ccc;
+}

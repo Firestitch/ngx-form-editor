@@ -11,7 +11,7 @@
           (ngModelChange)="changed.emit(field)">
       </mat-form-field>
     </div>
-    <button *ngIf="showRequired"
+    <button *ngIf="field.config.hideRequired !== true"
       mat-icon-button
       type="button"
       (click)="toggleRequired()"
@@ -27,12 +27,12 @@
       <mat-icon>filter_none</mat-icon>
     </button>
     <button
-      *ngIf="showDescription"
+      *ngIf="field.config.hideDescription !== true"
       mat-icon-button
       type="button"
       (click)="toggleDescriptionNote()"
       matTooltip="Description"
-      [ngClass]="{ disabled: !field.config.hasDescriptionNote }">
+      [ngClass]="{ disabled: !hasDescription }">
       <mat-icon>subject</mat-icon>
     </button>
     <button
@@ -44,7 +44,7 @@
     </button>
   </div>
 
-  <mat-form-field floatLabel="never" *ngIf="field.config.hasDescriptionNote" class="description">
+  <mat-form-field *ngIf="hasDescription" class="description">
     <textarea
       matInput
       placeholder="Description"

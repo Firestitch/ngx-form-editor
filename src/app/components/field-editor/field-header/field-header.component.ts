@@ -23,8 +23,7 @@ import { FieldEditorService } from '../../../services/field-editor.service';
 })
 export class FieldHeaderComponent extends FieldComponent implements OnInit {
 
-  @Input() showRequired = true;
-  @Input() showDescription = true;
+  public hasDescription;
 
   public constructor(
     public fieldEditor: FieldEditorService,
@@ -35,7 +34,7 @@ export class FieldHeaderComponent extends FieldComponent implements OnInit {
   }
 
   public ngOnInit(): void {
-    this.field.config.hasDescriptionNote = !!this.field.config.description || !!this.field.config.configs.note;
+    this.hasDescription = !!this.field.config.description;
   }
 
   public toggleRequired(): void {
@@ -44,7 +43,7 @@ export class FieldHeaderComponent extends FieldComponent implements OnInit {
   }
 
   public toggleDescriptionNote(): void {
-    this.field.config.hasDescriptionNote = !this.field.config.hasDescriptionNote;
+    this.hasDescription = !this.hasDescription;
     this.changed.emit(this.field);
   }
 

@@ -2,7 +2,7 @@
   "name": "@firestitch/field-editor",
   "title": "Field Editor",
   "description": "@firestitch/field-editor",
-  "version": "9.7.13",
+  "version": "9.7.14",
   "repository": {
     "type": "git",
     "url": "https://github.com/Firestitch/ngx-field-editor"
@@ -81,7 +81,7 @@
     "@firestitch/scroll-picker": "^8.0.0",
     "@firestitch/selectbutton": "^8.1.0",
     "@firestitch/selection": "^9.0.4",
-    "@firestitch/signature": "^10.0.2",
+    "@firestitch/signature": "^10.1.2",
     "@firestitch/skeleton": "^8.1.4",
     "@firestitch/store": "^8.1.0",
     "@firestitch/upload": "^8.0.0",

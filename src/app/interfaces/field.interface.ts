@@ -4,14 +4,14 @@ import { CdkDragDrop } from '@angular/cdk/drag-drop';
 
 
 export interface Field {
-  config: {
+  config?: {
     guid?: string,
     type?: FieldType | string,
     label?: string,
     description?: string,
-    hasDescriptionNote?: boolean,
+    hideRequired?: boolean;
+    hideDescription?: boolean;
     configs?: any,
-    required?: boolean,
   },
   data?: any,
 }

@@ -1,4 +1,13 @@
 <div fxLayout="column" *ngIf="field">
+
+  <fs-label-field>
+    <mat-checkbox
+      [(ngModel)]="field.config.configs.signature"
+      [value]="1">
+      Require signature
+    </mat-checkbox>
+  </fs-label-field>
+
   <mat-form-field>
     <input
       matInput
@@ -60,5 +69,4 @@
       name="terms-content">
     </fs-html-editor>
   </fs-label-field>
-
 </div>

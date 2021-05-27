@@ -47,7 +47,6 @@ export class FieldToolbarItemComponent {
         type: item.type,
         label: item.label,
         description: '',
-        hasDescriptionNote: false
       },
       data: {
         value: null,
@@ -100,7 +99,6 @@ export class FieldToolbarItemComponent {
         type: item.type,
         label: item.label,
         description: '',
-        hasDescriptionNote: false
       },
       data: {
         value: null,

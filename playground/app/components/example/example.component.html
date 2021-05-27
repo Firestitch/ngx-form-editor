@@ -33,18 +33,21 @@
 
         <ng-template fsFieldConfig type="terms" let-field="field" let-fieldEditor="fieldEditor">
           <div fxLayout="column">
-            <app-terms-field-config name="terms"
-                                    [ngModel]="field"
-                                    (ngModelChange)="fieldChanged(fieldEditor, field)">
+            <app-terms-field-config
+              name="terms"
+              [ngModel]="field"
+              (ngModelChange)="fieldChanged(fieldEditor, field)">
             </app-terms-field-config>
           </div>
         </ng-template>
 
         <ng-template fsFieldRender type="terms" let-field="field" let-fieldEditor="fieldEditor">
           <div fxLayout="column">
-            <app-terms-field-render name="terms"
-                                    [ngModel]="field"
-                                    (ngModelChange)="fieldChanged(fieldEditor, field)">
+            <app-terms-field-render
+              name="terms"
+              [disabled]="true"
+              [ngModel]="field"
+              (ngModelChange)="fieldChanged(fieldEditor, field)">
             </app-terms-field-render>
           </div>
         </ng-template>
@@ -71,13 +74,11 @@
               </ng-template>
 
               <ng-template fsFieldRender type="terms" let-field="field" let-fieldEditor="fieldEditor">
-                <div fxLayout="column">
-                  <app-terms-field-render
-                    name="terms"
-                    [ngModel]="field"
-                    (ngModelChange)="fieldChanged(fieldEditor, field)">
-                  </app-terms-field-render>
-                </div>
+                <app-terms-field-render
+                  name="terms"
+                  [ngModel]="field"
+                  agreedName="Bob Smith">
+                </app-terms-field-render>
               </ng-template>
             </fs-field-renderer>
 
@@ -106,10 +107,11 @@
             </ng-template>
 
             <ng-template fsFieldView type="signpad" let-field="field">
-              <app-terms-field-render name="terms"
-                                      [disabled]="true"
-                                      [ngModel]="field"
-                                      (ngModelChange)="fieldChanged(fieldEditor)">
+              <app-terms-field-render
+                name="terms"
+                [disabled]="true"
+                [ngModel]="field"
+                (ngModelChange)="fieldChanged(fieldEditor)">
               </app-terms-field-render>
             </ng-template>
           </fs-field-viewer>

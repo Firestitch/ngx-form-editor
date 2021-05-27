@@ -34,9 +34,7 @@ export class SectionsComponent implements OnInit {
         if (field.config.type === 'share') {
           field.config.configs.facebook = true;
           field.config.configs.google = true;
-
-          // field.config.configs.id = toolbarItem.config.id;
-          field.config.configs.showRequired = false;
+          field.config.configs.hideRequired = true;
         }
       },
       fieldChanged: (field: Field) => {

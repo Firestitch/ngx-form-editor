@@ -1,0 +1,25 @@
+<form fsForm [submit]="continue">
+  <h1 mat-dialog-title>Signature</h1>
+  <div mat-dialog-content>
+    <fs-label-field class="fs-form-wrapper">
+      <app-signature
+        name="signature"
+        [required]="true"
+        [(ngModel)]="signature">
+      </app-signature>
+      <fs-label-message class="fs-form-message"></fs-label-message>
+    </fs-label-field>
+  </div>
+  <div mat-dialog-actions>
+    <button
+        mat-button
+        color="primary"
+        type="submit">
+      Continue
+    </button>
+    <button mat-button
+        [mat-dialog-close]="null">
+      Cancel
+    </button>
+  </div>
+</form>

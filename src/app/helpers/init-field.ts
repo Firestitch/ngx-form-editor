@@ -1,29 +1,39 @@
 import { guid } from '@firestitch/common';
 import { FieldType } from '../enums/field-type';
 import { isObject } from 'lodash-es';
+import { Field } from '../interfaces/field.interface';
 
 
-export function initField(field) {
+export function initField(field: Field): Field {
+  if (!field) {
+    field = {};
+  }
 
-    if (!field) {
-      field = {};
-    }
+  if (!field.data) {
+    field.data = { value: '' };
+  }
 
-    if (!field.data) {
-      field.data = { value: '' };
-    }
+  if (!field.config) {
+    field.config = {};
+  }
 
-    if (!field.config) {
-      field.config = {};
-    }
+  if (!field.config.configs) {
+    field.config.configs = {};
+  }
 
-    if (!field.config.configs) {
-      field.config.configs = {};
-    }
+  switch (field.config.type) {
+    case FieldType.Heading:
+      field.config.hideDescription = true;
+      field.config.hideRequired = true;
+      break;
 
-    if (field.config.type === FieldType.Checkbox ||
-        field.config.type === FieldType.Choice ||
-        field.config.type === FieldType.Dropdown) {
+    case FieldType.Content:
+      field.config.hideRequired = true;
+      break;
+
+    case FieldType.Checkbox:
+    case FieldType.Choice:
+    case FieldType.Dropdown:
 
       if (!field.config.configs.options) {
         field.config.configs.options = [];
@@ -38,10 +48,9 @@ export function initField(field) {
           field.data.value = { selected: selected };
         }
       }
-    }
+      break;
 
-  if (field.config.type === FieldType.Name) {
-
+    case FieldType.Name:
       if (!field.config.configs.firstName) {
         field.config.configs.firstName = { display: true, label: 'First Name' };
       }
@@ -49,9 +58,9 @@ export function initField(field) {
       if (!field.config.configs.lastName) {
         field.config.configs.lastName = { display: true, label: 'Last Name' };
       }
-    }
+      break;
 
-    if (field.config.type === FieldType.File) {
+    case FieldType.File:
       if (field.config.configs.maxWidth === undefined ) {
         field.config.configs.maxWidth = 1024;
       }
@@ -76,9 +85,9 @@ export function initField(field) {
       if (field.config.configs.allowMultiple === undefined ) {
         field.config.configs.allowMultiple = true;
       }
-    }
+      break;
 
-    if (field.config.type === FieldType.Gender) {
+    case FieldType.Gender:
       if (!field.config.configs.genders) {
         field.config.configs.genders = [
           { name: 'Male', value: 'male' },
@@ -86,10 +95,10 @@ export function initField(field) {
           { name: 'Other', value: 'other' },
         ];
       }
-    }
+      break;
 
-    if (field.config.type === FieldType.Address) {
-
+    case FieldType.Address:
+      field.config.hideRequired = true;
       if (!isObject(field.data.value)) {
         field.data.value = {};
       }
@@ -117,6 +126,7 @@ export function initField(field) {
       if (!field.config.configs.country) {
         field.config.configs.country = { enabled: true, label: 'Country' };
       }
+      break;
     }
 
     if (!field.data.guid) {

@@ -1,25 +1,33 @@
-<fs-label-field>
-  <fs-label *ngIf="field?.config.label">
-    {{ field?.config.label }}
+<fs-label-field *ngIf="field" class="fs-form-wrapper">
+  <fs-label *ngIf="field.config.label">
+    {{ field.config.label }}
   </fs-label>
   <mat-checkbox
-      name="terms-label"
-      [(ngModel)]="field.data.value"
-      (ngModelChange)="fieldChange(field)"
+      [name]="name"
+      [(ngModel)]="checked"
+      (change)="checkboxChange($event)"
+      [checked]="!!field.data.agreed"
+      (click)="checkboxClick($event)"
+      [required]="true"
       [disabled]="disabled">
       {{ field.config.configs.agreeLabel }}
       <a
-          *ngIf="field?.config.configs.displayType==='url'"
+          *ngIf="field.config.configs.displayType==='url'"
           (click)="urlClick($event)"
           [href]="field.config.configs.url" target="_blank">
         {{field.config.configs.linkLabel}}
       </a>
       <a
-          *ngIf="field?.config.configs.displayType==='dialog'"
+          *ngIf="field.config.configs.displayType==='dialog'"
           (click)="dialogClick($event)">
         {{field.config.configs.linkLabel}}
       </a>
     </mat-checkbox>
+
+    <div class="agreed" *ngIf="field.data.agreed">
+      <div class="small details">{{field.data.agreed.name}} agreed on {{ field.data.agreed.date | fsDateFormat: 'date-time' }}</div>
+      <img class="signature" *ngIf="signature" [src]="signature">
+    </div>
   <fs-label-message>
     <div class="fs-form-message"></div>
   </fs-label-message>

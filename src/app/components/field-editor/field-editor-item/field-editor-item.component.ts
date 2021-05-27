@@ -53,19 +53,6 @@ export class FieldEditorItemComponent implements OnInit {
     return this.fieldRenderTemplateRefs && this.fieldRenderTemplateRefs[this.field.config.type];
   }
 
-  public get showRequired(): boolean {
-    return this.field.config.configs.showRequired !== false
-      && this.field.config.type !== FieldType.Address
-      && this.field.config.type !== FieldType.Heading
-      && this.field.config.type !== FieldType.Content
-  }
-
-  public get showDescription(): boolean {
-    return this.field.config.configs.showDescription !== false
-      && this.field.config.type !== FieldType.Heading
-      && this.field.config.type !== FieldType.Content
-  }
-
   public ngOnInit(): void {
     if (this.field === this.fieldEditor.scrollTargetField) {
       this.fieldEditor.resetScrollTarget();
