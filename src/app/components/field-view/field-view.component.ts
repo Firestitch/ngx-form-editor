@@ -49,6 +49,7 @@ export class FieldViewComponent implements OnInit {
   @Input('field')
   public set setField(field) {
     this.field = field;
+    console.log(this.field);
   }
 
   @Input('config')

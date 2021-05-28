@@ -55,12 +55,12 @@
 
         <div *ngIf="field.config.type==fieldType.Address">
           <div class="address">
-            <span *ngIf="field.data.street">{{field.data.street}}</span>
-            <span *ngIf="field.data.adddress2">{{field.data.address2}}</span>
-            <span *ngIf="field.data.city">{{field.data.city}}</span>
-            <span *ngIf="field.data.region">{{field.data.region}}</span>
-            <span *ngIf="field.data.zip">{{field.data.zip}}</span>
-            <span *ngIf="field.data.country">{{field.data.country}}</span>
+            <span *ngIf="field.data?.value.street">{{field.data.value.street}}</span>
+            <span *ngIf="field.data?.value.adddress2">{{field.data.value.address2}}</span>
+            <span *ngIf="field.data?.value.city">{{field.data.value.city}}</span>
+            <span *ngIf="field.data?.value.region">{{field.data.value.region}}</span>
+            <span *ngIf="field.data?.value.zip">{{field.data.value.zip}}</span>
+            <span *ngIf="field.data?.value.country">{{field.data.value.country}}</span>
           </div>
         </div>
 
