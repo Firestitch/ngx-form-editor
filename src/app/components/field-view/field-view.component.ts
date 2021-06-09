@@ -24,6 +24,9 @@ import { FieldType } from '../../enums/field-type';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FieldViewComponent implements OnInit {
+
+  @Input() public showLabel = true;
+
   public field: any = { config: {} };
 
   public fieldType = FieldType;
