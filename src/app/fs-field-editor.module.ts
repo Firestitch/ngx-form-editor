@@ -1,7 +1,7 @@
 import { FieldEditorService } from './services/field-editor.service';
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule, NgForm } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 
@@ -71,6 +71,7 @@ import { FieldRenderCheckboxComponent } from './components/render/field-render-c
 import { FieldToolbarItemComponent } from './components/field-editor/field-toolbar-item/field-toolbar-item.component';
 import { FieldRenderDateComponent } from './components/render/field-render-date/field-render-date.component';
 import { FieldEditorItemComponent } from './components/field-editor/field-editor-item/field-editor-item.component';
+import { FieldEditorToolbarDirective } from './directives/field-editor-toolbar/field-editor-toolbar.directive';
 
 
 export function defaultConfigFactory(config) {
@@ -145,6 +146,7 @@ export function defaultConfigFactory(config) {
     FieldRenderComponent,
     FieldViewComponent,
     FieldViewDirective,
+    FieldEditorToolbarDirective,
   ],
   declarations: [
     FieldEditorComponent,
@@ -184,6 +186,7 @@ export function defaultConfigFactory(config) {
     FieldConfigHeadingComponent,
     FieldConfigContentComponent,
     FieldConfigDirective,
+    FieldEditorToolbarDirective,
   ],
 })
 

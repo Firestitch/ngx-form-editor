@@ -6,6 +6,12 @@
       <fs-field-editor
         #fieldEditor
         [config]="config">
+        <ng-template fsFieldEditorToolbar let-toolbar>
+          <div class="custom-wrapper">
+            <ng-container *ngTemplateOutlet="toolbar"></ng-container>
+          </div>
+        </ng-template>
+
         <ng-template fsFieldConfig type="signpad" let-field="field">
           <div fxLayout="column">
             <fs-signature (changed)="field.data.value"></fs-signature>

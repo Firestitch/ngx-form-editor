@@ -11,26 +11,26 @@ import {
   Inject,
   ChangeDetectorRef,
   OnDestroy,
+  ContentChild,
+  TemplateRef,
 } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
 
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
+import { fromEvent, Subject } from 'rxjs';
 import { filter, takeUntil } from 'rxjs/operators';
 
 
 import {
   Field,
   FieldEditorConfig,
-  FsFieldEditorCallbackParams
 } from '../../interfaces/field.interface';
 import { FieldConfigDirective } from '../../directives/field-config/field-config.directive';
 import { FieldRenderDirective } from '../../directives/field-render/field-render.directive';
-import { initField } from './../../helpers/init-field';
-import { fromEvent, isObservable, of, Subject } from 'rxjs';
-import { FieldEditorItemComponent } from './field-editor-item/field-editor-item.component';
-import { DOCUMENT } from '@angular/common';
 import { FieldEditorService } from '../../services/field-editor.service';
 import { clickOutsideElement } from '../../helpers/click-outside-element';
+import { FieldEditorToolbarDirective } from '../../directives/field-editor-toolbar/field-editor-toolbar.directive';
 
 
 @Component({
@@ -46,6 +46,9 @@ export class FieldEditorComponent implements OnInit, AfterContentInit, OnDestroy
 
   @Input()
   public scrollContainer: string | HTMLElement = null;
+
+  @ContentChild(FieldEditorToolbarDirective, { read: TemplateRef })
+  public editoToolbarTpl: TemplateRef<FieldEditorToolbarDirective>
 
   @ContentChildren(FieldConfigDirective)
   public queryListFieldConfig: QueryList<FieldConfigDirective>;
