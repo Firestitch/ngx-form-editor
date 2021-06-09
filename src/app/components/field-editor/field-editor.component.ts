@@ -127,7 +127,7 @@ export class FieldEditorComponent implements OnInit, AfterContentInit, OnDestroy
   }
 
   private _listenClickOutside(): void {
-    fromEvent(this.document, 'click')
+    fromEvent(this.document, 'mousedown')
       .pipe(
         filter(() => !!this.fieldEditor.selectedField && !this.fieldEditor.inDeletionMode),
         filter((event: Event) => {
