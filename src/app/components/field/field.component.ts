@@ -14,6 +14,8 @@ import { FieldMode } from '../../enums/field-mode';
 })
 export class FieldComponent implements OnDestroy, OnInit {
 
+  @Input() disabled = false;
+
   @Output() changed = new EventEmitter();
 
   public fieldMode = FieldMode;

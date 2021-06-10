@@ -4,8 +4,13 @@
     [imageWidth]="field.config.configs.maxWidth"
     [imageHeight]="field.config.configs.maxHeight"
     [accept]="allowedTypes"
+    [disabled]="disabled"
     [multiple]="field.config.configs.allowMultiple">
-  <button mat-raised-button type="button" color="default">
+  <button
+      [disabled]="disabled"
+      mat-raised-button
+      type="button"
+      color="default">
     <mat-icon>file_upload</mat-icon>
     Select File
   </button>

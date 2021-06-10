@@ -4,6 +4,7 @@
       <input
         matInput
         [name]="name + 'firstName'"
+        [disabled]="disabled"
         (ngModelChange)="change($event,'firstName')"
         [(ngModel)]="field.data.value.firstName"
         [placeholder]="field.config.configs.firstName.label">
@@ -12,6 +13,7 @@
       <input
         matInput
         [name]="name + 'lastName'"
+        [disabled]="disabled"
         (ngModelChange)="change($event,'lastName')"
         [(ngModel)]="field.data.value.lastName"
         [placeholder]="field.config.configs.lastName.label">

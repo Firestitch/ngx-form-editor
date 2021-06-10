@@ -8,9 +8,9 @@ import { FieldEditorService } from '../../../services/field-editor.service';
 import { FieldComponent } from '../../field/field.component';
 
 
-
 @Component({
   selector: 'fs-field-render-content',
+  styleUrls: ['./field-render-content.component.scss'],
   templateUrl: 'field-render-content.component.html',
   viewProviders: [
     {
@@ -34,6 +34,7 @@ export class FieldRenderContentComponent extends FieldComponent implements OnIni
 
     this.editorConfig = {
       autofocus: false,
+      disabled: this.disabled,
     };
 
     if (this.fieldEditor.config?.imageUpload) {

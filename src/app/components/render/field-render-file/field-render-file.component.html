@@ -6,6 +6,7 @@
     [name]="name"
     [required]="field.config.configs.required"
     (ngModelChange)="change($event)"
+    [disabled]="disabled"
     [(ngModel)]="field.data.value">
   </app-field-file-picker>
   <fs-label-message class="fs-form-message">

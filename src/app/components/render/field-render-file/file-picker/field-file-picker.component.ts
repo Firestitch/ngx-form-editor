@@ -37,6 +37,7 @@ import { controlContainerFactory } from '@firestitch/core';
 export class FieldFilePickerComponent implements OnInit, OnDestroy, ControlValueAccessor {
 
   @Input() public field: Field;
+  @Input() public disabled = false;
 
   public onChange = (data: any) => {};
   public onTouched = () => {};

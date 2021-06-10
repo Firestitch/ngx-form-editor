@@ -6,6 +6,7 @@
       [(ngModel)]="field.data.value"
       (ngModelChange)="changed.emit(field)"
       [name]="name"
+      [disabled]="disabled"
       [required]="field.config.configs.required===true">
     <mat-hint>{{field.config.description}}</mat-hint>
   </mat-form-field>
@@ -19,6 +20,7 @@
       (ngModelChange)="changed.emit(field)"
       [placeholder]="field.config.label"
       [name]="name"
+      [disabled]="disabled"
       [required]="field.config.configs.required===true">
     </textarea>
     <mat-hint>{{field.config.description}}</mat-hint>
@@ -32,6 +34,7 @@
       [(ngModel)]="field.data.value"
       (ngModelChange)="changed.emit(field)"
       [name]="name"
+      [disabled]="disabled"
       [required]="field.config.configs.required===true">
     <mat-hint>{{field.config.description}}</mat-hint>
   </mat-form-field>
@@ -45,6 +48,7 @@
       [(ngModel)]="field.data.value"
       (ngModelChange)="changed.emit(field)"
       [name]="name"
+      [disabled]="disabled"
       [required]="field.config.configs.required===true">
     <mat-hint>{{field.config.description}}</mat-hint>
   </mat-form-field>
@@ -58,6 +62,7 @@
       (ngModelChange)="changed.emit(field)"
       fsFormPhone
       [name]="name"
+      [disabled]="disabled"
       [required]="field.config.configs.required===true">
     <mat-hint>{{field.config.description}}</mat-hint>
   </mat-form-field>
@@ -70,6 +75,7 @@
       [(ngModel)]="field.data.value"
       (ngModelChange)="changed.emit(field)"
       [name]="name"
+      [disabled]="disabled"
       [required]="field.config.configs.required===true">
     <mat-hint>{{field.config.description}}</mat-hint>
   </mat-form-field>

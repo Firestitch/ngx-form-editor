@@ -6,10 +6,12 @@
     [name]="'choices' + name"
     [fsFormFunction]="validate"
     [attr.validation-required]="this.field.config.configs.required"
+    [disabled]="disabled"
     messageSelector=".fs-form-message"
     orientation="vertical">
   <mat-radio-button
     *ngFor="let item of field.config.configs.options"
+    [disabled]="disabled"
     [value]="item.value">
       {{ item.name }}
   </mat-radio-button>
@@ -17,6 +19,7 @@
     *ngIf="field.config.configs.other"
     value="other"
     [name]="'otherChoice' + name"
+    [disabled]="disabled"
     class="other choice">
     <mat-form-field floatLabel="never" class="subscript-remove">
       <input
@@ -25,7 +28,8 @@
         (click)="otherInputClick()"
         (ngModelChange)="changed.emit(field)"
         [(ngModel)]="field.data.value.other"
-        [name]="'otherInput' + name">
+        [name]="'otherInput' + name"
+        [disabled]="disabled">
     </mat-form-field>
   </mat-radio-button>
   <mat-hint>{{field.config.description}}</mat-hint>

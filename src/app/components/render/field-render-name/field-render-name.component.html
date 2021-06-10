@@ -3,6 +3,7 @@
   labelSelector="disable-label-selector"
   (ngModelChange)="changed.emit(field)"
   name="{{name}}LastName"
+  [disabled]="disabled"
   [field]="field"
   [(ngModel)]="field.data.value">
 </fs-field-render-name-model>

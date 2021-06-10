@@ -15,7 +15,9 @@ import { FieldComponent } from '../../field/field.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FieldRenderNameModelComponent extends FieldComponent implements ControlValueAccessor {
-  @Input() field;
+
+  @Input() public field;
+  @Input() public disabled = false;
 
   value;
 
