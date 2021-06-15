@@ -74,7 +74,7 @@ export class FieldToolbarItemComponent {
     const field = this._prepareField(item)
     this.fieldEditor.insertNewField(
       field,
-      null,
+      undefined,
       {
         item: {
           data: {
