@@ -72,7 +72,17 @@ export class FieldToolbarItemComponent {
 
   public itemClick(item: ToolbarItem): void {
     const field = this._prepareField(item)
-    this.fieldEditor.insertNewField(field);
+    this.fieldEditor.insertNewField(
+      field,
+      null,
+      {
+        item: {
+          data: {
+            item: this.item,
+          }
+        }
+      } as any
+    );
   }
 
   private _hideMenuBackdrop(): void {
