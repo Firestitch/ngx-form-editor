@@ -51,7 +51,7 @@
     "@firestitch/autocomplete": "^8.1.0",
     "@firestitch/autocomplete-chips": "^8.1.2",
     "@firestitch/badge": "^8.0.0",
-    "@firestitch/checkboxgroup": "^8.1.2",
+    "@firestitch/checkboxgroup": "^8.2.3",
     "@firestitch/chip": "^8.0.0",
     "@firestitch/clear": "^8.0.0",
     "@firestitch/common": "^8.0.7",
