@@ -16,8 +16,9 @@
       type="button"
       (click)="toggleRequired()"
       matTooltip="Require Response"
+      class="require-button"
       [ngClass]="{ disabled: !field.config.configs.required }">
-      <mat-icon>check_box</mat-icon>
+      *
     </button>
     <button
       mat-icon-button

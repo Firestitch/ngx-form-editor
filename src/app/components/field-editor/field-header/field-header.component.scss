@@ -1,8 +1,20 @@
-button.disabled mat-icon {
-  color: #ccc;
+:host {
+  ::ng-deep {
+    button.disabled {
+      mat-icon, .mat-button-wrapper {
+        color: #ccc;
+      }
+    }
+  }
 }
 
 .label,
 .description {
   width: 100%;
+}
+
+.require-button {
+  font-size: 35px;
+  padding-top: 6px;
+  color: #f44336;
 }
