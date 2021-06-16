@@ -1,7 +1,8 @@
 :host {
   ::ng-deep {
     button.disabled {
-      mat-icon, .mat-button-wrapper {
+      mat-icon,
+      .mat-button-wrapper {
         color: #ccc;
       }
     }
@@ -14,7 +15,14 @@
 }
 
 .require-button {
-  font-size: 35px;
-  padding-top: 6px;
-  color: #f44336;
+  line-height: normal;
+  svg {
+    fill: #f44336;
+    height: 18px;
+    width: 18px;
+  }
+
+  &.disabled svg {
+    fill: #ccc;
+  }
 }

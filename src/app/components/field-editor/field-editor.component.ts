@@ -19,7 +19,7 @@ import { DOCUMENT } from '@angular/common';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
 import { fromEvent, Subject } from 'rxjs';
-import { filter, takeUntil } from 'rxjs/operators';
+import { delay, filter, takeUntil } from 'rxjs/operators';
 
 
 import {
@@ -129,6 +129,7 @@ export class FieldEditorComponent implements OnInit, AfterContentInit, OnDestroy
   private _listenClickOutside(): void {
     fromEvent(this.document, 'mousedown')
       .pipe(
+        delay(100),
         filter(() => !!this.fieldEditor.selectedField && !this.fieldEditor.inDeletionMode),
         filter((event: Event) => {
           return clickOutsideElement(event, this._elRef.nativeElement);

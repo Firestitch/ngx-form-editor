@@ -2,8 +2,10 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
+  ElementRef,
   Input,
-  OnInit
+  OnInit,
+  ViewChild
 } from '@angular/core';
 
 import { FsPrompt } from '@firestitch/prompt';
@@ -22,6 +24,9 @@ import { FieldEditorService } from '../../../services/field-editor.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FieldHeaderComponent extends FieldComponent implements OnInit {
+
+  @ViewChild('description')
+  public descriptionEl: ElementRef;
 
   public hasDescription;
 
@@ -45,6 +50,12 @@ export class FieldHeaderComponent extends FieldComponent implements OnInit {
   public toggleDescriptionNote(): void {
     this.hasDescription = !this.hasDescription;
     this.changed.emit(this.field);
+
+    if (this.hasDescription) {
+      setTimeout(() => {
+        this.descriptionEl.nativeElement.focus();
+      });
+    }
   }
 
   public copy(event: Event): void {
