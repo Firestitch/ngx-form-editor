@@ -3,8 +3,19 @@ import {
   ChangeDetectorRef,
   Component,
   forwardRef,
+  ViewChild,
 } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import {
+  AbstractControl,
+  ControlContainer,
+  ControlValueAccessor,
+  NG_VALIDATORS,
+  NG_VALUE_ACCESSOR,
+  NgForm,
+  NgModel,
+  ValidationErrors,
+  Validator,
+} from '@angular/forms';
 
 import { Field } from '@firestitch/field-editor';
 
@@ -18,10 +29,22 @@ import { Field } from '@firestitch/field-editor';
       useExisting: forwardRef(() => TermsFieldConfigComponent),
       multi: true,
     },
+    {
+      provide: NG_VALIDATORS,
+      useExisting: forwardRef( () => TermsFieldConfigComponent),
+      multi: true,
+    },
+    {
+      provide: ControlContainer,
+      useExisting: NgForm,
+    },
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TermsFieldConfigComponent implements ControlValueAccessor {
+export class TermsFieldConfigComponent implements Validator, ControlValueAccessor {
+
+  @ViewChild('url', { read: NgModel })
+  private _urlModel: NgModel;
 
   private _onChange: (value: unknown) => void;
   private _onTouch: (value: unknown) => void;
@@ -40,6 +63,16 @@ export class TermsFieldConfigComponent implements ControlValueAccessor {
 
   public get field(): Field {
     return this._field;
+  }
+
+  public validate(control: AbstractControl): ValidationErrors | null {
+    if (this.field.config.configs.termsContentSource === 'url' && !this._urlModel?.control.valid) {
+      return {
+        url: false,
+      };
+    }
+
+    return null;
   }
 
   public writeValue(obj: Field | undefined): void {
